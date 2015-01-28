@@ -10,4 +10,5 @@
 !.my-scripts/*
 !.my-scripts/
 !.gitconfig
-
+!.gnome2/*
+!.gnome2/
