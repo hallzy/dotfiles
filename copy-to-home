@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cp -r ./homefolder/.vim ~/
-cp -r ./homefolder/.vimrc ~/
-cp -r ./homefolder/.my-scripts ~/
-cp -r ./homefolder/.bashrc ~/
-cp -r ./homefolder/.gitconfig ~/

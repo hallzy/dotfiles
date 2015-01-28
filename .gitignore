@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# Except for these
+!.vimrc
+!.vim/
+!.gitignore
+!.bashrc
+!.my-scripts/
+!.gitconfig
+
