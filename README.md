@@ -14,9 +14,16 @@ found in homefolder/.vim/colors of this repo.
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
 
 ###.myscripts/
-  These are scripts that I have that show up in the right click context menu. The
-only one in it right now is update which does the same thing as the gui Update
-Manager in Ubuntu, but in the terminal.
+  This holds some scripts I have. The Update script is used by the script in the
+.gnome2/ directory.
+
+###.gnome2/
+  This holds my nautilus scripts, which are scripts that populate the right
+click context menu.
+  * Update updates my Ubuntu system as the Update manager does, but in terminal.
+  * Open Terminal Here: Opens a terminal with the cwd as the place in the file
+    system that you right clicked. ie) if you right click on the desktop and run
+this script, it will start a terminal at ~/Desktop/
 
 ###.gitconfig
   My .gitconfig file that has some settings such as aliases, and default editor

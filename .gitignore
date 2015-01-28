@@ -10,5 +10,5 @@
 !.my-scripts/*
 !.my-scripts/
 !.gitconfig
-!.gnome2/*
-!.gnome2/
+!.gnome2/nautilus-scripts/
+!.gnome2/nautilus-scripts/*
