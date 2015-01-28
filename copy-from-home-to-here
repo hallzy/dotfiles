@@ -4,3 +4,4 @@ cp -r ~/.vim ./homefolder
 cp -r ~/.vimrc ./homefolder
 cp -r ~/.my-scripts ./homefolder
 cp -r ~/.bashrc ./homefolder
+cp -r ~/.gitconfig ./homefolder
