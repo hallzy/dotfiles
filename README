@@ -1,9 +1,0 @@
-This is the a repo of the dot files that I use.
-
-Currently, it is only a .vimrc file, which is a slightly modified version of the .vimrc file from https://github.com/mscoutermarsh
-
-Currently the only change is the colour scheme, which is badwolf. This can be found in the colours directory of this repo.
-
-To use this .vimrc file, move the file into ~/.vimrc
-
-To use the colour scheme, move badwolf.vim to ~/.vim/colors/

@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/steven/Desktop/permission-testing/test'
+let g:netrw_dirhist_2='/home/steven/.vim'
+let g:netrw_dirhist_3='/home/steven/Downloads/gruvbox-master/autoload/airline'

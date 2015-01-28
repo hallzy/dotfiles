@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp -r ~/.vim ./homefolder
+cp -r ~/.vimrc ./homefolder
+cp -r ~/.my-scripts ./homefolder
+cp -r ~/.bashrc ./homefolder
