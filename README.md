@@ -23,14 +23,11 @@ Manager in Ubuntu, but in the terminal.
 for commits.
 
 ###Usage
-  To use any of these, just go copy the files into the corresponding folders of
+  To use these just copy the stuff that you want to the corresponding folder in
 your ~/ directory.
 
-  To use everything, just copy all the contents of homefolder to ~/ or run the
-./copy_to_home bash script.
-
-  copy-from-home-to-here is a script that I use to copy these files from my ~/
-directory to this repo so that I can easily push changes to github.
+  To use everything, just copy all the the files and directories to your ~/
+Direcctory.
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
