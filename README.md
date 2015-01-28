@@ -4,7 +4,7 @@ This is a repo of the dot files that I use and have modifications for.
 
 ###.vim and .vimrc
 This includes my .vimrc file which is a slightly modified version of the .vimrc
-file from https://github.com/mscoutermarsh
+file from [mscoutermarsh](https://github.com/mscoutermarsh)
 
 Currently the only change is the colour scheme, which is badwolf. This can be
 found in homefolder/.vim/colors of this repo.

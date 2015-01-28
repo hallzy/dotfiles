@@ -1,0 +1,14 @@
+[user]
+	name = hallzy
+	email = Hallzy.18@gmail.com
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+  stat = status
+	unstage = reset HEAD --
+	graphlog = log --oneline --decorate --graph
+	graphlogall = log --oneline --decorate --graph --all
