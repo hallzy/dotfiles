@@ -31,3 +31,9 @@ your ~/ directory.
 
   copy-from-home-to-here is a script that I use to copy these files from my ~/
 directory to this repo so that I can easily push changes to github.
+
+#Preinstalled vim Plugins
+This .vim directory has preinstalled vim plugins. These plugins include:
+  * [tComment](http://github.com/vim-scripts/tComment)
+  * [NERDTree](https://github.com/scrooloose/nerdtree)
+  * [Snipmate](https://github.com/msanders/snipmate.vim)
