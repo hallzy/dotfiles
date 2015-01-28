@@ -3,9 +3,11 @@
 
 # Except for these
 !.vimrc
+!.vim/*
 !.vim/
 !.gitignore
 !.bashrc
+!.my-scripts/*
 !.my-scripts/
 !.gitconfig
 
