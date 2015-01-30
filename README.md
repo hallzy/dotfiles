@@ -9,6 +9,9 @@ file from [mscoutermarsh](https://github.com/mscoutermarsh)
   Currently the only change is the colour scheme, which is badwolf. This can be
 found in homefolder/.vim/colors of this repo.
 
+  I also recommend remapping the caps lock key to esc, since the escape key is
+used quite frequently using vim.
+
 ###.bashrc
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
