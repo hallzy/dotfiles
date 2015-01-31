@@ -246,4 +246,5 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Maps the <F7> key to use git-time-lapse
 map <F7> :call TimeLapse()<cr>

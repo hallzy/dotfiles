@@ -15,6 +15,9 @@ as the escape key (this may be a better option for virtual machines, or windows
 users as remapping keys in windows or with a vm is a little annoying. Remapping
 keys in Ubuntu for example, is much easier).
 
+  Using git-time-lapse is toggled by clicking the F7 key. This can be changed in
+the .vimrc file.
+
 ###.bashrc
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
