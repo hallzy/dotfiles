@@ -43,8 +43,8 @@ set notimeout
 
 " highlight vertical column of cursor
 au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline 
-set cursorline 
+au WinEnter * set cursorline
+set cursorline
 
 "key to insert mode with paste using F2 key
 map <F2> :set paste<CR>i
@@ -105,9 +105,11 @@ augroup vimrcEx
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
+  " autocmd FileType all setlocal spell ================= Set this up for all
+
 
   " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
 augroup END
 
 " bind K to search word under cursor
@@ -230,8 +232,9 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-" Remove trailing whitespace on save for ruby files.
-au BufWritePre *.rb :%s/\s\+$//e
+" Remove trailing whitespace on save for all filetypes.
+au BufWritePre * :%s/\s\+$//e
+
 
 " cmd n, cmd p for fwd/backward in search
 map <C-n> :cn<CR>
