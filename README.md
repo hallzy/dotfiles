@@ -47,3 +47,4 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [tComment](http://github.com/vim-scripts/tComment)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
+  * [a.vim](https://github.com/vim-scripts/a.vim)
