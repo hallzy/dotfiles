@@ -48,3 +48,4 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
   * [a.vim](https://github.com/vim-scripts/a.vim)
+  * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
