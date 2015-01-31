@@ -29,7 +29,7 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 
 " Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
+map <F8> :NERDTreeToggle<CR>
 " Current file in nerdtree
 map <F9> :NERDTreeFind<CR>
 
@@ -175,8 +175,8 @@ set undolevels=1000
 :nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
 :nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
 :nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
-:xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-:xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
+" :xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
+" :xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
 
 " convert hash rockets
 nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
