@@ -10,7 +10,10 @@ file from [mscoutermarsh](https://github.com/mscoutermarsh)
 found in homefolder/.vim/colors of this repo.
 
   I also recommend remapping the caps lock key to esc, since the escape key is
-used quite frequently using vim.
+used quite frequently using vim, or remembering that ctrl+\[ is is recognized
+as the escape key (this may be a better option for virtual machines, or windows
+users as remapping keys in windows or with a vm is a little annoying. Remapping
+keys in Ubuntu for example, is much easier).
 
 ###.bashrc
   Currently, my .bashrc file is just the default with ubuntu but modified so that
