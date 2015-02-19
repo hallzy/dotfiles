@@ -72,7 +72,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
+    alias grep='grep --color=auto -n'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -84,7 +84,8 @@ alias l='ls'
 
 # Alias definitions.
 alias ll='ls -hl'
-alias gitrep='/home/steven/Documents/git-repos'
+alias grepcontext='grep -nC 5'
+alias findcwd='find ./ -name'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
