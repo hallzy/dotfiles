@@ -17,7 +17,7 @@ let $PATH='/usr/local/bin:' . $PATH
 let g:session_autoload = 'no'
 
 " Leader Mappings
-let mapleader = "\<Space>"
+" let mapleader ="\<Space>"
 map <Leader>w :update<CR>
 map <Leader>q :qall<CR>
 "
