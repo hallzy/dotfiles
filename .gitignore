@@ -33,3 +33,4 @@
 !.gitconfig
 !.gnome2/nautilus-scripts/
 !.gnome2/nautilus-scripts/*
+!open-nautilus
