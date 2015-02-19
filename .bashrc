@@ -78,11 +78,13 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias lal='ls -hAl'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls'
 
 # Alias definitions.
+alias ll='ls -hl'
+alias gitrep='/home/steven/Documents/git-repos'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
