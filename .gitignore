@@ -3,9 +3,29 @@
 
 # Except for these
 !.vimrc
-!.vim/*
+
 !.vim/
-!.vim/*/*
+!.vim/after/
+!.vim/after/*
+!.vim/colors/
+!.vim/colors/*
+!.vim/ftplugin/
+!.vim/ftplugin/*
+!.vim/nerdtree_plugin/
+!.vim/nerdtree_plugin/*
+!.vim/plugin/
+!.vim/plugin/*
+!.vim/syntax/
+!.vim/syntax/*
+!.vim/autoload/
+!.vim/autoload/*
+!.vim/doc/
+!.vim/doc/*
+!.vim/lib/
+!.vim/lib/*
+!.vim/snippets/
+!.vim/snippets/*
+
 !.gitignore
 !.bashrc
 !.my-scripts/*
