@@ -7,7 +7,7 @@
 file from [mscoutermarsh](https://github.com/mscoutermarsh)
 
   Currently the only change is the colour scheme, which is badwolf. This can be
-found in homefolder/.vim/colors of this repo.
+found in .vim/colors of this repo.
 
   I also recommend remapping the caps lock key to esc, since the escape key is
 used quite frequently using vim, or remembering that ctrl+\[ is is recognized
@@ -22,9 +22,14 @@ the .vimrc file.
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
 
+  It also has some extra aliases for different directory listings.
+
 ###.myscripts/
   This holds some scripts I have. The Update script is used by the script in the
 .gnome2/ directory.
+
+  It also has _open-nautilus_ which, when executed from the terminal, opens the
+nautilus file manager at the current location in the terminal.
 
 ###.gnome2/
   This holds my nautilus scripts, which are scripts that populate the right
@@ -42,8 +47,13 @@ for commits.
   To use these just copy the stuff that you want to the corresponding folder in
 your ~/ directory.
 
-  To use everything, just copy all the the files and directories to your ~/
-Direcctory.
+  To use everything, just copy all of the files and directories to your ~/
+directory.
+
+``
+$ cd ~
+$ git clone https://github.com/hallzy/dotfiles.git
+``
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
