@@ -50,11 +50,10 @@ your ~/ directory.
   To use everything, just copy all of the files and directories to your ~/
 directory.
 
-``
+```bash
 $ cd ~
-
 $ git clone https://github.com/hallzy/dotfiles.git
-``
+```
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
