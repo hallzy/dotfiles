@@ -249,5 +249,5 @@ nnoremap <C-H> <C-W><C-H>
 " Maps the <F7> key to use git-time-lapse
 map <F7> :call TimeLapse()<cr>
 
-" keep the cursor in the middle of thes creen
-set so=999
+" Keep the cursor in the middle of the page if possible
+:set so=999
