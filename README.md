@@ -52,6 +52,7 @@ directory.
 
 ``
 $ cd ~
+
 $ git clone https://github.com/hallzy/dotfiles.git
 ``
 
