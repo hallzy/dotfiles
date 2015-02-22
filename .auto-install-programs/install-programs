@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p logs
+time ./install-programs-helper | tee ./logs/2015-02-22_01:26:30-install-programs.log

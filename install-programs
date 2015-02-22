@@ -1,3 +1,0 @@
-#!/bin/bash
-
-time ./.my-scripts/install-programs-helper | tee 2015-02-22_01:26:30-install-programs.log

@@ -1,11 +1,6 @@
 #!/bin/bash
 
-PROGRAMS=(
-vlc
-browser-plugin-vlc
-vim
-screen
-)
+readarray PROGRAMS < ./programs-to-install
 
 COMPLETED=()
 FAILED=()

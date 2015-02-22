@@ -34,4 +34,8 @@
 !.gnome2/nautilus-scripts/
 !.gnome2/nautilus-scripts/*
 !open-nautilus
-!install-programs
+
+!.auto-install-programs/
+!.auto-install-programs/install-programs
+!.auto-install-programs/install-programs-helper
+!.auto-install-programs/programs-to-install
