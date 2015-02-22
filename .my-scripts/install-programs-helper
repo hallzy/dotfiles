@@ -1,0 +1,51 @@
+#!/bin/bash
+
+PROGRAMS=(
+vlc
+vim
+thisisnotaprogram
+)
+
+COMPLETED=()
+FAILED=()
+
+for PROGRAM in ${PROGRAMS[@]}
+do
+  echo "------------------------------------------------------------"
+  echo "Start Installation - $PROGRAM"
+  sudo apt-get install $PROGRAM
+  if [ $? -eq 0 ]
+  then
+    echo " "
+    echo " "
+    echo "Install COMPLETED Successfully - $PROGRAM"
+    echo "------------------------------------------------------------"
+    echo " "
+    echo " "
+    COMPLETED+=($PROGRAM)
+  else
+    echo " "
+    echo " "
+    echo "Install FAILED - $PROGRAM"
+    echo "------------------------------------------------------------"
+    echo " "
+    echo " "
+    FAILED+=($PROGRAM)
+  fi
+done
+
+echo "Programs that Successfully Installed"
+echo "------------------------------------"
+for PROGRAM in ${COMPLETED[@]}
+do
+  echo $PROGRAM
+done
+echo " "
+echo "Programs that FAILED to Install"
+echo "------------------------------------"
+for PROGRAM in ${FAILED[@]}
+do
+  echo $PROGRAM
+done
+echo " "
+echo "Script COMPLETED"
