@@ -2,12 +2,21 @@
 
 PROGRAMS=(
 vlc
+browser-plugin-vlc
 vim
-thisisnotaprogram
+screen
 )
 
 COMPLETED=()
 FAILED=()
+
+echo "------------------------------------------------------------"
+echo "Starting Update"
+sudo apt-get update
+echo "Update Completed"
+echo "------------------------------------------------------------"
+echo " "
+echo " "
 
 for PROGRAM in ${PROGRAMS[@]}
 do
