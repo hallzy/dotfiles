@@ -43,6 +43,36 @@ this script, it will start a terminal at ~/Desktop/
   My .gitconfig file that has some settings such as aliases, and default editor
 for commits.
 
+###.auto-install-programs
+  This folder contains bash scripts that will automatically install all the
+programs specified in the programs-to-install file. To use this:
+
+```bash
+$ cd ~/.auto-install-programs
+$ ./install-programs
+```
+
+  Assuming that your list of programs to install is up to date. If you do not
+already have a log folder within this folder, it will create one for you, and
+create timestamped logs within this folder.
+
+  This script will use the helper script to help make it run as intended. It
+will automatically run
+
+```bash
+$ sudo apt-get update
+```
+
+and
+
+```bash
+$ sudo apt-get <program>
+```
+
+where <program> is every program listed in the programs-to-install file. A
+summary will be shown at the end saying which of the scripts had successfully
+been installed, and which scripts did not.
+
 ###Usage
   To use these just copy the stuff that you want to the corresponding folder in
 your ~/ directory.

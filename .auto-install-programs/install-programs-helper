@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readarray PROGRAMS < ./programs-to-install
+readarray PROGRAMS < ~/.auto-install-programs/programs-to-install
 
 COMPLETED=()
 FAILED=()
