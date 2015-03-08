@@ -1,9 +1,19 @@
 #!/bin/bash
 
 readarray PROGRAMS < ~/.auto-install-programs/programs-to-install
+readarray REPOS < ~/.auto-install-programs/repos-to-add
 
 COMPLETED=()
 FAILED=()
+
+## add repositories
+for REPO in ${REPOS[@]}
+do
+  echo "------------------------------------------------------------"
+  echo "Adding Repository - $REPO"
+  sudo add-apt-repository $REPO
+  echo "------------------------------------------------------------"
+done
 
 echo "------------------------------------------------------------"
 echo "Starting Update"
