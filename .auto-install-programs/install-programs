@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p logs
+time ~/.auto-install-programs/install-programs-helper | tee ~/.auto-install-programs/logs/$(date +%F_%H:%M:%S)-install-programs.log

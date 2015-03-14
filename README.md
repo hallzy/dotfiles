@@ -1,6 +1,16 @@
 #Dotfiles
 
   This is a repo of the dot files that I use and have modifications for.
+  
+###Usage
+  To use everything in this repo, just run the following command:
+
+```bash
+$ cd ~
+$ git clone https://github.com/hallzy/dotfiles.git
+```
+
+This will clone the repository to your home folder and all the files will go to where they need to in order to be used. Nothing will need to be moved, though some scripts may be more useful to be copied to /bin
 
 ###.vim and .vimrc
   This includes my .vimrc file which is a slightly modified version of the .vimrc
@@ -43,17 +53,35 @@ this script, it will start a terminal at ~/Desktop/
   My .gitconfig file that has some settings such as aliases, and default editor
 for commits.
 
-###Usage
-  To use these just copy the stuff that you want to the corresponding folder in
-your ~/ directory.
-
-  To use everything, just copy all of the files and directories to your ~/
-directory.
+###.auto-install-programs
+  This folder contains bash scripts that will automatically install all the
+programs specified in the programs-to-install file. To use this:
 
 ```bash
-$ cd ~
-$ git clone https://github.com/hallzy/dotfiles.git
+$ cd ~/.auto-install-programs
+$ ./install-programs
 ```
+
+  Assuming that your list of programs to install is up to date. If you do not
+already have a log folder within this folder, it will create one for you, and
+create timestamped logs within this folder.
+
+  This script will use the helper script to help make it run as intended. It
+will automatically run
+
+```bash
+$ sudo apt-get update
+```
+
+and
+
+```bash
+$ sudo apt-get <program>
+```
+
+where <program> is every program listed in the programs-to-install file. A
+summary will be shown at the end saying which of the scripts had successfully
+been installed, and which scripts did not.
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
