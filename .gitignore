@@ -1,0 +1,47 @@
+# Ignore everything
+*
+
+# Except for these
+!.vimrc
+
+!.vim/
+!.vim/after/
+!.vim/after/*
+!.vim/colors/
+!.vim/colors/*
+!.vim/ftplugin/
+!.vim/ftplugin/*
+!.vim/nerdtree_plugin/
+!.vim/nerdtree_plugin/*
+!.vim/plugin/
+!.vim/plugin/*
+!.vim/syntax/
+!.vim/syntax/*
+!.vim/autoload/
+!.vim/autoload/*
+!.vim/doc/
+!.vim/doc/*
+!.vim/lib/
+!.vim/lib/*
+!.vim/snippets/
+!.vim/snippets/*
+
+!.gitignore
+!.bashrc
+!.my-scripts/*
+!.my-scripts/
+!.gitconfig
+!.gnome2/nautilus-scripts/
+<<<<<<< HEAD
+!.gnome2/nautilus-scripts/Open\ Terminal\ Here
+!.gnome2/nautilus-scripts/Update
+=======
+!.gnome2/nautilus-scripts/*
+!open-nautilus
+
+!.auto-install-programs/
+!.auto-install-programs/install-programs
+!.auto-install-programs/install-programs-helper
+!.auto-install-programs/programs-to-install
+!.auto-install-programs/repos-to-add
+>>>>>>> 00fb60347ca21fa088c0fccebd1abd25bf04dade
