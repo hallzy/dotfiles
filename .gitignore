@@ -32,10 +32,6 @@
 !.my-scripts/
 !.gitconfig
 !.gnome2/nautilus-scripts/
-<<<<<<< HEAD
-!.gnome2/nautilus-scripts/Open\ Terminal\ Here
-!.gnome2/nautilus-scripts/Update
-=======
 !.gnome2/nautilus-scripts/*
 !open-nautilus
 
