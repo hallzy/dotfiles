@@ -1,7 +1,7 @@
 #Dotfiles
 
   This is a repo of the dot files that I use and have modifications for.
-  
+
 ###Usage
   To use everything in this repo, just run the following command:
 
@@ -32,7 +32,23 @@ the .vimrc file.
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
 
-  It also has some extra aliases for different directory listings.
+  It also has some extra aliases for different directory listings, and use of
+the trashbin. Now with the commands:
+
+```bash
+$ trash
+$ trash-ls
+$ trash-restore
+```
+
+You can:
+
+1. Move a file to the trash bin.
+2. View the contents of the trash bin.
+3. restore files to there original location from the trash bin
+
+respectively. The first two are aliases in the .bashrc, the 3rd one is a script
+in the .my-scripts directory which I moved to my /bin.
 
 ###.myscripts/
   This holds some scripts I have. The Update script is used by the script in the
@@ -40,6 +56,9 @@ the shell prompt does not show the cwd. To see the cwd use the command pwd.
 
   It also has _open-nautilus_ which, when executed from the terminal, opens the
 nautilus file manager at the current location in the terminal.
+
+  trash-restore restores a given file back to its original location after it has
+been moved to the trash.
 
 ###.gnome2/
   This holds my nautilus scripts, which are scripts that populate the right
