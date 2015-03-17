@@ -86,6 +86,9 @@ alias l='ls'
 alias ll='ls -hl'
 alias grepcontext='grep -nC 5'
 alias findcwd='find ./ -name'
+alias trash='gvfs-trash'
+alias show-trash='gvfs-ls trash://'
+alias trash-ls='gvfs-ls trash://'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
@@ -100,3 +103,5 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+source /etc/environment
