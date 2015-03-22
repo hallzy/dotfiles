@@ -1,37 +1,22 @@
 set shell=/bin/bash
-runtime macros/matchit.vim
-" use old regext engine. speed up ruby syntax highlighting
-"gives error
-"set re=1
 
 set ttyfast
 set lazyredraw
 
-let g:ruby_path="~/.rvm/bin/ruby"
-
 let $PATH='/usr/local/bin:' . $PATH
-
-:au FocusLost * :wa "Save on focus lost
 
 " Sessions
 let g:session_autoload = 'no'
 
 " Leader Mappings
-" let mapleader ="\<Space>"
-map <Leader>w :update<CR>
-map <Leader>q :qall<CR>
-"
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
+ let mapleader ="\<Space>"
+nnoremap <leader>w :update<cr>
+nnoremap <Leader>q :qall<CR>
 
 " Toggle nerdtree with F10
-map <F8> :NERDTreeToggle<CR>
+noremap <F8> :NERDTreeToggle<CR>
 " Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
+noremap <F9> :NERDTreeFind<CR>
 
 " Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
 set ttimeout
@@ -46,8 +31,6 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline
 set cursorline
 
-"key to insert mode with paste using F2 key
-map <F2> :set paste<CR>i
 " Leave paste mode on exit
 au InsertLeave * set nopaste
 
@@ -174,9 +157,9 @@ let g:snippetsEmu_key = "<S-Tab>"
 set undolevels=1000
 "set undoreload=10000
 
-:nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-:nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
-:nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
+" :nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
+" :nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
+" :nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
 " :xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
 " :xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
 
@@ -204,7 +187,8 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" Get off my lawn
+" In normal mode, if the arrow keys are pressed, display a message below that
+" says to use either h,j,k or l instead.
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
@@ -218,6 +202,8 @@ set splitbelow
 set splitright
 
 " Quicker window movement
+" Use ctrl+j to move to the window below, ctrl+k to move to the window above,
+" etc.
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -235,11 +221,6 @@ endif
 " Remove trailing whitespace on save for all filetypes.
 au BufWritePre * :%s/\s\+$//e
 
-
-" cmd n, cmd p for fwd/backward in search
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
-
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -251,3 +232,20 @@ map <F7> :call TimeLapse()<cr>
 
 " Keep the cursor in the middle of the page if possible
 :set so=999
+
+" Open .vimrc in a vsplit with <space>ev
+" If $MYVIMRC does not work as a path, either add it, or replace it with the
+" path of your vimrc file.
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Abbreviations that fix typos
+iabbrev waht what
+iabbrev adn and
+
+" In normal mode, press leader s and search result highlighting will go off.
+nnoremap <leader>s :nohlsearch<cr>
+
+" With a J move the current line up, with K move the current line down.
+nnoremap J ddp
+nnoremap K ddkP
+
