@@ -73,23 +73,15 @@ augroup vimrcEx
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
-  " autocmd FileType all setlocal spell ================= Set this up for all
-
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
 augroup END
 
-" bind K to search word under cursor
-nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
-let g:rspec_runner = "os_x_iterm"
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
