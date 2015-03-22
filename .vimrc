@@ -5,9 +5,6 @@ set lazyredraw
 
 let $PATH='/usr/local/bin:' . $PATH
 
-" Sessions
-let g:session_autoload = 'no'
-
 " Leader Mappings
  let mapleader ="\<Space>"
 nnoremap <leader>w :update<cr>
@@ -20,11 +17,8 @@ noremap <F9> :NERDTreeFind<CR>
 
 " Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
 set ttimeout
-set ttimeoutlen=20
+set ttimeoutlen=3
 set notimeout
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
 
 " highlight vertical column of cursor
 au WinLeave * set nocursorline nocursorcolumn
@@ -40,6 +34,8 @@ cabbrev tn tabnext
 cabbrev tf tabfirst
 cabbrev tl tablast
 
+"nnoremap <C-Tab> :tabnext<cr>
+
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
@@ -53,18 +49,7 @@ set hlsearch      " highlight matches
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 
-" Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
-
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
+syntax on
 
 filetype plugin indent on
 
@@ -150,12 +135,7 @@ set numberwidth=5
 " Snippets are activated by Shift+Tab
 let g:snippetsEmu_key = "<S-Tab>"
 
-" Persistent undo
-"gives errors
-"set undodir=~/.vim/undo/
-"set undofile
 set undolevels=1000
-"set undoreload=10000
 
 " :nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
 " :nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
