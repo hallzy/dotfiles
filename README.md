@@ -107,6 +107,8 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [easy-motion](https://github.com/Lokaltog/vim-easymotion)
+  * [fugitive](https://github.com/tpope/vim-fugitive)
+  * [powerline](https://github.com/Lokaltog/vim-powerline)
 
 Notes:
 
