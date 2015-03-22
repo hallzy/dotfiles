@@ -7,6 +7,9 @@ let $PATH='/usr/local/bin:' . $PATH
 
 " Leader Mappings
 map <Space> <leader>
+
+" Make the leader for easy-motion <leader>/
+map <Leader>/ <Plug>(easymotion-prefix)
 nnoremap <leader>w :update<cr>
 nnoremap <Leader>q :qall<CR>
 
@@ -37,6 +40,7 @@ set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
+  " When editing a file, always jump to the last known cursor position.
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=500
 set ruler         " show the cursor position all the time
@@ -56,7 +60,6 @@ augroup vimrcEx
   " For all text files set 'textwidth' to 80 characters.
   autocmd FileType text setlocal textwidth=80
 
-  " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
