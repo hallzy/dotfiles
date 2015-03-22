@@ -110,6 +110,6 @@ This .vim directory has preinstalled vim plugins. These plugins include:
 
 Notes:
 
-My easy motion <leader> is <leader>/
+My easy motion \<leader\> is \<leader\>/
 
 This can be changed within the vimrc file.
