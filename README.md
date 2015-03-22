@@ -13,11 +13,8 @@ $ git clone https://github.com/hallzy/dotfiles.git
 This will clone the repository to your home folder and all the files will go to where they need to in order to be used. Nothing will need to be moved, though some scripts may be more useful to be copied to /bin
 
 ###.vim and .vimrc
-  This includes my .vimrc file which is a slightly modified version of the .vimrc
+  This includes my .vimrc file which is  modified version of the .vimrc
 file from [mscoutermarsh](https://github.com/mscoutermarsh)
-
-  Currently the only change is the colour scheme, which is badwolf. This can be
-found in .vim/colors of this repo.
 
   I also recommend remapping the caps lock key to esc, since the escape key is
 used quite frequently using vim, or remembering that ctrl+\[ is is recognized
