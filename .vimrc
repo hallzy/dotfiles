@@ -84,20 +84,7 @@ set shiftwidth=2
 set expandtab
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup
-  let g:grep_cmd_opts = '--line-numbers --noheading'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+set list listchars=trail:-
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -117,15 +104,9 @@ colorscheme badwolf
 set background=dark
 set encoding=utf-8
 
-" Highlight line number of where cursor currently is
-hi CursorLineNr guifg=#050505
-
 " Numbers
 set number
 set numberwidth=5
-
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
 
 set undolevels=1000
 
@@ -134,9 +115,6 @@ set undolevels=1000
 " :nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
 " :xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
 " :xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
-
-" convert hash rockets
-nmap <leader>rh :%s/\v:(\w+) \=\>/\1:/g<cr>
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -153,9 +131,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
@@ -165,9 +140,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -180,15 +152,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_ruby_checkers = ['mri']
-let g:syntastic_enable_highlighting=0
-
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
 
 " Remove trailing whitespace on save for all filetypes.
 au BufWritePre * :%s/\s\+$//e
