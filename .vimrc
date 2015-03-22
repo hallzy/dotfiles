@@ -6,7 +6,7 @@ set lazyredraw
 let $PATH='/usr/local/bin:' . $PATH
 
 " Leader Mappings
- let mapleader ="\<Space>"
+map <Space> <leader>
 nnoremap <leader>w :update<cr>
 nnoremap <Leader>q :qall<CR>
 
@@ -29,12 +29,9 @@ set cursorline
 au InsertLeave * set nopaste
 
 " Command aliases
-cabbrev tp tabprev
-cabbrev tn tabnext
-cabbrev tf tabfirst
-cabbrev tl tablast
-
-"nnoremap <C-Tab> :tabnext<cr>
+nnoremap <leader>nt :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
@@ -110,12 +107,6 @@ set numberwidth=5
 
 set undolevels=1000
 
-" :nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-" :nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
-" :nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
-" :xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-" :xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
-
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
@@ -183,4 +174,22 @@ nnoremap <leader>s :nohlsearch<cr>
 " With a J move the current line up, with K move the current line down.
 nnoremap J ddp
 nnoremap K ddkP
+
+" Delete or change everything within a comma
+nnoremap di, f,dT,
+nnoremap ci, f,cT,
+
+" Delete Surrounding Characters
+nnoremap ds{ F{xf}x
+nnoremap cs{ F{xf}xi
+nnoremap ds} F{xf}x
+nnoremap cs} F{xf}xi
+nnoremap ds" F"x,x
+nnoremap cs" F"x,xi
+nnoremap ds' F'x,x
+nnoremap cs' F'x,xi
+nnoremap ds( F(xf)x
+nnoremap cs( F(xf)xi
+nnoremap ds) F(xf)x
+nnoremap cs) F(xf)xi
 

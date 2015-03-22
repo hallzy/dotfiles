@@ -105,3 +105,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 source /etc/environment
+
+REPOS=~/Documents/git-repos
+
