@@ -10,5 +10,6 @@
 	st = status
   stat = status
 	unstage = reset HEAD --
-	graphlog = log --oneline --decorate --graph
-	graphlogall = log --oneline --decorate --graph --all
+	graphlog = log --decorate --graph
+	graphlogall = log --decorate --graph --all
+  discard = checkout --
