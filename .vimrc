@@ -10,8 +10,6 @@ map <Space> <leader>
 
 " Make the leader for easy-motion <leader>/
 map <Leader>/ <Plug>(easymotion-prefix)
-nnoremap <leader>w :update<cr>
-nnoremap <Leader>q :qall<CR>
 
 " Toggle nerdtree with F10
 noremap <F8> :NERDTreeToggle<CR>
@@ -196,3 +194,6 @@ nnoremap cs( F(xf)xi
 nnoremap ds) F(xf)x
 nnoremap cs) F(xf)xi
 
+" Delete or change a whole word
+nnoremap <leader>dw BdW
+nnoremap <leader>cw BcW
