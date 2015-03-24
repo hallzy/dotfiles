@@ -11,6 +11,9 @@ map <Space> <leader>
 " Make the leader for easy-motion <leader>/
 map <Leader>/ <Plug>(easymotion-prefix)
 
+" Use fancy characters for statusbar
+let g:Powerline_symbols = 'fancy'
+
 " Toggle nerdtree with F10
 noremap <F8> :NERDTreeToggle<CR>
 " Current file in nerdtree
@@ -197,3 +200,4 @@ nnoremap cs) F(xf)xi
 " Delete or change a whole word
 nnoremap <leader>dw BdW
 nnoremap <leader>cw BcW
+
