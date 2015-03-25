@@ -1,15 +1,19 @@
 [user]
-	name = "Steven Hall"
-	email = Hallzy.18@gmail.com
+  name = "Steven Hall"
+  email = Hallzy.18@gmail.com
 [core]
-	editor = vim
+  editor = vim
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
   stat = status
-	unstage = reset HEAD --
-	graphlog = log --decorate --graph
-	graphlogall = log --decorate --graph --all
+  unstage = reset HEAD --
+  graphlog = log --decorate --graph
+  graphlogall = log --decorate --graph --all
   discard = checkout --

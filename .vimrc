@@ -55,6 +55,8 @@ syntax on
 
 filetype plugin indent on
 
+set textwidth=80
+set fo+=t
 augroup vimrcEx
   autocmd!
 
@@ -85,7 +87,7 @@ set shiftwidth=2
 set expandtab
 
 " Display extra whitespace
-set list listchars=trail:-
+set list listchars=tab:>-,trail:-
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -199,4 +201,17 @@ nnoremap cs) F(xf)xi
 " Delete or change a whole word
 nnoremap <leader>dw BdW
 nnoremap <leader>cw BcW
+
+" When using vimdiff or diff mode
+highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
+highlight DiffText   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=DarkRed    guifg=yellow   gui=bold
+highlight DiffChange term=bold         ctermbg=black     ctermfg=white  cterm=bold guibg=Black      guifg=White    gui=bold
+highlight DiffDelete term=none         ctermbg=DarkRed   ctermfg=white  cterm=none guibg=DarkBlue   guifg=DarkBlue gui=none
+
+" When viewing a diff or patch file
+highlight diffRemoved term=bold ctermbg=black   ctermfg=red    cterm=bold guibg=DarkRed     guifg=white gui=none
+highlight diffAdded   term=bold ctermbg=black   ctermfg=green  cterm=bold guibg=DarkGreen   guifg=white gui=none
+highlight diffChanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=DarkYellow  guifg=white gui=none
+highlight diffLine    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=DarkMagenta guifg=white gui=none
+highlight diffFile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=DarkYellow  guifg=white gui=none
 
