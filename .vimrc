@@ -96,13 +96,12 @@ let g:airline_symbols.space = "\ua0"
 let g:airline_theme='solarized'
 set t_Co=256
 
-:set smartcase
-:set ignorecase
-:set noantialias
+set smartcase
+set ignorecase
+set noantialias
 
 " Color scheme
 colorscheme badwolf
-set background=dark
 set encoding=utf-8
 
 " Numbers
