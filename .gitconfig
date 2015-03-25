@@ -5,7 +5,11 @@
   editor = vim
 [diff]
   tool = vimdiff
+[merge]
+  tool = vimdiff
 [difftool]
+  prompt = false
+[mergetool]
   prompt = false
 [alias]
   co = checkout
