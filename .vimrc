@@ -198,9 +198,8 @@ nnoremap cs( F(xf)xi
 nnoremap ds) F(xf)x
 nnoremap cs) F(xf)xi
 
-" Delete or change a whole word
-nnoremap <leader>dw BdW
-nnoremap <leader>cw BcW
+"Create Closing Tag
+nnoremap cct F<yf>f>pF<a/<esc>hi
 
 " When using vimdiff or diff mode
 highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
