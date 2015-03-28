@@ -201,6 +201,9 @@ nnoremap cs) F(xf)xi
 "Create Closing Tag
 nnoremap cct F<yf>f>pF<a/<esc>hi
 
+" also exit vim with :Q or :Q!
+cnoremap Q q
+
 " When using vimdiff or diff mode
 highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
 highlight DiffText   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=DarkRed    guifg=yellow   gui=bold
