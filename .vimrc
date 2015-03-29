@@ -201,7 +201,9 @@ nnoremap cs) F(xf)xi
 "Create Closing Tag
 nnoremap cct F<yf>f>pF<a/<esc>hi
 
-" also exit vim with :Q or :Q!
+" also exit vim with :Q or :Q
+" and save with :W or :w
+cnoremap W w
 cnoremap Q q
 
 " When using vimdiff or diff mode
