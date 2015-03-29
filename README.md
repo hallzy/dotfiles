@@ -1,5 +1,9 @@
 #Dotfiles
 
+![C++ File](./.screenshots/c++.png)
+
+![C++ File with Nerdtree](./.screenshots/c++_w_nerdtree.png)
+
   This is a repo of the dot files that I use and have modifications for.
 
 ###Usage
