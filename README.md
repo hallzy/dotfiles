@@ -14,7 +14,9 @@ $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
 ```
 
-This will clone the repository to your home folder and all the files will go to where they need to in order to be used. Nothing will need to be moved, though some scripts may be more useful to be copied to /bin
+This will clone the repository to your home folder and all the files will go
+to where they need to in order to be used. Nothing will need to be moved,
+though some scripts may be more useful to be copied to /bin
 
 ###.vim and .vimrc
   This includes my .vimrc file which is  modified version of the .vimrc
@@ -33,8 +35,8 @@ the .vimrc file.
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
 
-  It also has some extra aliases for different directory listings, and use of
-the trashbin. Now with the commands:
+### .bash_aliases
+  Has my aliases which include the use of the trashbin:
 
 ```bash
 $ trash
@@ -90,6 +92,10 @@ create timestamped logs within this folder.
 will automatically run
 
 ```bash
+$ sudo add-apt-repository <repo>
+```
+
+```bash
 $ sudo apt-get update
 ```
 
@@ -115,6 +121,8 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [powerline](https://github.com/Lokaltog/vim-powerline)
 
 Notes:
+
+My leader is the spacebar.
 
 My easy motion \<leader\> is \<leader\>/
 

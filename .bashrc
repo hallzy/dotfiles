@@ -77,22 +77,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias lal='ls -hAl'
-alias la='ls -A'
-alias l='ls'
-
-# Alias definitions.
-alias ll='ls -hl'
-alias grepcontext='grep -nC 5'
-alias findcwd='find ./ -name'
-alias trash='gvfs-trash'
-alias show-trash='gvfs-ls trash://'
-alias trash-ls='gvfs-ls trash://'
-alias mkdir='mkdir -p'
-alias chmod='sudo chmod'
-alias chown='sudo chown'
-
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
