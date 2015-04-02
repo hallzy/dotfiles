@@ -108,6 +108,9 @@ set encoding=utf-8
 
 " Numbers
 set number
+" Toggle for line numbers for easy copy/paste
+nnoremap <leader>N :setlocal number!<cr>
+
 set numberwidth=5
 
 set undolevels=1000
@@ -152,6 +155,13 @@ nnoremap <C-l> <C-w>l
 " Remove trailing whitespace on save for all filetypes.
 au BufWritePre * :%s/\s\+$//e
 
+" This formats curly braces to the way that I like:
+"    Put a space betweeen ) and {
+au BufWritePre * :%s/) {/) {/e
+"    if the { is on a new line separated by whitespace, bring it back up to the
+"    line with the )
+au BufWritePre * :%s/)\n\s\*{/) {/e
+
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -179,6 +189,10 @@ nnoremap <leader>s :nohlsearch<cr>
 " With a J move the current line up, with K move the current line down.
 nnoremap J ddp
 nnoremap K ddkP
+
+" H and L move the cursor to the beginning and end of the line.
+nnoremap H 0
+nnoremap L $
 
 " Delete or change everything within a comma
 nnoremap di, f,dT,
