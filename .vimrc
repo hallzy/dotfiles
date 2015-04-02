@@ -153,14 +153,52 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Remove trailing whitespace on save for all filetypes.
-au BufWritePre * :%s/\s\+$//e
+au BufWritePre * :%s/\s\+$//ge
 
-" This formats curly braces to the way that I like:
-"    Put a space betweeen ) and {
-au BufWritePre * :%s/) {/) {/e
-"    if the { is on a new line separated by whitespace, bring it back up to the
-"    line with the )
-au BufWritePre * :%s/)\n\s\*{/) {/e
+"Replace a tab wtih 2 spaces
+au BufWritePre * :%s/\t/  /ge
+
+" This formats spaces between brackets and such to the way that I like things to
+" be.
+function! BracketSpacing()
+  " I do not want this to do anything for this vim file because otherwise when I
+  " save this file this mapping will mess itself up.
+  " So this returns nothing when the filetype is vim.
+  if &filetype =~ 'vim'
+    return
+  endif
+  " TODO find a better way of doing this as it is very repetitive.
+  :%s/){/) {/ge
+  :%s/else{/else {/ge
+  :%s/if(/if (/ge
+  :%s/do{/do {/ge
+  :%s/while(/while (/ge
+  :%s/}while/} while/ge
+
+  " These have two \s characters to eliminate recursive subs.
+  :%s/)\s\s\+{/) {/ge
+  :%s/else\s\s\+{/else {/ge
+  :%s/if\s\s\+(/if (/ge
+  :%s/do\s\s\+{/do {/ge
+  :%s/while\s\s\+(/while (/ge
+  :%s/}\s\s\+while/} while/ge
+
+  :%s/)\n\s\+{/) {/ge
+  :%s/else\n\s\+{/else {/ge
+  :%s/if\n\s\+(/if (/ge
+  :%s/do\n\s\+{/do {/ge
+  :%s/while\n\s\+(/while (/ge
+  :%s/}\n\s\+while/} while/ge
+
+  :%s/)\n{/) {/ge
+  :%s/else\n{/else {/ge
+  :%s/if\n(/if (/ge
+  :%s/do\n{/do {/ge
+  :%s/while\n(/while (/ge
+  :%s/}\nwhile/} while/ge
+endfun
+
+au BufWritePre * call BracketSpacing()
 
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
