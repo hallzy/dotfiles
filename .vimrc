@@ -113,6 +113,17 @@ nnoremap <leader>N :setlocal number!<cr>
 
 set numberwidth=5
 
+function! ToggleRelativeNumber()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunction
+
+nnoremap <leader>TN :call ToggleRelativeNumber()<cr>
+
 set undolevels=1000
 
 " Tab completion
@@ -151,12 +162,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" Remove trailing whitespace on save for all filetypes.
-au BufWritePre * :%s/\s\+$//ge
-
-"Replace a tab wtih 2 spaces
-au BufWritePre * :%s/\t/  /ge
 
 " This formats spaces between brackets and such to the way that I like things to
 " be.
@@ -198,7 +203,23 @@ function! BracketSpacing()
   :%s/}\nwhile/} while/ge
 endfun
 
-au BufWritePre * call BracketSpacing()
+" Remove trailing whitespace on save for all filetypes.
+function! s:MyFormattingSubs()
+  "Save last search and cursor position
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+
+  %s/\s\+$//ge
+  "Replace a tab wtih 2 spaces
+  au BufWritePre * :%s/\t/  /ge
+  call BracketSpacing()
+
+  let @/=_s
+  call cursor(l,c)
+endfunction
+
+au BufWritePre * :call <SID>MyFormattingSubs()
 
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
