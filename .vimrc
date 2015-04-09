@@ -279,6 +279,13 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 cnoremap W w
 cnoremap Q q
 
+"Evaluate a mathematical expression
+"usage: On a new line type out a math expression ex: 5+5=
+"put the cursor anywhere on the expresssion and type <leader>m in normal mode
+"The answer will be put at the end of the equals sign, and the dec, hex, and
+"octal answers will be in the bottom of the vim window.
+nnoremap <leader>m yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x   Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
+
 " When using vimdiff or diff mode
 highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
 highlight DiffText   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=DarkRed    guifg=yellow   gui=bold
