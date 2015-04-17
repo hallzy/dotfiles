@@ -210,9 +210,14 @@ function! s:MyFormattingSubs()
   let l = line(".")
   let c = col(".")
 
+  "For the filetypes listed here, do all the formatting except removing tab
+  "characters.
+  if &filetype !~ 'make'
+    %s/\t/  /ge
+  endif
+
   %s/\s\+$//ge
   "Replace a tab wtih 2 spaces
-  au BufWritePre * :%s/\t/  /ge
   call BracketSpacing()
 
   let @/=_s
