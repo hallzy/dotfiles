@@ -7,3 +7,6 @@ set mouse=""
 nnoremap y "*y
 nnoremap p "*p
 nnoremap d "*d
+vnoremap y "*y
+vnoremap p "*p
+vnoremap d "*d
