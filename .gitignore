@@ -3,6 +3,7 @@
 
 # Except for these
 !.vimrc
+!.gvimrc
 
 !.vim/
 !.vim/*
@@ -20,6 +21,9 @@
 !.vim/*/*/*/*/*/*/*
 !.vim/*/*/*/*/*/*/*/
 !.vim/*/*/*/*/*/*/*/*
+
+.vim/undo/
+
 
 !.gitignore
 
