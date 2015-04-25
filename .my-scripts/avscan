@@ -1,5 +1,11 @@
 #!/bin/bash
 
-# Scan recursively from current directory and save
-# results in a file
-sudo clamscan -ri ./ > ~/Desktop/scan_results.txt
+if [ "$1" = "-r" ]
+then
+  # Scan recursively from current directory and save
+  # results in a file
+  sudo clamscan -ri ./ > ~/Desktop/scan_results.txt
+else
+  # Same as above except not recursive.
+  sudo clamscan -i ./ > ~/Desktop/scan_results.txt
+fi
