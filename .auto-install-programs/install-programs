@@ -6,7 +6,7 @@ if [[ -z "$1" || ( "$1" == "--email" && -n "$2" ) ]]
 then
   DATE_VAR=$(date +%F_%H:%M:%S)
   LOG_FILE_NAME=$DATE_VAR-install-programs.log
-  PATH_TO_LOG_FILE=/home/steven/.auto-install-programs/logs/$LOG_FILE_NAME
+  PATH_TO_LOG_FILE=~/.auto-install-programs/logs/$LOG_FILE_NAME
 
   mkdir -p logs
   time ~/.auto-install-programs/install-programs-helper | tee $PATH_TO_LOG_FILE
