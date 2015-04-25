@@ -2,4 +2,4 @@
 
 # Scan recursively from current directory and save
 # results in a file
-sudo clamscan -ri ./ > scanresults.txt
+sudo clamscan -ri ./ > ~/Desktop/scan_results.txt
