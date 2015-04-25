@@ -11,13 +11,13 @@ for REPO in ${REPOS[@]}
 do
   echo "------------------------------------------------------------"
   echo "Adding Repository - $REPO"
-  sudo add-apt-repository $REPO
+  sudo add-apt-repository -y $REPO
   echo "------------------------------------------------------------"
 done
 
 echo "------------------------------------------------------------"
 echo "Starting Update"
-sudo apt-get update
+sudo apt-get -y update
 echo "Update Completed"
 echo "------------------------------------------------------------"
 echo " "
@@ -27,7 +27,7 @@ for PROGRAM in ${PROGRAMS[@]}
 do
   echo "------------------------------------------------------------"
   echo "Start Installation - $PROGRAM"
-  sudo apt-get install $PROGRAM
+  sudo apt-get -y install $PROGRAM
   if [ $? -eq 0 ]
   then
     echo " "
@@ -62,4 +62,3 @@ do
   echo $PROGRAM
 done
 echo " "
-echo "Script COMPLETED"

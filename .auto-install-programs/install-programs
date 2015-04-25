@@ -1,4 +1,30 @@
 #!/bin/bash
 
-mkdir -p logs
-time ~/.auto-install-programs/install-programs-helper | tee ~/.auto-install-programs/logs/$(date +%F_%H:%M:%S)-install-programs.log
+# If there are no arguments, or the only argument is --email with a string after
+# it, then we can continue...
+if [[ -z "$1" || ( "$1" == "--email" && -n "$2" ) ]]
+then
+  DATE_VAR=$(date +%F_%H:%M:%S)
+  LOG_FILE_NAME=$DATE_VAR-install-programs.log
+  PATH_TO_LOG_FILE=/home/steven/.auto-install-programs/logs/$LOG_FILE_NAME
+
+  mkdir -p logs
+  time ~/.auto-install-programs/install-programs-helper | tee $PATH_TO_LOG_FILE
+
+  # If the email option was used then use the email address to email the
+  # results.
+  if [ "$1" == "--email" ]
+  then
+    cat $PATH_TO_LOG_FILE | mail -s "Results of Auto Install of Programs $DATE_VAR" $2
+  fi
+  echo " "
+  echo "Script COMPLETED"
+
+else
+  echo " "
+  echo "Usage: If no options are given, this script will install the programs in
+  the programs-to-install-file"
+  echo "--email : Expects an email address to send logs to."
+  echo " "
+fi
+
