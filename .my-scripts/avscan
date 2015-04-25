@@ -1,11 +1,22 @@
 #!/bin/bash
 
+PATH_TO_SCAN_RESULTS=~/Desktop/scan_results.txt
+
+# Update Definitions before running the scan.
+sudo freshclam
+
 if [ "$1" = "-r" ]
 then
   # Scan recursively from current directory and save
   # results in a file
-  sudo clamscan -ri ./ > ~/Desktop/scan_results.txt
+  sudo clamscan -ri ./ | tee $PATH_TO_SCAN_RESULTS
+  echo "Scan Results of ${PWD} Recursively
+  $(cat ~/Desktop/scan-results.txt)" > $PATH_TO_SCAN_RESULTS
 else
   # Same as above except not recursive.
-  sudo clamscan -i ./ > ~/Desktop/scan_results.txt
+  sudo clamscan -i ./ | tee $PATH_TO_SCAN_RESULTS
+  echo "Scan Results of ${PWD}
+  $(cat ~/Desktop/scan-results.txt)" > $PATH_TO_SCAN_RESULTS
 fi
+
+
