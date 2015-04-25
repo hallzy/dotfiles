@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PATH_TO_SCRIPTS=~/.my-scripts
+
+cd $PATH_TO_SCRIPTS
+
+#This holds the names of all the scripts in .my-scripts
+ARR=(*)
+
+cd /bin
+
+for FILE in ${ARR[@]}
+do
+  echo "Creating symlink for $FILE"
+  sudo ln -s $PATH_TO_SCRIPTS/$FILE
+done
