@@ -1,10 +1,19 @@
 #!/bin/bash
 
 readarray PROGRAMS < ~/.auto-install-programs/programs-to-install
+readarray PROGRAMS_USER_INTERACT < ~/.auto-install-programs/programs-to-install-require-user-interaction
 readarray REPOS < ~/.auto-install-programs/repos-to-add
 
 COMPLETED=()
 FAILED=()
+
+if [ ${PROGRAMS_USER_INTERACT[@]} > 0 ]
+then
+  echo "There are programs that are set to be installed that may require user interaction."
+  echo "These programs will be installed first, so that this script can be left alone as soon as possible."
+  echo "Please stay at the computer until a Message displays that says you can. The script will pause for this..."
+  read -p "Press [enter] to continue..."
+fi
 
 ## add repositories
 for REPO in ${REPOS[@]}
@@ -22,6 +31,36 @@ echo "Update Completed"
 echo "------------------------------------------------------------"
 echo " "
 echo " "
+
+
+# This is for programs that may require user interaction
+for PROGRAM in ${PROGRAMS_USER_INTERACT[@]}
+do
+  echo "------------------------------------------------------------"
+  echo "Start Installation - $PROGRAM"
+  sudo apt-get -y install $PROGRAM
+  if [ $? -eq 0 ]
+  then
+    echo " "
+    echo " "
+    echo "Install COMPLETED Successfully - $PROGRAM"
+    echo "------------------------------------------------------------"
+    echo " "
+    echo " "
+    COMPLETED+=($PROGRAM)
+  else
+    echo " "
+    echo " "
+    echo "Install FAILED - $PROGRAM"
+    echo "------------------------------------------------------------"
+    echo " "
+    echo " "
+    FAILED+=($PROGRAM)
+  fi
+  echo "The programs that may have required user interaction are now installed!"
+  read -p "Press [enter] to continue..."
+done
+
 
 for PROGRAM in ${PROGRAMS[@]}
 do
