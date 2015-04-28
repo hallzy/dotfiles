@@ -12,11 +12,16 @@
 ```bash
 $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
+$ ./move-files-from-dotfiles-to-home
+$ ./create-sym-links-for-myscripts
 ```
 
-This will clone the repository to your home folder and all the files will go
-to where they need to in order to be used. Nothing will need to be moved,
-though some scripts may be more useful to be copied to /bin
+This will clone the repository to your home folder. All the files in this repo
+will be put into a folder called dotfiles which is in the home folder. The
+script that runs as the 3rd step above moves all the files and folders from the
+dotfiles folder and into the home folder, and then removes the dotfiles folder
+for you. The last step runs a script that creates symbolic links in your /bin
+folder for scripts that are in ~/.my-scripts.
 
 ###.vim and .vimrc
   This includes my .vimrc file which is  modified version of the .vimrc
