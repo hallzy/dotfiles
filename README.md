@@ -16,6 +16,7 @@ $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
 $ ./move-files-from-dotfiles-to-home
 $ ./create-sym-links-for-myscripts
+$ .auto-install-programs/install-programs
 ```
 
 This will clone the repository to your home folder. All the files in this repo
@@ -25,16 +26,24 @@ dotfiles folder and into the home folder, and then removes the dotfiles folder
 for you. The last step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
 
+The second last entry will install all the programs in the
+.auto-install-programs/programs-to-install file.
+
+The last entry will install a program called
+[thefuck](https://github.com/nvbn/thefuck.git).
+
 ####Update Your Local Repo
 
 ```bash
 $ cd ~
 $ git pull origin master
 $ ./create-sym-links-for-myscripts
+$ .auto-install-programs/install-programs
 ```
 
 This will pull the latest change from the repo and create symbolic links for any
-new scripts that have been added to ~/.my-scripts.
+new scripts that have been added to ~/.my-scripts, and will also install updates
+for the programs in the to be installed list, and install newly added programs.
 
 
 ###.vim and .vimrc
@@ -127,6 +136,37 @@ $ sudo apt-get <program>
 where \<program\> is every program listed in the programs-to-install file. A
 summary will be shown at the end saying which of the scripts had successfully
 been installed, and which scripts did not.
+
+The script automatically enters a "y" for you when apt-get prompts you to see if
+you want to install something.
+
+There is also an option to get the script to email you when it is finished...
+
+```bash
+$ ./install-programs --email me@email.com
+```
+
+Note that mailutils needs to be installed to do this. It is part of the
+programs-to-install file, but it will not be used if it was not already
+installed beforehand.
+
+There are 3 files that hold programs or repos to install.
+
+  * programs-to-install-require-user-interaction
+  * programs-to-install
+  * repos-to-add
+
+The first holds all the programs that require extra user input upon install.
+These programs are installed first so that you are able to leave the script
+running after they are installed. The script will pause and let you know that
+this section of the script is done.
+
+The second is all the regular programs that can be installed without user input.
+
+The last are a list of repositories that you may want added.
+
+There is also a section at the bottom of install-programs-helper for programs
+that need a more specific installation.
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
