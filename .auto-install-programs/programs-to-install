@@ -7,3 +7,5 @@ python-fontforge
 ncftp
 sharutils
 clamav
+python-pip
+python-dev

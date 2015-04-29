@@ -27,3 +27,6 @@ alias chown='sudo chown'
 
 #tlf is tail that auto updates
 alias tlf='tail -f'
+
+
+alias fuck='eval $(thefuck $(fc -ln -1))'
