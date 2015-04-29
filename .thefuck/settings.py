@@ -9,6 +9,6 @@
 #
 
 # rules = []
-# require_confirmation = False
+require_confirmation = True
 # wait_command = 3
 # no_colors = False
