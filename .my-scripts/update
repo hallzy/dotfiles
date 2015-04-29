@@ -5,8 +5,6 @@ echo "==========================================="
 echo "Ready to Update..."
 read -p "Press Enter to start the update..."
 sudo apt-get dist-upgrade
-echo "Updating thefuck now..."
-sudo pip install thefuck --upgrade
 echo " "
 echo "Update Complete!"
 echo "==========================================="
