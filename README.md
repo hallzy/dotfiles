@@ -9,6 +9,8 @@
 ###Usage
   To use everything in this repo, just run the following command:
 
+####Initial Setup
+
 ```bash
 $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
@@ -22,6 +24,18 @@ script that runs as the 3rd step above moves all the files and folders from the
 dotfiles folder and into the home folder, and then removes the dotfiles folder
 for you. The last step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
+
+####Update Your Local Repo
+
+```bash
+$ cd ~
+$ git pull origin master
+$ ./create-sym-links-for-myscripts
+```
+
+This will pull the latest change from the repo and create symbolic links for any
+new scripts that have been added to ~/.my-scripts.
+
 
 ###.vim and .vimrc
   This includes my .vimrc file which is  modified version of the .vimrc
@@ -110,7 +124,7 @@ and
 $ sudo apt-get <program>
 ```
 
-where <program> is every program listed in the programs-to-install file. A
+where \<program\> is every program listed in the programs-to-install file. A
 summary will be shown at the end saying which of the scripts had successfully
 been installed, and which scripts did not.
 
