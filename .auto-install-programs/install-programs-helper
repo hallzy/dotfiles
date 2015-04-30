@@ -7,7 +7,7 @@ readarray REPOS < ~/.auto-install-programs/repos-to-add
 COMPLETED=()
 FAILED=()
 
-if [ ${PROGRAMS_USER_INTERACT[@]} -gt 0 ]
+if [[ ${PROGRAMS_USER_INTERACT[@]} > 0 ]]
 then
   echo "There are programs that are set to be installed that may require user interaction."
   echo "These programs will be installed first, so that this script can be left alone as soon as possible."

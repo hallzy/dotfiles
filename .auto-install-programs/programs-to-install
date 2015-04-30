@@ -9,3 +9,5 @@ sharutils
 clamav
 python-pip
 python-dev
+xdotool
+dos2unix
