@@ -226,6 +226,9 @@ endfunction
 
 au BufWritePre * :call <SID>MyFormattingSubs()
 
+" I do not like folds, so unfold all folds when I open a file.
+au BufWinEnter * :normal zE
+
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
