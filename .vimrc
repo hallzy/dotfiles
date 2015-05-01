@@ -226,15 +226,6 @@ endfunction
 
 au BufWritePre * :call <SID>MyFormattingSubs()
 
-" I do not like folds, so unfold all folds when I open a file, unless it is my custom study file.
-function! FoldsOrNoFolds()
-  if &filetype !~ 'study'
-    :normal zE
-  endif
-endfunction
-
-au BufWinEnter * :call FoldsOrNoFolds()
-
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
