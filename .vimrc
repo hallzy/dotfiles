@@ -300,6 +300,17 @@ cnoremap Q q
 "octal answers will be in the bottom of the vim window.
 nnoremap <leader>m yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x   Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
 
+"With gvim, these should work, in a Linux terminal an install of vim-gnome may
+"be required.
+"sudo apt-get install vim-gnome
+"Use the windows clipboard when copying and pasting in gvim
+nnoremap y "*y
+nnoremap p "*p
+nnoremap d "*d
+vnoremap y "*y
+vnoremap p "*p
+vnoremap d "*d
+
 " When using vimdiff or diff mode
 highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
 highlight DiffText   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=DarkRed    guifg=yellow   gui=bold
