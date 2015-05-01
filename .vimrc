@@ -289,7 +289,7 @@ cnoremap Q q
 "put the cursor anywhere on the expresssion and type <leader>m in normal mode
 "The answer will be put at the end of the equals sign, and the dec, hex, and
 "octal answers will be in the bottom of the vim window.
-nnoremap <leader>m yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x   Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
+nnoremap <leader>m yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
 
 "With gvim, these should work, in a Linux terminal an install of vim-gnome may
 "be required.
