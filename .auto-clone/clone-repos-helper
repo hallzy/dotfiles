@@ -16,7 +16,7 @@ done
 
 readarray REPOS < ~/.auto-clone/contributing-repos-to-clone
 
-mkdir -p ~/Documents/git-repos/remote-github/repos-i-contribute-to
+mkdir -p ~/Documents/git-repos/repos-i-contribute-to
 cd ~/Documents/git-repos/remote-github/repos-i-contribute-to
 
 ## clone repositories
@@ -30,7 +30,7 @@ done
 
 readarray REPOS < ~/.auto-clone/useful-repos-to-clone
 
-mkdir -p ~/Documents/git-repos/remote-github/useful-repos
+mkdir -p ~/Documents/git-repos/useful-repos
 cd ~/Documents/git-repos/remote-github/useful-repos
 
 ## clone repositories
