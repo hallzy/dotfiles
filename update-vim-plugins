@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd ~/Documents/git-repos/useful-repos
+
+REPO_NAMES=(*)
+
+for REPO in ${REPO_NAMES[@]}
+do
+  cd $REPO
+  git pull origin master
+  cp -r */ ~/.vim
+  cd ..
+done
+

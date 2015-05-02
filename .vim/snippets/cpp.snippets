@@ -28,27 +28,7 @@ snippet cl
 	private:
 		${3:/* data */}
 	};
-	${4}
 snippet fori
 	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4:/* code */}
 	}
-	${5}
-
-# while
-snippet while
-	while (${1: 'expression'}) {
-		${2: code}
-	}
-	${3}
-# cout
-snippet cout
-	std::cout << ${1: /* text */}
-# cin
-snippet cin
-	std::cin >> ${1: /* variable */};
-	${2}
-# endl
-snippet endl
-	std::endl;
-	${1}
