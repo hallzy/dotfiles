@@ -17,6 +17,7 @@ $ git clone https://github.com/hallzy/dotfiles.git
 $ dotfiles/move-files-from-dotfiles-to-home
 $ .auto-install-programs/install-programs
 $ .auto-clone/clone-repos
+$ ./update-vim-plugins
 $ ./create-sym-links-for-myscripts
 ```
 
@@ -32,6 +33,9 @@ The 3rd entry will install all the programs in the
 
 The 4th entry will automatically clone all of the repos that I use or own.
 
+The 5th Entry will pull new changes from the repos I use for my vim plugins and
+then copy those changes to my .vim directory.
+
 The last step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
 
@@ -42,6 +46,7 @@ folder for scripts that are in ~/.my-scripts.
 $ cd ~
 $ git pull origin master
 $ .auto-install-programs/install-programs
+$ ./update-vim-plugins
 $ ./create-sym-links-for-myscripts
 ```
 
