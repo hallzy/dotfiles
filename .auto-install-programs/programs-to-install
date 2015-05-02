@@ -11,3 +11,4 @@ python-pip
 python-dev
 xdotool
 dos2unix
+curl
