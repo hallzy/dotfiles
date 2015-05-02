@@ -30,3 +30,5 @@ alias tlf='tail -f'
 
 
 alias fuck='eval $(thefuck $(fc -ln -1))'
+alias woops='eval $(thefuck $(fc -ln -1))'
+
