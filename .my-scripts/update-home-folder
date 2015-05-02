@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~
+git pull origin master
+.auto-install-programs/install-programs
+./update-vim-plugins
+./create-sym-links-for-myscripts
