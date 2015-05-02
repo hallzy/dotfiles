@@ -14,31 +14,32 @@
 ```bash
 $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
-$ ./move-files-from-dotfiles-to-home
-$ ./create-sym-links-for-myscripts
+$ dotfiles/move-files-from-dotfiles-to-home
 $ .auto-install-programs/install-programs
+$ ./create-sym-links-for-myscripts
 ```
 
 This will clone the repository to your home folder. All the files in this repo
-will be put into a folder called dotfiles which is in the home folder. The
-script that runs as the 3rd step above moves all the files and folders from the
+will be put into a folder called dotfiles which is in the home folder.
+
+The script that runs as the 3rd step above moves all the files and folders from the
 dotfiles folder and into the home folder, and then removes the dotfiles folder
-for you. The last step runs a script that creates symbolic links in your /bin
-folder for scripts that are in ~/.my-scripts.
+for you.
 
 The second last entry will install all the programs in the
 .auto-install-programs/programs-to-install file.
 
-The last entry will install a program called
-[thefuck](https://github.com/nvbn/thefuck.git).
+The last step runs a script that creates symbolic links in your /bin
+folder for scripts that are in ~/.my-scripts.
+
 
 ####Update Your Local Repo
 
 ```bash
 $ cd ~
 $ git pull origin master
-$ ./create-sym-links-for-myscripts
 $ .auto-install-programs/install-programs
+$ ./create-sym-links-for-myscripts
 ```
 
 This will pull the latest change from the repo and create symbolic links for any
@@ -62,6 +63,16 @@ the .vimrc file.
 ###.bashrc
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
+
+  I also have a sendtext command which uses an external service and the curl
+program to send a text message.
+
+```bash
+$ sendtext 1234567890 "My message."
+```
+
+Would send the message "My message." To 1234567890, if that were a real number.
+The person to whom you sent this text to cannot reply however.
 
 ### .bash_aliases
   Has my aliases which include the use of the trashbin:
@@ -186,3 +197,4 @@ My leader is the spacebar.
 My easy motion \<leader\> is \<leader\>/
 
 This can be changed within the vimrc file.
+
