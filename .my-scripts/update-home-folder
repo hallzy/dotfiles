@@ -2,6 +2,9 @@
 
 cd ~
 git pull origin master
-.auto-install-programs/install-programs
+if [ "$1" != "--no-install" ]
+then
+  .auto-install-programs/install-programs
+fi
 ./update-vim-plugins
 ./create-sym-links-for-myscripts
