@@ -43,16 +43,22 @@ folder for scripts that are in ~/.my-scripts.
 ####Update Your Local Repo
 
 ```bash
-$ cd ~
-$ git pull origin master
-$ .auto-install-programs/install-programs
-$ ./update-vim-plugins
-$ ./create-sym-links-for-myscripts
+$ update-home-folder
 ```
 
 This will pull the latest change from the repo and create symbolic links for any
 new scripts that have been added to ~/.my-scripts, and will also install updates
 for the programs in the to be installed list, and install newly added programs.
+Also, the .vim folder will be updated.
+
+If you run:
+
+```bash
+$ update-home-folder --no-install
+```
+
+It will do the same as above, except it will skip the program install process
+because it can take a long time.
 
 
 ###.vim and .vimrc
