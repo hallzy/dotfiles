@@ -40,6 +40,9 @@
 !.auto-install-programs/
 !.auto-install-programs/*
 
+!.auto-clone/
+!.auto-clone/*
+
 !.fonts/
 !.fonts/*
 

@@ -16,6 +16,7 @@ $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
 $ dotfiles/move-files-from-dotfiles-to-home
 $ .auto-install-programs/install-programs
+$ .auto-clone/clone-repos
 $ ./create-sym-links-for-myscripts
 ```
 
@@ -26,8 +27,10 @@ The script that runs as the 3rd step above moves all the files and folders from 
 dotfiles folder and into the home folder, and then removes the dotfiles folder
 for you.
 
-The second last entry will install all the programs in the
+The 3rd entry will install all the programs in the
 .auto-install-programs/programs-to-install file.
+
+The 4th entry will automatically clone all of the repos that I use or own.
 
 The last step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
