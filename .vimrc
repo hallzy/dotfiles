@@ -122,7 +122,7 @@ function! ToggleRelativeNumber()
   endif
 endfunction
 
-nnoremap <leader>TN :call ToggleRelativeNumber()<cr>
+nnoremap <leader>RN :call ToggleRelativeNumber()<cr>
 
 set undolevels=1000
 
@@ -162,6 +162,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+set foldmethod=marker
 
 " This formats spaces between brackets and such to the way that I like things to
 " be.
