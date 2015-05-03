@@ -11,6 +11,14 @@
 
 ####Initial Setup
 
+Note that git needs to be installed in order to do this setup. Install git with:
+
+```bash
+sudo apt-get install git
+```
+
+Then do these for the initial setup:
+
 ```bash
 $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
@@ -58,7 +66,7 @@ If you did not run the optional commands for the initial setup, edit
 
 This is because that script uses the clones to update the .vim folder. This is
 not necessary to do because I will be maintaining the .vim folder anyways. The
-following command will pull those changes for you.
+following command will pull those changes for you and update your home folder:
 
 ```bash
 $ update-home-folder
