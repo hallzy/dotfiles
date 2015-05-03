@@ -16,10 +16,17 @@ $ cd ~
 $ git clone https://github.com/hallzy/dotfiles.git
 $ dotfiles/move-files-from-dotfiles-to-home
 $ .auto-install-programs/install-programs
+
+#Optional
 $ .auto-clone/clone-repos
 $ ./update-vim-plugins
+
 $ ./create-sym-links-for-myscripts
 ```
+
+The steps that are optional are optional because it is not necessary to clone
+the repos. The repos that are used to update the vim plugins will be updated
+with a git pull anyways, since I will maintain that myself.
 
 This will clone the repository to your home folder. All the files in this repo
 will be put into a folder called dotfiles which is in the home folder.
@@ -41,6 +48,17 @@ folder for scripts that are in ~/.my-scripts.
 
 
 ####Update Your Local Repo
+
+If you did not run the optional commands for the initial setup, edit
+.my-scripts/update-home-folder and remove this line from that script:
+
+```bash
+./update-vim-plugins
+```
+
+This is because that script uses the clones to update the .vim folder. This is
+not necessary to do because I will be maintaining the .vim folder anyways. The
+following command will pull those changes for you.
 
 ```bash
 $ update-home-folder
