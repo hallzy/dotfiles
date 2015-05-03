@@ -55,6 +55,7 @@
 !create-sym-links-for-myscripts
 !move-files-from-dotfiles-to-home
 !update-vim-plugins
+!make-ubuntu-faster
 
 !.thefuck/
 !.thefuck/*

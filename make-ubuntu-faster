@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Reduce Swapiness
+sudo sysctl vm.swappiness=10
+
+# Restart Swapping
+sudo swapoff -a
+sudo swapon -a
+
+# Display Hidden Startup Items
+cd /etc/xdg/autostart/
+sudo sed --in-place 's/NoDisplay=true/NoDisplay=false/g' *.desktop
+# Open startup items and remove:
+# ubuntu one
+# Chat
+# Backup Notifier
+
+# Install preload, which preloads common programs into memory.
+sudo apt-get install preload
+
+echo " "
+echo " "
+echo "Now Open \"Startup Applications\" and remove the startup applications that
+you do not want."
+echo " "
+echo "I remove:"
+echo "    Ubuntu One"
+echo "    Chat"
+echo "    Backup Notifier"
+echo " "
