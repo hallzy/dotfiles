@@ -181,6 +181,7 @@ function! BracketSpacing()
   :%s/do{/do {/ge
   :%s/while(/while (/ge
   :%s/}while/} while/ge
+  :%s/for(/for (/ge
 
   " These have two \s characters to eliminate recursive subs.
   :%s/)\s\s\+{/) {/ge
@@ -189,6 +190,7 @@ function! BracketSpacing()
   :%s/do\s\s\+{/do {/ge
   :%s/while\s\s\+(/while (/ge
   :%s/}\s\s\+while/} while/ge
+  :%s/for\s\s\+(/for (/ge
 
   :%s/)\n\s\+{/) {/ge
   :%s/else\n\s\+{/else {/ge
@@ -196,6 +198,7 @@ function! BracketSpacing()
   :%s/do\n\s\+{/do {/ge
   :%s/while\n\s\+(/while (/ge
   :%s/}\n\s\+while/} while/ge
+  :%s/for\n\s\+(/for (/ge
 
   :%s/)\n{/) {/ge
   :%s/else\n{/else {/ge
@@ -203,6 +206,7 @@ function! BracketSpacing()
   :%s/do\n{/do {/ge
   :%s/while\n(/while (/ge
   :%s/}\nwhile/} while/ge
+  :%s/for\n(/for (/ge
 endfun
 
 " Remove trailing whitespace on save for all filetypes.
