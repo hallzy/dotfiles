@@ -326,15 +326,12 @@ endfunction
 "scroll position
 function! s:UI.saveScreenState()
     let win = winnr()
-    try
-        call g:NERDTree.CursorToTreeWin()
-        let self._screenState = {}
-        let self._screenState['oldPos'] = getpos(".")
-        let self._screenState['oldTopLine'] = line("w0")
-        let self._screenState['oldWindowSize']= winwidth("")
-        call nerdtree#exec(win . "wincmd w")
-    catch /^NERDTree.InvalidOperationError/
-    endtry
+    call g:NERDTree.CursorToTreeWin()
+    let self._screenState = {}
+    let self._screenState['oldPos'] = getpos(".")
+    let self._screenState['oldTopLine'] = line("w0")
+    let self._screenState['oldWindowSize']= winwidth("")
+    call nerdtree#exec(win . "wincmd w")
 endfunction
 
 "FUNCTION: s:UI._stripMarkup(line, removeLeadingSpaces){{{1
