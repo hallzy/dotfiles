@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/Documents/git-repos/useful-repos
+cd ~/Documents/git-repos/vim-repos
 
 REPO_NAMES=(*)
 
