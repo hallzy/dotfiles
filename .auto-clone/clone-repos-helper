@@ -42,5 +42,19 @@ do
   echo "------------------------------------------------------------"
 done
 
+readarray REPOS < ~/.auto-clone/vim-repos-to-clone
+
+mkdir -p ~/Documents/git-repos/vim-repos
+cd ~/Documents/git-repos/remote-github/vim-repos
+
+## clone repositories
+for REPO in ${REPOS[@]}
+do
+  echo "------------------------------------------------------------"
+  echo "Cloning Repository - $REPO"
+  git clone $REPO
+  echo "------------------------------------------------------------"
+done
+
 
 echo " "
