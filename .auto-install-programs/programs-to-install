@@ -13,4 +13,4 @@ xdotool
 dos2unix
 curl
 preload
-
+php5-cli
