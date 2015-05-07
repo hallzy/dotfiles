@@ -165,6 +165,11 @@ nnoremap <C-l> <C-w>l
 
 set foldmethod=marker
 
+" Make sure all statements have curly braces.
+function! AddCurlyBraces()
+  :exe "normal! $a\<space>{\<esc>jo}\<esc>"
+endfun
+
 " This formats spaces between brackets and such to the way that I like things to
 " be.
 function! BracketSpacing()
