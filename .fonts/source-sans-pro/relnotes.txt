@@ -1,0 +1,98 @@
+
+version 2.010 created 2014/06/27
+
+	[This release is Roman fonts only]
+	Fixed inconsistencies in several derived glyphs.
+
+
+version 2.005 created 2014/06/25
+
+	[This release is Roman fonts only]
+	Fixed issue affecting composite glyphs with accents below in TrueType fonts.
+
+
+version 1.065 created 2014/06/25
+
+	[This release is Italic fonts only]
+	Fixed TT hinting issues in Ohorn and eight.
+	Adjusted the position of some accents over a.alt.
+	Fixed issue affecting composite glyphs with accents below in TrueType fonts.
+
+
+version 2.000 created 2014/06/17
+
+	[This release is Roman fonts only]
+	Geometric shapes were made larger. (GitHub issue #39)
+	Adds narrow no-break space [U+202F] (GitHub issue #30)
+	Updates kerning of small caps and adds small cap punctuation (GitHub issues #15 & #27)
+	Adds Cyrillic and Greek support (GitHub issues #6 & #38)
+	Updates size and shape of diacritics (GitHub issue #21)
+	Adjusts superscript height to coordinate baseline of letters and numbers (GitHub issue #18)
+
+
+version 1.060 created 2014/06/17
+
+	[Italic fonts only] Updates size and shape of diacritics.
+
+
+version 1.050 created 2013/04/16
+
+	[TrueType] Coordinated the vertical alignment of the tops of the letters across all 
+	the styles at the various sizes. (GitHub issue #25)
+
+
+version 1.040 created 2013/04/08
+
+	Adds Zero_Width_Non_Breaking_Space character (ZWNBS, U+FEFF) to address GitHub issue #20.
+
+
+version 1.039 created 2012/10/19
+
+	Rebuilt fonts with new MakeOTF version.
+
+
+version 1.038 created 2012/10/15
+
+	Updates TTF fonts with better hinting for asciitilde and approxequal, 
+	which references this hinting.
+
+
+version 1.037 created 2012/10/11
+
+	Updates the metrics of Majuscule letters in lighter weights.
+	Updates fonts to add small capitals and superior capital letters to upright styles.
+	Adds the following characters for transliteration:  Blinebelow blinebelow
+	Klinebelow klinebelow  Emacronacute emacronacute Omacronacute omacronacute primemod
+	Adds the following punctuation characters: bardbl iterrobang ceilingleft ceilingright 
+	floorleft floorright bracketleftwhite bracketrightwhite brackhalftopleft 
+	brackhalftopright brackhalfbotleft brackhalfbotright
+	Adds dotted zero and slashed zero.
+
+
+version 1.036 created 2012/09/12
+
+	Updates fonts to fix bug in TTF versions in which the GDEF table was not included.
+
+
+version 1.035 created 2012/09/10
+
+	Updates the fitting for 'u' and its related glyphs. Updates the kerning in the upright fonts.
+
+
+version 1.034 created 2012/08/15
+
+	Improved sidebearings of some glyphs, improved kerning classes, improved some kern pairs.
+	Fixed metrics issues with upright letter D and composites.
+	Added glyphs and OT feature support for Jarai language.
+	Added 'ordfeminine' glyph to 'ss02' feature.
+	Changed glyph name 'schwa.supss' to 'uni0259.sups'.
+	Changed weightClass value of the ExtraLight fonts from 250 to 200.
+	Changed OS/2.usWinAscent and OS/2.usWinDescent values to be the same across all fonts.
+	Changed hhea.Ascender and hhea.Descender values as a result of the OS/2usWin changes.
+	Changed OS/2 table version number from 4 to 3.
+	Harmonized the copyright strings.
+
+
+version 1.033 created 2012/07/31
+
+	First release.

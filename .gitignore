@@ -45,6 +45,8 @@
 
 !.fonts/
 !.fonts/*
+!.fonts/*/
+!.fonts/*/*
 
 !.screenshots/
 !.screenshots/*
@@ -70,3 +72,20 @@
 .vim/.netrwhist
 .vim/Powerline_default_default_compatible.cache
 Powerline_default_default_fancy.cache
+
+
+
+!texmf/
+!texmf/*
+!texmf/*/
+!texmf/*/*
+
+!.texmf-config/
+!.texmf-config/*
+!.texmf-config/*/
+!.texmf-config/*/*
+
+!.texmf-var/
+!.texmf-var/*
+!.texmf-var/*/
+!.texmf-var/*/*
