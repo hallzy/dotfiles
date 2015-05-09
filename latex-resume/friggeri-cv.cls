@@ -73,7 +73,7 @@
 
 \newcommand{\header}[3]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
+    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north) {};
     \node [anchor=center] (name) at (box) {%
       \fontsize{40pt}{72pt}\color{header}%
       {\thinfont #1}{\bodyfont  #2}
@@ -98,6 +98,12 @@
   {%
     \color{%
       \ifcase\value{colorCounter}%
+        blue\or%
+        red\or%
+        orange\or%
+        green\or%
+        purple\or%
+        brown\or%
         blue\or%
         red\or%
         orange\or%
@@ -282,7 +288,7 @@
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
   \ifblank{#3}{}{#3\space}#1%
-  \ifthenelse{\value{listcount}<\value{liststop}}
+  \ifthenelse {\value{listcount}<\value{liststop}}
     {\addcomma\space}
     {}%
 }
