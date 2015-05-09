@@ -1,8 +1,8 @@
-all: cv_10.tex
-	xelatex cv_10
+all: resume.tex
+	xelatex resume
 
 clean:
-	rm -rf cv_10.run.xml cv_10.aux cv_10.out
+	rm -rf resume.run.xml resume.aux resume.out resume.log resume-blx.bib
 
 cleanall:
-	rm -rf cv_10.run.xml cv_10.aux cv_10.out cv_10.pdf
+	rm -rf resume.run.xml resume.aux resume.out resume.pdf resume.log resume-blx.bib

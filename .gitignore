@@ -99,9 +99,8 @@
 .vim/Powerline_default_default_compatible.cache
 Powerline_default_default_fancy.cache
 
-latex-resume/cv_10.aux
-latex-resume/cv_10.out
-latex-resume/cv_10.pdf
-latex-resume/cv_10.run.xml
-latex-resume/cv_10.log
+latex-resume/resume.aux
+latex-resume/resume.out
+latex-resume/resume.run.xml
+latex-resume/resume.log
 
