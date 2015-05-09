@@ -47,6 +47,14 @@
 !.fonts/*
 !.fonts/*/
 !.fonts/*/*
+!.fonts/*/*/
+!.fonts/*/*/*
+!.fonts/*/*/*/
+!.fonts/*/*/*/*
+!.fonts/*/*/*/*/
+!.fonts/*/*/*/*/*
+!.fonts/*/*/*/*/*/
+!.fonts/*/*/*/*/*/*
 
 !.screenshots/
 !.screenshots/*
