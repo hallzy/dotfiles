@@ -6,3 +6,6 @@ cd ~/.latex-unicode-math
 
 cp * /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
 
+#Update Fonts
+sudo fc-cache -f -v
+sudo -H mktexlsr
