@@ -81,6 +81,12 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
 augroup END
 
+" Highlight all characters exceeding the 80th column
+augroup highlightpast80
+    autocmd BufEnter * highlight OverLength ctermbg=red
+    autocmd BufEnter * match OverLength /\%81v.*/
+augroup END
+
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
