@@ -269,7 +269,36 @@ nnoremap <leader>s :nohlsearch<cr>
 
 " With a J move the current line up, with K move the current line down.
 nnoremap J ddp
-nnoremap K ddkP
+
+"Without this function, doing K at the first line of a file would cause the line
+"to disappear, doing it on the last line of a file would cause the line to jump
+"a line.
+function! MoveLineUp()
+  "Get Current Cursor Position
+  let l = line(".")
+  let c = col(".")
+
+  "Get the line number of the last line in file
+  :exe "normal! G"
+  let lastL = line(".")
+
+  "Go Back to where you were.
+  call cursor(l,c)
+
+  " If the line to move is the last line, ddkp
+  if l == lastL
+    :exe "normal! ddkp"
+  " If line to move is the first line dont do anything.
+  elseif l == 1
+    "Do Nothing
+  "Otherwise, do ddKP
+  else
+    :exe "normal! ddkP"
+  endif
+endfunction
+
+nnoremap K :call MoveLineUp()<cr>
+
 
 " H and L move the cursor to the beginning and end of the line.
 nnoremap H 0
