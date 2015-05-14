@@ -274,16 +274,11 @@ nnoremap J ddp
 "to disappear, doing it on the last line of a file would cause the line to jump
 "a line.
 function! MoveLineUp()
-  "Get Current Cursor Position
+  "Get Current Line
   let l = line(".")
-  let c = col(".")
 
   "Get the line number of the last line in file
-  :exe "normal! G"
-  let lastL = line(".")
-
-  "Go Back to where you were.
-  call cursor(l,c)
+  let lastL = line("$")
 
   " If the line to move is the last line, ddkp
   if l == lastL
