@@ -1,4 +1,5 @@
 set shell=/bin/bash
+set title titlestring=
 
 set ttyfast
 set lazyredraw
@@ -45,7 +46,6 @@ set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
   " When editing a file, always jump to the last known cursor position.
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=500
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands

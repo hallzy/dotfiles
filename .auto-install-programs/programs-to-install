@@ -15,3 +15,4 @@ curl
 preload
 php5-cli
 texlive-full
+wmctrl
