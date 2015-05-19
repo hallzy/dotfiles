@@ -312,7 +312,7 @@ iabbrev waht what
 iabbrev adn and
 
 " In normal mode, press leader s and search result highlighting will go off.
-nnoremap <leader>s :nohlsearch<cr>
+nnoremap <leader>hl :nohlsearch<cr>
 
 " With a J move the current line up, with K move the current line down.
 nnoremap J ddp
