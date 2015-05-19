@@ -55,6 +55,36 @@ set hlsearch      " highlight matches
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 
+"=====[ Highlight matches when jumping to next ]=============
+
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+highlight WhiteOnRed ctermbg=red ctermfg=white
+" OR ELSE just highlight the match in red...
+function! HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#\%('.@/.'\)'
+
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+
+    call matchdelete(ring)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 250) . 'm'
+
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+
+    call matchdelete(ring)
+    redraw
+
+endfunction
+
 syntax on
 
 filetype plugin indent on
