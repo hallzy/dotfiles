@@ -130,7 +130,7 @@ call s:motion_map_helper({
     \ 'tln'             : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 0},
     \ 'Tln'             : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 1},
     \ 'bd-tln'          : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 2},
-    \ }) 
+    \ })
 "}}}
 
 " -- Word Motion {{{

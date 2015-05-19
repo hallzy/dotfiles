@@ -230,6 +230,32 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [fugitive](https://github.com/tpope/vim-fugitive)
   * [powerline](https://github.com/Lokaltog/vim-powerline)
 
+There Are also some plugins that are not from a github link:
+  * vmath.vim
+  * dragvisuals.vim
+  * autoswap.vim
+  * vis.vim
+
+####vmath.vim
+Is a smart number adder. For a good demo see this
+[youtube video](https://youtu.be/aHm36-na4-4?t=28m31s). It adds a selection of
+numbers or a group of numbers that you are part of. My vimrc is mapped to use ++
+in either visual or normal mode.
+
+####dragvisuals.vim
+Is a really nice visual dragging tool. For a good demo, see this [youtube
+video](https://youtu.be/aHm36-na4-4?t=34m10s). Like the video, my mapping in my
+vimrc is the arrow keys.
+
+####autoswap.vim
+Is a nifty tool that sees if a file has a swap file (ie, it is open in a
+different window, or it has crashed). If it is open in a different window, that
+window will be brought forward for you, otherwise it will open the file for
+editing. A good demo can be seen on this [youtube
+video](https://youtu.be/aHm36-na4-4?t=14m52s).
+
+
+
 Notes:
 
 My leader is the spacebar.
