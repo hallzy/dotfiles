@@ -21,6 +21,7 @@ noremap <F8> :NERDTreeToggle<CR>
 noremap <F9> :NERDTreeFind<CR>
 
 "For using vmath.vim
+vnoremap ++  y:call VMATH_Analyse()<CR>
 nnoremap ++  vipy:call VMATH_Analyse()<CR>
 
 " Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
