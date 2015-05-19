@@ -254,6 +254,9 @@ window will be brought forward for you, otherwise it will open the file for
 editing. A good demo can be seen on this [youtube
 video](https://youtu.be/aHm36-na4-4?t=14m52s).
 
+####vis.vim
+Gives better functionality for visual mode. A good demo can be found
+[here](https://youtu.be/aHm36-na4-4?t=31m50s).
 
 
 Notes:
