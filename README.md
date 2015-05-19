@@ -219,6 +219,31 @@ The last are a list of repositories that you may want added.
 There is also a section at the bottom of install-programs-helper for programs
 that need a more specific installation.
 
+###latex-resume
+
+The latex-resume directory holds my files for my resume that is written in
+LaTeX. The resume template is courtesy of @afriggeri, with some modifications
+including using a different font.
+
+In order to use this template yourself:
+
+```bash
+$ cd ~
+$ .auto-install-programs/install-programs
+$ ./setup-latex-resume-font
+$ cd latex-resume
+$ make
+```
+
+The install-programs script will ensure that you have installed the latest
+version of texlive-full.
+
+By just cloning this repository you will have all the fonts necessary to build
+the resume. the setup-latex-resume-font will move 3 files into a LaTeX related
+folder that will prevent errors during a build.
+
+Running "make" will start the build of the resume.
+
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
   * [tComment](http://github.com/vim-scripts/tComment)
