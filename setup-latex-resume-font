@@ -1,10 +1,10 @@
 #!/bin/bash
 
-mkdir -p /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
+sudo mkdir -p /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
 
 cd ~/.latex-unicode-math
 
-cp * /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
+sudo cp * /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
 
 #Update Fonts
 sudo fc-cache -f -v
