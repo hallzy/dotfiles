@@ -290,6 +290,51 @@ endfunction
 
 au BufWritePre * :call <SID>MyFormattingSubs()
 
+
+" This is used for the next function
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+" Perform searches and replacements for visually selected text
+function! VisualSelection(direction) range
+  " Temporarily store your last yank as a temp variable
+  let l:saved_reg = @"
+  " Selects and yanks the highlighted text
+  execute "normal! vgvy"
+
+  " if the highlighted text has any of these special characters, then escape
+  " them with a \
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  " Get rid of next line characters in the highlighted text
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  " Search for highlighted text
+  if a:direction == 'b'
+      execute "normal ?" . l:pattern . "^M"
+  " substitute highlighted text
+  elseif a:direction == 'replace'
+      call CmdLine("%s" . '/'. l:pattern . '/')
+  " Search for highlighted text
+  elseif a:direction == 'f'
+      execute "normal /" . l:pattern . "^M"
+  endif
+
+  "Restore your last yank bank into the " register
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
