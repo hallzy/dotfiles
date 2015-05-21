@@ -310,16 +310,17 @@ function! VisualSelection(direction) range
   let l:pattern = escape(@", '\\/.*$^~[]')
   " Get rid of next line characters in the highlighted text
   let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let @/ = l:pattern
 
   " Search for highlighted text
   if a:direction == 'b'
-      execute "normal ?" . l:pattern . "^M"
+      execute "normal ?\<C-R>/\<cr>"
   " substitute highlighted text
   elseif a:direction == 'replace'
       call CmdLine("%s" . '/'. l:pattern . '/')
   " Search for highlighted text
   elseif a:direction == 'f'
-      execute "normal /" . l:pattern . "^M"
+      execute "normal /\<C-R>/\<cr>"
   endif
 
   "Restore your last yank bank into the " register
