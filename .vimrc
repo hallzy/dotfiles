@@ -413,10 +413,22 @@ nnoremap cs) F(xf)xi
 "Create Closing Tag
 nnoremap cct F<yf>f>pF<a/<esc>hi
 
-" also exit vim with :Q or :Q
-" and save with :W or :w
-cnoremap W w
-cnoremap Q q
+" Let me save and quit, and quit all with lower case or capitals.
+cabbrev W w
+cabbrev Q q
+cabbrev WQ wq
+cabbrev Wq wq
+cabbrev wQ wq
+cabbrev QA qa
+cabbrev qA qa
+cabbrev Qa qa
+cabbrev WQA wqa
+cabbrev WQa wqa
+cabbrev WqA wqa
+cabbrev Wqa wqa
+cabbrev wQA wqa
+cabbrev wQa wqa
+cabbrev wqA wqa
 
 "Evaluate a mathematical expression
 "usage: On a new line type out a math expression ex: 5+5=
