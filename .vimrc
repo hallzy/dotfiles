@@ -54,7 +54,8 @@ set incsearch     " do incremental searching
 set hlsearch      " highlight matches
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
-set autoread
+set autoread      " If the current file is updated elsewhere auto update it
+set showmatch     " Shows the matching bracket or brace
 
 "=====[ Highlight matches when jumping to next ]=============
 
@@ -199,7 +200,7 @@ vmap  <expr>  <left>   DVB_Drag('left')
 vmap  <expr>  <right>  DVB_Drag('right')
 vmap  <expr>  <down>   DVB_Drag('down')
 vmap  <expr>  <up>     DVB_Drag('up')
-vmap  <expr>  D   DVB_Duplicate()
+vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
@@ -371,10 +372,15 @@ vnoremap K :m '<-2<CR>gv=gv
 
 
 " H and L move the cursor to the beginning and end of the line.
-nnoremap H 0
-nnoremap L $
-vnoremap H 0
-vnoremap L $
+noremap H 0
+noremap L $
+vnoremap L g_
+
+" Change cwd of vim to the directory of the current file
+cmap cd. lcd %:p:h
+
+" Disable the possibility of accidentally getting in exmode
+nnoremap Q <nop>
 
 " Delete or change everything within a comma
 nnoremap di, f,dT,
