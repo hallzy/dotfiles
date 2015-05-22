@@ -54,6 +54,7 @@ set incsearch     " do incremental searching
 set hlsearch      " highlight matches
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
+set autoread
 
 "=====[ Highlight matches when jumping to next ]=============
 
@@ -310,6 +311,7 @@ function! VisualSelection(direction) range
   let l:pattern = escape(@", '\\/.*$^~[]')
   " Get rid of next line characters in the highlighted text
   let l:pattern = substitute(l:pattern, "\n$", "", "")
+  
   let @/ = l:pattern
 
   " Search for highlighted text
@@ -361,31 +363,11 @@ iabbrev adn and
 nnoremap <leader>hl :nohlsearch<cr>
 
 " With a J move the current line up, with K move the current line down.
-nnoremap J ddp
-
-"Without this function, doing K at the first line of a file would cause the line
-"to disappear, doing it on the last line of a file would cause the line to jump
-"a line.
-function! MoveLineUp()
-  "Get Current Line
-  let l = line(".")
-
-  "Get the line number of the last line in file
-  let lastL = line("$")
-
-  " If the line to move is the last line, ddkp
-  if l == lastL
-    :exe "normal! ddkp"
-  " If line to move is the first line dont do anything.
-  elseif l == 1
-    "Do Nothing
-  "Otherwise, do ddKP
-  else
-    :exe "normal! ddkP"
-  endif
-endfunction
-
-nnoremap K :call MoveLineUp()<cr>
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
+" With a J move the current Selected lines up, with K move the current selected lines down.
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 
 " H and L move the cursor to the beginning and end of the line.
