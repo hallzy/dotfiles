@@ -339,6 +339,34 @@ vnoremap <silent> # :call VisualSelection('b')<CR>N
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
+" Underline the current line with a -
+function! UnderlineCurrentLineWithDash()
+  exe "normal! $"
+  let c = col(".")
+  exe "normal! o"
+
+  while c > 0
+    exe "normal! i-\<esc>"
+    let c -= 1
+  endwhile
+endfunc
+
+"Underline the current line with =
+function! UnderlineCurrentLineWithEquals()
+  exe "normal! $"
+  let c = col(".")
+  exe "normal! o"
+
+  while c > 0
+    exe "normal! i=\<esc>"
+    let c -= 1
+  endwhile
+endfunc
+
+" Execute the above commands for underlining
+nnoremap <leader>= :call UnderlineCurrentLineWithEquals()<cr>
+nnoremap <leader>- :call UnderlineCurrentLineWithDash()<cr>
+
 " Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
