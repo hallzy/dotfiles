@@ -195,10 +195,10 @@ nnoremap <Down> :echoe "Use j"<CR>
 " This is for dragvisuals.vim
 runtime plugin/dragvisuals.vim
 
-vmap  <expr>  H   DVB_Drag('left')
-vmap  <expr>  L   DVB_Drag('right')
-vmap  <expr>  J   DVB_Drag('down')
-vmap  <expr>  K   DVB_Drag('up')
+vmap  <expr>  <left>   DVB_Drag('left')
+vmap  <expr>  <right>  DVB_Drag('right')
+vmap  <expr>  <down>   DVB_Drag('down')
+vmap  <expr>  <up>     DVB_Drag('up')
 vmap  <expr>  D   DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
@@ -373,6 +373,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " H and L move the cursor to the beginning and end of the line.
 nnoremap H 0
 nnoremap L $
+vnoremap H 0
+vnoremap L $
 
 " Delete or change everything within a comma
 nnoremap di, f,dT,
