@@ -1,6 +1,8 @@
 set shell=/bin/bash
 set title titlestring=
 
+set clipboard=unnamed
+
 set ttyfast
 set lazyredraw
 
