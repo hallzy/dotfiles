@@ -4,7 +4,7 @@ echo " " ;
 echo "==========================================="
 echo "Ready to Update..."
 read -p "Press Enter to start the update..."
-sudo apt-get dist-upgrade
+sudo apt-get -y dist-upgrade
 echo " "
 echo "Update Complete!"
 echo "==========================================="

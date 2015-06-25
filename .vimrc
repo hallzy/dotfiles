@@ -313,7 +313,7 @@ function! VisualSelection(direction) range
   let l:pattern = escape(@", '\\/.*$^~[]')
   " Get rid of next line characters in the highlighted text
   let l:pattern = substitute(l:pattern, "\n$", "", "")
-  
+
   let @/ = l:pattern
 
   " Search for highlighted text
@@ -449,6 +449,9 @@ cabbrev wQA wqa
 cabbrev wQa wqa
 cabbrev wqA wqa
 
+"esc now removes whitespace from the line that you are escaping from
+inoremap <esc> <esc>:s/\s\+$//e<cr>
+
 "Evaluate a mathematical expression
 "usage: On a new line type out a math expression ex: 5+5=
 "put the cursor anywhere on the expresssion and type <leader>m in normal mode
@@ -470,3 +473,8 @@ highlight diffChanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=
 highlight diffLine    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=DarkMagenta guifg=white gui=none
 highlight diffFile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=DarkYellow  guifg=white gui=none
 
+" Highlight trailing whitespace white
+highlight highlightTrailingWhiteSpace ctermbg=White guibg=White
+autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
+autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
+autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
