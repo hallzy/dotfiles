@@ -188,12 +188,11 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" In normal mode, if the arrow keys are pressed, display a message below that
-" says to use either h,j,k or l instead.
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+"Arrow keys expand and shrink vim split
+nnoremap <Left>   <C-w><
+nnoremap <Right>  <C-w><
+nnoremap <Up>     <C-w>+
+nnoremap <Down>   <C-w>-
 
 " This is for dragvisuals.vim
 runtime plugin/dragvisuals.vim
