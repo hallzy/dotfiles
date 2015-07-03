@@ -478,3 +478,29 @@ highlight highlightTrailingWhiteSpace ctermbg=White guibg=White
 autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
 autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
 autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
+
+
+" This changes the way that non active splits appear.
+" The background will be a lighter black and will have no colour.
+highlight colorcolumn ctermfg=white
+highlight colorcolumn guifg=white
+function! s:DimInactiveWindows()
+  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+    let l:range = ""
+    if i != winnr()
+      if &wrap
+        let l:width=256 " max
+      else
+        let l:width=winwidth(i)
+      endif
+      let l:range = join(range(1, l:width), ',')
+    endif
+    call setwinvar(i, '&colorcolumn', l:range)
+  endfor
+endfunction
+augroup DimInactiveWindows
+  au!
+  au WinEnter * call s:DimInactiveWindows()
+  au WinEnter * set cursorline
+  au WinLeave * set nocursorline
+augroup END
