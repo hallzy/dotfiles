@@ -3,7 +3,7 @@ scriptencoding utf-8
 "
 " Author: Kim Silkebækken <kim.silkebaekken+vim@gmail.com>
 "         haya14busa <hayabusa1419@gmail.com>
-" Source: https://github.com/Lokaltog/vim-easymotion
+" Source: https://github.com/easymotion/vim-easymotion
 " == Script initialization {{{
 if expand("%:p") ==# expand("<sfile>:p")
   unlet! g:EasyMotion_loaded
@@ -130,7 +130,7 @@ call s:motion_map_helper({
     \ 'tln'             : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 0},
     \ 'Tln'             : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 1},
     \ 'bd-tln'          : {'fnc' : 'TL' , 'cnt' : -1, 'direction' : 2},
-    \ })
+    \ }) 
 "}}}
 
 " -- Word Motion {{{
