@@ -513,7 +513,7 @@ function! OpenMultipleFilesVSplit()
   execute ":args " . option . " | vertical all"
 endfun
 
-nnoremap <leader>edv :call OpenMultipleFilesVSplit()<cr>
+nnoremap <f1> :call OpenMultipleFilesVSplit()<cr>
 
 
 function! SaveVimSession()
