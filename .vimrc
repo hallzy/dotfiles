@@ -190,7 +190,7 @@ nnoremap <leader><leader> <c-^>
 
 "Arrow keys expand and shrink vim split
 nnoremap <Left>   <C-w><
-nnoremap <Right>  <C-w><
+nnoremap <Right>  <C-w>>
 nnoremap <Up>     <C-w>+
 nnoremap <Down>   <C-w>-
 
@@ -504,3 +504,14 @@ augroup DimInactiveWindows
   au WinEnter * set cursorline
   au WinLeave * set nocursorline
 augroup END
+
+
+function! OpenMultipleFilesVSplit()
+  call inputsave()
+  let option = input("Enter a file name or regex expression: ")
+  call inputrestore()
+  execute ":args " . option . " | vertical all"
+endfun
+
+nnoremap <leader>edv :call OpenMultipleFilesVSplit()<cr>
+
