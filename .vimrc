@@ -515,3 +515,26 @@ endfun
 
 nnoremap <leader>edv :call OpenMultipleFilesVSplit()<cr>
 
+
+function! SaveVimSession()
+  call inputsave()
+  let name = input("enter a session name: ")
+  call inputrestore()
+  execute ":mksession! ~/.my-vim-sessions/" . name
+endfun
+
+function! RestoreVimSession()
+  let cwd = getcwd()
+  :cd ~/.my-vim-sessions/
+  :silent !clear
+  :!ls -1
+  call inputsave()
+  let name = input("enter a session name: ")
+  call inputrestore()
+  execute ":source " . name
+  execute ":cd " . cwd
+endfun
+
+nnoremap <f2> :call SaveVimSession()<cr>
+nnoremap <f3> :call RestoreVimSession()<cr>
+
