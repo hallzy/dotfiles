@@ -14,6 +14,10 @@ map <Space> <leader>
 " Make the leader for easy-motion <leader>/
 map <Leader>/ <Plug>(easymotion-prefix)
 
+"use easy motion and fanfingtastic with no case sensitivity
+let g:fanfingtastic_ignorecase = 1
+let g:EasyMotion_smartcase = 1
+
 " Use fancy characters for statusbar
 let g:Powerline_symbols = 'fancy'
 
@@ -541,3 +545,4 @@ nnoremap <f3> :call RestoreVimSession()<cr>
 " For errors found with :make move bewteen them with space e and space E
 nnoremap <leader>m :cnext<cr>
 nnoremap <leader>M :cprevious<cr>
+
