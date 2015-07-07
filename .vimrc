@@ -457,7 +457,7 @@ inoremap <esc> <esc>:s/\s\+$//e<cr>
 "put the cursor anywhere on the expresssion and type <leader>m in normal mode
 "The answer will be put at the end of the equals sign, and the dec, hex, and
 "octal answers will be in the bottom of the vim window.
-nnoremap <leader>m yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
+nnoremap <leader>z yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
 
 
 " When using vimdiff or diff mode
@@ -538,3 +538,6 @@ endfun
 nnoremap <f2> :call SaveVimSession()<cr>
 nnoremap <f3> :call RestoreVimSession()<cr>
 
+" For errors found with :make move bewteen them with space e and space E
+nnoremap <leader>m :cnext<cr>
+nnoremap <leader>M :cprevious<cr>
