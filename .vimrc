@@ -549,3 +549,24 @@ nnoremap <f3> :call RestoreVimSession()<cr>
 nnoremap <leader>m :cnext<cr>
 nnoremap <leader>M :cprevious<cr>
 
+
+function! VisualMark()
+    call inputsave()
+    let registers = input("m")
+    call inputrestore()
+    echom registers[0]
+    exec "normal! `<m" . registers[0]
+    exec "normal! `>m" . registers[1]
+endfun
+
+function! GetVisualMark()
+    call inputsave()
+    let registers = input("`")
+    call inputrestore()
+    echom registers[0]
+    exec "normal! `" . registers[0]
+    exec "normal! v`" . registers[1]
+endfun
+
+vnoremap m <esc>:call VisualMark()<cr>
+vnoremap ` <esc>:call GetVisualMark()<cr>
