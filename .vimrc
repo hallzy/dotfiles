@@ -62,6 +62,9 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set autoread      " If the current file is updated elsewhere auto update it
 set showmatch     " Shows the matching bracket or brace
+set tildeop       " Tilde (~) changes case of letter. Setting this option lets
+                  " the tilde have movement options
+
 
 "=====[ Highlight matches when jumping to next ]=============
 
