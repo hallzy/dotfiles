@@ -554,7 +554,6 @@ function! VisualMark()
     call inputsave()
     let registers = input("m")
     call inputrestore()
-    echom registers[0]
     exec "normal! `<m" . registers[0]
     exec "normal! `>m" . registers[1]
 endfun
@@ -563,10 +562,11 @@ function! GetVisualMark()
     call inputsave()
     let registers = input("`")
     call inputrestore()
-    echom registers[0]
     exec "normal! `" . registers[0]
-    exec "normal! v`" . registers[1]
+    if strlen(registers) > 1
+      exec "normal! v`" . registers[1]
+    endif
 endfun
 
 vnoremap m <esc>:call VisualMark()<cr>
-vnoremap ` <esc>:call GetVisualMark()<cr>
+nnoremap ` :call GetVisualMark()<cr>
