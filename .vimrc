@@ -551,21 +551,19 @@ nnoremap <leader>M :cprevious<cr>
 
 
 function! VisualMark()
-    call inputsave()
-    let registers = input("m")
-    call inputrestore()
-    exec "normal! `<m" . registers[0]
-    exec "normal! `>m" . registers[1]
+    echom "m"
+    let register1 = nr2char(getchar())
+    let register2 = nr2char(getchar())
+    exec "normal! `<m" . register1
+    exec "normal! `>m" . register2
 endfun
 
 function! GetVisualMark()
-    call inputsave()
-    let registers = input("`")
-    call inputrestore()
-    exec "normal! `" . registers[0]
-    if strlen(registers) > 1
-      exec "normal! v`" . registers[1]
-    endif
+    echom "`"
+    let register1 = nr2char(getchar())
+    let register2 = nr2char(getchar())
+    exec "normal! `" . register1
+    exec "normal! v`" . register2
 endfun
 
 vnoremap m <esc>:call VisualMark()<cr>
