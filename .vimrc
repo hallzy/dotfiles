@@ -563,7 +563,6 @@ function! VisualMark()
 
   let output = register . " " . startLine . " " . startCol . " " . endLine . " " . endCol
 
-  let currentFile = expand('%:p')
   for line in readfile("/home/steven/.vim-vis-mark", " ")
     if line[0] =~ register
       new ~/.vim-vis-mark
