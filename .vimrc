@@ -344,6 +344,9 @@ endfunction
 vnoremap <silent> * :call VisualSelection('f')<CR>N
 vnoremap <silent> # :call VisualSelection('b')<CR>N
 
+" Make * search the currently selected word, without going to the next result
+nnoremap * *N
+
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
