@@ -279,7 +279,8 @@ function! s:Drag_Block (dir)
                  \ . ":s/\\s*$//\<CR>gv\<ESC>"
                  \ . ':set virtualedit=' . prev_ve . "\<CR>"
                  \ . s:PREV_REPORT
-                 \ . (dollar_block ? 'gv$' : 'gv')
+                 \ . ":nohlsearch\<CR>gv"
+                 \ . (dollar_block ? '$' : '' )
         else
             return 'gv'.square_up.'xp:set virtualedit=' . prev_ve . "\<CR>gvlolo"
         endif
