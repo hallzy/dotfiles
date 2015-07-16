@@ -1,3 +1,18 @@
+" keys that I dont use so are free for mappings
+"""" Normal Mode
+" $
+" ^
+" &
+" ~
+" #  -- this has been remapped to <nop>
+" -
+" |
+" ?
+" `   --- turns out this does the same as ' but ' is easier to hit
+" U
+" _
+" M
+
 set shell=/bin/bash
 set title titlestring=
 
@@ -552,3 +567,15 @@ nnoremap <f3> :call RestoreVimSession()<cr>
 nnoremap <leader>m :cnext<cr>
 nnoremap <leader>M :cprevious<cr>
 
+" This will make ! toggle whether or not ctrl+a and ctrl+x can work on alpha
+" characters or not. By default it is off.
+function! Togglenrformats()
+  if &nrformats == "octal,hex"
+    set nrformats=octal,hex,alpha
+  else
+    set nrformats=octal,hex
+  endif
+  echo &nrformats
+endfun
+
+nnoremap ! :call Togglenrformats()<cr>
