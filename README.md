@@ -254,7 +254,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-signature](https://github.com/hallzy/vim-signature)
-  * [vim-vusalMarks](https://github.com/iago-lito/vim-visualMarks)
+  * [vim-viusalMarks](https://github.com/iago-lito/vim-visualMarks)
 
 There Are also some plugins that are not from a github link:
   * vmath.vim
