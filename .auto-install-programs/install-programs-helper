@@ -87,38 +87,6 @@ do
   fi
 done
 
-### Special Case Programs
-
-#===================================================================================
-# If the fuck already exists then just update it. if it does not then install
-# it.
-echo "------------------------------------------------------------"
-echo "Start Installation - thefuck"
-if [ -e /usr/local/bin/thefuck ]
-then
-  sudo pip install thefuck --upgrade
-else
-  sudo pip install thefuck
-fi
-
-if [ $? -eq 0 ]
-then
-  echo " "
-  echo " "
-  echo "Install COMPLETED Successfully - thefuck"
-  echo "------------------------------------------------------------"
-  echo " "
-  echo " "
-  COMPLETED+=(thefuck)
-else
-  echo " "
-  echo " "
-  echo "Install FAILED - thefuck"
-  echo "------------------------------------------------------------"
-  echo " "
-  echo " "
-  FAILED+=(thefuck)
-fi
 #===================================================================================
 
 
