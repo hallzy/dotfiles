@@ -97,9 +97,6 @@ as the escape key (this may be a better option for virtual machines, or windows
 users as remapping keys in windows or with a vm is a little annoying. Remapping
 keys in Ubuntu for example, is much easier).
 
-  Using git-time-lapse is toggled by clicking the F7 key. This can be changed in
-the .vimrc file.
-
 ###.bashrc
   Currently, my .bashrc file is just the default with ubuntu but modified so that
 the shell prompt does not show the cwd. To see the cwd use the command pwd.
@@ -246,14 +243,18 @@ Running "make" will start the build of the resume.
 
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
-  * [tComment](http://github.com/vim-scripts/tComment)
-  * [NERDTree](https://github.com/scrooloose/nerdtree)
-  * [Snipmate](https://github.com/msanders/snipmate.vim)
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
-  * [easy-motion](https://github.com/Lokaltog/vim-easymotion)
-  * [fugitive](https://github.com/tpope/vim-fugitive)
-  * [powerline](https://github.com/Lokaltog/vim-powerline)
+  * [NERDTree](https://github.com/scrooloose/nerdtree)
+  * [Snipmate](https://github.com/msanders/snipmate.vim)
+  * [tComment](http://github.com/vim-scripts/tComment)
+  * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
+  * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
+  * [vim-fugitive](https://github.com/tpope/vim-fugitive)
+  * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
+  * [vim-repeat](https://github.com/tpope/vim-repeat)
+  * [vim-signature](https://github.com/hallzy/vim-signature)
+  * [vim-vusalMarks](https://github.com/iago-lito/vim-visualMarks)
 
 There Are also some plugins that are not from a github link:
   * vmath.vim

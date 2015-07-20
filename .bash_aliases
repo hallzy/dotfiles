@@ -21,14 +21,6 @@ alias trash-ls='gvfs-ls trash://'
 # folder
 alias mkdir='mkdir -p'
 
-#chmod and chown now have sudo
-alias chmod='sudo chmod'
-alias chown='sudo chown'
-
 #tlf is tail that auto updates
 alias tlf='tail -f'
-
-
-alias fuck='eval $(thefuck $(fc -ln -1))'
-alias woops='eval $(thefuck $(fc -ln -1))'
 
