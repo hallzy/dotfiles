@@ -252,7 +252,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
   * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
-  * [vim-repeat](https://github.com/tpope/vim-repeat)
+  * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-signature](https://github.com/hallzy/vim-signature)
   * [vim-vusalMarks](https://github.com/iago-lito/vim-visualMarks)
 
