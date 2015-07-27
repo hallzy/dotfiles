@@ -1,6 +1,6 @@
 " keys that I dont use so are free for mappings
 """" Normal Mode
-" $
+
 " ^
 " &
 " ~
@@ -579,3 +579,5 @@ function! Togglenrformats()
 endfun
 
 nnoremap ! :call Togglenrformats()<cr>
+
+nnoremap $ :diffget<space>
