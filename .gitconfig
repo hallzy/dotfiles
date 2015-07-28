@@ -22,4 +22,4 @@
   graphlog = log --decorate --graph
   graphlogall = log --decorate --graph --all
   discard = checkout --
-  reflog = git reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
+  rl = reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
