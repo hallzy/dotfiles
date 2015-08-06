@@ -1,0 +1,12 @@
+set editing-mode vi
+set show-all-if-ambiguous on
+set show-mode-in-prompt on
+
+## Keymappings
+set keymap vi-command
+  "H":beginning-of-line
+  "L":end-of-line
+
+set keymap vi-insert
+
+set keymap vi-move

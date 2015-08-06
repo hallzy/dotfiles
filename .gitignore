@@ -28,6 +28,7 @@
 !.gitignore
 
 !.bashrc
+!.inputrc
 
 !.my-scripts/
 !.my-scripts/*
