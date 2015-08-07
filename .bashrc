@@ -98,3 +98,5 @@ REPOS=~/Documents/git-repos
 
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
 
+exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
+
