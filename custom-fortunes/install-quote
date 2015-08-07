@@ -1,0 +1,17 @@
+#!/bin/bash
+
+cd ~/custom-fortunes/categories
+
+CATEGORIES=(*)
+
+for CATEGORY in ${CATEGORIES[@]}
+do
+  sudo cp $CATEGORY /usr/share/games/fortunes
+  cd /usr/share/games/fortunes
+  sudo ln -s $CATEGORY ${CATEGORY}.u8
+  sudo strfile $CATEGORY ${CATEGORY}.dat
+  cd ~/custom-fortunes/categories
+done
+
+echo " "
+

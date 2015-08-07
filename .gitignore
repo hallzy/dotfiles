@@ -33,6 +33,12 @@
 !.my-scripts/
 !.my-scripts/*
 
+!custom-fortunes/
+!custom-fortunes/*
+!custom-fortunes/*/
+!custom-fortunes/*/*
+
+
 !.gitconfig
 
 !.gnome2/nautilus-scripts/
