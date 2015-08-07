@@ -30,6 +30,7 @@ $ .auto-clone/clone-repos
 $ ./update-vim-plugins
 
 $ ./create-sym-links-for-myscripts
+$ custom-fortunes/install-quote
 
 $ ./setup-latex-resume-font
 ```
@@ -56,7 +57,10 @@ then copy those changes to my .vim directory.
 The 6th step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
 
-The 7th step will put the fonts in all the right places to use the latex resume.
+The 7th step will add the files in the categories subfolder to the fortunes game
+program.
+
+The 8th step will put the fonts in all the right places to use the latex resume.
 
 
 ####Update Your Local Repo
@@ -77,18 +81,17 @@ $ update-home-folder
 ```
 
 This will pull the latest change from the repo and create symbolic links for any
-new scripts that have been added to ~/.my-scripts, and will also install updates
-for the programs in the to be installed list, and install newly added programs.
-Also, the .vim folder will be updated.
+new scripts that have been added to ~/.my-scripts, update the fortunes program
+categories, and the .vim folder will be updated.
 
 If you run:
 
 ```bash
-$ update-home-folder --no-install
+$ update-home-folder install
 ```
 
-It will do the same as above, except it will skip the program install process
-because it can take a long time.
+It will do the same as above, except it will also perform the program install
+process.
 
 
 ###.vim and .vimrc
