@@ -8,7 +8,7 @@ then
   LOG_FILE_NAME=$DATE_VAR-install-programs.log
   PATH_TO_LOG_FILE=~/.auto-install-programs/logs/$LOG_FILE_NAME
 
-  mkdir -p logs
+  mkdir -p ~/.auto-install-programs/logs
   time ~/.auto-install-programs/install-programs-helper | tee $PATH_TO_LOG_FILE
 
   # If the email option was used then use the email address to email the

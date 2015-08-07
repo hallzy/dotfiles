@@ -8,7 +8,7 @@ then
   LOG_FILE_NAME=$DATE_VAR-clone-repos.log
   PATH_TO_LOG_FILE=~/.auto-clone/logs/$LOG_FILE_NAME
 
-  mkdir -p logs
+  mkdir -p ~/.auto-clone/logs
   time ~/.auto-clone/clone-repos-helper | tee $PATH_TO_LOG_FILE
 
   # If the email option was used then use the email address to email the

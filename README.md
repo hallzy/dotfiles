@@ -30,6 +30,8 @@ $ .auto-clone/clone-repos
 $ ./update-vim-plugins
 
 $ ./create-sym-links-for-myscripts
+
+$ ./setup-latex-resume-font
 ```
 
 The steps that are optional are optional because it is not necessary to clone
@@ -51,8 +53,10 @@ The 4th entry will automatically clone all of the repos that I use or own.
 The 5th Entry will pull new changes from the repos I use for my vim plugins and
 then copy those changes to my .vim directory.
 
-The last step runs a script that creates symbolic links in your /bin
+The 6th step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
+
+The 7th step will put the fonts in all the right places to use the latex resume.
 
 
 ####Update Your Local Repo
