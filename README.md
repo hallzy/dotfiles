@@ -65,16 +65,7 @@ The 8th step will put the fonts in all the right places to use the latex resume.
 
 ####Update Your Local Repo
 
-If you did not run the optional commands for the initial setup, edit
-.my-scripts/update-home-folder and remove this line from that script:
-
-```bash
-./update-vim-plugins
-```
-
-This is because that script uses the clones to update the .vim folder. This is
-not necessary to do because I will be maintaining the .vim folder anyways. The
-following command will pull those changes for you and update your home folder:
+The following command will pull those changes for you and update your home folder:
 
 ```bash
 $ update-home-folder
@@ -83,6 +74,9 @@ $ update-home-folder
 This will pull the latest change from the repo and create symbolic links for any
 new scripts that have been added to ~/.my-scripts, update the fortunes program
 categories, and the .vim folder will be updated.
+
+If you did not run the optional commands for the initial setup, This script will
+not update the vim folder.
 
 If you run:
 
@@ -137,6 +131,9 @@ respectively. The first two are aliases in the .bashrc, the 3rd one is a script
 in the .my-scripts directory which I moved to my /bin.
 
 ###.myscripts/
+  It may be worth creating symbolic links for these scripts in /bin, for easy
+use, and some of the instructions here assume that they are in /bin.
+
   This holds some scripts I have. The Update script is used by the script in the
 .gnome2/ directory.
 

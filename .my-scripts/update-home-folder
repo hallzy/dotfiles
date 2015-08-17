@@ -6,6 +6,10 @@ if [ "$1" = "--install" ]
 then
   .auto-install-programs/install-programs
 fi
-./update-vim-plugins
+
+if [ -d ~/Documents/git-repos/vim-repos ]
+then
+  ./update-vim-plugins
+fi
 ./create-sym-links-for-myscripts
 custom-fortunes/install-quote
