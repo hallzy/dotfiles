@@ -24,3 +24,4 @@ alias mkdir='mkdir -p'
 #tlf is tail that auto updates
 alias tlf='tail -f'
 
+alias cp='dbus-launch gcp'

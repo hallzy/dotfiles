@@ -67,6 +67,7 @@
 !.screenshots/*
 
 !.bash_aliases
+!.bash_profile
 
 !CONTRIBUTING.md
 !LICENSE
