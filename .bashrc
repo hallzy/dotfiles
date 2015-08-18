@@ -100,3 +100,12 @@ sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo me
 
 exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
 
+get_crtime() {
+  for target in "${@}"; do
+    inode=$(stat -c '%i' "${target}")
+    fs=$(df  --output=source "${target}"  | tail -1)
+    # crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*')
+    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "/dev/sda1" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*')
+    printf "%s\t%s\n" "${target}" "${crtime}"
+  done
+}
