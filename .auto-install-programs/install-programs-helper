@@ -1,9 +1,9 @@
 #!/bin/bash
 
-readarray PROGRAMS < ~/.auto-install-programs/programs-to-install
-readarray PROGRAMS_USER_INTERACT < ~/.auto-install-programs/programs-to-install-require-user-interaction
-readarray PROGRAMS_LONG < ~/.auto-install-programs/programs-to-install-long
-readarray REPOS < ~/.auto-install-programs/repos-to-add
+readarray PROGRAMS < ~/.auto-install-programs/programs-to-install.cfg
+readarray PROGRAMS_USER_INTERACT < ~/.auto-install-programs/programs-to-install-require-user-interaction.cfg
+readarray PROGRAMS_LONG < ~/.auto-install-programs/programs-to-install-long.cfg
+readarray REPOS < ~/.auto-install-programs/repos-to-add.cfg
 
 COMPLETED=()
 FAILED=()
@@ -26,8 +26,13 @@ then
 fi
 
 # add repositories
-for REPO in ${REPOS[@]}
+for REPO in "${REPOS[@]}"
 do
+  # Skip comments when parsing
+  [[ ${REPO:0:1} == "#" ]] && continue
+  # Skip empty lines when parsing
+  [[ -z "${REPO}" ]] && continue
+
   echo "------------------------------------------------------------"
   echo "Adding Repository - $REPO"
   sudo add-apt-repository -y $REPO
@@ -46,8 +51,13 @@ echo " "
 if [[ $do_user_interaction = "y" ||$do_user_interaction = "Y" ]]
 then
   # This is for programs that may require user interaction
-  for PROGRAM in ${PROGRAMS_USER_INTERACT[@]}
+  for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
   do
+    # Skip comments when parsing
+    [[ ${PROGRAM:0:1} == "#" ]] && continue
+    # Skip empty lines when parsing
+    [[ -z "${PROGRAM}" ]] && continue
+
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
     sudo apt-get -y install $PROGRAM
@@ -78,8 +88,13 @@ fi
 if [[ $do_long = "y" ||$do_long = "Y" ]]
 then
   # This is for programs that may require user interaction
-  for PROGRAM in ${PROGRAMS_USER_INTERACT[@]}
+  for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
   do
+    # Skip comments when parsing
+    [[ ${PROGRAM:0:1} == "#" ]] && continue
+    # Skip empty lines when parsing
+    [[ -z "${PROGRAM}" ]] && continue
+
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
     sudo apt-get -y install $PROGRAM
@@ -107,8 +122,13 @@ then
 fi
 
 
-for PROGRAM in ${PROGRAMS[@]}
+for PROGRAM in "${PROGRAMS[@]}"
 do
+  # Skip comments when parsing
+  [[ ${PROGRAM:0:1} == "#" ]] && continue
+  # Skip empty lines when parsing
+  [[ -z "${PROGRAM}" ]] && continue
+
   echo "------------------------------------------------------------"
   echo "Start Installation - $PROGRAM"
   sudo apt-get -y install $PROGRAM
@@ -135,17 +155,25 @@ done
 #===================================================================================
 
 
-echo "Programs that Successfully Installed"
-echo "------------------------------------"
-for PROGRAM in ${COMPLETED[@]}
-do
-  echo $PROGRAM
-done
+if [[ ${#COMPLETED[@]} > 0 ]]
+then
+  echo "Programs that Successfully Installed"
+  echo "------------------------------------"
+  for PROGRAM in ${COMPLETED[@]}
+  do
+    echo $PROGRAM
+  done
+  echo " "
+fi
+
+if [[ ${#FAILED[@]} > 0 ]]
+then
+  echo "Programs that FAILED to Install"
+  echo "------------------------------------"
+  for PROGRAM in ${FAILED[@]}
+  do
+    echo $PROGRAM
+  done
+fi
 echo " "
-echo "Programs that FAILED to Install"
-echo "------------------------------------"
-for PROGRAM in ${FAILED[@]}
-do
-  echo $PROGRAM
-done
-echo " "
+
