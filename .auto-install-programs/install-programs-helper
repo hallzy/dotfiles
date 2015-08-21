@@ -31,7 +31,7 @@ do
   # Skip comments when parsing
   [[ ${REPO:0:1} == "#" ]] && continue
   # Skip empty lines when parsing
-  [[ -z "${REPO}" ]] && continue
+  [[ ${REPO:1:1} == "" ]] && continue
 
   echo "------------------------------------------------------------"
   echo "Adding Repository - $REPO"
@@ -56,7 +56,7 @@ then
     # Skip comments when parsing
     [[ ${PROGRAM:0:1} == "#" ]] && continue
     # Skip empty lines when parsing
-    [[ -z "${PROGRAM}" ]] && continue
+    [[ ${PROGRAM:1:1} == "" ]] && continue
 
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
@@ -93,7 +93,7 @@ then
     # Skip comments when parsing
     [[ ${PROGRAM:0:1} == "#" ]] && continue
     # Skip empty lines when parsing
-    [[ -z "${PROGRAM}" ]] && continue
+    [[ ${PROGRAM:1:1} == "" ]] && continue
 
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
@@ -127,7 +127,7 @@ do
   # Skip comments when parsing
   [[ ${PROGRAM:0:1} == "#" ]] && continue
   # Skip empty lines when parsing
-  [[ -z "${PROGRAM}" ]] && continue
+  [[ ${PROGRAM:1:1} == "" ]] && continue
 
   echo "------------------------------------------------------------"
   echo "Start Installation - $PROGRAM"
