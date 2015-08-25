@@ -1,0 +1,5 @@
+ignore {
+  filename "README.md";
+  filename "LICENSE";
+  filename "CONTRIBUTING.md";
+};
