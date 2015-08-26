@@ -44,10 +44,10 @@ let g:EasyMotion_smartcase = 1
 
 " Colours for quick-scope
 let g:qs_first_occurrence_highlight_color = '#75fff3' " gui vim
-let g:qs_first_occurrence_highlight_color = '#75fff3' " terminal vim
+let g:qs_first_occurrence_highlight_color = 51        " terminal vim
 
 let g:qs_second_occurrence_highlight_color = '#6b98fb'  " gui vim
-let g:qs_second_occurrence_highlight_color = '#6b98fb'  " terminal vim
+let g:qs_second_occurrence_highlight_color = 33         " terminal vim
 
 
 " Use fancy characters for statusbar
