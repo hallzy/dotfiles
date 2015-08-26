@@ -250,6 +250,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
+  * [quick-scope](https://github.com/unblevable/quick-scope)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
   * [tComment](http://github.com/vim-scripts/tComment)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
