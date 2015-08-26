@@ -25,3 +25,6 @@ alias mkdir='mkdir -p'
 alias tlf='tail -f'
 
 alias cp='dbus-launch gcp'
+
+alias grep_mac='grep "[0-9a-fA-F]\{2\}\(:[0-9a-fA-F]\{2\}\)\{5\}"'
+alias grep_ip='grep "[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}"'
