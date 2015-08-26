@@ -39,8 +39,16 @@ map <Space> <leader>
 map <Leader>/ <Plug>(easymotion-prefix)
 
 "use easy motion and fanfingtastic with no case sensitivity
-let g:fanfingtastic_ignorecase = 1
+"let g:fanfingtastic_ignorecase = 1
 let g:EasyMotion_smartcase = 1
+
+" Colours for quick-scope
+let g:qs_first_occurrence_highlight_color = '#75fff3' " gui vim
+let g:qs_first_occurrence_highlight_color = '#75fff3' " terminal vim
+
+let g:qs_second_occurrence_highlight_color = '#6b98fb'  " gui vim
+let g:qs_second_occurrence_highlight_color = '#6b98fb'  " terminal vim
+
 
 " Use fancy characters for statusbar
 let g:Powerline_symbols = 'fancy'
