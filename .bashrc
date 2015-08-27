@@ -109,3 +109,5 @@ get_crtime() {
     printf "%s\t%s\n" "${target}" "${crtime}"
   done
 }
+
+export PS1="$PS1\$(~/Documents/git-repos/useful-repos/git-radar/git-radar --bash --fetch)"
