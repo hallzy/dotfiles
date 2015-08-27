@@ -256,6 +256,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
+  * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-signature](https://github.com/hallzy/vim-signature)
