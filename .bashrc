@@ -52,7 +52,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] $ ' #:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h $ ' #:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h' #:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -110,4 +110,4 @@ get_crtime() {
   done
 }
 
-export PS1="$PS1\$(~/Documents/git-repos/useful-repos/git-radar/git-radar --bash --fetch)"
+export PS1="$PS1\$(git-radar --bash --fetch) $"
