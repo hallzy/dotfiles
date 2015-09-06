@@ -15,7 +15,7 @@ then
   # results.
   if [ "$1" == "--email" ]
   then
-    cat $PATH_TO_LOG_FILE | mail -s "Results of Auto Install of Programs $DATE_VAR" $2
+    cat $PATH_TO_LOG_FILE | mail -s "Results of Auto Clone of Repos $DATE_VAR" $2
   fi
   echo " "
   echo "Script COMPLETED"
