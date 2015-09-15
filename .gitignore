@@ -122,3 +122,5 @@ latex-resume/resume.run.xml
 latex-resume/resume.log
 latex-resume/resume-blx.bib
 
+!.XCompose
+!.profile
