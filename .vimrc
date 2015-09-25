@@ -437,6 +437,15 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 iabbrev waht what
 iabbrev adn and
 
+"German Chars
+inoremap a'' <c-k>:a
+inoremap A'' <c-k>:A
+inoremap o'' <c-k>:o
+inoremap O'' <c-k>:O
+inoremap u'' <c-k>:u
+inoremap U'' <c-k>:U
+inoremap ss' <c-k>ss
+
 " In normal mode, press leader s and search result highlighting will go off.
 nnoremap <leader>hl :nohlsearch<cr>
 
