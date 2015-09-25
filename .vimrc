@@ -43,18 +43,18 @@ map <Leader>/ <Plug>(easymotion-prefix)
 let g:EasyMotion_smartcase = 1
 
 " Colours for quick-scope
-" gui vim
-let g:qs_first_occurrence_highlight_color = '#75fff3'
-" terminal vim - cyan :
-" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-let g:qs_first_occurrence_highlight_color = 51
-
-" gui vim
-let g:qs_second_occurrence_highlight_color = '#6b98fb'
-" terminal vim - blue :
-" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-let g:qs_second_occurrence_highlight_color = 33
-
+if has("gui_running")
+  " gui vim
+  let g:qs_first_occurrence_highlight_color = '#75fff3'
+  let g:qs_second_occurrence_highlight_color = '#6b98fb'
+else
+  " terminal vim - cyan :
+  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+  let g:qs_first_occurrence_highlight_color = 51
+  " terminal vim - blue :
+  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+  let g:qs_second_occurrence_highlight_color = 33
+endif
 
 " Use fancy characters for statusbar
 let g:Powerline_symbols = 'fancy'
