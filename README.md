@@ -1,5 +1,10 @@
 #Dotfiles
 
+NOTE: I recently changd the repo to work better from a folder other than ~/
+
+For this reason, it may turn out that something does not work as it should, or I
+may have missed a symlink in my new symlink script.
+
 ![C++ File](./.screenshots/c++.png)
 
 ![C++ File with Nerdtree](./.screenshots/c++_w_nerdtree.png)
@@ -20,14 +25,16 @@ sudo apt-get install git
 Then do these for the initial setup:
 
 ```bash
-$ cd ~
+$ mkdir Documents/git-repos/remote-github
+$ cd Documents/git-repos-remote-github
 $ git clone https://github.com/hallzy/dotfiles.git
-$ dotfiles/move-files-from-dotfiles-to-home
+$ dotfiles/sym-link-files-to-home
+$ cd ~
 $ .auto-install-programs/install-programs
 
 #Optional
 $ .auto-clone/clone-repos
-$ ./update-vim-plugins
+$ ./update-all-repos
 
 $ ./create-sym-links-for-myscripts
 $ custom-fortunes/install-quote
@@ -39,53 +46,28 @@ The steps that are optional are optional because it is not necessary to clone
 the repos. The repos that are used to update the vim plugins will be updated
 with a git pull anyways, since I will maintain that myself.
 
-This will clone the repository to your home folder. All the files in this repo
-will be put into a folder called dotfiles which is in the home folder.
+This will clone the repository and will symlink important files from that
+repository to your home folder.
 
-The script that runs as the 3rd step above moves all the files and folders from the
-dotfiles folder and into the home folder, and then removes the dotfiles folder
-for you.
+The script that runs as the 4th step above symlinks important files to your
+home folder.
 
-The 3rd entry will install all the programs in the
+The 6th entry will install all the programs in the
 .auto-install-programs/programs-to-install file.
 
-The 4th entry will automatically clone all of the repos that I use or own.
+The 7th entry will automatically clone all of the repos that I use or own.
 
-The 5th Entry will pull new changes from the repos I use for my vim plugins and
-then copy those changes to my .vim directory.
+The 8th Entry will pull new changes from all the repos that were cloned in the
+previous step, including this repo. It will also run the symlink script from
+before, and copy all files related to vim to your vim folder.
 
-The 6th step runs a script that creates symbolic links in your /bin
+The 9th step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
 
-The 7th step will add the files in the categories subfolder to the fortunes game
+The 10th step will add the files in the categories subfolder to the fortunes game
 program.
 
-The 8th step will put the fonts in all the right places to use the latex resume.
-
-
-####Update Your Local Repo
-
-The following command will pull those changes for you and update your home folder:
-
-```bash
-$ update-home-folder
-```
-
-This will pull the latest change from the repo and create symbolic links for any
-new scripts that have been added to ~/.my-scripts, update the fortunes program
-categories, and the .vim folder will be updated.
-
-If you did not run the optional commands for the initial setup, This script will
-not update the vim folder.
-
-If you run:
-
-```bash
-$ update-home-folder install
-```
-
-It will do the same as above, except it will also perform the program install
-process.
+The 11th step will put the fonts in all the right places to use the latex resume.
 
 
 ###.vim and .vimrc

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-shopt -s dotglob
-mv ~/dotfiles/* ~/
-rm -rf ~/dotfiles
