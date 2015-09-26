@@ -56,8 +56,8 @@ else
   let g:qs_second_occurrence_highlight_color = 33
 endif
 
-" Use fancy characters for statusbar
-let g:Powerline_symbols = 'fancy'
+" Use compatible characters for statusbar
+let g:Powerline_symbols = 'compatible'
 
 " Toggle nerdtree with F10
 noremap <F8> :NERDTreeToggle<CR>
