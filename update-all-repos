@@ -26,6 +26,10 @@ do
   cd ..
 done
 
+# Update ~/ with new pulled dotfiles
+cd dotfiles
+./sym-link-files-to-home
+
 cd ~/Documents/git-repos/repos-i-contribute-to
 
 REPO_NAMES=(*)
