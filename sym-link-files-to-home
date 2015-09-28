@@ -23,4 +23,5 @@ ln -fs $DOTFILE_PATH/.profile
 ln -fs $DOTFILE_PATH/sym-link-files-to-home
 ln -fs $DOTFILE_PATH/update-all-repos
 ln -fs $DOTFILE_PATH/.XCompose
+ln -fs $DOTFILE_PATH/custom-fortunes
 
