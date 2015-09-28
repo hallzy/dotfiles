@@ -4,23 +4,23 @@ DOTFILE_PATH=~/Documents/git-repos/remote-github/dotfiles
 
 cd ~/
 
-ln -s $DOTFILE_PATH/
-ln -s $DOTFILE_PATH/.auto-clone/
-ln -s $DOTFILE_PATH/.vim
-ln -s $DOTFILE_PATH/.vimrc
-ln -s $DOTFILE_PATH/.bash_aliases
-ln -s $DOTFILE_PATH/.bash_profile
-ln -s $DOTFILE_PATH/.bashrc
-ln -s $DOTFILE_PATH/.auto-install-programs/
-ln -s $DOTFILE_PATH/.detoxrc
-ln -s $DOTFILE_PATH/.fonts/
-ln -s $DOTFILE_PATH/.gitconfig
-ln -s $DOTFILE_PATH/.gnome2/
-ln -s $DOTFILE_PATH/.gvimrc
-ln -s $DOTFILE_PATH/.inputrc
-ln -s $DOTFILE_PATH/.my-scripts/
-ln -s $DOTFILE_PATH/.profile
-ln -s $DOTFILE_PATH/sym-link-files-to-home
-ln -s $DOTFILE_PATH/update-all-repos
-ln -s $DOTFILE_PATH/.XCompose
+ln -fs $DOTFILE_PATH/
+ln -fs $DOTFILE_PATH/.auto-clone/
+ln -fs $DOTFILE_PATH/.vim
+ln -fs $DOTFILE_PATH/.vimrc
+ln -fs $DOTFILE_PATH/.bash_aliases
+ln -fs $DOTFILE_PATH/.bash_profile
+ln -fs $DOTFILE_PATH/.bashrc
+ln -fs $DOTFILE_PATH/.auto-install-programs/
+ln -fs $DOTFILE_PATH/.detoxrc
+ln -fs $DOTFILE_PATH/.fonts/
+ln -fs $DOTFILE_PATH/.gitconfig
+ln -fs $DOTFILE_PATH/.gnome2/
+ln -fs $DOTFILE_PATH/.gvimrc
+ln -fs $DOTFILE_PATH/.inputrc
+ln -fs $DOTFILE_PATH/.my-scripts/
+ln -fs $DOTFILE_PATH/.profile
+ln -fs $DOTFILE_PATH/sym-link-files-to-home
+ln -fs $DOTFILE_PATH/update-all-repos
+ln -fs $DOTFILE_PATH/.XCompose
 
