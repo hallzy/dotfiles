@@ -292,4 +292,3 @@ My easy motion \<leader\> is \<leader\>/
 
 This can be changed within the vimrc file.
 
-test
