@@ -95,6 +95,7 @@ fi
 source /etc/environment
 
 REPOS=~/Documents/git-repos
+dotfiles=~/Documents/git-repos/remote-github/dotfiles
 
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
 
