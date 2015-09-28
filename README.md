@@ -49,9 +49,6 @@ with a git pull anyways, since I will maintain that myself.
 This will clone the repository and will symlink important files from that
 repository to your home folder.
 
-The script that runs as the 4th step above symlinks important files to your
-home folder.
-
 The 6th entry will install all the programs in the
 .auto-install-programs/programs-to-install file.
 
