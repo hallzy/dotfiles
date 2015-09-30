@@ -7,7 +7,8 @@
 "
 " =============================================================================
 
-" keys that I dont use so are free for mappings
+" keys that I dont use so are free for mappings"{{{
+
 """" Normal Mode
 
 " ^
@@ -19,7 +20,8 @@
 " U
 " _
 " M
-
+" Q --- This is mapped to <nop> right now... just change that mapping
+"}}}
 
 " Settings"{{{
 
@@ -101,6 +103,9 @@ set splitright
 
 set foldmethod=marker
 
+" Keep the cursor in the middle of the page if possible
+:set so=999
+
 "}}}
 " Mappings"{{{
 
@@ -136,13 +141,146 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" These do the same thing?
+" Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+"}}}
+" Change what "*" does"{{{
+
+" Make * search the currently selected word, without going to the next result
+nnoremap * *N
+"}}}
+" Shortcut for opening vimrc"{{{
+
+" Open .vimrc in a vsplit with <space>ev
+" If $MYVIMRC does not work as a path, either add it, or replace it with the
+" path of your vimrc file.
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+"}}}
+"German Chars"{{{
+
+inoremap a'' <c-k>:a
+inoremap A'' <c-k>:A
+inoremap o'' <c-k>:o
+inoremap O'' <c-k>:O
+inoremap u'' <c-k>:u
+inoremap U'' <c-k>:U
+inoremap ss' <c-k>ss
+"}}}
+" Remove search highlighting"{{{
+
+" In normal mode, press leader s and search result highlighting will go off.
+nnoremap <leader>hl :nohlsearch<cr>
+"}}}
+" Move a Line, or selected lines up or down"{{{
+
+" With a J move the current line up, with K move the current line down.
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
+" With a J move the current Selected lines up, with K move the current selected lines down.
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+"}}}
+" H and L move to the beginning and end of the line"{{{
+
+" H and L move the cursor to the beginning and end of the line.
+noremap H 0
+noremap L $
+"}}}
+" Remap Q to nothing"{{{
+
+" Disable the possibility of accidentally getting in exmode
+nnoremap Q <nop>
+"}}}
+" Delete Surrounding"{{{
+
+" Delete Surrounding Characters
+nnoremap ds{ F{xf}x
+nnoremap cs{ F{xf}xi
+nnoremap ds} F{xf}x
+nnoremap cs} F{xf}xi
+nnoremap ds" F"x,x
+nnoremap cs" F"x,xi
+nnoremap ds' F'x,x
+nnoremap cs' F'x,xi
+nnoremap ds( F(xf)x
+nnoremap cs( F(xf)xi
+nnoremap ds) F(xf)x
+nnoremap cs) F(xf)xi
+"}}}
+"Create Closing Tag for HTML Tags"{{{
+
+nnoremap cct F<yf>f>pF<a/<esc>hi
+"}}}
+" Escape removes trailing whitespace from eol"{{{
+
+"esc now removes whitespace from the line that you are escaping from
+inoremap <esc> <esc>:s/\s\+$//e<cr>
+"}}}
+"Evaluate a mathematical expression"{{{
+
+"usage: On a new line type out a math expression ex: 5+5=
+"put the cursor anywhere on the expresssion and type <leader>m in normal mode
+"The answer will be put at the end of the equals sign, and the dec, hex, and
+"octal answers will be in the bottom of the vim window.
+nnoremap <leader>z yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
+"}}}
+" Make Errors"{{{
+
+" For errors found with :make move bewteen them with space e and space E
+nnoremap <leader>m :cnext<cr>
+nnoremap <leader>M :cprevious<cr>
+"}}}
+" For merge conflicts easily choose what version to use"{{{
+
+nnoremap $ :diffget<space>
+"}}}
+" > and <"{{{
+
+" Now when I try to move several lines at once sideways, the visual selection
+" stays selected so that I can move it multiple times easily.
+vnoremap > >gv
+vnoremap < <gv
+"}}}
+
+"}}}
+" abbrevs"{{{
+
+" Typo fixes"{{{
+
+" Abbreviations that fix typos
+iabbrev waht what
+iabbrev adn and
+"}}}
+" Typo fixes for saving and exiting a file"{{{
+
+" Let me save and quit, and quit all with lower case or capitals.
+cabbrev W w
+cabbrev Q q
+cabbrev WQ wq
+cabbrev Wq wq
+cabbrev wQ wq
+cabbrev QA qa
+cabbrev qA qa
+cabbrev Qa qa
+cabbrev WQA wqa
+cabbrev WQa wqa
+cabbrev WqA wqa
+cabbrev Wqa wqa
+cabbrev wQA wqa
+cabbrev wQa wqa
+cabbrev wqA wqa
 "}}}
 
 "}}}
 " Plugins"{{{
 
 " Easy Motion"{{{
-"
+
 " Make the leader for easy-motion <leader>/
 map <Leader>/ <Plug>(easymotion-prefix)
 
@@ -215,6 +353,11 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='solarized'
+"}}}
+" Git Time Lapse"{{{
+
+" Maps the <F7> key to use git-time-lapse
+map <F7> :call TimeLapse()<cr>
 "}}}
 
 "}}}
@@ -344,6 +487,136 @@ function! s:MyFormattingSubs()
   call cursor(l,c)
 endfunction
 "}}}
+" VisualSelection - perform search and replacements for visual text"{{{
+
+" This is used for the next function
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+" Perform searches and replacements for visually selected text
+function! VisualSelection(direction) range
+  " Temporarily store your last yank as a temp variable
+  let l:saved_reg = @"
+  " Selects and yanks the highlighted text
+  execute "normal! vgvy"
+
+  " if the highlighted text has any of these special characters, then escape
+  " them with a \
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  " Get rid of next line characters in the highlighted text
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  let @/ = l:pattern
+
+  " Search for highlighted text
+  if a:direction == 'b'
+      execute "normal ?\<C-R>/\<cr>"
+  " substitute highlighted text
+  elseif a:direction == 'replace'
+      call CmdLine("%s" . '/'. l:pattern . '/')
+  " Search for highlighted text
+  elseif a:direction == 'f'
+      execute "normal /\<C-R>/\<cr>"
+  endif
+
+  "Restore your last yank bank into the " register
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
+"}}}
+" Underline the current line"{{{
+
+" Underline the current line with a -
+function! UnderlineCurrentLineWithDash()
+  exe "normal! $"
+  let c = col(".")
+  exe "normal! o"
+
+  while c > 0
+    exe "normal! i-\<esc>"
+    let c -= 1
+  endwhile
+endfunc
+
+"Underline the current line with =
+function! UnderlineCurrentLineWithEquals()
+  exe "normal! $"
+  let c = col(".")
+  exe "normal! o"
+
+  while c > 0
+    exe "normal! i=\<esc>"
+    let c -= 1
+  endwhile
+endfunc
+"}}}
+" DimInactiveWindows"{{{
+
+" This changes the way that non active splits appear.
+" The background will be a lighter black and will have no colour.
+function! s:DimInactiveWindows()
+  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+    let l:range = ""
+    if i != winnr()
+      if &wrap
+        let l:width=256 " max
+      else
+        let l:width=winwidth(i)
+      endif
+      let l:range = join(range(1, l:width), ',')
+    endif
+    call setwinvar(i, '&colorcolumn', l:range)
+  endfor
+endfunction
+"}}}
+" OpenMultipleFilesVSplit"{{{
+
+function! OpenMultipleFilesVSplit()
+  call inputsave()
+  let option = input("Enter a file name or regex expression: ")
+  call inputrestore()
+  execute ":args " . option . " | vertical all"
+endfun
+"}}}
+" SaveVimSession"{{{
+
+function! SaveVimSession()
+  call inputsave()
+  let name = input("enter a session name: ")
+  call inputrestore()
+  execute ":mksession! ~/.my-vim-sessions/" . name
+endfun
+"}}}
+" RestoreVimSession"{{{
+
+function! RestoreVimSession()
+  let cwd = getcwd()
+  :cd ~/.my-vim-sessions/
+  :silent !clear
+  :!ls -1
+  call inputsave()
+  let name = input("enter a session name: ")
+  call inputrestore()
+  execute ":source " . name
+  execute ":cd " . cwd
+endfun
+"}}}
+" Toggle the functionality of ctrl+a and ctrl+x"{{{
+
+" This will make ! toggle whether or not ctrl+a and ctrl+x can work on alpha
+" characters or not. By default it is off.
+function! Togglenrformats()
+  if &nrformats == "octal,hex"
+    set nrformats=octal,hex,alpha
+  else
+    set nrformats=octal,hex
+  endif
+  echo &nrformats
+endfun
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -364,6 +637,38 @@ nnoremap <leader>RN :call ToggleRelativeNumber()<cr>
 " InsertTabWrapper"{{{
 
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+"}}}
+" VisualSelection"{{{
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>N
+vnoremap <silent> # :call VisualSelection('b')<CR>N
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+"}}}
+" Underline Current Line"{{{
+
+" Execute the above commands for underlining
+nnoremap <leader>= :call UnderlineCurrentLineWithEquals()<cr>
+nnoremap <leader>- :call UnderlineCurrentLineWithDash()<cr>
+"}}}
+" OpenMultipleFilesVSplit"{{{
+
+nnoremap <f1> :call OpenMultipleFilesVSplit()<cr>
+"}}}
+"SaveVimSession"{{{
+
+nnoremap <f2> :call SaveVimSession()<cr>
+"}}}
+"RestoreVimSession"{{{
+
+nnoremap <f3> :call RestoreVimSession()<cr>
+"}}}
+" Togglenrformats - toggles functionality of ctrl+a and ctrl+x"{{{
+
+nnoremap ! :call Togglenrformats()<cr>
 "}}}
 
 "}}}
@@ -407,188 +712,20 @@ augroup END
 
 au BufWritePre * :call <SID>MyFormattingSubs()
 "}}}
+" DimInactiveWindows"{{{
 
+augroup DimInactiveWindows
+  au!
+  au WinEnter * call s:DimInactiveWindows()
+  au WinEnter * set cursorline
+  au WinLeave * set nocursorline
+augroup END
 "}}}
 
+"}}}
+" Highlightings"{{{
 
-
-" This is used for the next function
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-" Perform searches and replacements for visually selected text
-function! VisualSelection(direction) range
-  " Temporarily store your last yank as a temp variable
-  let l:saved_reg = @"
-  " Selects and yanks the highlighted text
-  execute "normal! vgvy"
-
-  " if the highlighted text has any of these special characters, then escape
-  " them with a \
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  " Get rid of next line characters in the highlighted text
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  let @/ = l:pattern
-
-  " Search for highlighted text
-  if a:direction == 'b'
-      execute "normal ?\<C-R>/\<cr>"
-  " substitute highlighted text
-  elseif a:direction == 'replace'
-      call CmdLine("%s" . '/'. l:pattern . '/')
-  " Search for highlighted text
-  elseif a:direction == 'f'
-      execute "normal /\<C-R>/\<cr>"
-  endif
-
-  "Restore your last yank bank into the " register
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction
-
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>N
-vnoremap <silent> # :call VisualSelection('b')<CR>N
-
-" Make * search the currently selected word, without going to the next result
-nnoremap * *N
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Underline the current line with a -
-function! UnderlineCurrentLineWithDash()
-  exe "normal! $"
-  let c = col(".")
-  exe "normal! o"
-
-  while c > 0
-    exe "normal! i-\<esc>"
-    let c -= 1
-  endwhile
-endfunc
-
-"Underline the current line with =
-function! UnderlineCurrentLineWithEquals()
-  exe "normal! $"
-  let c = col(".")
-  exe "normal! o"
-
-  while c > 0
-    exe "normal! i=\<esc>"
-    let c -= 1
-  endwhile
-endfunc
-
-" Execute the above commands for underlining
-nnoremap <leader>= :call UnderlineCurrentLineWithEquals()<cr>
-nnoremap <leader>- :call UnderlineCurrentLineWithDash()<cr>
-
-" Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Maps the <F7> key to use git-time-lapse
-map <F7> :call TimeLapse()<cr>
-
-" Keep the cursor in the middle of the page if possible
-:set so=999
-
-" Open .vimrc in a vsplit with <space>ev
-" If $MYVIMRC does not work as a path, either add it, or replace it with the
-" path of your vimrc file.
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
-" Abbreviations that fix typos
-iabbrev waht what
-iabbrev adn and
-
-"German Chars
-inoremap a'' <c-k>:a
-inoremap A'' <c-k>:A
-inoremap o'' <c-k>:o
-inoremap O'' <c-k>:O
-inoremap u'' <c-k>:u
-inoremap U'' <c-k>:U
-inoremap ss' <c-k>ss
-
-" In normal mode, press leader s and search result highlighting will go off.
-nnoremap <leader>hl :nohlsearch<cr>
-
-" With a J move the current line up, with K move the current line down.
-nnoremap J :m .+1<CR>==
-nnoremap K :m .-2<CR>==
-" With a J move the current Selected lines up, with K move the current selected lines down.
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-
-" H and L move the cursor to the beginning and end of the line.
-noremap H 0
-noremap L $
-vnoremap L g_
-
-" Change cwd of vim to the directory of the current file
-cmap cd. lcd %:p:h
-
-" Disable the possibility of accidentally getting in exmode
-nnoremap Q <nop>
-
-" Delete or change everything within a comma
-nnoremap di, f,dT,
-nnoremap ci, f,cT,
-
-" Delete Surrounding Characters
-nnoremap ds{ F{xf}x
-nnoremap cs{ F{xf}xi
-nnoremap ds} F{xf}x
-nnoremap cs} F{xf}xi
-nnoremap ds" F"x,x
-nnoremap cs" F"x,xi
-nnoremap ds' F'x,x
-nnoremap cs' F'x,xi
-nnoremap ds( F(xf)x
-nnoremap cs( F(xf)xi
-nnoremap ds) F(xf)x
-nnoremap cs) F(xf)xi
-
-"Create Closing Tag
-nnoremap cct F<yf>f>pF<a/<esc>hi
-
-" Let me save and quit, and quit all with lower case or capitals.
-cabbrev W w
-cabbrev Q q
-cabbrev WQ wq
-cabbrev Wq wq
-cabbrev wQ wq
-cabbrev QA qa
-cabbrev qA qa
-cabbrev Qa qa
-cabbrev WQA wqa
-cabbrev WQa wqa
-cabbrev WqA wqa
-cabbrev Wqa wqa
-cabbrev wQA wqa
-cabbrev wQa wqa
-cabbrev wqA wqa
-
-"esc now removes whitespace from the line that you are escaping from
-inoremap <esc> <esc>:s/\s\+$//e<cr>
-
-"Evaluate a mathematical expression
-"usage: On a new line type out a math expression ex: 5+5=
-"put the cursor anywhere on the expresssion and type <leader>m in normal mode
-"The answer will be put at the end of the equals sign, and the dec, hex, and
-"octal answers will be in the bottom of the vim window.
-nnoremap <leader>z yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
-
+" Diffs"{{{
 
 " When using vimdiff or diff mode
 highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
@@ -602,94 +739,19 @@ highlight diffAdded   term=bold ctermbg=black   ctermfg=green  cterm=bold guibg=
 highlight diffChanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=DarkYellow  guifg=white gui=none
 highlight diffLine    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=DarkMagenta guifg=white gui=none
 highlight diffFile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=DarkYellow  guifg=white gui=none
+"}}}
+" trailing whitespace"{{{
 
-" Highlight trailing whitespace white
 highlight highlightTrailingWhiteSpace ctermbg=White guibg=White
 autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
 autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
 autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
+"}}}
+" Highlighting for DimInactiveWindows()"{{{
 
-
-" This changes the way that non active splits appear.
-" The background will be a lighter black and will have no colour.
 highlight colorcolumn ctermfg=white
 highlight colorcolumn guifg=white
-function! s:DimInactiveWindows()
-  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
-    let l:range = ""
-    if i != winnr()
-      if &wrap
-        let l:width=256 " max
-      else
-        let l:width=winwidth(i)
-      endif
-      let l:range = join(range(1, l:width), ',')
-    endif
-    call setwinvar(i, '&colorcolumn', l:range)
-  endfor
-endfunction
-augroup DimInactiveWindows
-  au!
-  au WinEnter * call s:DimInactiveWindows()
-  au WinEnter * set cursorline
-  au WinLeave * set nocursorline
-augroup END
+"}}}
 
+"}}}
 
-function! OpenMultipleFilesVSplit()
-  call inputsave()
-  let option = input("Enter a file name or regex expression: ")
-  call inputrestore()
-  execute ":args " . option . " | vertical all"
-endfun
-
-nnoremap <f1> :call OpenMultipleFilesVSplit()<cr>
-
-
-function! SaveVimSession()
-  call inputsave()
-  let name = input("enter a session name: ")
-  call inputrestore()
-  execute ":mksession! ~/.my-vim-sessions/" . name
-endfun
-
-function! RestoreVimSession()
-  let cwd = getcwd()
-  :cd ~/.my-vim-sessions/
-  :silent !clear
-  :!ls -1
-  call inputsave()
-  let name = input("enter a session name: ")
-  call inputrestore()
-  execute ":source " . name
-  execute ":cd " . cwd
-endfun
-
-nnoremap <f2> :call SaveVimSession()<cr>
-nnoremap <f3> :call RestoreVimSession()<cr>
-
-" For errors found with :make move bewteen them with space e and space E
-nnoremap <leader>m :cnext<cr>
-nnoremap <leader>M :cprevious<cr>
-
-" This will make ! toggle whether or not ctrl+a and ctrl+x can work on alpha
-" characters or not. By default it is off.
-function! Togglenrformats()
-  if &nrformats == "octal,hex"
-    set nrformats=octal,hex,alpha
-  else
-    set nrformats=octal,hex
-  endif
-  echo &nrformats
-endfun
-
-nnoremap ! :call Togglenrformats()<cr>
-
-nnoremap $ :diffget<space>
-
-
-
-" Now when I try to move several lines at once sideways, the visual selection
-" stays selected so that I can move it multiple times easily.
-vnoremap > >gv
-vnoremap < <gv
