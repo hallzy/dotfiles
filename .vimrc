@@ -12,15 +12,16 @@
 
 " ^
 " &
-" ~
 " #  -- this has been remapped to <nop>
 " -
 " |
-" ?
 " `   --- turns out this does the same as ' but ' is easier to hit
 " U
 " _
 " M
+
+
+" Settings"{{{
 
 set shell=/bin/bash
 set title titlestring=
@@ -31,42 +32,6 @@ set ttyfast
 set lazyredraw
 
 let $PATH='/usr/local/bin:' . $PATH
-
-" Leader Mappings
-map <Space> <leader>
-
-" Make the leader for easy-motion <leader>/
-map <Leader>/ <Plug>(easymotion-prefix)
-
-"use easy motion and fanfingtastic with no case sensitivity
-"let g:fanfingtastic_ignorecase = 1
-let g:EasyMotion_smartcase = 1
-
-" Colours for quick-scope
-if has("gui_running")
-  " gui vim
-  let g:qs_first_occurrence_highlight_color = '#75fff3'
-  let g:qs_second_occurrence_highlight_color = '#6b98fb'
-else
-  " terminal vim - cyan :
-  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-  let g:qs_first_occurrence_highlight_color = 51
-  " terminal vim - blue :
-  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-  let g:qs_second_occurrence_highlight_color = 33
-endif
-
-" Use compatible characters for statusbar
-let g:Powerline_symbols = 'compatible'
-
-" Toggle nerdtree with F10
-noremap <F8> :NERDTreeToggle<CR>
-" Current file in nerdtree
-noremap <F9> :NERDTreeFind<CR>
-
-"For using vmath.vim
-vnoremap ++  y:call VMATH_Analyse()<CR>
-nnoremap ++  vipy:call VMATH_Analyse()<CR>
 
 " Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
 set ttimeout
@@ -80,11 +45,6 @@ set cursorline
 
 " Leave paste mode on exit
 au InsertLeave * set nopaste
-
-" Command aliases
-nnoremap <leader>nt :tabnew<CR>
-nnoremap <leader>tn :tabnext<CR>
-nnoremap <leader>tp :tabprev<CR>
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
@@ -103,72 +63,12 @@ set showmatch     " Shows the matching bracket or brace
 set tildeop       " Tilde (~) changes case of letter. Setting this option lets
                   " the tilde have movement options
 
-
-"=====[ Highlight matches when jumping to next ]=============
-
-    " This rewires n and N to do the highlighing...
-    nnoremap <silent> n   n:call HLNext(0.4)<cr>
-    nnoremap <silent> N   N:call HLNext(0.4)<cr>
-
-highlight WhiteOnRed ctermbg=red ctermfg=white
-" OR ELSE just highlight the match in red...
-function! HLNext (blinktime)
-    let [bufnum, lnum, col, off] = getpos('.')
-    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-    let target_pat = '\c\%#\%('.@/.'\)'
-
-    let ring = matchadd('WhiteOnRed', target_pat, 101)
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
-
-    call matchdelete(ring)
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 250) . 'm'
-
-    let ring = matchadd('WhiteOnRed', target_pat, 101)
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
-
-    call matchdelete(ring)
-    redraw
-
-endfunction
-
 syntax on
 
 filetype plugin indent on
 
 set textwidth=80
 set fo+=t
-augroup vimrcEx
-  autocmd!
-
-  " For all text files set 'textwidth' to 80 characters.
-  autocmd FileType text setlocal textwidth=80
-
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
-augroup END
-
-" Highlight all characters exceeding the 80th column
-augroup highlightpast80
-    autocmd BufEnter * highlight OverLength ctermbg=red
-    autocmd BufEnter * match OverLength /\%81v.*/
-augroup END
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -178,13 +78,6 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:>-,trail:-
 
-" Airline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme='solarized'
 set t_Co=256
 
 set smartcase
@@ -197,47 +90,104 @@ set encoding=utf-8
 
 " Numbers
 set number
-" Toggle for line numbers for easy copy/paste
-nnoremap <leader>N :setlocal number!<cr>
 
 set numberwidth=5
 
-function! ToggleRelativeNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunction
-
-nnoremap <leader>RN :call ToggleRelativeNumber()<cr>
-
 set undolevels=1000
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-set complete=.,w,t
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
+set foldmethod=marker
+
+"}}}
+" Mappings"{{{
+
+" Leader"{{{
+
+" Leader Mappings
+map <Space> <leader>
+"}}}
+" Tab Navigation"{{{
+
+nnoremap <leader>nt :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
+"}}}
+" Line Number Toggle"{{{
+
+" Toggle for line numbers for easy copy/paste
+nnoremap <leader>N :setlocal number!<cr>
+"}}}
+" Resize Split Windows"{{{
 
 "Arrow keys expand and shrink vim split
 nnoremap <Left>   <C-w><
 nnoremap <Right>  <C-w>>
 nnoremap <Up>     <C-w>+
 nnoremap <Down>   <C-w>-
+"}}}
+" Better Split Window Movement"{{{
+
+" Use ctrl+j to move to the window below, ctrl+k to move to the window above,
+" etc.
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+"}}}
+
+"}}}
+" Plugins"{{{
+
+" Easy Motion"{{{
+"
+" Make the leader for easy-motion <leader>/
+map <Leader>/ <Plug>(easymotion-prefix)
+
+"use easy motion and fanfingtastic with no case sensitivity
+let g:EasyMotion_smartcase = 1
+"}}}
+" Fanfingtastic"{{{
+
+"let g:fanfingtastic_ignorecase = 1
+"}}}
+" Quick Scope"{{{
+
+" Colours for quick-scope
+if has("gui_running")
+  " gui vim
+  let g:qs_first_occurrence_highlight_color = '#75fff3'
+  let g:qs_second_occurrence_highlight_color = '#6b98fb'
+else
+  " terminal vim - cyan :
+  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+  let g:qs_first_occurrence_highlight_color = 51
+  " terminal vim - blue :
+  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+  let g:qs_second_occurrence_highlight_color = 33
+endif
+"}}}
+" Powerline"{{{
+
+" Use compatible characters for statusbar
+let g:Powerline_symbols = 'compatible'
+"}}}
+" NERDTree"{{{
+
+" Toggle nerdtree with F10
+noremap <F8> :NERDTreeToggle<CR>
+" Current file in nerdtree
+noremap <F9> :NERDTreeFind<CR>
+"}}}
+" vmath"{{{
+
+"For using vmath.vim
+vnoremap ++  y:call VMATH_Analyse()<CR>
+nnoremap ++  vipy:call VMATH_Analyse()<CR>
+"}}}
+" dragvisuals"{{{
 
 " This is for dragvisuals.vim
 runtime plugin/dragvisuals.vim
@@ -250,29 +200,85 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
+"}}}
+" Visual Marks"{{{
 
+" Visual marks are the same as normal, except done in visual mode
+vmap m <Plug>VisualMarksVisualMark
+nmap ? <Plug>VisualMarksGetVisualMark
+"}}}
+" Airline"{{{
 
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_theme='solarized'
+"}}}
 
-" Quicker window movement
-" Use ctrl+j to move to the window below, ctrl+k to move to the window above,
-" etc.
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"}}}
+" Functions"{{{
 
-set foldmethod=marker
+" HLNext"{{{
 
-" Make sure all statements have curly braces.
+function! HLNext (blinktime)
+  let [bufnum, lnum, col, off] = getpos('.')
+  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+  let target_pat = '\c\%#\%('.@/.'\)'
+
+  let ring = matchadd('WhiteOnRed', target_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+
+  call matchdelete(ring)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 250) . 'm'
+
+  let ring = matchadd('WhiteOnRed', target_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+
+  call matchdelete(ring)
+  redraw
+
+endfunction
+"}}}
+" ToggleRelativeNumber"{{{
+
+function! ToggleRelativeNumber()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunction
+"}}}
+" Tab Completion - InsertTabWrapper"{{{
+
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+set complete=.,w,t
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+"}}}
+" AddCurlyBraces"{{{
+
 function! AddCurlyBraces()
   :exe "normal! $a\<space>{\<esc>jo}\<esc>"
 endfun
+"}}}
+" BracketSpacing"{{{
 
-" This formats spaces between brackets and such to the way that I like things to
-" be.
+" This formats spaces between brackets and such to the way that I like things to be.
 function! BracketSpacing()
   " I do not want this to do anything for this vim file because otherwise when I
   " save this file this mapping will mess itself up.
@@ -314,6 +320,8 @@ function! BracketSpacing()
   :%s/}\nwhile/} while/ge
   :%s/for\n(/for (/ge
 endfun
+"}}}
+" MyFormattingSubs"{{{
 
 " Remove trailing whitespace on save for all filetypes.
 function! s:MyFormattingSubs()
@@ -335,8 +343,73 @@ function! s:MyFormattingSubs()
   let @/=_s
   call cursor(l,c)
 endfunction
+"}}}
+
+"}}}
+" Function Mappings/ Settings"{{{
+
+" HLNext"{{{
+
+" Highlight matches when jumping to next
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+highlight WhiteOnRed ctermbg=red ctermfg=white
+"}}}
+" ToggleRelativeNumbers"{{{
+
+nnoremap <leader>RN :call ToggleRelativeNumber()<cr>
+"}}}
+" InsertTabWrapper"{{{
+
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+"}}}
+
+"}}}
+" Autogroups/ Autocommands"{{{
+
+" vimrcEx - filetypes, textwidth"{{{
+
+augroup vimrcEx
+  autocmd!
+
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
+
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
+
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+  " Enable spellchecking for Markdown
+  autocmd FileType markdown setlocal spell
+
+  " Automatically wrap at 80 characters for Markdown
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
+augroup END
+"}}}
+" highlightpast80"{{{
+
+" Highlight all characters exceeding the 80th column
+augroup highlightpast80
+  autocmd BufEnter * highlight OverLength ctermbg=red
+  autocmd BufEnter * match OverLength /\%81v.*/
+augroup END
+"}}}
+" MyFormattingSubs"{{{
 
 au BufWritePre * :call <SID>MyFormattingSubs()
+"}}}
+
+"}}}
+
 
 
 " This is used for the next function
@@ -615,9 +688,6 @@ nnoremap ! :call Togglenrformats()<cr>
 nnoremap $ :diffget<space>
 
 
-" Visual marks are the same as normal, except done in visual mode
-vmap m <Plug>VisualMarksVisualMark
-nmap ~ <Plug>VisualMarksGetVisualMark
 
 " Now when I try to move several lines at once sideways, the visual selection
 " stays selected so that I can move it multiple times easily.
