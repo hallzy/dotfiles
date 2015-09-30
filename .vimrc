@@ -613,3 +613,13 @@ endfun
 nnoremap ! :call Togglenrformats()<cr>
 
 nnoremap $ :diffget<space>
+
+
+" Visual marks are the same as normal, except done in visual mode
+vmap m <Plug>VisualMarksVisualMark
+nmap ~ <Plug>VisualMarksGetVisualMark
+
+" Now when I try to move several lines at once sideways, the visual selection
+" stays selected so that I can move it multiple times easily.
+vnoremap > >gv
+vnoremap < <gv
