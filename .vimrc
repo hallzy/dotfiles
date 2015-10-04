@@ -423,12 +423,6 @@ endfun
 
 " This formats spaces between brackets and such to the way that I like things to be.
 function! BracketSpacing()
-  " I do not want this to do anything for this vim file because otherwise when I
-  " save this file this mapping will mess itself up.
-  " So this returns nothing when the filetype is vim.
-  if &filetype =~ 'vim'
-    return
-  endif
   " TODO find a better way of doing this as it is very repetitive.
   :%s/){/) {/ge
   :%s/else{/else {/ge
@@ -473,15 +467,30 @@ function! s:MyFormattingSubs()
   let l = line(".")
   let c = col(".")
 
-  "For the filetypes listed here, do all the formatting except removing tab
-  "characters.
-  if &filetype !~ 'make'
+  " Note: Filetypes listed are excluded.
+  " Note: Java is excluded because For CPEN 422 at UBC we are given a Java
+          " project that would make lots of changes to many files which would
+          " be a bit of a waste
+
+  "Replace a tab wtih 2 spaces
+  if (&filetype !~ 'make' &&
+     \&filetype != 'java')
+
     %s/\t/  /ge
   endif
 
-  %s/\s\+$//ge
-  "Replace a tab wtih 2 spaces
-  call BracketSpacing()
+  " Remove trailing whitespace
+  if (&filetype != 'java')
+    %s/\s\+$//ge
+  endif
+
+  " Change bracket spacings for me
+  " Note: I need to exclude vim files from this otherwise vim will mess up the
+  " BracketSpacing() function - There are spacings that would change in the
+  " function implementation
+  if &filetype !~ 'vim'
+    call BracketSpacing()
+  endif
 
   let @/=_s
   call cursor(l,c)
