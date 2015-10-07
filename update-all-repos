@@ -1,19 +1,5 @@
 #!/bin/bash
 
-cd ~/Documents/git-repos/vim-repos
-
-REPO_NAMES=(*)
-
-for REPO in ${REPO_NAMES[@]}
-do
-  cd $REPO
-  echo "Updating ${REPO}..."
-  git pull
-  cp -r */ ~/.vim
-  cd ..
-done
-
-
 cd ~/Documents/git-repos/remote-github
 
 REPO_NAMES=(*)
@@ -27,8 +13,23 @@ do
 done
 
 # Update ~/ with new pulled dotfiles
-cd dotfiles
+cd ~/Documents/git-repos/remote-github/dotfiles
 ./sym-link-files-to-home
+
+
+cd ~/Documents/git-repos/vim-repos
+
+REPO_NAMES=(*)
+
+for REPO in ${REPO_NAMES[@]}
+do
+  cd $REPO
+  echo "Updating ${REPO}..."
+  git pull
+  cp -r */ ~/.vim
+  cd ..
+done
+
 
 cd ~/Documents/git-repos/repos-i-contribute-to
 
