@@ -424,38 +424,40 @@ endfun
 " This formats spaces between brackets and such to the way that I like things to be.
 function! BracketSpacing()
   " TODO find a better way of doing this as it is very repetitive.
-  :%s/){/) {/ge
-  :%s/else{/else {/ge
-  :%s/if(/if (/ge
-  :%s/do{/do {/ge
-  :%s/while(/while (/ge
-  :%s/}while/} while/ge
-  :%s/for(/for (/ge
+  if (&filetype !~ 'sh')
+    :%s/){/) {/ge
+    :%s/else{/else {/ge
+    :%s/if(/if (/ge
+    :%s/do{/do {/ge
+    :%s/while(/while (/ge
+    :%s/}while/} while/ge
+    :%s/for(/for (/ge
 
-  " These have two \s characters to eliminate recursive subs.
-  :%s/)\s\s\+{/) {/ge
-  :%s/else\s\s\+{/else {/ge
-  :%s/if\s\s\+(/if (/ge
-  :%s/do\s\s\+{/do {/ge
-  :%s/while\s\s\+(/while (/ge
-  :%s/}\s\s\+while/} while/ge
-  :%s/for\s\s\+(/for (/ge
+    " These have two \s characters to eliminate recursive subs.
+    :%s/)\s\s\+{/) {/ge
+    :%s/else\s\s\+{/else {/ge
+    :%s/if\s\s\+(/if (/ge
+    :%s/do\s\s\+{/do {/ge
+    :%s/while\s\s\+(/while (/ge
+    :%s/}\s\s\+while/} while/ge
+    :%s/for\s\s\+(/for (/ge
 
-  :%s/)\n\s\+{/) {/ge
-  :%s/else\n\s\+{/else {/ge
-  :%s/if\n\s\+(/if (/ge
-  :%s/do\n\s\+{/do {/ge
-  :%s/while\n\s\+(/while (/ge
-  :%s/}\n\s\+while/} while/ge
-  :%s/for\n\s\+(/for (/ge
+    :%s/)\n\s\+{/) {/ge
+    :%s/else\n\s\+{/else {/ge
+    :%s/if\n\s\+(/if (/ge
+    :%s/do\n\s\+{/do {/ge
+    :%s/while\n\s\+(/while (/ge
+    :%s/}\n\s\+while/} while/ge
+    :%s/for\n\s\+(/for (/ge
 
-  :%s/)\n{/) {/ge
-  :%s/else\n{/else {/ge
-  :%s/if\n(/if (/ge
-  :%s/do\n{/do {/ge
-  :%s/while\n(/while (/ge
-  :%s/}\nwhile/} while/ge
-  :%s/for\n(/for (/ge
+    :%s/)\n{/) {/ge
+    :%s/else\n{/else {/ge
+    :%s/if\n(/if (/ge
+    :%s/do\n{/do {/ge
+    :%s/while\n(/while (/ge
+    :%s/}\nwhile/} while/ge
+    :%s/for\n(/for (/ge
+  endif
 endfun
 "}}}
 " MyFormattingSubs"{{{
