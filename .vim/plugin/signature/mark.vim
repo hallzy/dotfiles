@@ -347,14 +347,8 @@ function! signature#mark#ForceGlobalRemoval(mark)                               
     return
   endif
 
-  " See if custom .viminfo location is specified. If not, try to piece it together
-  if (&viminfo =~ ',n')
-    let l:filename = expand(substitute(&viminfo, '^.*,n', '', ''))
-  else
-    let l:filename = expand($HOME . '/' . (has('unix') ? '.' : '_') . 'viminfo')
-  endif
-
-  if (!filewritable(l:filename))
+  let l:filename = expand($HOME . '/' . (has('unix') ? '.' : '_') . 'viminfo')
+  if (filewritable(l:filename) != 1)
     echohl WarningMsg
     echomsg "Signature: Unable to read/write .viminfo ('" . l:filename . "')"
     echohl None
