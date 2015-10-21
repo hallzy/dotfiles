@@ -476,6 +476,7 @@ function! s:MyFormattingSubs()
 
   "Replace a tab wtih 2 spaces
   if (&filetype !~ 'make' &&
+     \&filetype !~ 'xml' &&
      \&filetype != 'java')
 
     %s/\t/  /ge
