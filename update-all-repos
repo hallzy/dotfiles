@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Update ~/ with new pulled dotfiles
+echo "Updating remote-github/dotfiles"
 cd ~/Documents/git-repos/remote-github/dotfiles
+git pull
 ./sym-link-files-to-home
 
 
@@ -12,7 +14,7 @@ REPO_NAMES=(*)
 for REPO in ${REPO_NAMES[@]}
 do
   cd $REPO
-  echo "Updating ${REPO}..."
+  echo "Updating remote-github/${REPO}..."
   git pull
   cd ..
 done
@@ -25,7 +27,7 @@ REPO_NAMES=(*)
 for REPO in ${REPO_NAMES[@]}
 do
   cd $REPO
-  echo "Updating ${REPO}..."
+  echo "Updating vim-repos/${REPO}..."
   git pull
   cp -r */ ~/.vim
   cd ..
@@ -39,7 +41,7 @@ REPO_NAMES=(*)
 for REPO in ${REPO_NAMES[@]}
 do
   cd $REPO
-  echo "Updating ${REPO}..."
+  echo "Updating repos-i-contribute-to/${REPO}..."
   git pull
   cd ..
 done
@@ -51,7 +53,7 @@ REPO_NAMES=(*)
 for REPO in ${REPO_NAMES[@]}
 do
   cd $REPO
-  echo "Updating ${REPO}..."
+  echo "Updating useful-repos/${REPO}..."
   git pull
   cd ..
 done
