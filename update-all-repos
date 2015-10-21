@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Update ~/ with new pulled dotfiles
+cd ~/Documents/git-repos/remote-github/dotfiles
+./sym-link-files-to-home
+
+
 cd ~/Documents/git-repos/remote-github
 
 REPO_NAMES=(*)
@@ -11,10 +16,6 @@ do
   git pull
   cd ..
 done
-
-# Update ~/ with new pulled dotfiles
-cd ~/Documents/git-repos/remote-github/dotfiles
-./sym-link-files-to-home
 
 
 cd ~/Documents/git-repos/vim-repos
