@@ -275,6 +275,44 @@ decrypt the file, but mine is not yet encrypted.
 These password files are not included in this repository (and never will be) for
 obvious reasons.
 
+##### Mutt Setup
+
+Pull the changes and ensure that the config files are in ~/
+
+Note that the sym-link-files-to-home script will do this.
+
+Add the password files to ~/.mutt/ as described under the "Mutt" section (could
+be put anywhere and called anything, just make sure to change the rc files
+accordingly. Alternatively, you can just put your password in the rc files in
+plaintext. See [this webpage](https://help.ubuntu.com/community/MuttAndGmail)
+for an example rc file with the password (note that this is the page that I used
+to get this all working, along with a few added things, so this is a good place
+to start if you have problems).
+
+Ensure that the permissions of .fetchmailrc are 600 (The max allowed apparently
+is 700, and if there are more permissions allowed than that, it will complain...
+May as well use 600 because it should not have execute permission anyways).
+
+Run the fetchmail program (if you did not provide your login password for your
+email, fetchmail will ask you for it... enter the password):
+
+```bash
+$ fetchmail -v
+```
+
+This will populate /var/spool/mail/USER and make it a mailbox.
+
+Start mutt:
+
+```bash
+$ mutt
+```
+
+It will probably tell you that you do not have a ~/Mail directory and it will
+ask you if you want to create one. Say yes.
+
+Mutt should now open
+
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
