@@ -238,6 +238,43 @@ My compose key is set to the right control key, so I type <right ctrl>a for ä.
 
 Note that the compose key just needs to be pressed, not held down.
 
+### Mutt
+
+Mutt is a email client that I use. There are several dot files in this repo that
+are used to help configure it.
+
+Some of the dotfiles require a password to use. Those are:
+  * .muttrc
+  * .msmtprc
+
+In the .msmtp file, there is a line:
+
+```bash
+passwordeval cat ~/.mutt/msmtp-password
+```
+That gets the password from an external file. This file only contains the
+password, and nothing else (No assignments etc). It would be better to have this
+file encrypted and change "cat" with a gpg command that decrypts the file, but I
+have not gotten around to doing this yet.
+
+In the .muttrc file there is a line:
+
+```bash
+source "~/.mutt/passwords"
+```
+
+which contains:
+
+```bash
+set imap_pass = "PASSWORD"
+```
+
+Where PASSWORD is your password. Again, the source command could use gpg to
+decrypt the file, but mine is not yet encrypted.
+
+These password files are not included in this repository (and never will be) for
+obvious reasons.
+
 #Preinstalled vim Plugins
 This .vim directory has preinstalled vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)

@@ -24,4 +24,8 @@ ln -fs $DOTFILE_PATH/update-all-repos
 ln -fs $DOTFILE_PATH/.XCompose
 ln -fs $DOTFILE_PATH/custom-fortunes
 ln -fs $DOTFILE_PATH/.gitradarrc
+ln -fs $DOTFILE_PATH/.fetchmailrc
+ln -fs $DOTFILE_PATH/.msmtprc
+ln -fs $DOTFILE_PATH/.muttrc
+ln -fs $DOTFILE_PATH/.procmailrc
 
