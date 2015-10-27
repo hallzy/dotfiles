@@ -114,4 +114,5 @@ get_crtime() {
 # Sets the Mail Environment Variable
 MAIL=/var/spool/mail/steven && export MAIL
 
-export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $"
+export PS1="$PS1\$(git-radar --bash --fetch) $"
+
