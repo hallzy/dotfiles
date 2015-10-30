@@ -23,5 +23,6 @@
   graphlogall = log --decorate --graph --all
   discard = checkout --
   rl = reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
+  rmvc = rm --cached
 [push]
-	default = matching
+  default = matching
