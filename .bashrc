@@ -114,5 +114,16 @@ get_crtime() {
 # Sets the Mail Environment Variable
 MAIL=/var/spool/mail/steven && export MAIL
 
-export PS1="$PS1\$(git-radar --bash --fetch) $"
+
+# Change colour of git radar prompt if in putty --- find a better way to do
+# this.
+NUM_SSH_SESSIONS_P1=$(ps -x | grep -o sshd | wc -l)
+
+if [[ "$NUM_SSH_SESSIONS_P1" -gt "1" ]]; then
+  export GIT_RADAR_FORMAT=" \\x01\\033[0;36m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[1;30m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
+fi
+
+
+#export PS1="$PS1\$(git-radar --bash --fetch) $"
+export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $"
 
