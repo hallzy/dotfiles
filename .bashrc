@@ -52,7 +52,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] $ ' #:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h' #:\w\$ '
+    PS1="${debian_chroot:+($debian_chroot)}\u@\h"  #:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -115,14 +115,20 @@ get_crtime() {
 MAIL=/var/spool/mail/steven && export MAIL
 
 
-# Settings for SSH Sessions
+# Add Time stamp to bash prompt
+export PS1="$PS1 [\$(date +"%r")]"
+
+# Bash Prompt Settings for SSH Sessions
+# Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
+# ssh session. If they do contain something, we assume it is an ssh session and
+# make the changes below
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   # Change colour of "git:" in git radar (the colour used by putty is the same as
   # background so I cannot see it.
-  export GIT_RADAR_FORMAT=" \\x01\\033[0;36m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[1;30m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
-  export PS1="SSH: $PS1"
+  export GIT_RADAR_FORMAT=" \\x01\\033[0;36m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[0;36m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
+  # Add SSH: to the prompt ("SSH:" is cyan)
+  export PS1="\e[0;36mSSH:\e[m $PS1"
 fi
-
 
 #export PS1="$PS1\$(git-radar --bash --fetch) $"
 export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $"
