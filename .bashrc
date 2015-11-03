@@ -105,7 +105,6 @@ get_crtime() {
   for target in "${@}"; do
     inode=$(stat -c '%i' "${target}")
     fs=$(df  --output=source "${target}"  | tail -1)
-    # crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*')
     crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "/dev/sda1" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*')
     printf "%s\t%s\n" "${target}" "${crtime}"
   done
@@ -130,6 +129,10 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export PS1="\e[0;36mSSH:\e[m $PS1"
 fi
 
+# Show 3 parent directories
+PROMPT_DIRTRIM=3
+export PS1="$PS1 \e[1;32m[\w]\e[m\n "
+
 #export PS1="$PS1\$(git-radar --bash --fetch) $"
-export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $"
+export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
 

@@ -78,11 +78,38 @@ users as remapping keys in windows or with a vm is a little annoying. Remapping
 keys in Ubuntu for example, is much easier).
 
 ###.bashrc
-  Currently, my .bashrc file is just the default with ubuntu but modified so that
-the shell prompt does not show the cwd. To see the cwd use the command pwd.
+  My .bashrc started as the default that came with Ubuntu, and still has most of
+the original stuff. I have added a few things though, which I will make note of
+here:
+  * I have a sendtext command which uses an external service and the curl program to send a text message.
+  * Environment Variables for the location of my REPOS directories, and my
+    dotfiles repo ($REPOS and $dotfiles respectively)
+  * crtime() function that find the creation time of a file
+  * MAIL environment variable for my mail
 
-  I also have a sendtext command which uses an external service and the curl
-program to send a text message.
+All other changes I have made affect the prompt:
+  * I changed the default prompt to not show the current directory
+  * Added a part that adds the current time in 12-hour clock
+  * Prefixed my prompt with "SSH:" If the console is being used in an ssh
+    session.
+  * Appended the prompt so that it shows the 3 parent directories of the cwd.
+  * Added git radar.
+
+The following is what my prompt looks like now:
+
+```bash
++SSH: steven@compaq [07:18:44 PM] [~/.../git-repos/remote-github/dotfiles]
+  git:(master) 2M $
+```
+
+The above example is in an ssh session, in a git repo so git-radar is displayed
+as well... The cwd is in a bright green colour, and the "SSH:" and "git:(" are
+in cyan (note that the git:( is only cyan in an SSH session. Otherwise it is the
+default grey. The problem is that with Putty the grey appears as black so I
+cannot see it. The cyan is easily readable, and is a reminder I am in an ssh
+session).
+
+An example use of the text message function is below.
 
 ```bash
 $ sendtext 1234567890 "My message."
