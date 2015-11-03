@@ -49,12 +49,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] $ ' #:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1="${debian_chroot:+($debian_chroot)}\u@\h"  #:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] $ ' #:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1="${debian_chroot:+($debian_chroot)}\u@\h"  #:\w\$ '
+# fi
+# unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -114,8 +114,9 @@ get_crtime() {
 MAIL=/var/spool/mail/steven && export MAIL
 
 
+PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
-export PS1="$PS1 [\$(date +"%r")]"
+export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
 
 # Bash Prompt Settings for SSH Sessions
 # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
