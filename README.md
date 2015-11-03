@@ -97,10 +97,8 @@ All other changes I have made affect the prompt:
 
 The following is what my prompt looks like now:
 
-```bash
-+SSH: steven@compaq [07:18:44 PM] [~/.../git-repos/remote-github/dotfiles]
-  git:(master) 2M $
-```
+![bash-gitradar](./.screenshots/bash-prompt-gitradar.png)
+
 
 The above example is in an ssh session, in a git repo so git-radar is displayed
 as well... The cwd is in a bright green colour, and the "SSH:" and "git:(" are
