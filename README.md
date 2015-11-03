@@ -99,6 +99,8 @@ The following is what my prompt looks like now:
 
 ![bash-gitradar](./.screenshots/bash-prompt-gitradar.png)
 
+![bash-gitradar-ssh](./.screenshots/bash-prompt-gitradar-ssh.png)
+
 
 The above example is in an ssh session, in a git repo so git-radar is displayed
 as well... The cwd is in a bright green colour, and the "SSH:" and "git:(" are
