@@ -82,6 +82,7 @@ keys in Ubuntu for example, is much easier).
 the original stuff. I have added a few things though, which I will make note of
 here:
   * I have a sendtext command which uses an external service and the curl program to send a text message.
+  * I have a downloadMusic command which uses youtube-dl to download audio of youtube videos
   * Environment Variables for the location of my REPOS directories, and my
     dotfiles repo ($REPOS and $dotfiles respectively)
   * crtime() function that find the creation time of a file
@@ -117,6 +118,15 @@ $ sendtext 1234567890 "My message."
 
 Would send the message "My message." To 1234567890, if that were a real number.
 The person to whom you sent this text to cannot reply however.
+
+An example use of the downloadMusic function is below:
+
+```bash
+downloadMusic $FILENAME.mp3 $URL
+```
+
+where $FILENAME.mp3 is the name to save the file as, and $URL is the youtube
+URL.
 
 ### .bash_aliases
   Has my aliases which include the use of the trashbin:
