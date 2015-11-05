@@ -114,7 +114,7 @@ MAIL=/var/spool/mail/steven && export MAIL
 
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
 
-downloadMusic () { youtube-dl -o $1 --extract-audio --audio-format mp3 $2; }
+downloadMusic () { youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2; }
 
 PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
