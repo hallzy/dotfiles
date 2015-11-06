@@ -136,6 +136,5 @@ fi
 PROMPT_DIRTRIM=3
 export PS1="$PS1 \e[1;32m[\w]\e[m\n "
 
-#export PS1="$PS1\$(git-radar --bash --fetch) $"
-export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
+export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
