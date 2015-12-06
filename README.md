@@ -354,13 +354,16 @@ Mutt should now open
 This .vim directory has preinstalled vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
+  * [MRU](https://github.com/vim-scripts/mru.vim)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [quick-scope](https://github.com/unblevable/quick-scope)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
   * [tComment](http://github.com/vim-scripts/tComment)
+  * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
+  * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
@@ -370,7 +373,6 @@ This .vim directory has preinstalled vim plugins. These plugins include:
 There Are also some plugins that are not from a github link:
   * vmath.vim
   * dragvisuals.vim
-  * autoswap.vim
   * vis.vim
 
 ####vmath.vim
@@ -383,13 +385,6 @@ in either visual or normal mode.
 Is a really nice visual dragging tool. For a good demo, see this [youtube
 video](https://youtu.be/aHm36-na4-4?t=34m10s). Like the video, my mapping in my
 vimrc is the arrow keys.
-
-####autoswap.vim
-Is a nifty tool that sees if a file has a swap file (ie, it is open in a
-different window, or it has crashed). If it is open in a different window, that
-window will be brought forward for you, otherwise it will open the file for
-editing. A good demo can be seen on this [youtube
-video](https://youtu.be/aHm36-na4-4?t=14m52s).
 
 ####vis.vim
 Gives better functionality for visual mode. A good demo can be found
