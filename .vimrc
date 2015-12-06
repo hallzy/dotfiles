@@ -103,10 +103,6 @@ set splitright
 
 set foldmethod=marker
 
-" For vim-gitgutter. This makes the diff updates happen more frequently. The
-" default is 4000. This value is measured in ms.
-set updatetime=250
-
 " Keep the cursor in the middle of the page if possible
 :set so=999
 
@@ -362,6 +358,17 @@ let g:airline_theme='solarized'
 
 " Maps the <F7> key to use git-time-lapse
 map <F7> :call TimeLapse()<cr>
+"}}}
+" MRU"{{{
+
+let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
+"}}}
+" vim-gitgutter"{{{
+
+" This makes the diff updates happen more frequently. The default is 4000. This
+" value is measured in ms.
+set updatetime=250
+
 "}}}
 
 "}}}
@@ -771,4 +778,3 @@ highlight colorcolumn guifg=white
 
 "}}}
 
-let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
