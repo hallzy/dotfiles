@@ -771,3 +771,4 @@ highlight colorcolumn guifg=white
 
 "}}}
 
+let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
