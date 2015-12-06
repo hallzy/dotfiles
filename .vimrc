@@ -103,6 +103,10 @@ set splitright
 
 set foldmethod=marker
 
+" For vim-gitgutter. This makes the diff updates happen more frequently. The
+" default is 4000. This value is measured in ms.
+set updatetime=250
+
 " Keep the cursor in the middle of the page if possible
 :set so=999
 
