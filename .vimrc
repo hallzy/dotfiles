@@ -361,7 +361,9 @@ map <F7> :call TimeLapse()<cr>
 "}}}
 " MRU"{{{
 
+" excludes any file in /tmp file, and commit messages.
 let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
+
 "}}}
 " vim-gitgutter"{{{
 
