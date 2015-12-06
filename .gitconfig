@@ -25,5 +25,6 @@
   rl = reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
   rmvc = rm --cached
   rm-branch-auto-complete = fetch --prune origin
+  delete-remote-branch = git push origin --delete
 [push]
   default = matching
