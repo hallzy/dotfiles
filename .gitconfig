@@ -23,12 +23,29 @@
   graphlogall = log --decorate --graph --all
   discard = checkout --
   amend = commit -a --amend
+
+  # Show log as oneliner
   ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+  # Same as ls but the lines after the commit show the files that are changed
+  # and how many additions and deletions there were
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+  # Reflog the way I like to see it
   rl = reflog --format='%C(yellow)%h %<|(17)%gd %C(blue)%ci%C(reset) %s'
+
+  # Prints out all my git aliases
   la = "!git config -l | grep alias | cut -c 7-"
-  new = !sh -c 'git ls $1@{1}..$1@{0} "$@"'
-  pull = !git pull && git new
+
+  # Shows the log of only the commits affected by the last command in ll or ls format
+  # eg, executing after a git pull will show you the commits that were pulled
+  newll = !sh -c 'git ll $1@{1}..$1@{0} "$@"'
+  newls = !sh -c 'git ls $1@{1}..$1@{0} "$@"'
+  new = !git newls
+
+  # Does a pull and shows the commits that were pulled in ls or ll format
+  pls = !git pull && git newls
+  pll = !git pull && git newll
 
   # Removes a file from version control, but does not remove the file itself
   # eg. git rmvc file
