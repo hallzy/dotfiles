@@ -23,10 +23,11 @@
   graphlogall = log --decorate --graph --all
   discard = checkout --
   amend = commit -a --amend
-
-  # Preferred reflog format
-  # eg. git rl
-  rl = reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
+  ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  rl = reflog --format='%C(yellow)%h %<|(17)%gd %C(blue)%ci%C(reset) %s'
+  la = "!git config -l | grep alias | cut -c 7-"
+  new = !sh -c 'git ls $1@{1}..$1@{0} "$@"'
 
   # Removes a file from version control, but does not remove the file itself
   # eg. git rmvc file
