@@ -28,6 +28,7 @@
   rl = reflog --format='%C(yellow)%h %<|(17)%gd %C(blue)%ci%C(reset) %s'
   la = "!git config -l | grep alias | cut -c 7-"
   new = !sh -c 'git ls $1@{1}..$1@{0} "$@"'
+  pull = !git pull && git new
 
   # Removes a file from version control, but does not remove the file itself
   # eg. git rmvc file
