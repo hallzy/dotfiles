@@ -112,9 +112,29 @@ get_crtime() {
 # Sets the Mail Environment Variable
 MAIL=/var/spool/mail/steven && export MAIL
 
+# Functions#{{{
+
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
 
 downloadMusic () { youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2; }
+
+# up () - moves up x number of directories. eg. up 4#{{{
+up () {
+  local d=""
+  limit=$1
+  for ((i=1;i<=limit;i++))
+  do
+    d=$d/..
+  done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
+}
+#}}}
+
+#}}}
 
 PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
