@@ -22,9 +22,45 @@
   graphlog = log --decorate --graph
   graphlogall = log --decorate --graph --all
   discard = checkout --
+  amend = commit -a --amend
+
+  # Preferred reflog format
+  # eg. git rl
   rl = reflog --format='%C(auto)%h %<|(17)%gd %C(red)%ci%C(reset) %s'
+
+  # Removes a file from version control, but does not remove the file itself
+  # eg. git rmvc file
   rmvc = rm --cached
+
+  # Creates a remote branch of the same name of the current checked out branch
+  # and sets up tracking with that branch
+  track = !git push -u origin $(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+
+  # Removes branches that are not being used anymore
+  # eg. git rm-branch-auto-complete
   rm-branch-auto-complete = fetch --prune origin
-  delete-remote-branch = git push origin --delete
+
+  # Deletes a remote branch
+  # eg. git delete-remote-branch issue#6
+  delete-remote-branch = push origin --delete
+
+  # Used when you want to remove all the uncommitted changes I have made. It
+  # commits all these changes, and resets the working directory as if it was all
+  # deleted. This means if need be, I can get that commit back with reflog
+  # eg. git wipe
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+  # deletes all branches already merged into master
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+
+  # pulls changes from remote, removes remote-tracking branches that no longer
+  # exist on remote
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
+  # deletes the specified remote branch, checks out master, calls git up, and
+  # calls git bclean
+  bdone = "!f() { git delete-remote-branch $1 && git checkout ${2-master} && git up && git bclean ${2-master}; }; f"
+
+
 [push]
   default = matching
