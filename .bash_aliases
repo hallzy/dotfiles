@@ -2,6 +2,7 @@
 alias lal='ls -hAl'
 alias la='ls -A'
 alias l='ls'
+alias sl='ls'
 
 # Alias definitions.
 alias ll='ls -hl'
@@ -28,3 +29,9 @@ alias cp='dbus-launch gcp'
 
 alias grep_mac='grep "[0-9a-fA-F]\{2\}\(:[0-9a-fA-F]\{2\}\)\{5\}"'
 alias grep_ip='grep "[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}"'
+
+# Make rm verbose
+alias rm='rm -v'
+
+alias ev='vim $HOME/.vimrc'
+alias egc='vim $HOME/.gitconfig'
