@@ -80,6 +80,6 @@
   # calls git bclean
   bdone = "!f() { git delete-remote-branch $1 && git checkout ${2-master} && git up && git bclean ${2-master}; }; f"
 
-
+  showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 [push]
   default = matching
