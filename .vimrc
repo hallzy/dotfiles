@@ -124,9 +124,12 @@ map <Space> <leader>
 "}}}
 " Tab Navigation"{{{
 
-nnoremap <leader>nt :tabnew<CR>
-nnoremap <leader>tn :tabnext<CR>
-nnoremap <leader>tp :tabprev<CR>
+" Firefox like tab manipulations (except next and previous because <c-tab> does not work :(
+nnoremap <leader>tp :tabprevious<cr>
+nnoremap <leader>tn :tabnext<cr>
+nnoremap <C-t>      :tabnew<cr>
+nnoremap <C-w>      :tabclose<cr>
+
 "}}}
 " Line Number Toggle"{{{
 
@@ -385,6 +388,9 @@ let MRU_Max_Entries = 20
 " This makes the diff updates happen more frequently. The default is 4000. This
 " value is measured in ms.
 set updatetime=1000
+
+" Now the sign column will always be open
+let g:gitgutter_sign_column_always = 1
 
 "}}}
 " vim-signature"{{{
