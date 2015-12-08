@@ -45,8 +45,12 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline
 set cursorline
 
-" Leave paste mode on exit
-au InsertLeave * set nopaste
+" Leave paste mode on exit, and enter paste mode on enter
+augroup pastegroup
+  autocmd!
+  autocmd InsertEnter * set paste
+  autocmd InsertLeave * set nopaste
+augroup END
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nocompatible  " Use Vim settings, rather then Vi settings
