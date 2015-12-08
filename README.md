@@ -68,7 +68,7 @@ The 11th step will put the fonts in all the right places to use the latex resume
 
 
 ###.vim and .vimrc
-  This includes my .vimrc file which is  modified version of the .vimrc
+  This includes my .vimrc file which is a heavily  modified version of the .vimrc
 file from [mscoutermarsh](https://github.com/mscoutermarsh)
 
   I also recommend remapping the caps lock key to esc, since the escape key is
@@ -260,20 +260,6 @@ the resume. the setup-latex-resume-font will move 3 files into a LaTeX related
 folder that will prevent errors during a build.
 
 Running "make" will start the build of the resume.
-
-### .profile and .XCompose
-
-These files let me use the compose key (can be added in the Keyboard
-configuration) in order to easily type the German Characters ä Ä ü Ü ö Ö and ß
-
-All the umlaut characters are done similarly. For ä type <compose key>a, for Ä
-type <compose key>A etc.
-
-For the ß do <compose key>sz
-
-My compose key is set to the right control key, so I type <right ctrl>a for ä.
-
-Note that the compose key just needs to be pressed, not held down.
 
 ### Mutt
 
