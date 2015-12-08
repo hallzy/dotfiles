@@ -369,7 +369,7 @@ let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
 
 " This makes the diff updates happen more frequently. The default is 4000. This
 " value is measured in ms.
-set updatetime=800
+set updatetime=1000
 
 "}}}
 " vim-signature"{{{
