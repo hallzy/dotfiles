@@ -246,6 +246,10 @@ nnoremap $ :diffget<space>
 vnoremap > >gv
 vnoremap < <gv
 "}}}
+" Visually select the last pasted item"{{{
+
+nnoremap gV `[v`]
+"}}}
 
 "}}}
 " abbrevs"{{{
