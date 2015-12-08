@@ -372,6 +372,13 @@ let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
 set updatetime=800
 
 "}}}
+" vim-signature"{{{
+
+"Support for gitgutter. When this =1 :
+"The mark is displayed over the gitgutter sign, but inherits the same colour so
+"you can tell what was there
+let g:SignatureMarkTextHLDynamic = 1
+"}}}
 
 "}}}
 " Functions"{{{
