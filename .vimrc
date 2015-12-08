@@ -400,6 +400,38 @@ let g:gitgutter_sign_column_always = 1
 "you can tell what was there
 let g:SignatureMarkTextHLDynamic = 1
 "}}}
+"vim-session"{{{
+
+" Manipulates global vim sessions
+nnoremap <leader>so :OpenSession<cr>
+nnoremap <leader>sv :ViewSession<cr>
+nnoremap <leader>ss :SaveSession<cr>
+nnoremap <leader>sd :DeleteSession<cr>
+nnoremap <leader>sc :CloseSession<cr>
+
+" Manipulates tab vim sessions
+nnoremap <leader>sto :OpenTabSession<cr>
+nnoremap <leader>stno :AppendTabSession<cr>
+nnoremap <leader>sts :SaveTabSession<cr>
+nnoremap <leader>stc :CloseTabSession<cr>
+
+" Restarts vim and opens the sessions that were open - only for gvim
+nnoremap <leader>sr :RestartVim<cr>
+
+
+" Sessions will be saved here
+let g:session_directory = "~/.my-vim-sessions"
+
+" if the default session exists, do not prompt me on opening vim to open the default
+let g:session_autoload = "no"
+
+" On exiting vim, do not prompt me to save the session
+let g:session_autosave = "no"
+
+" Make messages less verbose
+let g:session_verbose_messages = 0
+
+"}}}
 
 "}}}
 " Functions"{{{
