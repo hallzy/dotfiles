@@ -376,6 +376,9 @@ map <F7> :call TimeLapse()<cr>
 " excludes any file in /tmp file, and commit messages.
 let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
 
+" Only show most recent 20 files
+let MRU_Max_Entries = 20
+
 "}}}
 " vim-gitgutter"{{{
 
