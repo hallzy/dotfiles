@@ -41,8 +41,12 @@ set ttimeoutlen=3
 set notimeout
 
 " highlight vertical column of cursor
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline
+augroup highlightCursorLine
+  autocmd!
+  autocmd WinLeave * set nocursorline nocursorcolumn
+  autocmd WinEnter * set cursorline
+augroup END
+
 set cursorline
 
 " Leave paste mode on exit, and enter paste mode on enter
@@ -744,22 +748,29 @@ augroup END
 
 " Highlight all characters exceeding the 80th column
 augroup highlightpast80
+  autocmd!
   autocmd BufEnter * highlight OverLength ctermbg=red
   autocmd BufEnter * match OverLength /\%81v.*/
 augroup END
+
 "}}}
 " MyFormattingSubs"{{{
 
-au BufWritePre * :call <SID>MyFormattingSubs()
+augroup FormattingSubGroup
+  autocmd!
+  autocmd BufWritePre * :call <SID>MyFormattingSubs()
+augroup END
+
 "}}}
 " DimInactiveWindows"{{{
 
 augroup DimInactiveWindows
-  au!
-  au WinEnter * call s:DimInactiveWindows()
-  au WinEnter * set cursorline
-  au WinLeave * set nocursorline
+  autocmd!
+  autocmd WinEnter * call s:DimInactiveWindows()
+  autocmd WinEnter * set cursorline
+  autocmd WinLeave * set nocursorline
 augroup END
+
 "}}}
 
 "}}}
@@ -783,9 +794,14 @@ highlight diffFile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=
 " trailing whitespace"{{{
 
 highlight highlightTrailingWhiteSpace ctermbg=White guibg=White
-autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
-autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
-autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
+
+augroup trailingWhitespaceGroup
+  autocmd!
+  autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
+  autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
+  autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
+augroup END
+
 "}}}
 " Highlighting for DimInactiveWindows()"{{{
 
