@@ -153,12 +153,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" These do the same thing?
-" Easy navigation between splits. Instead of ctrl-w + j. Just ctrl-j
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
+" Move splits with U<movement>
+nnoremap UJ <C-W>J
+nnoremap UK <C-W>K
+nnoremap UL <C-W>L
+nnoremap UH <C-W>H
 "}}}
 " Change what "*" does"{{{
 
