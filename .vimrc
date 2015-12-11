@@ -418,6 +418,13 @@ let g:session_autosave = "no"
 let g:session_verbose_messages = 0
 
 "}}}
+" Lightline - Status Bar"{{{
+
+" Use the powerline theme
+let g:lightline = {
+  \ 'colorscheme': 'powerline',
+  \ }
+"}}}
 
 "}}}
 " Functions"{{{
