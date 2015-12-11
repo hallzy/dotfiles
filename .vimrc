@@ -49,10 +49,9 @@ augroup END
 
 set cursorline
 
-" Leave paste mode on exit, and enter paste mode on enter
+" Leave paste mode on exit of insert mode
 augroup pastegroup
   autocmd!
-  autocmd InsertEnter * set paste
   autocmd InsertLeave * set nopaste
 augroup END
 
@@ -62,16 +61,17 @@ set nobackup
 set nowritebackup
   " When editing a file, always jump to the last known cursor position.
 set history=500
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set hlsearch      " highlight matches
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set autoread      " If the current file is updated elsewhere auto update it
-set showmatch     " Shows the matching bracket or brace
-set tildeop       " Tilde (~) changes case of letter. Setting this option lets
-                  " the tilde have movement options
+set ruler             " show the cursor position all the time
+set showcmd           " display incomplete commands
+set incsearch         " do incremental searching
+set hlsearch          " highlight matches
+set laststatus=2      " Always display the status line
+set autowrite         " Automatically :write before running commands
+set autoread          " If the current file is updated elsewhere auto update it
+set showmatch         " Shows the matching bracket or brace
+set tildeop           " Tilde (~) changes case of letter. Setting this option lets
+                      " the tilde have movement options
+set pastetoggle=<f2>  " The toggle for paste mode is F2
 
 syntax on
 
