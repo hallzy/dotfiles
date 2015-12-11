@@ -124,7 +124,8 @@ map <Space> <leader>
 "}}}
 " Tab Navigation"{{{
 
-" Firefox like tab manipulations (except next and previous because <c-tab> does not work :(
+" Firefox like tab manipulations (except next and previous because <c-tab> does
+" not work :(
 nnoremap <leader>tp :tabprevious<cr>
 nnoremap <leader>tn :tabnext<cr>
 nnoremap <C-t>      :tabnew<cr>
