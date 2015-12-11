@@ -322,11 +322,6 @@ else
   let g:qs_second_occurrence_highlight_color = 33
 endif
 "}}}
-" Powerline"{{{
-
-" Use compatible characters for statusbar
-let g:Powerline_symbols = 'compatible'
-"}}}
 " NERDTree"{{{
 
 " Toggle nerdtree with F10
@@ -359,15 +354,6 @@ let g:DVB_TrimWS = 1
 " Visual marks are the same as normal, except done in visual mode
 vmap m <Plug>VisualMarksVisualMark
 nmap ? <Plug>VisualMarksGetVisualMark
-"}}}
-" Airline"{{{
-
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme='solarized'
 "}}}
 " Git Time Lapse"{{{
 
