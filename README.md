@@ -352,7 +352,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-  * [vim-powerline](https://github.com/Lokaltog/vim-powerline)
+  * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/hallzy/vim-signature)
