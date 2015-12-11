@@ -799,12 +799,24 @@ augroup END
 "}}}
 " DimInactiveWindows"{{{
 
-augroup DimInactiveWindows
-  autocmd!
-  autocmd WinEnter * call s:DimInactiveWindows()
-  autocmd WinEnter * set cursorline
-  autocmd WinLeave * set nocursorline
-augroup END
+let opt_DimInactiveWin=0
+highlight Inactive ctermfg=237
+function! ToggleDimInactiveWin()
+  if g:opt_DimInactiveWin
+    autocmd! DimWindows
+    windo syntax clear Inactive
+  else
+    windo syntax region Inactive start='^' start='\vl' end='$'
+    syntax clear Inactive
+    augroup DimWindows
+      autocmd BufEnter * syntax clear Inactive
+      autocmd BufLeave * syntax region Inactive start='^' start='0' end='$'
+    augroup end
+  endif
+  let g:opt_DimInactiveWin=!g:opt_DimInactiveWin
+endfun
+
+:call ToggleDimInactiveWin()
 
 "}}}
 
