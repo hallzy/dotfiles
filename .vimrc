@@ -789,16 +789,6 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
 augroup END
 "}}}
-" highlightpast80"{{{
-
-" Highlight all characters exceeding the 80th column
-augroup highlightpast80
-  autocmd!
-  autocmd BufEnter * highlight OverLength ctermbg=red
-  autocmd BufEnter * match OverLength /\%81v.*/
-augroup END
-
-"}}}
 " MyFormattingSubs"{{{
 
 augroup FormattingSubGroup
@@ -852,6 +842,19 @@ augroup END
 
 highlight colorcolumn ctermfg=white
 highlight colorcolumn guifg=white
+"}}}
+" highlightpast80"{{{
+
+" Make it obvious where 80 characters is
+let &colorcolumn="81,82,".join(range(120,999),",")
+
+augroup vimrcEx
+  autocmd!
+  autocmd FileType gitcommit let &colorcolumn="51,81,82,".join(range(120,999),",")
+augroup END
+
+highlight ColorColumn ctermbg=red
+
 "}}}
 
 "}}}
