@@ -420,10 +420,48 @@ let g:session_verbose_messages = 0
 "}}}
 " Lightline - Status Bar"{{{
 
+" Function I will use to get the total number of lines in a file.
+function! NumberOfLinesFunction()
+  return line('$')
+endfunction
+
 " Use the powerline theme
 let g:lightline = {
   \ 'colorscheme': 'powerline',
   \ }
+
+" This is where I define a variable to a function
+" TotalNumberOfLines will contain the number of lines in a file.
+let g:lightline.component_function = {
+      \ 'totalNumberOfLines': 'NumberOfLinesFunction',
+      \ }
+
+" The layout of lightline when it is the active window
+" Left Side
+" Mode | Paste Mode || Read Only | Relative Path | Modified ||
+"Right Side
+" Format | Encoding | Filetype || Percent || line:column | total lines ||
+let g:lightline.active = {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo', 'totalNumberOfLines' ],
+    \            [ 'percent' ],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+
+" The layout of lightline when it is not the active window
+" Left Side
+" Read Only |  Relative Path | Modified ||
+"Right Side
+" Percent || line:column | total lines ||
+let g:lightline.inactive = {
+    \ 'left': [ [ 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo', 'totalNumberOfLines' ],
+    \            [ 'percent' ] ] }
+
+" The layout of lightline for the tab line when tabs exist.
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ] }
+
 "}}}
 
 "}}}
