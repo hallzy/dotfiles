@@ -35,3 +35,5 @@ alias rm='rm -v'
 
 alias ev='vim $dotfiles/.vimrc'
 alias egc='vim $dotfiles/.gitconfig'
+alias eba='vim $dotfiles/.bash_aliases'
+alias ebr='vim $dotfiles/.bashrc'
