@@ -428,7 +428,13 @@ endfunction
 " Use the powerline theme
 let g:lightline = {
   \ 'colorscheme': 'powerline',
-  \ }
+  \ 'component': {
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+  \ },
+  \ 'component_visible_condition': {
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+  \ },
+\ }
 
 " This is where I define a variable to a function
 " TotalNumberOfLines will contain the number of lines in a file.
@@ -438,12 +444,12 @@ let g:lightline.component_function = {
 
 " The layout of lightline when it is the active window
 " Left Side
-" Mode | Paste Mode || Read Only | Relative Path | Modified ||
+" Mode | Paste Mode || Branch | Read Only | Relative Path | Modified ||
 "Right Side
 " Format | Encoding | Filetype || Percent || line:column | total lines ||
 let g:lightline.active = {
     \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'readonly', 'relativepath', 'modified' ] ],
+    \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
     \ 'right': [ [ 'lineinfo', 'totalNumberOfLines' ],
     \            [ 'percent' ],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
