@@ -78,7 +78,6 @@ syntax on
 filetype plugin indent on
 
 set textwidth=80
-set fo+=t
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -855,6 +854,24 @@ endfun
 
 :call ToggleDimInactiveWin()
 
+"}}}
+" Format Options"{{{
+
+augroup formatOptions
+  autocmd!
+  " Filetype specific text width
+  autocmd FileType gitcommit setlocal textwidth=72
+
+
+  " Auto wrap text using text width
+  autocmd BufNewFile,BufRead * setlocal formatoptions+=t
+  " Vim will not auto format a line that was already longer than textwidth
+  autocmd BufNewFile,BufRead * setlocal formatoptions+=l
+  " o = Do not automatically insert a comment character when I press o or O.
+  autocmd BufNewFile,BufRead * setlocal formatoptions-=o
+  " Don't automatically add comment leader when pressing enter in insert mode
+  autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+augroup END
 "}}}
 
 "}}}
