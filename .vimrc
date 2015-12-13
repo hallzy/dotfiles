@@ -920,7 +920,7 @@ let &colorcolumn="81,82,".join(range(120,999),",")
 
 augroup vimrcEx
   autocmd!
-  autocmd FileType gitcommit let &colorcolumn="51,81,82,".join(range(120,999),",")
+  autocmd FileType gitcommit let &colorcolumn="51,73,74,".join(range(120,999),",")
 augroup END
 
 highlight ColorColumn ctermbg=red
