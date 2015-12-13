@@ -375,6 +375,9 @@ let MRU_Max_Entries = 20
 " value is measured in ms.
 set updatetime=1000
 
+nmap ]h <plug>GitGutterNextHunk
+nmap [h <plug>GitGutterPrevHunk
+
 " Now the sign column will always be open
 let g:gitgutter_sign_column_always = 1
 
