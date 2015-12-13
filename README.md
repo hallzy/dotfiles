@@ -1,6 +1,6 @@
 #Dotfiles
 
-NOTE: I recently changd the repo to work better from a folder other than ~/
+NOTE: I recently changed the repo to work better from a folder other than ~/
 
 For this reason, it may turn out that something does not work as it should, or I
 may have missed a symlink in my new symlink script.
@@ -43,7 +43,7 @@ $ ./setup-latex-resume-font
 ```
 
 The steps that are optional are optional because it is not necessary to clone
-the repos. The repos that are used to update the vim plugins will be updated
+the repos. The repos that are used to update the Vim plugins will be updated
 with a git pull anyways, since I will maintain that myself.
 
 This will clone the repository and will symlink important files from that
@@ -56,13 +56,13 @@ The 7th entry will automatically clone all of the repos that I use or own.
 
 The 8th Entry will pull new changes from all the repos that were cloned in the
 previous step, including this repo. It will also run the symlink script from
-before, and copy all files related to vim to your vim folder.
+before, and copy all files related to Vim to your Vim folder.
 
 The 9th step runs a script that creates symbolic links in your /bin
 folder for scripts that are in ~/.my-scripts.
 
-The 10th step will add the files in the categories subfolder to the fortunes game
-program.
+The 10th step will add the files in the categories sub folder to the fortunes
+game program.
 
 The 11th step will put the fonts in all the right places to use the latex resume.
 
@@ -71,18 +71,18 @@ The 11th step will put the fonts in all the right places to use the latex resume
   This includes my .vimrc file which is a heavily  modified version of the .vimrc
 file from [mscoutermarsh](https://github.com/mscoutermarsh)
 
-  I also recommend remapping the caps lock key to esc, since the escape key is
+  I also recommend remapping the caps lock key to <esc>, since the escape key is
 used quite frequently using vim, or remembering that ctrl+\[ is is recognized
 as the escape key (this may be a better option for virtual machines, or windows
-users as remapping keys in windows or with a vm is a little annoying. Remapping
-keys in Ubuntu for example, is much easier).
+users as remapping keys in windows or with a virtual machine is a little
+annoying. Remapping keys in Ubuntu for example, is much easier).
 
 ###.bashrc
   My .bashrc started as the default that came with Ubuntu, and still has most of
 the original stuff. I have added a few things though, which I will make note of
 here:
   * I have a sendtext command which uses an external service and the curl program to send a text message.
-  * I have a downloadMusic command which uses youtube-dl to download audio of youtube videos
+  * I have a downloadMusic command which uses youtube-dl to download audio of Youtube videos
   * Environment Variables for the location of my REPOS directories, and my
     dotfiles repo ($REPOS and $dotfiles respectively)
   * crtime() function that find the creation time of a file
@@ -125,11 +125,11 @@ An example use of the downloadMusic function is below:
 downloadMusic $FILENAME.mp3 $URL
 ```
 
-where $FILENAME.mp3 is the name to save the file as, and $URL is the youtube
+Where $FILENAME.mp3 is the name to save the file as, and $URL is the youtube
 URL.
 
 ### .bash_aliases
-  Has my aliases which include the use of the trashbin:
+  Has my aliases which include the use of the trash bin:
 
 ```bash
 $ trash
@@ -139,11 +139,11 @@ $ trash-restore
 
 You can:
 
-1. Move a file to the trash bin.
+1. Move a file to the trash bin
 2. View the contents of the trash bin.
-3. restore files to there original location from the trash bin
+3. Restore files to there original location from the trash bin
 
-respectively. The first two are aliases in the .bashrc, the 3rd one is a script
+Respectively. The first two are aliases in the .bashrc, the 3rd one is a script
 in the .my-scripts directory which I moved to my /bin.
 
 ###.myscripts/
@@ -195,13 +195,13 @@ $ sudo add-apt-repository <repo>
 $ sudo apt-get update
 ```
 
-and
+And
 
 ```bash
 $ sudo apt-get <program>
 ```
 
-where \<program\> is every program listed in the programs-to-install file. A
+Where \<program\> is every program listed in the programs-to-install file. A
 summary will be shown at the end saying which of the scripts had successfully
 been installed, and which scripts did not.
 
@@ -256,7 +256,7 @@ The install-programs script will ensure that you have installed the latest
 version of texlive-full.
 
 By just cloning this repository you will have all the fonts necessary to build
-the resume. the setup-latex-resume-font will move 3 files into a LaTeX related
+the resume. The setup-latex-resume-font will move 3 files into a LaTeX related
 folder that will prevent errors during a build.
 
 Running "make" will start the build of the resume.
@@ -286,7 +286,7 @@ In the .muttrc file there is a line:
 source "~/.mutt/passwords"
 ```
 
-which contains:
+Which contains:
 
 ```bash
 set imap_pass = "PASSWORD"
@@ -302,12 +302,12 @@ obvious reasons.
 
 Pull the changes and ensure that the config files are in ~/
 
-Note that the sym-link-files-to-home script will do this.
+Note that the symlink-files-to-home script will do this.
 
 Add the password files to ~/.mutt/ as described under the "Mutt" section (could
 be put anywhere and called anything, just make sure to change the rc files
 accordingly. Alternatively, you can just put your password in the rc files in
-plaintext. See [this webpage](https://help.ubuntu.com/community/MuttAndGmail)
+plain text. See [this web page](https://help.ubuntu.com/community/MuttAndGmail)
 for an example rc file with the password (note that this is the page that I used
 to get this all working, along with a few added things, so this is a good place
 to start if you have problems).
@@ -317,7 +317,7 @@ is 700, and if there are more permissions allowed than that, it will complain...
 May as well use 600 because it should not have execute permission anyways).
 
 Run the fetchmail program (if you did not provide your login password for your
-email, fetchmail will ask you for it... enter the password):
+email, fetchmail will ask you for it... Enter the password):
 
 ```bash
 $ fetchmail -v
@@ -336,8 +336,8 @@ ask you if you want to create one. Say yes.
 
 Mutt should now open
 
-#Preinstalled vim Plugins
-This .vim directory has preinstalled vim plugins. These plugins include:
+#Pre-installed vim Plugins
+This .vim directory has pre-installed vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [MRU](https://github.com/vim-scripts/mru.vim)
@@ -358,7 +358,7 @@ This .vim directory has preinstalled vim plugins. These plugins include:
   * [vim-signature](https://github.com/hallzy/vim-signature)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
 
-There Are also some plugins that are not from a github link:
+There Are also some plugins that are not from a Github link:
   * vmath.vim
   * dragvisuals.vim
   * vis.vim
