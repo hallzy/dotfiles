@@ -427,6 +427,7 @@ let g:lightline = {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
       \ 'colinfo': "COL %-2v",
+      \ 'charvaluehex' : "char: 0x%B",
   \ },
   \ 'component_visible_condition': {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
@@ -449,7 +450,7 @@ let g:lightline = {
 let g:lightline.active = {
     \ 'left': [ [ 'mode', 'paste' ],
     \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo', 'colinfo' ],
+    \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
     \            [ 'percent' ],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 
@@ -460,7 +461,7 @@ let g:lightline.active = {
 " Percent || line info | column ||
 let g:lightline.inactive = {
     \ 'left': [ [ 'readonly', 'relativepath', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo', 'colinfo' ],
+    \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
     \            [ 'percent' ] ] }
 
 " The layout of lightline for the tab line when tabs exist.
