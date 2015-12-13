@@ -72,6 +72,7 @@ set showmatch         " Shows the matching bracket or brace
 set tildeop           " Tilde (~) changes case of letter. Setting this option lets
                       " the tilde have movement options
 set pastetoggle=<f2>  " The toggle for paste mode is F2
+set spelllang=en_ca
 
 syntax on
 
@@ -818,12 +819,12 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Set this up for all
 augroup END
+
+" Enable spellchecking for Markdown and gitcommit messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 "}}}
 " MyFormattingSubs"{{{
 
