@@ -420,16 +420,13 @@ let g:session_verbose_messages = 0
 "}}}
 " Lightline - Status Bar"{{{
 
-" Function I will use to get the total number of lines in a file.
-function! NumberOfLinesFunction()
-  return line('$')
-endfunction
-
 " Use the powerline theme
 let g:lightline = {
   \ 'colorscheme': 'powerline',
   \ 'component': {
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
+      \ 'lineinfo': "LN %l/%{line('$')}",
+      \ 'colinfo': "COL %-2v",
   \ },
   \ 'component_visible_condition': {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
@@ -437,20 +434,22 @@ let g:lightline = {
 \ }
 
 " This is where I define a variable to a function
+" I used to use this but I left it here as an example in case I want to use this
+" in the future. The total number of lines is done above in lineinfo
 " TotalNumberOfLines will contain the number of lines in a file.
-let g:lightline.component_function = {
-      \ 'totalNumberOfLines': 'NumberOfLinesFunction',
-      \ }
+" let g:lightline.component_function = {
+"       \ 'totalNumberOfLines': 'NumberOfLinesFunction',
+"       \ }
 
 " The layout of lightline when it is the active window
 " Left Side
 " Mode | Paste Mode || Branch | Read Only | Relative Path | Modified ||
 "Right Side
-" Format | Encoding | Filetype || Percent || line:column | total lines ||
+" Format | Encoding | Filetype || Percent || line info | column ||
 let g:lightline.active = {
     \ 'left': [ [ 'mode', 'paste' ],
     \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo', 'totalNumberOfLines' ],
+    \ 'right': [ [ 'lineinfo', 'colinfo' ],
     \            [ 'percent' ],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 
@@ -458,10 +457,10 @@ let g:lightline.active = {
 " Left Side
 " Read Only |  Relative Path | Modified ||
 "Right Side
-" Percent || line:column | total lines ||
+" Percent || line info | column ||
 let g:lightline.inactive = {
     \ 'left': [ [ 'readonly', 'relativepath', 'modified' ] ],
-    \ 'right': [ [ 'lineinfo', 'totalNumberOfLines' ],
+    \ 'right': [ [ 'lineinfo', 'colinfo' ],
     \            [ 'percent' ] ] }
 
 " The layout of lightline for the tab line when tabs exist.
