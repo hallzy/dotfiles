@@ -25,7 +25,11 @@ alias mkdir='mkdir -p'
 #tlf is tail that auto updates
 alias tlf='tail -f'
 
-alias cp='dbus-launch gcp'
+isGcpInstalled=$(which gcp)
+
+if [[ "$isGcpInstalled" != "" ]]; then
+  alias cp='dbus-launch gcp'
+fi
 
 alias grep_mac='grep "[0-9a-fA-F]\{2\}\(:[0-9a-fA-F]\{2\}\)\{5\}"'
 alias grep_ip='grep "[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}"'
