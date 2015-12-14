@@ -117,6 +117,9 @@ set foldmethod=marker
 "}}}
 " Mappings"{{{
 
+" Remapping of <esc>"{{{
+inoremap jj <esc>
+"}}}
 " Leader"{{{
 
 " Leader Mappings
