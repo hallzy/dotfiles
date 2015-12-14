@@ -239,11 +239,10 @@ inoremap <esc> <esc>:s/\s\+$//e<cr>
 "}}}
 "Evaluate a mathematical expression"{{{
 
-"usage: On a new line type out a math expression ex: 5+5=
-"put the cursor anywhere on the expresssion and type <leader>m in normal mode
-"The answer will be put at the end of the equals sign, and the dec, hex, and
-"octal answers will be in the bottom of the vim window.
-nnoremap <leader>z yyA<c-r>=<c-r>"<bs><bs><cr><esc>vT=y$:echo printf('Dec: %d    Hex: 0x%x    Oct: 0%o', <c-r>", <c-r>", <c-r>")<cr>
+" Calculate Math
+xnoremap <space>c :!octave --silent \| cut -c8-<cr>
+nnoremap <space>c v:!octave --silent \| cut -c8-<cr>
+
 "}}}
 " Make Errors"{{{
 
