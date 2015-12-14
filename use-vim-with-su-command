@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# I need to use this script if I su as my user from someone elses account
+
+# To use this script easily:
+
+# $ cd /usr/bin
+# $ rm -rf vim
+# $ sudo ln -s $dotfiles/use-vim-with-su-command vim
+
+
+# To bring this back to default:
+
+# $ cd /usr/bin
+# $ rm -rf vim
+# $ sudo ln -s /etc/alternatives/vim vim
+# $ cd /home/steven
+# $ rm -rf my-vim-script
+
+
+loggedinuser=$(who am i | awk '{print $1}')
+terminaluser=$(whoami)
+if [[ "$loggedinuser" != "$terminaluser" ]]; then
+  /etc/alternatives/vim -X "$@"
+else
+  /etc/alternatives/vim "$@"
+fi
+
