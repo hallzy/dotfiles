@@ -354,7 +354,7 @@ let g:DVB_TrimWS = 1
 
 " Visual marks are the same as normal, except done in visual mode
 vmap m <Plug>VisualMarksVisualMark
-nmap ? <Plug>VisualMarksGetVisualMark
+nmap M <Plug>VisualMarksGetVisualMark
 
 "}}}
 " Git Time Lapse"{{{
@@ -472,6 +472,15 @@ let g:lightline.inactive = {
 " The layout of lightline for the tab line when tabs exist.
 let g:lightline.tabline = {
     \ 'left': [ [ 'tabs' ] ] }
+
+"}}}
+" vim-multiple-cursor"{{{
+
+" With vim-multiple-cursors, let me exit insert and visual mode with esc and
+" still keep the multiple cursors active.
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+noremap ? :MultipleCursorsFind<space>
 
 "}}}
 
