@@ -203,11 +203,6 @@ vnoremap K :m '<-2<CR>gv=gv
 noremap H 0
 noremap L $
 "}}}
-" Remap Q to nothing"{{{
-
-" Disable the possibility of accidentally getting in exmode
-nnoremap Q <nop>
-"}}}
 " Delete Surrounding"{{{
 
 " Delete Surrounding Characters
@@ -260,6 +255,22 @@ vnoremap < <gv
 " Visually select the last pasted item"{{{
 
 nnoremap gV `[v`]
+"}}}
+" Remap the Default usage of J"{{{
+
+" I like using J to move the current line down. But the default function of J is
+" very useful, so I am mapping it to Q because I don't use Q (Does anyone
+" actually use Q?)
+
+" Before I had this mapping, I remapped Q to nop to avoid accidentally pressing
+" it. I am leaving it here commented so that If I change the below mapping, I
+" won't forget to nop it again
+
+" nnoremap Q <nop>
+
+nnoremap Q J
+vnoremap Q J
+
 "}}}
 
 "}}}
