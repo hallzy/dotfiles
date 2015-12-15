@@ -12,6 +12,7 @@
   prompt = false
 [mergetool]
   prompt = false
+  keepBackup = false
 [alias]
   co = checkout
   br = branch
