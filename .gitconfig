@@ -26,14 +26,14 @@
   amend = commit -a --amend
 
   # Show log as oneliner
-  ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
 
   # Same as ls but the lines after the commit show the files that are changed
   # and how many additions and deletions there were
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
 
   # Reflog the way I like to see it
-  rl = reflog --format='%C(yellow)%h %<|(17)%gd %C(blue)%ci%C(reset) %s'
+  rl = reflog --format='%C(yellow)%h %<|(17)%gd %C(green)%ci%C(reset) %s'
 
   # Prints out all my git aliases
   la = "!git config -l | grep alias | cut -c 7-"
