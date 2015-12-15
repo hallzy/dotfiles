@@ -121,6 +121,7 @@ set foldmethod=marker
 
 " Leader Mappings
 map <Space> <leader>
+
 "}}}
 " Tab Navigation"{{{
 
@@ -304,6 +305,7 @@ let g:EasyMotion_smartcase = 1
 " Fanfingtastic"{{{
 
 "let g:fanfingtastic_ignorecase = 1
+
 "}}}
 " Quick Scope"{{{
 
@@ -353,6 +355,7 @@ let g:DVB_TrimWS = 1
 " Visual marks are the same as normal, except done in visual mode
 vmap m <Plug>VisualMarksVisualMark
 nmap ? <Plug>VisualMarksGetVisualMark
+
 "}}}
 " Git Time Lapse"{{{
 
