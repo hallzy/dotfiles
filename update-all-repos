@@ -57,3 +57,8 @@ do
   git pull
   cd ..
 done
+
+# Update the help tags.
+echo -e "\nUpdating the Vim Help Tags\n"
+vim --cmd "helptags ~/.vim/doc/" --cmd "q!"
+
