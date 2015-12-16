@@ -42,3 +42,8 @@ alias egc='vim $dotfiles/.gitconfig'
 alias eba='vim $dotfiles/.bash_aliases'
 alias ebr='vim $dotfiles/.bashrc'
 alias vim-update-help-tags='vim --cmd "helptags ~/.vim/doc/" --cmd "q!"'
+
+# Detox Aliases
+alias detox-mine='detox --special --remove-trailing -v -s utf_8 -s lower'
+alias detox-mine-dry='detox --special --remove-trailing -v -n -s utf_8 -s lower'
+
