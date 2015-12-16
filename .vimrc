@@ -98,8 +98,10 @@ set noantialias
 colorscheme badwolf
 set encoding=utf-8
 
-" Numbers
+" With both of these set, I get relative numbers, but the current line gets the
+" line number
 set number
+set relativenumber
 
 set numberwidth=5
 
@@ -522,17 +524,6 @@ function! HLNext (blinktime)
 
 endfunction
 "}}}
-" ToggleRelativeNumber"{{{
-
-function! ToggleRelativeNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunction
-"}}}
 " Tab Completion - InsertTabWrapper"{{{
 
 " will insert tab at beginning of line,
@@ -778,10 +769,6 @@ nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
 highlight WhiteOnRed ctermbg=red ctermfg=white
-"}}}
-" ToggleRelativeNumbers"{{{
-
-nnoremap <leader>RN :call ToggleRelativeNumber()<cr>
 "}}}
 " InsertTabWrapper"{{{
 
