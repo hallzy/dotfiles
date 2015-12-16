@@ -134,7 +134,7 @@ map <Space> <leader>
 nnoremap <leader>tp :tabprevious<cr>
 nnoremap <leader>tn :tabnext<cr>
 nnoremap <C-t>      :tabnew<cr>
-nnoremap <C-w>      :tabclose<cr>
+nnoremap <C-w>t     :tabclose<cr>
 
 "}}}
 " Line Number Toggle"{{{
