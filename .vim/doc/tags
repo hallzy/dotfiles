@@ -85,6 +85,10 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
+:NumbersDisable	numbers.txt	/*:NumbersDisable*
+:NumbersEnable	numbers.txt	/*:NumbersEnable*
+:NumbersOnOff	numbers.txt	/*:NumbersOnOff*
+:NumbersToggle	numbers.txt	/*:NumbersToggle*
 :OpenSession	session.txt	/*:OpenSession*
 :OpenTabSession	session.txt	/*:OpenTabSession*
 :QuickScopeToggle	quick-scope.txt	/*:QuickScopeToggle*
@@ -421,6 +425,7 @@ g:EasyMotion_use_smartsign_ja	easymotion.txt	/*g:EasyMotion_use_smartsign_ja*
 g:EasyMotion_use_smartsign_us	easymotion.txt	/*g:EasyMotion_use_smartsign_us*
 g:EasyMotion_use_upper	easymotion.txt	/*g:EasyMotion_use_upper*
 g:SignatureMap['Leader']	signature.txt	/*g:SignatureMap['Leader']*
+g:enable_numbers	numbers.txt	/*g:enable_numbers*
 g:lightline	lightline.txt	/*g:lightline*
 g:lightline.active	lightline.txt	/*g:lightline.active*
 g:lightline.colorscheme	lightline.txt	/*g:lightline.colorscheme*
@@ -610,6 +615,12 @@ multiple-cursors-license	multiple_cursors.txt	/*multiple-cursors-license*
 multiple-cursors-mappings	multiple_cursors.txt	/*multiple-cursors-mappings*
 multiple-cursors-references	multiple_cursors.txt	/*multiple-cursors-references*
 multiple-cursors-usage	multiple_cursors.txt	/*multiple-cursors-usage*
+numbers	numbers.txt	/*numbers*
+numbers-commands	numbers.txt	/*numbers-commands*
+numbers-configuration	numbers.txt	/*numbers-configuration*
+numbers-credits	numbers.txt	/*numbers-credits*
+numbers-intro	numbers.txt	/*numbers-intro*
+numbers.txt	numbers.txt	/*numbers.txt*
 primary-color	quick-scope.txt	/*primary-color*
 public-api-for-vim-session-plug-in	session.txt	/*public-api-for-vim-session-plug-in*
 qs-bugs	quick-scope.txt	/*qs-bugs*

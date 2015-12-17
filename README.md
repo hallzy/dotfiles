@@ -342,6 +342,7 @@ This .vim directory has pre-installed vim plugins. These plugins include:
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [MRU](https://github.com/vim-scripts/mru.vim)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
+  * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
   * [quick-scope](https://github.com/unblevable/quick-scope)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
   * [tComment](http://github.com/vim-scripts/tComment)
