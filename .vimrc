@@ -779,7 +779,7 @@ endfun
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
-highlight WhiteOnRed ctermbg=red ctermfg=white
+highlight WhiteOnRed ctermbg=red ctermfg=white guibg=red guifg=white
 "}}}
 " InsertTabWrapper"{{{
 
@@ -856,7 +856,7 @@ augroup END
 " DimInactiveWindows"{{{
 
 let opt_DimInactiveWin=0
-highlight Inactive ctermfg=237
+highlight Inactive ctermfg=237 guifg=#3a3a3a
 function! ToggleDimInactiveWin()
   if g:opt_DimInactiveWin
     autocmd! DimWindows
@@ -939,7 +939,7 @@ augroup vimrcEx
   autocmd FileType gitcommit let &colorcolumn="51,73,74,".join(range(120,999),",")
 augroup END
 
-highlight ColorColumn ctermbg=red
+highlight ColorColumn ctermbg=red guibg=red
 
 "}}}
 
