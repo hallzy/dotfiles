@@ -356,7 +356,7 @@ This .vim directory has pre-installed vim plugins. These plugins include:
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-session](https://github.com/xolox/vim-session.git)
-  * [vim-signature](https://github.com/hallzy/vim-signature)
+  * [vim-signature](https://github.com/kshenoy/vim-signature)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
 
 There Are also some plugins that are not from a Github link:
