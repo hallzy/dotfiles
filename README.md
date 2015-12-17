@@ -340,6 +340,7 @@ Mutt should now open
 This .vim directory has pre-installed vim plugins. These plugins include:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
+  * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [MRU](https://github.com/vim-scripts/mru.vim)
   * [NERDTree](https://github.com/scrooloose/nerdtree)
   * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
@@ -353,7 +354,6 @@ This .vim directory has pre-installed vim plugins. These plugins include:
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-  * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/hallzy/vim-signature)
