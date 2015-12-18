@@ -834,15 +834,26 @@ augroup vimrcEx
         \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe "normal g`\"" |
         \ endif
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
 augroup END
 
-" Enable spellchecking for Markdown and gitcommit messages
-autocmd FileType markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
+"}}}
+" markdownGroup"{{{
+
+augroup markdownGroup
+  autocmd!
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup END
+
+"}}}
+" spellCheck"{{{
+
+augroup spellCheck
+  autocmd!
+  " Enable spellchecking for Markdown and gitcommit messages
+  autocmd FileType markdown setlocal spell
+  autocmd FileType gitcommit setlocal spell
+augroup END
 
 "}}}
 " MyFormattingSubs"{{{
