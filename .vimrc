@@ -304,6 +304,20 @@ nnoremap e E
 nnoremap E gE
 
 "}}}
+" Extra mappings for saving and closing vim"{{{
+
+nnoremap ZX :qa!<cr>
+nnoremap ZA :wqa<cr>
+nnoremap ZS :w<cr>
+
+" Train myself to use the above Z commands and the default Z commands instead
+cnoremap w<cr> :echoe "Use ZS"<cr>
+cnoremap qa!<cr> :echoe "Use ZX"<cr>
+cnoremap wqa<cr> :echoe "Use ZA"<cr>
+cnoremap q!<cr> :echoe "Use ZQ"<cr>
+cnoremap wq<cr> :echoe "Use ZZ"<cr>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
@@ -314,22 +328,6 @@ nnoremap E gE
 iabbrev waht what
 iabbrev adn and
 
-" Let me save and quit, and quit all with lower case or capitals.
-cabbrev W w
-cabbrev Q q
-cabbrev WQ wq
-cabbrev Wq wq
-cabbrev wQ wq
-cabbrev QA qa
-cabbrev qA qa
-cabbrev Qa qa
-cabbrev WQA wqa
-cabbrev WQa wqa
-cabbrev WqA wqa
-cabbrev Wqa wqa
-cabbrev wQA wqa
-cabbrev wQa wqa
-cabbrev wqA wqa
 "}}}
 
 "}}}
