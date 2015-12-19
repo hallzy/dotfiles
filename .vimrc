@@ -148,6 +148,7 @@ nnoremap <Left>   <C-w><
 nnoremap <Right>  <C-w>>
 nnoremap <Up>     <C-w>+
 nnoremap <Down>   <C-w>-
+
 "}}}
 " Better Split Window Movement"{{{
 
@@ -163,11 +164,13 @@ nnoremap UJ <C-W>J
 nnoremap UK <C-W>K
 nnoremap UL <C-W>L
 nnoremap UH <C-W>H
+
 "}}}
 " Change what "*" does"{{{
 
 " Make * search the currently selected word, without going to the next result
 nnoremap * *N
+
 "}}}
 " Shortcut for opening vimrc"{{{
 
@@ -175,6 +178,7 @@ nnoremap * *N
 " If $MYVIMRC does not work as a path, either add it, or replace it with the
 " path of your vimrc file.
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
 "}}}
 "German Chars"{{{
 
@@ -185,30 +189,33 @@ inoremap O'' <c-k>:O
 inoremap u'' <c-k>:u
 inoremap U'' <c-k>:U
 inoremap ss' <c-k>ss
+
 "}}}
 " Remove search highlighting"{{{
 
 " In normal mode, press leader s and search result highlighting will go off.
 nnoremap <leader>hl :nohlsearch<cr>
+
 "}}}
 " Move a Line, or selected lines up or down"{{{
 
 " With a J move the current line up, with K move the current line down.
 nnoremap J :m .+1<CR>==
 nnoremap K :m .-2<CR>==
+
 " With a J move the current Selected lines up, with K move the current selected lines down.
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
 "}}}
 " H and L move to the beginning and end of the line"{{{
 
-" H and L move the cursor to the beginning and end of the line.
 noremap H 0
 noremap L $
+
 "}}}
 " Delete Surrounding"{{{
 
-" Delete Surrounding Characters
 nnoremap ds{ F{xf}x
 nnoremap cs{ F{xf}xi
 nnoremap ds} F{xf}x
@@ -221,15 +228,18 @@ nnoremap ds( F(xf)x
 nnoremap cs( F(xf)xi
 nnoremap ds) F(xf)x
 nnoremap cs) F(xf)xi
+
 "}}}
 "Create Closing Tag for HTML Tags"{{{
 
 nnoremap cct F<yf>f>pF<a/<esc>hi
+
 "}}}
 " Escape removes trailing whitespace from eol"{{{
 
 "esc now removes whitespace from the line that you are escaping from
 inoremap <esc> <esc>:s/\s\+$//e<cr>
+
 "}}}
 "Evaluate a mathematical expression"{{{
 
@@ -240,13 +250,14 @@ nnoremap <space>c v:!octave --silent \| cut -c8-<cr>
 "}}}
 " Make Errors"{{{
 
-" For errors found with :make move bewteen them with space e and space E
 nnoremap <leader>m :cnext<cr>
 nnoremap <leader>M :cprevious<cr>
+
 "}}}
 " For merge conflicts easily choose what version to use"{{{
 
 nnoremap $ :diffget<space>
+
 "}}}
 " > and <"{{{
 
@@ -254,10 +265,12 @@ nnoremap $ :diffget<space>
 " stays selected so that I can move it multiple times easily.
 vnoremap > >gv
 vnoremap < <gv
+
 "}}}
 " Visually select the last pasted item"{{{
 
 nnoremap gV `[v`]
+
 "}}}
 " Remap the Default usage of J"{{{
 
@@ -293,8 +306,6 @@ nnoremap E gE
 " Abbreviations that fix typos
 iabbrev waht what
 iabbrev adn and
-"}}}
-" Typo fixes for saving and exiting a file"{{{
 
 " Let me save and quit, and quit all with lower case or capitals.
 cabbrev W w
@@ -324,6 +335,7 @@ map <Leader>/ <Plug>(easymotion-prefix)
 
 "use easy motion and fanfingtastic with no case sensitivity
 let g:EasyMotion_smartcase = 1
+
 "}}}
 " Fanfingtastic"{{{
 
@@ -345,6 +357,7 @@ else
   " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
   let g:qs_second_occurrence_highlight_color = 33
 endif
+
 "}}}
 " NERDTree"{{{
 
@@ -352,12 +365,14 @@ endif
 noremap <F8> :NERDTreeToggle<CR>
 " Current file in nerdtree
 noremap <F9> :NERDTreeFind<CR>
+
 "}}}
 " vmath"{{{
 
 "For using vmath.vim
 vnoremap ++  y:call VMATH_Analyse()<CR>
 nnoremap ++  vipy:call VMATH_Analyse()<CR>
+
 "}}}
 " dragvisuals"{{{
 
@@ -372,6 +387,7 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
+
 "}}}
 " Visual Marks"{{{
 
@@ -384,6 +400,7 @@ nmap M <Plug>VisualMarksGetVisualMark
 
 " Maps the <F7> key to use git-time-lapse
 map <F7> :call TimeLapse()<cr>
+
 "}}}
 " MRU"{{{
 
@@ -413,6 +430,7 @@ let g:gitgutter_sign_column_always = 1
 "The mark is displayed over the gitgutter sign, but inherits the same colour so
 "you can tell what was there
 let g:SignatureMarkTextHLDynamic = 1
+
 "}}}
 "vim-session"{{{
 
