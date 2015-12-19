@@ -182,12 +182,19 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 "}}}
 "German Chars"{{{
 
+" ä
 inoremap a'' <c-k>:a
+" Ä
 inoremap A'' <c-k>:A
+" ö
 inoremap o'' <c-k>:o
+" Ö
 inoremap O'' <c-k>:O
+" ü
 inoremap u'' <c-k>:u
+" Ü
 inoremap U'' <c-k>:U
+" ß
 inoremap ss' <c-k>ss
 
 "}}}
