@@ -17,9 +17,7 @@
 " -
 " |
 " `   --- turns out this does the same as ' but ' is easier to hit
-" U
 " _
-" Q --- This is mapped to <nop> right now... just change that mapping
 " B --- w is remapped to W, and W is remapped to B
 " b --- don't really need b.
 
