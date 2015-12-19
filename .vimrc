@@ -338,7 +338,7 @@ iabbrev adn and
 " Make the leader for easy-motion <leader>/
 map b <Plug>(easymotion-prefix)
 
-"use easy motion and fanfingtastic with no case sensitivity
+"use easy motion with no case sensitivity
 let g:EasyMotion_smartcase = 1
 
 "}}}
