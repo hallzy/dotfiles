@@ -355,6 +355,16 @@ let g:EasyMotion_startofline = 0
 "use easy motion with no case sensitivity
 let g:EasyMotion_smartcase = 1
 
+" let's me navigate to folded lines with easymotion.
+let g:EasyMotion_skipfoldedline = 0
+
+" It is worth noting that when using the easymotion search (<leader>/ with this
+" config) you can hit ctrl+z and it will open all of the folds in the file so
+" that you can search and find text with the EasyMotion search function. Vim by
+" default lets me use zM to close all folds in a file after that
+" TODO: Find a way to map a key to restore the previous state of my folds. Ie.
+" Open folds that were previously opened, and close those that were closed.
+
 "}}}
 " Fanfingtastic"{{{
 
