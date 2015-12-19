@@ -335,8 +335,22 @@ iabbrev adn and
 
 " Easy Motion"{{{
 
-" Make the leader for easy-motion <leader>/
-map b <Plug>(easymotion-prefix)
+" Single Character search
+map b <Plug>(easymotion-s)
+
+" two character searches
+nmap B <Plug>(easymotion-s2)
+
+" Easy motion search
+map <leader>/ <Plug>(easymotion-sn)
+omap <leader>/ <Plug>(easymotion-tn)
+
+" Easy Vertical Motion
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+map <leader>; <plug>(easymotion-repeat)
+let g:EasyMotion_startofline = 0
 
 "use easy motion with no case sensitivity
 let g:EasyMotion_smartcase = 1
