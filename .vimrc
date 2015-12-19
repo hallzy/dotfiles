@@ -138,7 +138,8 @@ nnoremap <C-w>t     :tabclose<cr>
 " Line Number Toggle"{{{
 
 " Toggle for line numbers for easy copy/paste
-nnoremap <leader>N :setlocal number!<cr>
+nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
+
 "}}}
 " Resize Split Windows"{{{
 
