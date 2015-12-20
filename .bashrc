@@ -134,6 +134,58 @@ up () {
 }
 #}}}
 
+# tm is an easy to use manager of tmux {{{
+
+tm () {
+  # abort if we're already inside a TMUX session
+  if [[ "$TMUX" != "" ]]; then
+    exit 0
+  fi
+
+  # present menu for user to choose which workspace to open
+  PS3="Please choose your session: "
+  options=($(tmux list-sessions -F "#S") "New Session" "Remove Session")
+  echo "Available sessions"
+  echo "------------------"
+  echo " "
+  select opt in "${options[@]}"
+  do
+    case $opt in
+      "New Session")
+        read -p "Enter new session name: " SESSION_NAME
+        tmux new -s "$SESSION_NAME"
+        break;;
+      "Remove Session")
+        echo "Sessions to Delete: "
+        select opt in "${options[@]}"
+        do
+          tmux kill-session -t $opt
+        done
+        break;;
+      *)
+        tmux attach-session -t $opt
+        break;;
+    esac
+  done
+}
+
+
+#}}}
+
+dev-tmux () {
+  tmux source-file ~/.tmux.conf
+  tmux new-session -d 'bash'
+  tmux send-keys 'clear' C-m
+  tmux new-window 'bash'
+  tmux send-keys 'vim' C-m
+  tmux split-window -v -p 30 'bash'
+  tmux send-keys 'clear' C-m
+  tmux split-window -h -p 50 'bash'
+  tmux send-keys 'clear' C-m
+  tmux select-pane -U
+  tmux -2 attach-session -d
+}
+
 #}}}
 
 PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"

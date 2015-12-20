@@ -29,4 +29,6 @@ $CMD/.fetchmailrc
 $CMD/.msmtprc
 $CMD/.muttrc
 $CMD/.procmailrc
+$CMD/.tmux.conf
+$CMD/.tmux_theme.sh
 

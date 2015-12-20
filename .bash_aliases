@@ -48,3 +48,7 @@ alias detox-mine='detox --special --remove-trailing -v -s utf_8 -s lower'
 alias detox-mine-dry='detox --special --remove-trailing -v -n -s utf_8 -s lower'
 
 alias get-public-ip='wget http://ipinfo.io/ip -qO -'
+
+# Force tmux with 256 colour, otherwise vim is messed up.
+alias tmux='tmux -2'
+
