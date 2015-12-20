@@ -3,3 +3,4 @@
 .vim/screenshots
 .auto-install-programs/logs/*
 .auto-clone/logs/*
+tmux-*.log
