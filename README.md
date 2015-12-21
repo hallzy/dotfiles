@@ -338,7 +338,11 @@ Mutt should now open
 
 #Pre-installed vim Plugins
 This .vim directory has pre-installed vim plugins. These plugins include:
+  * [Vundle](https://github.com/VundleVim/Vundle.vim)
+
   * [a.vim](https://github.com/vim-scripts/a.vim)
+  * [Badwolf Colourscheme](https://github.com/sjl/badwolf)
+  * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [MRU](https://github.com/vim-scripts/mru.vim)
@@ -358,33 +362,13 @@ This .vim directory has pre-installed vim plugins. These plugins include:
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
-
-There Are also some plugins that are not from a Github link:
-  * vmath.vim
-  * dragvisuals.vim
-  * vis.vim
-
-####vmath.vim
-Is a smart number adder. For a good demo see this
-[youtube video](https://youtu.be/aHm36-na4-4?t=28m31s). It adds a selection of
-numbers or a group of numbers that you are part of. My vimrc is mapped to use ++
-in either visual or normal mode.
-
-####dragvisuals.vim
-Is a really nice visual dragging tool. For a good demo, see this [youtube
-video](https://youtu.be/aHm36-na4-4?t=34m10s). Like the video, my mapping in my
-vimrc is the arrow keys.
-
-####vis.vim
-Gives better functionality for visual mode. A good demo can be found
-[here](https://youtu.be/aHm36-na4-4?t=31m50s).
-
+  * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
 
 Notes:
 
 My leader is the spacebar.
 
-My easy motion \<leader\> is \<leader\>/
+My easy motion \<leader\> is \<leader\>b
 
 This can be changed within the vimrc file.
 
