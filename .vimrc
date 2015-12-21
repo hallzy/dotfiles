@@ -368,6 +368,15 @@ let g:EasyMotion_skipfoldedline = 0
 
 "let g:fanfingtastic_ignorecase = 1
 
+" Disable when using multi cursors
+function Multiple_cursors_before()
+  call FanfingTasticDisable()
+endfun
+
+function Multiple_cursors_after()
+  call FanfingTasticEnable()
+endfun
+
 "}}}
 " Quick Scope"{{{
 
