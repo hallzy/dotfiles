@@ -21,6 +21,43 @@
 
 "}}}
 
+"Vundle Settings"{{{
+
+set nocompatible  " Use Vim settings, rather then Vi settings
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'vim-scripts/a.vim'
+Plugin 'sjl/badwolf'
+Plugin 'gavinbeatty/dragvisuals.vim'
+Plugin 'vim-scripts/git-time-lapse'
+Plugin 'itchyny/lightline.vim'
+Plugin 'vim-scripts/mru.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'unblevable/quick-scope'
+Plugin 'msanders/snipmate.vim'
+Plugin 'vim-scripts/tComment'
+Plugin 'gioele/vim-autoswap'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'dahu/vim-fanfingtastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'xolox/vim-misc'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-repeat'
+Plugin 'xolox/vim-session'
+Plugin 'kshenoy/vim-signature'
+Plugin 'iago-lito/vim-visualMarks'
+Plugin 'gavinbeatty/vmath.vim'
+
+call vundle#end()
+
+filetype plugin indent on
+
+"}}}
+
 " Settings"{{{
 
 set shell=/bin/bash
@@ -54,7 +91,6 @@ augroup pastegroup
 augroup END
 
 set backspace=2   " Backspace deletes like most programs in insert mode
-set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
   " When editing a file, always jump to the last known cursor position.
@@ -74,7 +110,6 @@ set spelllang=en_ca
 
 syntax on
 
-filetype plugin indent on
 
 set textwidth=80
 

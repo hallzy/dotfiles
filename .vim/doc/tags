@@ -301,7 +301,6 @@ ReloadAllSnippets()	snipMate.txt	/*ReloadAllSnippets()*
 ReloadSnippets()	snipMate.txt	/*ReloadSnippets()*
 ResetAllSnippets()	snipMate.txt	/*ResetAllSnippets()*
 ResetSnippets()	snipMate.txt	/*ResetSnippets()*
-VisualMarks	visualMarks.txt	/*VisualMarks*
 alternate	alternate.txt	/*alternate*
 alternate-acknowledgments	alternate.txt	/*alternate-acknowledgments*
 alternate-commands	alternate.txt	/*alternate-commands*
@@ -723,17 +722,6 @@ vis.txt	vis.txt	/*vis.txt*
 vis.vim	vis.txt	/*vis.vim*
 visman	vis.txt	/*visman*
 vismanual	vis.txt	/*vismanual*
-visualMarks-bugs	visualMarks.txt	/*visualMarks-bugs*
-visualMarks-changelog	visualMarks.txt	/*visualMarks-changelog*
-visualMarks-contents	visualMarks.txt	/*visualMarks-contents*
-visualMarks-contribute	visualMarks.txt	/*visualMarks-contribute*
-visualMarks-credits	visualMarks.txt	/*visualMarks-credits*
-visualMarks-introduction	visualMarks.txt	/*visualMarks-introduction*
-visualMarks-license	visualMarks.txt	/*visualMarks-license*
-visualMarks-mappings	visualMarks.txt	/*visualMarks-mappings*
-visualMarks-settings	visualMarks.txt	/*visualMarks-settings*
-visualMarks-usage	visualMarks.txt	/*visualMarks-usage*
-visualMarks.txt	visualMarks.txt	/*visualMarks.txt*
 x_<Plug>TComment_<Leader>__	tcomment.txt	/*x_<Plug>TComment_<Leader>__*
 x_<Plug>TComment_<Leader>_i	tcomment.txt	/*x_<Plug>TComment_<Leader>_i*
 x_<Plug>TComment_Comment	tcomment.txt	/*x_<Plug>TComment_Comment*
