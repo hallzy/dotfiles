@@ -28,6 +28,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'vim-scripts/a.vim'
 Plugin 'sjl/badwolf'
 Plugin 'gavinbeatty/dragvisuals.vim'

@@ -57,24 +57,5 @@ do
   echo "------------------------------------------------------------"
 done
 
-readarray REPOS < ~/.auto-clone/vim-repos-to-clone.cfg
-
-mkdir -p ~/Documents/git-repos/vim-repos
-cd ~/Documents/git-repos/vim-repos
-
-## clone repositories
-for REPO in "${REPOS[@]}"
-do
-  # Skip comments when parsing
-  [[ ${REPO:0:1} == "#" ]] && continue
-  # Skip empty lines when parsing
-  [[ ${REPO:1:1} == "" ]] && continue
-
-  echo "------------------------------------------------------------"
-  echo "Cloning Repository - $REPO"
-  git clone $REPO
-  echo "------------------------------------------------------------"
-done
-
 
 echo " "

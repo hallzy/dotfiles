@@ -20,20 +20,6 @@ do
 done
 
 
-cd ~/Documents/git-repos/vim-repos
-
-REPO_NAMES=(*)
-
-for REPO in ${REPO_NAMES[@]}
-do
-  cd $REPO
-  echo "Updating vim-repos/${REPO}..."
-  git pull
-  cp -r */ ~/.vim
-  cd ..
-done
-
-
 cd ~/Documents/git-repos/repos-i-contribute-to
 
 REPO_NAMES=(*)
@@ -57,8 +43,4 @@ do
   git pull
   cd ..
 done
-
-# Update the help tags.
-echo -e "\nUpdating the Vim Help Tags\n"
-vim --cmd "helptags ~/.vim/doc/" --cmd "q!"
 
