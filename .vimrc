@@ -18,8 +18,6 @@
 " |
 " `   --- turns out this does the same as ' but ' is easier to hit
 " _
-" B --- w is remapped to W, and W is remapped to B
-" b --- don't really need b.
 
 "}}}
 
