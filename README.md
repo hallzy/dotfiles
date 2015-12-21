@@ -337,8 +337,10 @@ ask you if you want to create one. Say yes.
 Mutt should now open
 
 #Pre-installed vim Plugins
-This .vim directory has pre-installed vim plugins. These plugins include:
+I use vundle to manage my plugins:
   * [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+Plugins that I have:
 
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [Badwolf Colourscheme](https://github.com/sjl/badwolf)
