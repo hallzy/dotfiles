@@ -392,6 +392,10 @@ else
   " terminal vim - blue :
   " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
   let g:qs_second_occurrence_highlight_color = 33
+
+" Can only use these if I don't have fanfingtastic
+  " Only highlight when I press one of the keys below
+  " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 endif
 
 "}}}
