@@ -247,12 +247,12 @@ nnoremap <leader>hl :nohlsearch<cr>
 " to revert this functionality, since it is much simpler.
 
 " With a J move the current line up, with K move the current line down.
-" nnoremap J :m .+1<CR>==
-" nnoremap K :m .-2<CR>==
+" nnoremap J :set fdm=manual<cr>:m .+1<CR>==:set fdm=marker<cr>
+" nnoremap K :set fdm=manual<cr>:m .-2<CR>==:set fdm=marker<cr>
 
 " With a J move the current Selected lines up, with K move the current selected lines down.
-" vnoremap J :m '>+1<CR>gv=gv
-" vnoremap K :m '<-2<CR>gv=gv
+" vnoremap J :set fdm=manual<cr>'<V'>:m '>+1<CR>gv=:set fdm=marker<cr>gv
+" vnoremap K :set fdm=manual<cr>'<V'>:m '<-2<CR>gv=:set fdm=marker<cr>gv
 
 "}}}
 
@@ -1098,51 +1098,51 @@ augroup END
 "}}}
 
 "}}}
-" Highlightings"{{{
+" highlightings"{{{
 
-" Diffs"{{{
+" diffs"{{{
 
-" When using vimdiff or diff mode
-highlight DiffAdd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=DarkGreen  guifg=White    gui=bold
-highlight DiffText   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=DarkRed    guifg=yellow   gui=bold
-highlight DiffChange term=bold         ctermbg=black     ctermfg=white  cterm=bold guibg=Black      guifg=White    gui=bold
-highlight DiffDelete term=none         ctermbg=DarkRed   ctermfg=white  cterm=none guibg=DarkBlue   guifg=DarkBlue gui=none
+" when using vimdiff or diff mode
+highlight diffadd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=darkgreen  guifg=white    gui=bold
+highlight difftext   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=darkred    guifg=yellow   gui=bold
+highlight diffchange term=bold         ctermbg=black     ctermfg=white  cterm=bold guibg=black      guifg=white    gui=bold
+highlight diffdelete term=none         ctermbg=darkred   ctermfg=white  cterm=none guibg=darkblue   guifg=darkblue gui=none
 
-" When viewing a diff or patch file
-highlight diffRemoved term=bold ctermbg=black   ctermfg=red    cterm=bold guibg=DarkRed     guifg=white gui=none
-highlight diffAdded   term=bold ctermbg=black   ctermfg=green  cterm=bold guibg=DarkGreen   guifg=white gui=none
-highlight diffChanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=DarkYellow  guifg=white gui=none
-highlight diffLine    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=DarkMagenta guifg=white gui=none
-highlight diffFile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=DarkYellow  guifg=white gui=none
+" when viewing a diff or patch file
+highlight diffremoved term=bold ctermbg=black   ctermfg=red    cterm=bold guibg=darkred     guifg=white gui=none
+highlight diffadded   term=bold ctermbg=black   ctermfg=green  cterm=bold guibg=darkgreen   guifg=white gui=none
+highlight diffchanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=darkyellow  guifg=white gui=none
+highlight diffline    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=darkmagenta guifg=white gui=none
+highlight difffile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=darkyellow  guifg=white gui=none
 "}}}
 " trailing whitespace"{{{
 
-highlight highlightTrailingWhiteSpace ctermbg=White guibg=White
+highlight highlighttrailingwhitespace ctermbg=white guibg=white
 
-augroup trailingWhitespaceGroup
+augroup trailingwhitespacegroup
   autocmd!
-  autocmd BufWinEnter * match highlightTrailingWhiteSpace /\s\+$/
-  autocmd InsertLeave * match highlightTrailingWhiteSpace /\s\+$/
-  autocmd InsertEnter * match highlightTrailingWhiteSpace /\s\+\%#\@<!$/
-augroup END
+  autocmd bufwinenter * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertleave * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
+augroup end
 
 "}}}
-" Highlighting for DimInactiveWindows()"{{{
+" highlighting for diminactivewindows()"{{{
 
 highlight colorcolumn ctermfg=white
 highlight colorcolumn guifg=white
 "}}}
 " highlightpast80"{{{
 
-" Make it obvious where 80 characters is
+" make it obvious where 80 characters is
 let &colorcolumn="81,82,".join(range(120,999),",")
 
-augroup vimrcEx
+augroup vimrcex
   autocmd!
-  autocmd FileType gitcommit let &colorcolumn="51,73,74,".join(range(120,999),",")
-augroup END
+  autocmd filetype gitcommit let &colorcolumn="51,73,74,".join(range(120,999),",")
+augroup end
 
-highlight ColorColumn ctermbg=red guibg=red
+highlight colorcolumn ctermbg=red guibg=red
 
 "}}}
 
