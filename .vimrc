@@ -392,6 +392,9 @@ iabbrev adn and
 
 " Easy Motion"{{{
 
+" Easy motion leader is <leader>b
+map <leader>b <Plug>(easymotion-prefix)
+
 " Single Character search
 map b <Plug>(easymotion-s)
 
