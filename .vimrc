@@ -17,7 +17,6 @@
 " -
 " |
 " `   --- turns out this does the same as ' but ' is easier to hit
-" _
 
 "}}}
 
@@ -351,6 +350,13 @@ cnoremap qa!<cr> :echoe "Use ZX"<cr>
 cnoremap wqa<cr> :echoe "Use ZA"<cr>
 cnoremap q!<cr> :echoe "Use ZQ"<cr>
 cnoremap wq<cr> :echoe "Use ZZ"<cr>
+
+"}}}
+" _ is now K - but special"{{{
+
+" _ behaves like the default K, except for files of the "vim" filetype, where it
+" opens help
+nnoremap <expr> _ (&filetype is# 'vim' ? (':help ' . fnameescape(expand('<cword>')) . "\n") : 'K')
 
 "}}}
 
