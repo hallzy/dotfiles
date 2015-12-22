@@ -240,21 +240,27 @@ nnoremap <leader>hl :nohlsearch<cr>
 "}}}
 " Move a Line, or selected lines up or down"{{{
 
-" OLD"{{{
+"Both methods work but do slightly different things
+" The first one moves the lines inside of folds when you hit a fold
+" The second one moves the lines over the fold, as if the fold was a single line
+" Other than these differences, they function exactly the same
+
+" First Method"{{{
+
 " As of about vim 7.4 patch 700 these :m mappings cause all my folds to collapse
-" As a result, I have the other mappings lower that call functions to mostly
-" replicate what these 4 old mappings do. I am keeping these incase they decide
-" to revert this functionality, since it is much simpler.
+" As a result, these mappings needed to become more complex, by setting the
+" foldmethod to manual, and then to marker afterwards
 
 " With a J move the current line up, with K move the current line down.
-" nnoremap J :set fdm=manual<cr>:m .+1<CR>==:set fdm=marker<cr>
-" nnoremap K :set fdm=manual<cr>:m .-2<CR>==:set fdm=marker<cr>
+" nnoremap J :set foldmethod=manual<cr>:m .+1<CR>==:set foldmethod=marker<cr>
+" nnoremap K :set foldmethod=manual<cr>:m .-2<CR>==:set foldmethod=marker<cr>
 
 " With a J move the current Selected lines up, with K move the current selected lines down.
-" vnoremap J :set fdm=manual<cr>'<V'>:m '>+1<CR>gv=:set fdm=marker<cr>gv
-" vnoremap K :set fdm=manual<cr>'<V'>:m '<-2<CR>gv=:set fdm=marker<cr>gv
+" vnoremap J :set foldmethod=manual<cr>'<V'>:m '>+1<CR>gv=:set foldmethod=marker<cr>gv
+" vnoremap K :set foldmethod=manual<cr>'<V'>:m '<-2<CR>gv=:set foldmethod=marker<cr>gv
 
 "}}}
+" Second Method"{{{
 
 " With a J move the current line up, with K move the current line down.
 nnoremap K :call MoveLineUp()<cr>
@@ -263,6 +269,8 @@ nnoremap J ddp==
 " With a J move the current Selected lines up, with K move the current selected lines down.
 vnoremap K <esc>:call MoveSelectionUp()<cr>
 vnoremap J <esc>'<V'>dp`[V`]=gv
+"}}}
+
 
 "}}}
 " H and L move to the beginning and end of the line"{{{
