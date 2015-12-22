@@ -42,7 +42,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'vim-scripts/tComment'
 Plugin 'gioele/vim-autoswap'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'dahu/vim-fanfingtastic'
+" Plugin 'dahu/vim-fanfingtastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xolox/vim-misc'
@@ -427,14 +427,18 @@ let g:EasyMotion_skipfoldedline = 0
 
 "let g:fanfingtastic_ignorecase = 1
 
-" Disable when using multi cursors
-function Multiple_cursors_before()
-  call FanfingTasticDisable()
-endfun
+" Only do this, if they exist (It should only not exist if I have disabled
+" fanfingtastic
+if exists(':call FanfingTasticDisable()')
+  " Disable when using multi cursors
+  function Multiple_cursors_before()
+    call FanfingTasticDisable()
+  endfun
 
-function Multiple_cursors_after()
-  call FanfingTasticEnable()
-endfun
+  function Multiple_cursors_after()
+    call FanfingTasticEnable()
+  endfun
+endif
 
 "}}}
 " Quick Scope"{{{
@@ -454,7 +458,7 @@ else
 
 " Can only use these if I don't have fanfingtastic
   " Only highlight when I press one of the keys below
-  " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 endif
 
 "}}}
