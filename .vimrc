@@ -240,13 +240,29 @@ nnoremap <leader>hl :nohlsearch<cr>
 "}}}
 " Move a Line, or selected lines up or down"{{{
 
+" OLD"{{{
+" As of about vim 7.4 patch 700 these :m mappings cause all my folds to collapse
+" As a result, I have the other mappings lower that call functions to mostly
+" replicate what these 4 old mappings do. I am keeping these incase they decide
+" to revert this functionality, since it is much simpler.
+
 " With a J move the current line up, with K move the current line down.
-nnoremap J :m .+1<CR>==
-nnoremap K :m .-2<CR>==
+" nnoremap J :m .+1<CR>==
+" nnoremap K :m .-2<CR>==
 
 " With a J move the current Selected lines up, with K move the current selected lines down.
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" vnoremap J :m '>+1<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
+
+"}}}
+
+" With a J move the current line up, with K move the current line down.
+nnoremap K :call MoveLineUp()<cr>
+nnoremap J ddp==
+
+" With a J move the current Selected lines up, with K move the current selected lines down.
+vnoremap K <esc>:call MoveSelectionUp()<cr>
+vnoremap J <esc>'<V'>dp`[V`]=gv
 
 "}}}
 " H and L move to the beginning and end of the line"{{{
@@ -884,6 +900,58 @@ function! Togglenrformats()
   endif
   echo &nrformats
 endfun
+"}}}
+" Functions for moving lines and blocks up and down"{{{
+
+" Note that there are no down functions because it was really easy to implement
+" as part of the mappings only.
+
+"Move Line Up"{{{
+
+function! MoveLineUp()
+  let currentLine = line(".")
+  let lastLine = line("$")
+
+  if currentLine == lastLine
+    " Do this on the bottom of the file otherwise the line will go up 2 lines
+    " instead of one
+    exec "normal! ddP=="
+  elseif currentLine == 1
+    " Don't go off the top of the page
+  else
+    " For anywhere else in the file, do this
+    exec "normal! ddkP=="
+  endif
+endfun
+
+"}}}
+" Move Selection Up"{{{
+
+function! MoveSelectionUp()
+  " Selects the top part of the visual selection and Save that line number
+  exec "normal! '<"
+  let currentLineTop = line(".")
+
+  " Selects the block, with the cursor on the bottom of the block and Save that
+  " line number
+  exec "normal! V'>"
+  let currentLineBottom = line(".")
+
+  let lastLine = line("$")
+
+  if currentLineBottom == lastLine
+    " Do this on the bottom of the file otherwise the line will go up 2 lines
+    exec "normal! gvdP`[V`]=gv"
+  elseif currentLineTop == 1
+    " Don't go off the top of the page
+  else
+    exec "normal! gvdkP`[V`]=gv"
+  endif
+
+endfun
+
+"}}}
+
 "}}}
 
 "}}}
