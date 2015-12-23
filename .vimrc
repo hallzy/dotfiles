@@ -475,22 +475,21 @@ endif
 "}}}
 " NERDTree"{{{
 
-function! Test()
+function! OpenNerdTreeStartup()
   NERDTree
   exec "normal! \<c-w>l"
 endfun
 " Start nerdtree automatically if I give vim a file name
 " autocmd VimEnter * NERDTree
-autocmd VimEnter * call Test()
+autocmd VimEnter * call OpenNerdTreeStartup()
 
-function! Test2()
+function! OpenNerdTreeStartup2()
   if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   exec "normal! \<c-w>l"
 endfun
 " Start Nerdtree automatically if I don't give vim a file name.
 autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * call Test2()
+autocmd VimEnter * call OpenNerdTreeStartup2()
 
 " Toggle nerdtree with F10
 noremap <F8> :NERDTreeToggle<CR>
