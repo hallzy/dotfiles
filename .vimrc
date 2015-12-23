@@ -781,6 +781,7 @@ function! s:MyFormattingSubs()
 
   let @/=_s
   call cursor(l,c)
+  call histdel("search", -1)
 endfunction
 "}}}
 " VisualSelection - perform search and replacements for visual text"{{{
