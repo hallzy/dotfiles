@@ -303,7 +303,7 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 " Escape removes trailing whitespace from eol"{{{
 
 "esc now removes whitespace from the line that you are escaping from
-inoremap <esc> <esc>:s/\s\+$//e<cr>
+inoremap <esc> <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 "}}}
 "Evaluate a mathematical expression"{{{
@@ -966,6 +966,17 @@ function! MoveSelectionUp()
 endfun
 
 "}}}
+
+"}}}
+" RemoveTrailingWhitespaceFromCurrentLine()"{{{
+
+" Used by <esc> key to remove trailing whitespace off of the current line, and
+" also deletes that replace entry from the history
+function! RemoveTrailingWhitespaceFromCurrentLine()
+  s/\s\+$//e
+
+  call histdel("search", -1)
+endfun
 
 "}}}
 
