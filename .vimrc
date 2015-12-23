@@ -378,9 +378,9 @@ cnoremap wq<cr> :echoe "Use ZZ"<cr>
 "}}}
 " _ is now K - but special"{{{
 
-" _ behaves like the default K, except for files of the "vim" filetype, where it
-" opens help
-nnoremap <expr> _ (&filetype is# 'vim' ? (':help ' . fnameescape(expand('<cword>')) . "\n") : 'K')
+" _ behaves like the default K, except for files of the "vim" or "help"
+" filetypes, where it opens help
+nnoremap <expr> _ OpenHelp()
 
 "}}}
 
@@ -966,6 +966,19 @@ function! MoveSelectionUp()
 endfun
 
 "}}}
+
+"}}}
+" OpenHelp()"{{{
+
+" Used to open :help for vim and vim help files, but use default K for anything
+" else
+function! OpenHelp()
+  if &filetype is# 'vim' || &filetype is# 'help'
+    return ':help ' . fnameescape(expand('<cword>')) . "\n"
+  else
+    return 'K'
+  endif
+endfun
 
 "}}}
 " RemoveTrailingWhitespaceFromCurrentLine()"{{{
