@@ -79,10 +79,18 @@ annoying. Remapping keys in Ubuntu for example, is much easier).
 
 ###Neovim
 
-Is installed by the install script, and is setup with the
-`sym-link-files-to-home`.
+Is installed by the install script. It uses the same rc file as vim (.vimrc).
 
-It uses the same rc file as vim (.vimrc).
+To setup neovim, do this one time:
+
+```bash
+$ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+$ ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+$ ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+```
+
+This will setup the location for nvim files and the rc file, and will symlink
+these to the corresponding files in vim.
 
 ###.bashrc
   My .bashrc started as the default that came with Ubuntu, and still has most of
