@@ -77,6 +77,13 @@ as the escape key (this may be a better option for virtual machines, or windows
 users as remapping keys in windows or with a virtual machine is a little
 annoying. Remapping keys in Ubuntu for example, is much easier).
 
+###Neovim
+
+Is installed by the install script, and is setup with the
+`sym-link-files-to-home`.
+
+It uses the same rc file as vim (.vimrc).
+
 ###.bashrc
   My .bashrc started as the default that came with Ubuntu, and still has most of
 the original stuff. I have added a few things though, which I will make note of

@@ -6,3 +6,4 @@
 tmux-*.log
 .vim/bundle/
 .vim/bundle/*
+.vim/init.vim
