@@ -344,8 +344,7 @@ ask you if you want to create one. Say yes.
 Mutt should now open
 
 #Pre-installed vim Plugins
-I use vundle to manage my plugins:
-  * [Vundle](https://github.com/VundleVim/Vundle.vim)
+I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 
 Plugins that I have:
 

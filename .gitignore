@@ -4,6 +4,5 @@
 .auto-install-programs/logs/*
 .auto-clone/logs/*
 tmux-*.log
-.vim/bundle/
-.vim/bundle/*
 .vim/init.vim
+.vim/plugged/

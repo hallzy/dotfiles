@@ -20,46 +20,42 @@
 
 "}}}
 
-"Vundle Settings"{{{
+" vim-plug Settings"{{{
 
-set nocompatible  " Use Vim settings, rather then Vi settings
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'sjl/badwolf'
+Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'vim-scripts/git-time-lapse'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-scripts/mru.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'myusuf3/numbers.vim'
+Plug 'unblevable/quick-scope'
+Plug 'msanders/snipmate.vim'
+Plug 'vim-scripts/tComment'
+Plug 'gioele/vim-autoswap'
+Plug 'easymotion/vim-easymotion'
+" Plug 'dahu/vim-fanfingtastic'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'xolox/vim-misc'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-repeat'
+Plug 'xolox/vim-session'
+Plug 'kshenoy/vim-signature'
+Plug 'iago-lito/vim-visualMarks'
+Plug 'gavinbeatty/vmath.vim'
 
-Plugin 'vim-scripts/a.vim'
-Plugin 'sjl/badwolf'
-Plugin 'gavinbeatty/dragvisuals.vim'
-Plugin 'vim-scripts/git-time-lapse'
-Plugin 'itchyny/lightline.vim'
-Plugin 'vim-scripts/mru.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'unblevable/quick-scope'
-Plugin 'msanders/snipmate.vim'
-Plugin 'vim-scripts/tComment'
-Plugin 'gioele/vim-autoswap'
-Plugin 'easymotion/vim-easymotion'
-" Plugin 'dahu/vim-fanfingtastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'xolox/vim-misc'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-repeat'
-Plugin 'xolox/vim-session'
-Plugin 'kshenoy/vim-signature'
-Plugin 'iago-lito/vim-visualMarks'
-Plugin 'gavinbeatty/vmath.vim'
-
-call vundle#end()
-
-filetype plugin indent on
+call plug#end()
 
 "}}}
 
 " Settings"{{{
+
+filetype plugin indent on
+set nocompatible  " Use Vim settings, rather then Vi settings
 
 set shell=/bin/bash
 set title titlestring=
@@ -126,7 +122,6 @@ set t_Co=256
 
 set smartcase
 set ignorecase
-set noantialias
 
 " Color scheme
 colorscheme badwolf
