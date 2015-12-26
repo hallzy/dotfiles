@@ -270,7 +270,7 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 "}}}
 " H and L move to the beginning and end of the line"{{{
 
-noremap H 0
+noremap H ^
 noremap L $
 
 "}}}
