@@ -25,6 +25,7 @@
 call plug#begin()
 
 Plug 'vim-scripts/a.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
@@ -34,6 +35,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'
 Plug 'msanders/snipmate.vim'
+Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/tComment'
 Plug 'gioele/vim-autoswap'
 Plug 'easymotion/vim-easymotion'
@@ -45,6 +47,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
+Plug 'syngan/vim-vimlint'
+Plug 'ynkdir/vim-vimlparser'
 Plug 'iago-lito/vim-visualMarks'
 Plug 'gavinbeatty/vmath.vim'
 
@@ -649,6 +653,17 @@ let g:lightline.tabline = {
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
 noremap ? :MultipleCursorsFind<space>
+
+"}}}
+" Syntastic"{{{
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+
+"Ignore unused argument, and missing scriptencoding
+let g:syntastic_vim_vimlint_quiet_messages = { 'regex': '\v\[EVL%(103|205)\]'  }
 
 "}}}
 

@@ -357,6 +357,7 @@ I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 Plugins that I have:
 
   * [a.vim](https://github.com/vim-scripts/a.vim)
+  * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
   * [Badwolf Colourscheme](https://github.com/sjl/badwolf)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
@@ -366,6 +367,7 @@ Plugins that I have:
   * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
   * [quick-scope](https://github.com/unblevable/quick-scope)
   * [Snipmate](https://github.com/msanders/snipmate.vim)
+  * [syntastic](https://github.com/scrooloose/syntastic)
   * [tComment](http://github.com/vim-scripts/tComment)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
@@ -377,6 +379,8 @@ Plugins that I have:
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
+  * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
+  * [vimlparser](https://github.com/ynkdir/vim-vimlparser) - Dependancy of syntastic for vimL
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
   * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
 
