@@ -479,9 +479,11 @@ endfun
 autocmd VimEnter * call OpenNerdTreeStartup()
 
 function! OpenNerdTreeStartup2()
-  if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  if argc() == 0 && !exists("s:std_in")
+    NERDTree
+  endif
   exec "normal! \<c-w>l"
-endfun
+endfunction
 " Start Nerdtree automatically if I don't give vim a file name.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * call OpenNerdTreeStartup2()
@@ -530,10 +532,10 @@ map <F7> :call TimeLapse()<cr>
 " MRU"{{{
 
 " excludes any file in /tmp file, and commit messages.
-let MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
+let g:MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
 
 " Only show most recent 20 files
-let MRU_Max_Entries = 20
+let g:MRU_Max_Entries = 20
 
 "}}}
 " vim-gitgutter"{{{
@@ -656,8 +658,6 @@ noremap ? :MultipleCursorsFind<space>
 " HLNext"{{{
 
 function! HLNext (blinktime)
-  let [bufnum, lnum, col, off] = getpos('.')
-  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
   let target_pat = '\c\%#\%('.@/.'\)'
 
   let ring = matchadd('WhiteOnRed', target_pat, 101)
@@ -1085,7 +1085,7 @@ augroup END
 "}}}
 " DimInactiveWindows"{{{
 
-let opt_DimInactiveWin=0
+let g:opt_DimInactiveWin=0
 highlight Inactive ctermfg=237 guifg=#3a3a3a
 function! ToggleDimInactiveWin()
   if g:opt_DimInactiveWin
