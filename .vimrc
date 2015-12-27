@@ -69,6 +69,9 @@ set title titlestring=
 
 set clipboard=unnamed
 
+" Disable mouse
+set mouse=
+
 set ttyfast
 set lazyredraw
 
