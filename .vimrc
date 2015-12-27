@@ -1027,9 +1027,10 @@ endfun
 " Used by <esc> key to remove trailing whitespace off of the current line, and
 " also deletes that replace entry from the history
 function! RemoveTrailingWhitespaceFromCurrentLine()
-  s/\s\+$//e
-
-  call histdel("search", -1)
+  if &modifiable == 1
+    s/\s\+$//e
+    call histdel("search", -1)
+  endif
 endfun
 
 "}}}
