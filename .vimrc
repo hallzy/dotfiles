@@ -683,7 +683,8 @@ let g:syntastic_vim_vimlint_quiet_messages = { 'regex': '\v\[EVL%(103|205)\]'  }
 " Unite.vim"{{{
 
 " File Searching like ctrlp
-nnoremap <C-p> :Unite file_rec/async<cr>
+" nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-p> :UniteWithInputDirectory file_rec/async<cr>
 
 " Content searching like ack.vim
 nnoremap <leader>1 :Unite grep:.<cr>
