@@ -24,8 +24,6 @@
 
 call plug#begin()
 
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim' " Dependancy
 
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -40,6 +38,8 @@ Plug 'unblevable/quick-scope'
 Plug 'msanders/snipmate.vim'
 Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/tComment'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
 Plug 'gioele/vim-autoswap'
 Plug 'easymotion/vim-easymotion'
 " Plug 'dahu/vim-fanfingtastic'
