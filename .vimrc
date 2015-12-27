@@ -24,6 +24,9 @@
 
 call plug#begin()
 
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim' " Dependancy
+
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
@@ -667,6 +670,22 @@ let g:syntastic_check_on_wq = 0
 
 "Ignore unused argument, and missing scriptencoding
 let g:syntastic_vim_vimlint_quiet_messages = { 'regex': '\v\[EVL%(103|205)\]'  }
+
+"}}}
+" Unite.vim"{{{
+
+" File Searching like ctrlp
+nnoremap <C-p> :Unite file_rec/async<cr>
+
+" Content searching like ack.vim
+nnoremap <leader>1 :Unite grep:.<cr>
+
+" yank history like yankstack
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>2 :Unite history/yank<cr>
+
+" Buffer switching like lustyJuggler
+nnoremap <leader>3 :Unite -quick-match buffer<cr>
 
 "}}}
 
