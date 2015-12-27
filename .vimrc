@@ -687,14 +687,11 @@ let g:syntastic_vim_vimlint_quiet_messages = { 'regex': '\v\[EVL%(103|205)\]'  }
 nnoremap <C-p> :UniteWithInputDirectory file_rec/async<cr>
 
 " Content searching like ack.vim
-nnoremap <leader>1 :Unite grep:.<cr>
-
-" yank history like yankstack
-let g:unite_source_history_yank_enable = 1
-nnoremap <leader>2 :Unite history/yank<cr>
+" nnoremap <leader>1 :UniteWithInputDirectory grep:.<cr>
+nnoremap <leader>1 :UniteWithInputDirectory grep<cr>
 
 " Buffer switching like lustyJuggler
-nnoremap <leader>3 :Unite -quick-match buffer<cr>
+nnoremap <leader>2 :Unite -quick-match buffer<cr>
 
 "}}}
 
