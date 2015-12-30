@@ -24,9 +24,6 @@
 
 call plug#begin()
 
-Plug 'kurkale6ka/vim-swap'
-
-
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
@@ -52,6 +49,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
+Plug 'kurkale6ka/vim-swap'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'iago-lito/vim-visualMarks'
