@@ -24,6 +24,8 @@
 
 call plug#begin()
 
+Plug 'kurkale6ka/vim-swap'
+
 
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -692,6 +694,15 @@ nnoremap <leader>1 :UniteWithInputDirectory grep<cr>
 
 " Buffer switching like lustyJuggler
 nnoremap <leader>2 :Unite -quick-match buffer<cr>
+
+"}}}
+" vim-swap"{{{
+
+" For swapping position of text
+vmap <leader>x         <plug>SwapSwapOperands
+vmap <leader><leader>x <plug>SwapSwapPivotOperands
+nmap <leader>x         <plug>SwapSwapWithR_WORD
+nmap <leader>X         <plug>SwapSwapWithL_WORD
 
 "}}}
 
