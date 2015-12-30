@@ -186,6 +186,14 @@ this script, it will start a terminal at ~/Desktop/
   My .gitconfig file that has some settings such as aliases, and default editor
 for commits.
 
+### .netrc
+
+This file is used for vim-rhubarb. It requires the password and username for
+github. The username and password should be populated in this file, and copied
+to ~/.netrc
+
+Note, that the password in this file is not actually my password :)
+
 ###.auto-install-programs
   This folder contains bash scripts that will automatically install all the
 programs specified in the programs-to-install file. To use this:
@@ -379,6 +387,7 @@ Plugins that I have:
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
+  * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
