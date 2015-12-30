@@ -381,6 +381,7 @@ Plugins that I have:
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
+  * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
   * [vimlparser](https://github.com/ynkdir/vim-vimlparser) - Dependancy of syntastic for vimL
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
