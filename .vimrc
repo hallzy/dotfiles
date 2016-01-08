@@ -39,6 +39,7 @@ Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimshell.vim'
 Plug 'gioele/vim-autoswap'
 Plug 'easymotion/vim-easymotion'
 " Plug 'dahu/vim-fanfingtastic'
@@ -700,6 +701,11 @@ vmap <leader>x         <plug>SwapSwapOperands
 vmap <leader><leader>x <plug>SwapSwapPivotOperands
 nmap <leader>x         <plug>SwapSwapWithR_WORD
 nmap <leader>X         <plug>SwapSwapWithL_WORD
+
+"}}}
+" VimShell"{{{
+
+nnoremap <leader>vs :VimShell<cr>
 
 "}}}
 

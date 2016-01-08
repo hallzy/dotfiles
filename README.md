@@ -378,7 +378,8 @@ Plugins that I have:
   * [syntastic](https://github.com/scrooloose/syntastic)
   * [tComment](http://github.com/vim-scripts/tComment)
   * [Unite.vim](https://github.com/Shougo/unite.vim)
-  * [VimProc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim - need to run install command
+  * [VimProc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim and VimShell- need to run install command
+  * [VimShell](https://github.com/Shougo/vimshell.vim)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
