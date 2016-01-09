@@ -27,6 +27,7 @@ call plug#begin()
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
+Plug 'brookhong/cscope.vim'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'itchyny/lightline.vim'
@@ -706,6 +707,12 @@ nmap <leader>X         <plug>SwapSwapWithL_WORD
 " VimShell"{{{
 
 nnoremap <leader>vs :VimShell<cr>
+
+"}}}
+" Cscope"{{{
+
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
 
 "}}}
 

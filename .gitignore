@@ -6,3 +6,4 @@
 tmux-*.log
 .vim/init.vim
 .vim/plugged/
+cscope.out
