@@ -367,6 +367,7 @@ Plugins that I have:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
   * [Badwolf Colourscheme](https://github.com/sjl/badwolf)
+  * [Conque GDB](https://github.com/vim-scripts/Conque-GDB)
   * [cscope.vim](https://github.com/brookhong/cscope.vim)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)

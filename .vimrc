@@ -27,6 +27,7 @@ call plug#begin()
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
+Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
@@ -715,6 +716,11 @@ nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>l :call ToggleLocationList()<CR>
 
 "}}}
+" Conque GDB"{{{
+
+cnoremap gdb :ConqueGdb
+
+"}}}
 
 "}}}
 " Functions"{{{
@@ -1239,4 +1245,8 @@ highlight colorcolumn ctermbg=red guibg=red
 "}}}
 
 "}}}
+
+" This is only for CPEN 331 for using gdb with os161. I will remove this
+" following the conclusion of this class.
+cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
 
