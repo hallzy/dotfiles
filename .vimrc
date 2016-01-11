@@ -712,6 +712,7 @@ nnoremap <leader>vs :VimShell<cr>
 "}}}
 " Cscope"{{{
 
+set cscopetag
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>l :call ToggleLocationList()<CR>
 
@@ -1249,4 +1250,5 @@ highlight colorcolumn ctermbg=red guibg=red
 " This is only for CPEN 331 for using gdb with os161. I will remove this
 " following the conclusion of this class.
 cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
+cs add $REPOS/cpen331/src/cscope.out
 
