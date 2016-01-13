@@ -284,7 +284,10 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 "}}}
 " H and L move to the beginning and end of the line"{{{
 
-noremap H ^
+" If I am on the first character of a line, and press H, take me to the
+" first column. Otherwise take me to the first non whitespace character of the
+" line.
+noremap H :call HMapping()<cr>
 noremap L $
 
 "}}}
@@ -1055,6 +1058,21 @@ function! RemoveTrailingWhitespaceFromCurrentLine()
   if &modifiable == 1
     s/\s\+$//e
     call histdel("search", -1)
+  endif
+endfun
+
+"}}}
+"HMapping()"{{{
+
+" If I am on the first character of a line, and press H, take me to the
+" first column. Otherwise take me to the first non whitespace character of the
+" line.
+function! HMapping()
+  let c = col(".")
+  exec "normal! ^"
+
+  if c == col(".")
+    exec "normal! 0"
   endif
 endfun
 
