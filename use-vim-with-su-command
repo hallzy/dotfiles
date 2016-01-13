@@ -5,7 +5,7 @@
 # To use this script easily:
 
 # $ cd /usr/bin
-# $ rm -rf vim
+# $ sudo rm -rf vim
 # $ sudo ln -s $dotfiles/use-vim-with-su-command vim
 
 
