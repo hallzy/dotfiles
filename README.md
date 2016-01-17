@@ -366,22 +366,21 @@ Plugins that I have:
 
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
-  * [Badwolf Colourscheme](https://github.com/sjl/badwolf)
+  * [badwolf Colourscheme](https://github.com/sjl/badwolf)
   * [Conque GDB](https://github.com/vim-scripts/Conque-GDB)
   * [cscope.vim](https://github.com/brookhong/cscope.vim)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
   * [lightline.vim](https://github.com/itchyny/lightline.vim)
-  * [MRU](https://github.com/vim-scripts/mru.vim)
-  * [NERDTree](https://github.com/scrooloose/nerdtree)
+  * [mru](https://github.com/vim-scripts/mru.vim)
+  * [nerdtree](https://github.com/scrooloose/nerdtree)
   * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
   * [quick-scope](https://github.com/unblevable/quick-scope)
-  * [Snipmate](https://github.com/msanders/snipmate.vim)
+  * [snipmate](https://github.com/msanders/snipmate.vim)
   * [syntastic](https://github.com/scrooloose/syntastic)
+  * [tabular](https://github.com/godlygeek/tabular)
   * [tComment](http://github.com/vim-scripts/tComment)
-  * [Unite.vim](https://github.com/Shougo/unite.vim)
-  * [VimProc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim and VimShell- need to run install command
-  * [VimShell](https://github.com/Shougo/vimshell.vim)
+  * [unite.vim](https://github.com/Shougo/unite.vim)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
@@ -394,9 +393,13 @@ Plugins that I have:
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
+  * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
+  * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
   * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
   * [vimlparser](https://github.com/ynkdir/vim-vimlparser) - Dependancy of syntastic for vimL
-  * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
+  * [vimproc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim and VimShell- need to run install command
+  * [vimShell](https://github.com/Shougo/vimshell.vim)
+  * [vissort](https://github.com/yaroot/vissort)
   * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
 
 Notes:

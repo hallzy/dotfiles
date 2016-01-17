@@ -24,40 +24,43 @@
 
 call plug#begin()
 
-Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/a.vim'
 Plug 'sjl/badwolf'
-Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
+Plug 'vim-scripts/Conque-GDB'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'unblevable/quick-scope'
 Plug 'msanders/snipmate.vim'
 Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/vimshell.vim'
-Plug 'gioele/vim-autoswap'
-Plug 'easymotion/vim-easymotion'
 " Plug 'dahu/vim-fanfingtastic'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'xolox/vim-misc'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'xolox/vim-session'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'easymotion/vim-easymotion'
+Plug 'gavinbeatty/vmath.vim'
+Plug 'gioele/vim-autoswap'
+Plug 'iago-lito/vim-visualMarks'
 Plug 'kshenoy/vim-signature'
 Plug 'kurkale6ka/vim-swap'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimshell.vim'
 Plug 'syngan/vim-vimlint'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'yaroot/vissort'
 Plug 'ynkdir/vim-vimlparser'
-Plug 'iago-lito/vim-visualMarks'
-Plug 'gavinbeatty/vmath.vim'
 
 call plug#end()
 
@@ -723,6 +726,17 @@ nnoremap <leader>l :call ToggleLocationList()<CR>
 " Conque GDB"{{{
 
 cnoremap gdb :ConqueGdb
+
+"}}}
+" Tabularize Mapping"{{{
+
+noremap <leader>tz :Tabularize /
+
+"}}}
+" Vissort"{{{
+
+" Make vissort case insensitive
+let g:vissort_option= "i"
 
 "}}}
 
