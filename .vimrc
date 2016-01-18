@@ -1091,6 +1091,66 @@ function! HMapping()
 endfun
 
 "}}}
+" Sort Plugins"{{{
+
+" This function has no mapping.
+
+" This function sorts my list of plugins at the top of this file by the plugin
+" name... not by the actual line
+function! SortPlugins()
+  "Save current cursor position. We will go back here once the function is done
+  " Also save the search history
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+
+  " Take me to the first line of the Plug list. This will be called top
+  exec "normal! gg/Plug\<cr>"
+  let top = line(".")
+
+  " Open the fold and go to the last line of the Plug list. Set this line number
+  " to bottom
+  exec "normal! zo}k"
+  let bottom = line(".")
+
+  " Call tabularize to align all / slash characters in the plug block
+  :Tabularize /\/
+  " Move to the / character, and go ahead one word. This is the column I want to
+  " sort.
+  exec "normal! f/w"
+
+  " Enter block visual mode, and move the cursor to the top of the block in the
+  " Last column (I gave 200 because it is easier, and no line should be that
+  " long anyways. And if there are, it should be unique before it reaches the
+  " 200th column). Escape out of visual mode. This will save the bounds of the
+  " visual selection in '< and '>
+  exec "normal! \<c-v>"
+  call cursor(top, 200)
+  exec "normal! \<esc>"
+
+  " Call Vissort on that column to sort it.
+  :'<,'>Vissort
+
+  " we are now on the bottom of the list. Loop this in order to get rid of the
+  " alignment of the / character
+  let currentLine = line(".")
+  " Repeat this until I reach the top of the Plug list.
+  while currentLine != top - 1
+    exec "normal! f\/gEldwldwk0"
+    let currentLine = line(".")
+  endwhile
+  " Close the fold
+  exec "normal! zc"
+
+  " Go back to where I was and restore the search history
+  let @/=_s
+  call cursor(l,c)
+  call histdel("search", -1)
+
+  echo "Plugins are Sorted..."
+endfun
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
