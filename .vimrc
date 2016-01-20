@@ -22,7 +22,12 @@
 
 " vim-plug Settings"{{{
 
-call plug#begin()
+if has("gui_running")
+  " Use the specified location, and supress the git error.
+  silent call plug#begin('~/vim/vimfiles/plugged')
+else
+  call plug#begin()
+endif
 
 Plug 'vim-scripts/a.vim'
 Plug 'jiangmiao/auto-pairs'
