@@ -89,14 +89,17 @@ set ttimeout
 set ttimeoutlen=3
 set notimeout
 
-" highlight vertical column of cursor
+" Turn off column and cursor highlight when leaving a vim window, and turn them
+" on when entering
 augroup highlightCursorLine
   autocmd!
   autocmd WinLeave * set nocursorline nocursorcolumn
-  autocmd WinEnter * set cursorline
+  autocmd WinEnter * set cursorline cursorcolumn
 augroup END
 
+" Start with highlighted columns and lines
 set cursorline
+set cursorcolumn
 
 " Leave paste mode on exit of insert mode
 augroup pastegroup
@@ -117,8 +120,8 @@ set laststatus=2      " Always display the status line
 set autowrite         " Automatically :write before running commands
 set autoread          " If the current file is updated elsewhere auto update it
 set showmatch         " Shows the matching bracket or brace
-set tildeop           " Tilde (~) changes case of letter. Setting this option lets
-                      " the tilde have movement options
+set tildeop           " Tilde (~) changes case of letter. Setting this option
+                      " lets the tilde have movement options
 set pastetoggle=<f2>  " The toggle for paste mode is F2
 set spelllang=en_ca
 
@@ -137,15 +140,17 @@ set list listchars=tab:>-,trail:-
 
 set t_Co=256
 
+" Ignore case sensitivity, unless I specify an Uppercase character. Then the
+" string is case sensitive
 set smartcase
 set ignorecase
 
-" Color scheme
+" Colour scheme
 colorscheme badwolf
 set encoding=utf-8
 
 " With both of these set, I get relative numbers, but the current line gets the
-" line number
+" line number - Hybrid Numbering
 set number
 set relativenumber
 
@@ -157,9 +162,10 @@ set undolevels=1000
 set splitbelow
 set splitright
 
+" Use markers for folds
 set foldmethod=marker
 
-" Keep the cursor in the middle of the page if possible
+" Keep the cursor as close to the middle of the file as possiblle.
 :set so=999
 
 "}}}
@@ -296,6 +302,7 @@ noremap L $
 "}}}
 " Delete Surrounding"{{{
 
+" Deletes surrounding brackets of different types, including types of quotes
 nnoremap ds{ F{xf}x
 nnoremap cs{ F{xf}xi
 nnoremap ds} F{xf}x
@@ -312,6 +319,7 @@ nnoremap cs) F(xf)xi
 "}}}
 "Create Closing Tag for HTML Tags"{{{
 
+" Creates a corresponding closing tag for a given open tag.
 nnoremap cct F<yf>f>pF<a/<esc>hi
 
 "}}}
@@ -330,12 +338,14 @@ nnoremap <space>c v:!octave --silent \| cut -c8-<cr>
 "}}}
 " Make Errors"{{{
 
+" Navigate to errors that are given by a compiler
 nnoremap <leader>m :cnext<cr>
 nnoremap <leader>M :cprevious<cr>
 
 "}}}
 " For merge conflicts easily choose what version to use"{{{
 
+" For use in git mergetool using vimdiff
 nnoremap $ :diffget<space>
 
 "}}}
@@ -370,6 +380,10 @@ vnoremap Q J
 "}}}
 " Remap w W e and E"{{{
 
+" I find that I don't often use the lowercase versions of these, so I will just
+" map them to the uppercase versions, and the uppercase letters will be to go
+" backwards. This leaves b and B freen, which are now used for easymotion
+" movements.
 nnoremap w W
 nnoremap W B
 
@@ -396,6 +410,7 @@ cnoremap wq<cr> :echoe "Use ZZ"<cr>
 " _ behaves like the default K, except for files of the "vim" or "help"
 " filetypes, where it opens help
 nnoremap <expr> _ OpenHelp()
+vnoremap <expr> _ OpenHelp()
 
 "}}}
 
@@ -456,7 +471,7 @@ let g:EasyMotion_skipfoldedline = 0
 " Only do this, if they exist (It should only not exist if I have disabled
 " fanfingtastic
 if exists(':call FanfingTasticDisable()')
-  " Disable when using multi cursors
+  " Disable when using multi cursors. Lots of problems occur if I leave it.
   function Multiple_cursors_before()
     call FanfingTasticDisable()
   endfun
@@ -551,7 +566,7 @@ map <F7> :call TimeLapse()<cr>
 "}}}
 " MRU"{{{
 
-" excludes any file in /tmp file, and commit messages.
+" excludes any file in /tmp file, and commit messages in my results.
 let g:MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
 
 " Only show most recent 20 files
@@ -713,6 +728,7 @@ nmap <leader>X         <plug>SwapSwapWithL_WORD
 "}}}
 " VimShell"{{{
 
+" Opens a shell inside of vim
 nnoremap <leader>vs :VimShell<cr>
 
 "}}}
@@ -745,6 +761,7 @@ let g:vissort_option= "i"
 
 " HLNext"{{{
 
+" Blink the next selection of a search
 function! HLNext (blinktime)
   let target_pat = '\c\%#\%('.@/.'\)'
 
@@ -785,6 +802,7 @@ endfunction
 function! AddCurlyBraces()
   :exe "normal! $a\<space>{\<esc>jo}\<esc>"
 endfun
+
 "}}}
 " BracketSpacing"{{{
 
