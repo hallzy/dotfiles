@@ -761,11 +761,19 @@ noremap <leader>tz :Tabularize /
 let g:vissort_option= "i"
 
 "}}}
-" vim-over
+" vim-over"{{{
 
 " Easy mapping to do substitutions live
 noremap :%s/ :OverCommandLine<cr>:%s/
 noremap :s/ :OverCommandLine<cr>:s/
+
+"}}}
+" Vim table mode"{{{
+
+" Make the tables markdown compatible
+let g:table_mode_corner="|"
+
+"}}}
 
 "}}}
 " Functions"{{{
