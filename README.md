@@ -388,6 +388,7 @@ Plugins that I have:
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
+  * [vim-over](https://github.comjamessan/vim-gnupg)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
   * [vim-session](https://github.com/xolox/vim-session.git)

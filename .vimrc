@@ -53,6 +53,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'osyo-manga/vim-over'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'xolox/vim-session'
@@ -760,6 +761,11 @@ noremap <leader>tz :Tabularize /
 let g:vissort_option= "i"
 
 "}}}
+" vim-over
+
+" Easy mapping to do substitutions live
+noremap :%s/ :OverCommandLine<cr>:%s/
+noremap :s/ :OverCommandLine<cr>:s/
 
 "}}}
 " Functions"{{{
