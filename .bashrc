@@ -216,3 +216,5 @@ export PS1="$PS1\$(git-radar --bash --fetch) $ "
 # install with alias: install-thefuck
 eval $(thefuck --alias)
 
+export EDITOR="/usr/bin/vim"
+
