@@ -73,6 +73,9 @@
   # eg. git wipe
   wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
+  # Deletes a tag locally and remotely.
+  delete-tag = "!f() { git push origin :refs/tags/$1; git tag -d $1; }; f"
+
   # deletes all branches already merged into master
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 
