@@ -42,6 +42,8 @@ alias egc='vim $dotfiles/.gitconfig'
 alias eba='vim $dotfiles/.bash_aliases'
 alias ebr='vim $dotfiles/.bashrc'
 alias vim-update-help-tags='vim --cmd "helptags ~/.vim/doc/" --cmd "q!"'
+alias update-thefuck='sudo -H pip install thefuck --upgrade'
+alias install-thefuck='wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0'
 
 # Detox Aliases
 alias detox-mine='detox --special --remove-trailing -v -s utf_8 -s lower'

@@ -210,3 +210,9 @@ export PS1="$PS1 \e[1;32m[\w]\e[m\n "
 
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
+
+# helps me with typos in terminal:
+# update with alias: update-thefuck
+# install with alias: install-thefuck
+eval $(thefuck --alias)
+
