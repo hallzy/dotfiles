@@ -382,6 +382,7 @@ Plugins that I have:
   * [tComment](http://github.com/vim-scripts/tComment)
   * [unite.vim](https://github.com/Shougo/unite.vim)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
+  * [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)

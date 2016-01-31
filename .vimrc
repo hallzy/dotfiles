@@ -47,6 +47,7 @@ Plug 'godlygeek/tabular'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'gioele/vim-autoswap'
+Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion'
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'tpope/vim-fugitive'
@@ -753,6 +754,11 @@ cnoremap gdb :ConqueGdb
 " Tabularize Mapping"{{{
 
 noremap <leader>tz :Tabularize /
+
+"}}}
+" EasyAlign"{{{
+
+vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "}}}
 " Vissort"{{{
