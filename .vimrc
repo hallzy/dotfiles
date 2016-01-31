@@ -1122,7 +1122,7 @@ function! HMapping()
   let c = col(".")
   exec "normal! ^"
 
-  if c == col(".")
+  if c <= col(".")
     exec "normal! 0"
   endif
 endfun
