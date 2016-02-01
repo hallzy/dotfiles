@@ -54,3 +54,6 @@ alias get-public-ip='wget http://ipinfo.io/ip -qO -'
 # Force tmux with 256 colour, otherwise vim is messed up.
 alias tmux='tmux -2'
 
+# Unzips any type of tar file.
+alias untar='tar xvf'
+
