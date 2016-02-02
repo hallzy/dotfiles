@@ -303,7 +303,7 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 " If I am on the first character of a line, and press H, take me to the
 " first column. Otherwise take me to the first non whitespace character of the
 " line.
-noremap H :call HMapping()<cr>
+noremap <silent> H :call HMapping()<cr>
 noremap L $
 
 "}}}
@@ -333,7 +333,7 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 " Escape removes trailing whitespace from eol"{{{
 
 "esc now removes whitespace from the line that you are escaping from
-inoremap <esc> <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
+inoremap <silent> <esc> <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 "}}}
 "Evaluate a mathematical expression"{{{
