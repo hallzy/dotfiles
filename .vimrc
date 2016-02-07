@@ -339,8 +339,8 @@ inoremap <silent> <esc> <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 "Evaluate a mathematical expression"{{{
 
 " Calculate Math
-xnoremap <space>c :!octave --silent \| cut -c8-<cr>
-nnoremap <space>c v:!octave --silent \| cut -c8-<cr>
+xnoremap <silent> <space>c :!octave --silent \| cut -c8-<cr>:call AddCommas()<cr>
+nnoremap <silent> <space>c v:!octave --silent \| cut -c8-<cr>:call AddCommas()<cr>
 
 "}}}
 " Make Errors"{{{
@@ -1198,6 +1198,40 @@ function! SortPlugins()
     echoe "Tabular, or Vissort Not installed. Plugins are not Sorted!"
   endif
 endfun
+
+"}}}
+"Add Commas to Numbers"{{{
+
+function! AddCommas()
+  exec "normal! 0f."
+  let c = col(".")
+
+  if c <= 1
+    " No decimal point
+    exec "normal! $"
+    let numbers = col(".")
+  else
+    exec "normal! h"
+    let numbers = col(".")
+  endif
+
+  " Only add commas for numbers >= 10,000
+  if numbers >= 5
+    exec "normal! hhi,"
+    exec "normal! h"
+    let numbers = col(".")
+
+    " After the initial comma, add commas every 3 numbers afterwards.
+    while numbers > 3
+      exec "normal! hhi,"
+      exec "normal! h"
+      let numbers = col(".")
+    endwhile
+endif
+
+  exec "normal! 0"
+
+endfunction
 
 "}}}
 
