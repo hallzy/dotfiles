@@ -186,6 +186,17 @@ dev-tmux () {
   tmux -2 attach-session -d
 }
 
+vimfind () {
+  argument=${1-$(history -p \!\*)}
+
+  # if argument is not empty open it in vim
+  if [ -n "$argument" ]; then
+    vim $(findcwd $argument)
+  else
+    echo "no argument specified."
+  fi
+}
+
 #}}}
 
 PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
