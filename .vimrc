@@ -910,6 +910,21 @@ function! s:MyFormattingSubs()
   call histdel("search", -1)
 endfunction
 "}}}
+" Remove trailing whitespace"{{{
+
+function! RemoveTrailingWhitespace()
+  let l = line(".")
+  let c = col(".")
+
+  "  if (&filetype != 'java')
+    %s/\s\+$//ge
+  "  endif
+
+  call cursor(l,c)
+endfunction
+
+" }}}
+
 " VisualSelection - perform search and replacements for visual text"{{{
 
 " This is used for the next function
