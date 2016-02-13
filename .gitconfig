@@ -47,6 +47,8 @@
   newlog = !sh -c 'git log $1@{1}..$1@{0} "$@"'
   new = !git newls
 
+  newdifftool = !git difftool $1@{1}..$1@{0}
+
   # Does a pull and shows the commits that were pulled in ls or ll format
   pls = !git pull && git newls
   pll = !git pull && git newll
