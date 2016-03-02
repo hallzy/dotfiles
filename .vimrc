@@ -876,7 +876,7 @@ endfun
 " MyFormattingSubs"{{{
 
 " Remove trailing whitespace on save for all filetypes.
-function! s:MyFormattingSubs()
+function! MyFormattingSubs()
   "Save last search and cursor position
   let _s=@/
   let l = line(".")
@@ -1344,7 +1344,7 @@ augroup END
 
 augroup FormattingSubGroup
   autocmd!
-  autocmd BufWritePre * :call <SID>MyFormattingSubs()
+  autocmd BufWritePre * :call MyFormattingSubs()
 augroup END
 
 "}}}
@@ -1448,3 +1448,4 @@ cs add $REPOS/cpen331/src/cscope.out
 " Prevents autocmd, shell, and write command from being run inside
 " project-specific vimrc files.
 set secure
+
