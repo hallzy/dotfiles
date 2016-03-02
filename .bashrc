@@ -118,6 +118,8 @@ sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo me
 
 downloadMusic () { youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2; }
 
+downloadVideo () { youtube-dl -o "${1}.%(ext)s" $2; }
+
 # up () - moves up x number of directories. eg. up 4#{{{
 up () {
   local d=""
