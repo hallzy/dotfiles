@@ -2,7 +2,11 @@
 alias lal='ls -hAl'
 alias la='ls -A'
 alias l='ls'
+
+# Spelling Mistakes
 alias sl='ls'
+alias gti='git'
+alias gitst='git st'
 
 # Alias definitions.
 alias ll='ls -hl'
@@ -56,4 +60,8 @@ alias tmux='tmux -2'
 
 # Unzips any type of tar file.
 alias untar='tar xvf'
+
+# source bashrc and bash_alias
+alias sbr='source ~/.bashrc'
+alias sba='source ~/.bash_aliases'
 
