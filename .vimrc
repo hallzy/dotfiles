@@ -423,6 +423,11 @@ nnoremap <expr> _ OpenHelp()
 vnoremap <expr> _ OpenHelp()
 
 "}}}
+" Replace local variable with something else"{{{
+
+nnoremap gr gd<c-o>[{V%::s/<c-r>///gc<left><left><left>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
