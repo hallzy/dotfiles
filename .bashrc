@@ -148,7 +148,13 @@ tm () {
 
   # present menu for user to choose which workspace to open
   PS3="Please choose your session: "
-  options=($(tmux list-sessions -F "#S") "New Session" "Remove Session")
+  session_path=~/.tmp_tmux
+  mkdir -p $session_path
+  if (($(stat -c "%a" $session_path) != 777)); then
+    sudo chmod 777 $session_path
+  fi
+  cd $session_path
+  options=("New Session" "Attach To Session" "Attach To Session From CWD" "Remove Session")
   echo "Available sessions"
   echo "------------------"
   echo " "
@@ -157,22 +163,36 @@ tm () {
     case $opt in
       "New Session")
         read -p "Enter new session name: " SESSION_NAME
-        tmux new -s "$SESSION_NAME"
+        tmux -S $session_path/$SESSION_NAME
+        cd -
+        break;;
+      "Attach To Session")
+        ls -1
+        read -p "Enter session name: " SESSION_NAME
+        if (($(stat -c "%a" $session_path/$SESSION_NAME) <= 666)); then
+          sudo chmod 777 $session_path/$SESSION_NAME
+        fi
+        tmux -S $session_path/$SESSION_NAME attach || rm -rf $SESSION_NAME
+        break;;
+      "Attach To Session From CWD")
+        cd -
+        ls -1
+        read -p "Enter session name: " SESSION_NAME
+        if (($(stat -c "%a" ${PWD}/$SESSION_NAME) <= 666)); then
+          sudo chmod 777 ${PWD}/$SESSION_NAME
+        fi
+        tmux -S ${PWD}/$SESSION_NAME attach
         break;;
       "Remove Session")
-        echo "Sessions to Delete: "
-        select opt in "${options[@]}"
-        do
-          tmux kill-session -t $opt
-        done
+        ls -1
+        read -p "Session to Delete: " SESSION_NAME
+        rm -rf $SESSION_NAME
         break;;
       *)
-        tmux attach-session -t $opt
         break;;
     esac
   done
 }
-
 
 #}}}
 
