@@ -233,3 +233,4 @@ eval $(thefuck --alias)
 
 export EDITOR="/usr/bin/vim"
 
+export PATH=$PATH:$REPOS/useful-repos/git-radar
