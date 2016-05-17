@@ -100,6 +100,8 @@ dotfiles=~/Documents/git-repos/remote-github/dotfiles
 
 exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
 
+
+# Retrives the creation time of a given file
 get_crtime() {
   for target in "${@}"; do
     inode=$(stat -c '%i' "${target}")
