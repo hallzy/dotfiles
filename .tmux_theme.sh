@@ -2,7 +2,7 @@
 
 tm_icon="☀"
 tm_color_active=colour82
-tm_color_inactive=colour241
+tm_color_inactive=colour244
 tm_color_feature=colour10
 tm_color_music=colour10
 tm_active_border_color=colour10
