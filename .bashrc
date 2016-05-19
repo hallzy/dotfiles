@@ -254,3 +254,6 @@ eval $(thefuck --alias)
 export EDITOR="/usr/bin/vim"
 
 export PATH=$PATH:$REPOS/useful-repos/git-radar
+
+export NVM_DIR="/home/steven/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

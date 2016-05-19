@@ -52,6 +52,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'suan/vim-instant-markdown'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'osyo-manga/vim-over'
@@ -1453,4 +1454,6 @@ cs add $REPOS/cpen331/src/cscope.out
 " Prevents autocmd, shell, and write command from being run inside
 " project-specific vimrc files.
 set secure
+
+let g:instant_markdown_autostart = 0
 
