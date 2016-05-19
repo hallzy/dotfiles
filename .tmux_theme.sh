@@ -11,8 +11,9 @@ tm_color_time=colour9
 tm_color_day=colour190
 tm_color_date=colour150
 
-tm_color_window_names=colour172
-tm_color_status_bg=colour235
+tm_color_window_names_fg=colour172
+tm_color_window_names_bg=colour238
+tm_color_status_bg=colour234
 
 # separators
 tm_separator_left_bold="◀"
@@ -32,12 +33,12 @@ set-option -g status-attr default
 
 # default window title colors
 set-window-option -g window-status-fg $tm_color_inactive
-set-window-option -g window-status-bg default
+set-window-option -g window-status-bg $tm_color_status_bg
 set -g window-status-format "#I #W"
 
 # active window title colors
-set-window-option -g window-status-current-fg $tm_color_window_names
-set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-fg $tm_color_window_names_fg
+set-window-option -g window-status-current-bg $tm_color_window_names_bg
 set-window-option -g  window-status-current-format "#[bold]#I #W"
 
 # pane border
