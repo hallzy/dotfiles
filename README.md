@@ -1,4 +1,4 @@
-#Dotfiles
+# Dotfiles
 
 NOTE: I recently changed the repo to work better from a folder other than ~/
 
@@ -11,10 +11,10 @@ may have missed a symlink in my new symlink script.
 
   This is a repo of the dot files that I use and have modifications for.
 
-###Usage
+### Usage
   To use everything in this repo, just run the following command:
 
-####Initial Setup
+#### Initial Setup
 
 Note that git needs to be installed in order to do this setup. Install git with:
 
@@ -32,7 +32,7 @@ $ dotfiles/sym-link-files-to-home
 $ cd ~
 $ .auto-install-programs/install-programs
 
-#Optional
+$ # Optional
 $ .auto-clone/clone-repos
 $ ./update-all-repos
 
@@ -67,7 +67,7 @@ game program.
 The 11th step will put the fonts in all the right places to use the latex resume.
 
 
-###.vim and .vimrc
+### .vim and .vimrc
   This includes my .vimrc file which is a heavily  modified version of the .vimrc
 file from [mscoutermarsh](https://github.com/mscoutermarsh)
 
@@ -77,7 +77,7 @@ as the escape key (this may be a better option for virtual machines, or windows
 users as remapping keys in windows or with a virtual machine is a little
 annoying. Remapping keys in Ubuntu for example, is much easier).
 
-###Neovim
+### Neovim
 
 Is installed by the install script. It uses the same rc file as vim (.vimrc).
 
@@ -92,7 +92,7 @@ $ ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 This will setup the location for nvim files and the rc file, and will symlink
 these to the corresponding files in vim.
 
-###.bashrc
+### .bashrc
   My .bashrc started as the default that came with Ubuntu, and still has most of
 the original stuff. I have added a few things though, which I will make note of
 here:
@@ -137,10 +137,10 @@ The person to whom you sent this text to cannot reply however.
 An example use of the downloadMusic function is below:
 
 ```bash
-downloadMusic $FILENAME.mp3 $URL
+downloadMusic $FILENAME $URL
 ```
 
-Where $FILENAME.mp3 is the name to save the file as, and $URL is the youtube
+Where $FILENAME is the name to save the file as, and $URL is the youtube
 URL.
 
 ### .bash_aliases
@@ -161,7 +161,7 @@ You can:
 Respectively. The first two are aliases in the .bashrc, the 3rd one is a script
 in the .my-scripts directory which I moved to my /bin.
 
-###.myscripts/
+### .myscripts/
   It may be worth creating symbolic links for these scripts in /bin, for easy
 use, and some of the instructions here assume that they are in /bin.
 
@@ -174,7 +174,7 @@ nautilus file manager at the current location in the terminal.
   trash-restore restores a given file back to its original location after it has
 been moved to the trash.
 
-###.gnome2/
+### .gnome2/
   This holds my nautilus scripts, which are scripts that populate the right
 click context menu.
   * Update updates my Ubuntu system as the Update manager does, but in terminal.
@@ -182,7 +182,7 @@ click context menu.
     system that you right clicked. ie) if you right click on the desktop and run
 this script, it will start a terminal at ~/Desktop/
 
-###.gitconfig
+### .gitconfig
   My .gitconfig file that has some settings such as aliases, and default editor
 for commits.
 
@@ -194,7 +194,7 @@ to ~/.netrc
 
 Note, that the password in this file is not actually my password :)
 
-###.auto-install-programs
+### .auto-install-programs
   This folder contains bash scripts that will automatically install all the
 programs specified in the programs-to-install file. To use this:
 
@@ -259,7 +259,7 @@ The last are a list of repositories that you may want added.
 There is also a section at the bottom of install-programs-helper for programs
 that need a more specific installation.
 
-###latex-resume
+### latex-resume
 
 The latex-resume directory holds my files for my resume that is written in
 LaTeX. The resume template is courtesy of @afriggeri, with some modifications
@@ -359,7 +359,7 @@ ask you if you want to create one. Say yes.
 
 Mutt should now open
 
-#Pre-installed vim Plugins
+# Pre-installed vim Plugins
 I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 
 Plugins that I have:
