@@ -1455,5 +1455,3 @@ cs add $REPOS/cpen331/src/cscope.out
 " project-specific vimrc files.
 set secure
 
-let g:instant_markdown_autostart = 0
-
