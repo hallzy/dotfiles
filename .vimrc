@@ -91,7 +91,10 @@ set ttyfast
 set lazyredraw
 
 " Allow project specific vimrc files
-set exrc
+" set exrc
+" Prevents autocmd, shell, and write command from being run inside
+" project-specific vimrc files.
+" set secure
 
 let $PATH='/usr/local/bin:' . $PATH
 
@@ -1451,7 +1454,4 @@ highlight colorcolumn ctermbg=red guibg=red
 cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
 cs add $REPOS/cpen331/src/cscope.out
 
-" Prevents autocmd, shell, and write command from being run inside
-" project-specific vimrc files.
-set secure
 
