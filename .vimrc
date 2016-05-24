@@ -138,6 +138,7 @@ set tildeop           " Tilde (~) changes case of letter. Setting this option
                       " lets the tilde have movement options
 set pastetoggle=<f2>  " The toggle for paste mode is F2
 set spelllang=en_ca
+set nostartofline     " when using gg or G, stay in the same column
 
 syntax on
 
