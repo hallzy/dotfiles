@@ -312,7 +312,9 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 " If I am on the first character of a line, and press H, take me to the
 " first column. Otherwise take me to the first non whitespace character of the
 " line.
-noremap <silent> H :call HMapping()<cr>
+nnoremap <silent> H :call HMapping()<cr>
+onoremap <silent> H :call HMapping()<cr>
+vnoremap <silent> H <esc>:call HMappingVisual()<cr>
 noremap L $
 
 "}}}
@@ -1150,6 +1152,18 @@ function! HMapping()
   endif
 endfun
 
+function! HMappingVisual()
+  let startc = col(".")
+  exec "normal! gv^\<esc>"
+  let endc = col(".")
+
+  if startc <= endc
+    exec "normal! gv0"
+  else
+    exec "normal! gv"
+  endif
+endfun
+
 "}}}
 " Sort Plugins"{{{
 
@@ -1443,5 +1457,4 @@ highlight colorcolumn ctermbg=red guibg=red
 " following the conclusion of this class.
 cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
 cs add $REPOS/cpen331/src/cscope.out
-
 
