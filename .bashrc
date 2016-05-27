@@ -169,8 +169,8 @@ tm () {
       "Attach To Session")
         ls -1
         read -p "Enter session name: " SESSION_NAME
-        if (($(stat -c "%a" $session_path/$SESSION_NAME) <= 666)); then
-          sudo chmod 777 $session_path/$SESSION_NAME
+        if (($(stat -c "%a" $session_path/$SESSION_NAME) < 666)); then
+          sudo chmod 666 $session_path/$SESSION_NAME
         fi
         tmux -S $session_path/$SESSION_NAME attach || rm -rf $SESSION_NAME
         break;;
@@ -178,8 +178,8 @@ tm () {
         cd -
         ls -1
         read -p "Enter session name: " SESSION_NAME
-        if (($(stat -c "%a" ${PWD}/$SESSION_NAME) <= 666)); then
-          sudo chmod 777 ${PWD}/$SESSION_NAME
+        if (($(stat -c "%a" ${PWD}/$SESSION_NAME) < 666)); then
+          sudo chmod 666 ${PWD}/$SESSION_NAME
         fi
         tmux -S ${PWD}/$SESSION_NAME attach
         break;;
