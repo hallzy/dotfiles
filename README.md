@@ -395,6 +395,7 @@ Plugins that I have:
   * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
+  * [vim-startify](https://github.com/mhinz/vim-startify)
   * [vim-surround](https://github.com/tpope/vim-surround)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)

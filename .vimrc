@@ -60,6 +60,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
+Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'kurkale6ka/vim-swap'
 Plug 'dhruvasagar/vim-table-mode'
@@ -777,6 +778,26 @@ let g:table_mode_corner="|"
 " vim-surround"{{{
 
 let b:surround_indent = 1
+
+"}}}
+" vim-startify"{{{
+
+" Order of headings, and the heading text
+let g:startify_list_order = [
+      \ ['   Bookmarks'],      'bookmarks',
+      \ ['   MRU'],            'files',
+      \ ['   MRU '. getcwd()], 'dir',
+      \ ['   Sessions'],       'sessions',
+      \ ]
+
+" My Bookmarks
+let g:startify_bookmarks = [
+      \  '~/.vimrc',
+      \ ]
+
+" When opening a version controlled file using startify, change the cwd of vim
+" to the root of that repository
+let g:startify_change_to_vcs_root = 1
 
 "}}}
 
