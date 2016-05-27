@@ -419,6 +419,11 @@ vnoremap <expr> _ OpenHelp()
 nnoremap gr gd<c-o>[{V%::s/<c-r>///gc<left><left><left>
 
 "}}}
+" Use apostrophe instead of a back tick for going to marks"{{{
+
+nnoremap ' `
+
+"}}}
 
 "}}}
 " abbrevs"{{{
