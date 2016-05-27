@@ -60,6 +60,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
+Plug 'tpope/vim-surround'
 Plug 'kurkale6ka/vim-swap'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'syngan/vim-vimlint'
@@ -313,23 +314,6 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 " line.
 noremap <silent> H :call HMapping()<cr>
 noremap L $
-
-"}}}
-" Delete Surrounding"{{{
-
-" Deletes surrounding brackets of different types, including types of quotes
-nnoremap ds{ F{xf}x
-nnoremap cs{ F{xf}xi
-nnoremap ds} F{xf}x
-nnoremap cs} F{xf}xi
-nnoremap ds" F"x,x
-nnoremap cs" F"x,xi
-nnoremap ds' F'x,x
-nnoremap cs' F'x,xi
-nnoremap ds( F(xf)x
-nnoremap cs( F(xf)xi
-nnoremap ds) F(xf)x
-nnoremap cs) F(xf)xi
 
 "}}}
 "Create Closing Tag for HTML Tags"{{{
@@ -791,6 +775,11 @@ noremap :s/ :OverCommandLine<cr>:s/
 
 " Make the tables markdown compatible
 let g:table_mode_corner="|"
+
+"}}}
+" vim-surround"{{{
+
+let b:surround_indent = 1
 
 "}}}
 

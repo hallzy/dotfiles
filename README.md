@@ -387,6 +387,7 @@ Plugins that I have:
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+  * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-over](https://github.com/osyo-manga/vim-over)
@@ -394,6 +395,7 @@ Plugins that I have:
   * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
   * [vim-session](https://github.com/xolox/vim-session.git)
   * [vim-signature](https://github.com/kshenoy/vim-signature)
+  * [vim-surround](https://github.com/tpope/vim-surround)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
