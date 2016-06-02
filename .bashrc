@@ -16,6 +16,9 @@ shopt -s histappend
 HISTSIZE=2000
 HISTFILESIZE=2000
 
+# Commands to ignore and not put into our history
+export HISTIGNORE="clear:history"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
