@@ -920,18 +920,23 @@ function! MyFormattingSubs()
           " project that would make lots of changes to many files which would
           " be a bit of a waste
 
-  "Replace a tab wtih 2 spaces
+  "Replace a tab wtih 2 spaces, except for the filetypes specified
   if (&filetype !~ 'make' &&
      \&filetype !~ 'xml' &&
      \&filetype != 'java')
 
-    %s/\t/  /ge
+    " Don't do this now. DetectIndent will make it so that I may have tabs. Just
+    " leaving this here incase I decide to get rid of detectIndent
+    " %s/\t/  /ge
   endif
 
-  " Remove trailing whitespace
-  if (&filetype != 'java')
+  " Remove trailing whitespace except for the filetypes specified
+  " Commented because I should still remove trailing whitespace from java files.
+  " Just leaving this here as an example of how to change it if I decide I need
+  " exclusions
+  " if (&filetype != 'java')
     %s/\s\+$//ge
-  endif
+  " endif
 
   " Change bracket spacings for me
   " Note: I need to exclude vim files from this otherwise vim will mess up the
