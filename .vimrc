@@ -793,6 +793,7 @@ let g:startify_list_order = [
 " My Bookmarks
 let g:startify_bookmarks = [
       \  '~/.vimrc',
+      \  '/var/spool/mail/steven',
       \ ]
 
 " When opening a version controlled file using startify, change the cwd of vim
