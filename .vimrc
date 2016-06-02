@@ -34,6 +34,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
+Plug 'ciaranm/detectindent'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'itchyny/lightline.vim'
@@ -799,6 +800,20 @@ let g:startify_bookmarks = [
 " When opening a version controlled file using startify, change the cwd of vim
 " to the root of that repository
 let g:startify_change_to_vcs_root = 1
+
+"}}}
+" DetectIndent"{{{
+
+" When the correct value of expandtab cannot be determined, treat it as though
+" expandtab is set, meaning that pressing tab gives x number of spaces
+let g:detectindent_preferred_expandtab = 1
+
+" When indent size cannot be determined use 2
+let g:detectindent_preferred_indent = 2
+
+
+" Automatically run detectIndent
+autocmd BufReadPost * :DetectIndent
 
 "}}}
 
