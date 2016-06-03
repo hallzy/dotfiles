@@ -183,8 +183,8 @@ set splitright
 " Use markers for folds
 set foldmethod=marker
 
-" Keep the cursor as close to the middle of the file as possiblle.
-:set so=999
+" Keep the cursor within 10 lines of the bottom and top
+set scrolloff=10
 
 "}}}
 " Mappings"{{{
@@ -424,6 +424,28 @@ nnoremap gr gd<c-o>[{V%::s/<c-r>///gc<left><left><left>
 " Use apostrophe instead of a back tick for going to marks"{{{
 
 nnoremap ' `
+
+"}}}
+" ctrl+m, ctrl+h, ctrl+l"{{{
+
+" ctrl+m moves cursor to the middle of the screen
+noremap <c-m> M
+" ctrl+h moves cursor to the top of the screen
+noremap <c-H> H
+" ctrl+l moves cursor to the bottom of the screen
+noremap <c-L> L
+
+" zh moves the current line to the top of the screen
+noremap zh zt
+" zm moves the current line to the middle of the screen
+noremap zm zz
+" zh moves the current line to the top of the screen
+noremap zl zb
+
+" Move down and put the cursor and line at the top of the file
+noremap j jzt
+" Move up and put the cursor and line at the bottom of the file
+noremap k kzb
 
 "}}}
 
