@@ -400,13 +400,6 @@ nnoremap ZX :qa!<cr>
 nnoremap ZA :wqa<cr>
 nnoremap ZS :w<cr>
 
-" Train myself to use the above Z commands and the default Z commands instead
-cnoremap w<cr> :echoe "Use ZS"<cr>
-cnoremap qa!<cr> :echoe "Use ZX"<cr>
-cnoremap wqa<cr> :echoe "Use ZA"<cr>
-cnoremap q!<cr> :echoe "Use ZQ"<cr>
-cnoremap wq<cr> :echoe "Use ZZ"<cr>
-
 "}}}
 " _ is now K - but special"{{{
 
