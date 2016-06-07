@@ -9,13 +9,13 @@ then
   PATH_TO_LOG_FILE=~/.auto-clone/logs/$LOG_FILE_NAME
 
   mkdir -p ~/.auto-clone/logs
-  time ~/.auto-clone/clone-repos-helper | tee $PATH_TO_LOG_FILE
+  time ~/.auto-clone/clone-repos-helper | tee "$PATH_TO_LOG_FILE"
 
   # If the email option was used then use the email address to email the
   # results.
   if [ "$1" == "--email" ]
   then
-    cat $PATH_TO_LOG_FILE | mail -s "Results of Auto Clone of Repos $DATE_VAR" $2
+    mutt -s "Results of Auto Clone of Repos $DATE_VAR" "$2" < "$PATH_TO_LOG_FILE"
   fi
   echo " "
   echo "Script COMPLETED"
