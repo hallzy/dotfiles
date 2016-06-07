@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [ $# -eq  1 ]; then
-  readarray INPUTARR < ~/.local/share/Trash/info/$1.trashinfo
+  readarray INPUTARR < ~/.local/share/Trash/info/"$1".trashinfo
 
   INPUT=${INPUTARR[1]}
   FILEPATH=${INPUT:5}
 
-  mv ~/.local/share/Trash/files/$1 $FILEPATH
-  rm -rf ~/.local/share/Trash/info/$1.trashinfo
+  mv ~/.local/share/Trash/files/"$1" "$FILEPATH"
+  rm -rf ~/.local/share/Trash/info/"$1".trashinfo
   echo "File restored to: $FILEPATH"
 else
   echo "Expected 1 Argument"
