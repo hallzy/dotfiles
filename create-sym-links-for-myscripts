@@ -9,7 +9,7 @@ ARR=(*)
 
 cd /bin
 
-for FILE in ${ARR[@]}
+for FILE in "${ARR[@]}"
 do
   echo "Creating symlink for $FILE"
   sudo ln -fs $PATH_TO_SCRIPTS/$FILE
