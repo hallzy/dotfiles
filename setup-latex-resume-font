@@ -4,7 +4,7 @@ sudo mkdir -p /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
 
 cd ~/.latex-unicode-math
 
-sudo cp * /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
+sudo cp ./* /usr/share/texlive/texmf-dist/tex/latex/unicode-math/
 
 #Update Fonts
 sudo fc-cache -f -v
