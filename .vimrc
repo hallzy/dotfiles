@@ -387,11 +387,11 @@ vnoremap Q J
 " map them to the uppercase versions, and the uppercase letters will be to go
 " backwards. This leaves b and B freen, which are now used for easymotion
 " movements.
-nnoremap w W
-nnoremap W B
+noremap w W
+noremap W B
 
-nnoremap e E
-nnoremap E gE
+noremap e E
+noremap E gE
 
 "}}}
 " Extra mappings for saving and closing vim"{{{
