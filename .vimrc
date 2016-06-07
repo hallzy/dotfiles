@@ -429,11 +429,11 @@ nnoremap ' `
 " ctrl+m, ctrl+h, ctrl+l"{{{
 
 " ctrl+m moves cursor to the middle of the screen
-noremap <c-m> M
+noremap <leader>m M
 " ctrl+h moves cursor to the top of the screen
-noremap <c-H> H
+noremap <leader>h H
 " ctrl+l moves cursor to the bottom of the screen
-noremap <c-L> L
+noremap <leader>l L
 
 " zh moves the current line to the top of the screen
 noremap zh zt
