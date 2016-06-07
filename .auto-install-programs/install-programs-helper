@@ -9,7 +9,7 @@ readarray REPOS < ~/.auto-install-programs/repos-to-add.cfg
 COMPLETED=()
 FAILED=()
 
-if [[ ${PROGRAMS_USER_INTERACT[@]} > 0 ]]
+if [ ${#PROGRAMS_USER_INTERACT[@]} -gt 0 ]
 then
   echo "There are programs that are set to be installed that may require user interaction."
   echo "These programs will be installed first, so that this script can be left alone as soon as possible."
@@ -18,7 +18,7 @@ then
   read do_user_interaction
 fi
 
-if [[ ${PROGRAMS_LONG[@]} > 0 ]]
+if [ ${#PROGRAMS_LONG[@]} -gt 0 ]
 then
   echo "There are programs that are set to be installed that may take a significant amount of time to install"
   echo " "
@@ -49,7 +49,7 @@ echo " "
 echo " "
 
 
-if [[ $do_user_interaction = "y" ||$do_user_interaction = "Y" ]]
+if [[ $do_user_interaction = "y" || $do_user_interaction = "Y" ]]
 then
   # This is for programs that may require user interaction
   for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
@@ -86,7 +86,7 @@ then
 fi
 
 
-if [[ $do_long = "y" ||$do_long = "Y" ]]
+if [[ $do_long = "y" || $do_long = "Y" ]]
 then
   # This is for programs that may require user interaction
   for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
@@ -186,22 +186,22 @@ done
 #===================================================================================
 
 
-if [[ ${#COMPLETED[@]} > 0 ]]
+if [ ${#COMPLETED[@]} -gt 0 ]
 then
   echo "Programs that Successfully Installed"
   echo "------------------------------------"
-  for PROGRAM in ${COMPLETED[@]}
+  for PROGRAM in "${COMPLETED[@]}"
   do
     echo $PROGRAM
   done
   echo " "
 fi
 
-if [[ ${#FAILED[@]} > 0 ]]
+if [ ${#FAILED[@]} -gt 0 ]
 then
   echo "Programs that FAILED to Install"
   echo "------------------------------------"
-  for PROGRAM in ${FAILED[@]}
+  for PROGRAM in "${FAILED[@]}"
   do
     echo $PROGRAM
   done
