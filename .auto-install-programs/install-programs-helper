@@ -6,6 +6,16 @@ readarray PROGRAMS_USER_INTERACT < ~/.auto-install-programs/programs-to-install-
 readarray PROGRAMS_LONG < ~/.auto-install-programs/programs-to-install-long.cfg
 readarray REPOS < ~/.auto-install-programs/repos-to-add.cfg
 
+echo "OS is $OS"
+if [[ $OS  == "Debian" ]]; then
+  install_cmd="sudo apt-get -y install"
+elif [[ $OS  == "Manjaro" ]]; then
+  install_cmd="sudo pacman -S --noconfirm"
+else
+  echo "Could not determine what package manager to use."
+  exit 1
+fi
+
 COMPLETED=()
 FAILED=()
 
@@ -61,7 +71,7 @@ then
 
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
-    sudo apt-get -y install $PROGRAM
+    $install_cmd $PROGRAM
     if [ $? -eq 0 ]
     then
       echo " "
@@ -98,7 +108,7 @@ then
 
     echo "------------------------------------------------------------"
     echo "Start Installation - $PROGRAM"
-    sudo apt-get -y install $PROGRAM
+    $install_cmd $PROGRAM
     if [ $? -eq 0 ]
     then
       echo " "
@@ -132,7 +142,7 @@ do
 
   echo "------------------------------------------------------------"
   echo "Start Installation - $PROGRAM"
-  sudo apt-get -y install $PROGRAM
+  $install_cmd $PROGRAM
   if [ $? -eq 0 ]
   then
     echo " "
