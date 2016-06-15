@@ -45,3 +45,6 @@ print_text "Virus Scan -- Completed"
 
 rm -rf ~/Desktop/scan_results.tmp
 
+echo "Log was saved to -- $PATH_TO_SCAN_RESULTS"
+echo ""
+
