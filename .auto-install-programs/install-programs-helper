@@ -177,24 +177,12 @@ do
   echo "------------------------------------------------------------"
   echo "Start Installation - $PROGRAM"
   $PROGRAM
-  if [ $? -eq 0 ]
-  then
-    echo " "
-    echo " "
-    echo "Install COMPLETED Successfully - $PROGRAM"
-    echo "------------------------------------------------------------"
-    echo " "
-    echo " "
-    COMPLETED+=($PROGRAM)
-  else
-    echo " "
-    echo " "
-    echo "Install FAILED - $PROGRAM"
-    echo "------------------------------------------------------------"
-    echo " "
-    echo " "
-    FAILED+=($PROGRAM)
-  fi
+  echo " "
+  echo " "
+  echo "Install COMPLETED - $PROGRAM"
+  echo "------------------------------------------------------------"
+  echo " "
+  echo " "
 done
 
 #===================================================================================
