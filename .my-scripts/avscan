@@ -1,22 +1,47 @@
 #!/bin/bash
 
+function print_text {
+  for i in $(seq 1 ${#1});
+  do
+    local underline="$underline="
+  done
+
+  echo ""
+  echo "$1"
+  echo "$underline"
+  echo ""
+}
+
 PATH_TO_SCAN_RESULTS=~/Desktop/scan_results.txt
+args="-iv"
+scan_results_header="Scan Results of ${PWD}"
+
+rm -rf $PATH_TO_SCAN_RESULTS
+touch $PATH_TO_SCAN_RESULTS
 
 # Update Definitions before running the scan.
-sudo freshclam
+print_text "Updating Virus Definitions"
+sudo /etc/init.d/clamav-freshclam stop
+sudo freshclam -v
+sudo /etc/init.d/clamav-freshclam start
+print_text "Updating Virus Definitions -- Completed"
+
 
 if [ "$1" = "-r" ]
 then
-  # Scan recursively from current directory and save
-  # results in a file
-  sudo clamscan -ri ./ | tee $PATH_TO_SCAN_RESULTS
-  echo "Scan Results of ${PWD} Recursively
-  $(cat ~/Desktop/scan-results.txt)" > $PATH_TO_SCAN_RESULTS
-else
-  # Same as above except not recursive.
-  sudo clamscan -i ./ | tee $PATH_TO_SCAN_RESULTS
-  echo "Scan Results of ${PWD}
-  $(cat ~/Desktop/scan-results.txt)" > $PATH_TO_SCAN_RESULTS
+  # Scan recursively from current directory and save results in a file
+  args="${args}r"
+  scan_results_header="${scan_results_header} Recursively"
 fi
 
+print_text "Virus Scan"
+sudo clamscan $args ./ | tee ~/Desktop/scan_results.tmp
+print_text "Virus Scan -- Completed"
+
+{
+  print_text "$scan_results_header"
+  cat ~/Desktop/scan_results.tmp
+} >> $PATH_TO_SCAN_RESULTS
+
+rm -rf ~/Desktop/scan_results.tmp
 
