@@ -259,6 +259,7 @@ PROMPT_DIRTRIM=3
 export PS1="$PS1 \e[1;32m[\w]\e[m\n "
 
 export PATH=$PATH:$REPOS/useful-repos/git-radar
+export PATH=$PATH:$HOME/.my-scripts
 
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
