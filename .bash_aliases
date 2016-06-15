@@ -29,9 +29,8 @@ alias mkdir='mkdir -p'
 #tlf is tail that auto updates
 alias tlf='tail -f'
 
-isGcpInstalled=$(which gcp)
 
-if [[ "$isGcpInstalled" != "" ]]; then
+if which gcp > /dev/null 2>&1; then
   alias cp='dbus-launch gcp'
 fi
 
