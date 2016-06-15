@@ -226,6 +226,18 @@ vimfind () {
 
 #}}}
 
+
+if [ -f /etc/debian_version ]; then
+  OS="Debian"
+elif [ -f /etc/manjaro-release ]; then
+  OS="Manjaro"
+else
+  OS="none"
+fi
+
+export OS
+
+
 PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
 export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
