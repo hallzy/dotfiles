@@ -1,19 +1,22 @@
 #!/bin/bash
 
+echo " " ;
+echo "==========================================="
+echo "Ready to Update..."
+
 echo "OS is $OS"
 if [[ $OS  == "Debian" ]]; then
-  update_cmd="sudo apt-get update && sudo apt-get -y dist-upgrade"
-elif [[ $OS  == "Manjaro" ]]; then
-  update_cmd="sudo pacman -Syyu --noconfirm"
+  sudo apt-get update
+  sudo apt-get -y dist-upgrade
+elif [[ $OS  == "Manjaro" &&
+        $OS  == "Arch"
+     ]]; then
+  sudo pacman -Syyu --noconfirm
 else
   echo "Could not determine what package manager to use."
   exit 1
 fi
 
-echo " " ;
-echo "==========================================="
-echo "Ready to Update..."
-$update_cmd
 echo " "
 echo "Update Complete!"
 echo "==========================================="
