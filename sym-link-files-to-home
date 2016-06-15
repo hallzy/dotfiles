@@ -7,28 +7,28 @@ CMD="$LN_CMD $DOTFILE_PATH"
 
 cd ~/
 
-"$CMD"/.auto-clone/
-"$CMD"/.vim
-"$CMD"/.vimrc
-"$CMD"/.bash_aliases
-"$CMD"/.bash_profile
-"$CMD"/.bashrc
-"$CMD"/.auto-install-programs/
-"$CMD"/.detoxrc
-"$CMD"/.fonts/
-"$CMD"/.gitconfig
-"$CMD"/.gnome2/
-"$CMD"/.gvimrc
-"$CMD"/.inputrc
-"$CMD"/.my-scripts/
-"$CMD"/sym-link-files-to-home
-"$CMD"/update-all-repos
-"$CMD"/custom-fortunes
-"$CMD"/.gitradarrc
-"$CMD"/.fetchmailrc
-"$CMD"/.msmtprc
-"$CMD"/.muttrc
-"$CMD"/.procmailrc
-"$CMD"/.tmux.conf
-"$CMD"/.tmux_theme.sh
+$CMD/.auto-clone/
+$CMD/.vim
+$CMD/.vimrc
+$CMD/.bash_aliases
+$CMD/.bash_profile
+$CMD/.bashrc
+$CMD/.auto-install-programs/
+$CMD/.detoxrc
+$CMD/.fonts/
+$CMD/.gitconfig
+$CMD/.gnome2/
+$CMD/.gvimrc
+$CMD/.inputrc
+$CMD/.my-scripts/
+$CMD/sym-link-files-to-home
+$CMD/update-all-repos
+$CMD/custom-fortunes
+$CMD/.gitradarrc
+$CMD/.fetchmailrc
+$CMD/.msmtprc
+$CMD/.muttrc
+$CMD/.procmailrc
+$CMD/.tmux.conf
+$CMD/.tmux_theme.sh
 
