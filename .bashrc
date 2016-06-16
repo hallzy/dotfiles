@@ -276,6 +276,7 @@ export PS1="$PS1\$(git-radar --bash --fetch) $ "
 eval $(thefuck --alias)
 
 export EDITOR="/usr/bin/vim"
+export editor="/usr/bin/vim"
 
 export NVM_DIR="/home/steven/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
