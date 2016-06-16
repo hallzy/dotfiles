@@ -660,7 +660,7 @@ let g:session_verbose_messages = 0
 
 " Use the powerline theme
 let g:lightline = {
-  \ 'colorscheme': 'powerline',
+  \ 'colorscheme': 'gruvbox',
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
