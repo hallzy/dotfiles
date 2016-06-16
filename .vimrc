@@ -164,8 +164,10 @@ set t_Co=256
 set smartcase
 set ignorecase
 
-" Colour scheme
-colorscheme badwolf
+" Colour scheme (there is a function call to cycle through all of these colours.
+" The colour in the list deonted by the index is the default)
+let g:my_colours = ["iceberg", "badwolf"]
+let g:index = 0
 set encoding=utf-8
 
 " With both of these set, I get relative numbers, but the current line gets the
@@ -440,6 +442,11 @@ noremap zl zb
 noremap j jzt
 " Move up and put the cursor and line at the bottom of the file
 noremap k kzb
+
+"}}}
+" ToggleColourScheme"{{{
+
+nnoremap <leader>tc :call ToggleColourScheme()<cr>
 
 "}}}
 
@@ -981,7 +988,6 @@ function! RemoveTrailingWhitespace()
 endfunction
 
 " }}}
-
 " VisualSelection - perform search and replacements for visual text"{{{
 
 " This is used for the next function
@@ -1318,6 +1324,17 @@ endif
 endfunction
 
 "}}}
+" ToggleColourScheme"{{{
+
+function! ToggleColourScheme()
+  let g:index = g:index + 1
+  if (g:index >= len(g:my_colours))
+    let g:index = 0
+  endif
+  exec 'colorscheme ' . g:my_colours[g:index]
+endfun
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -1505,6 +1522,13 @@ highlight colorcolumn ctermbg=red guibg=red
 "}}}
 
 "}}}
+
+
+" This sets my default colorscheme. I am putting this at the end of the file so
+" that my other highlightings get influenced by the scheme
+exec 'colorscheme ' . g:my_colours[g:index]
+
+
 
 " This is only for CPEN 331 for using gdb with os161. I will remove this
 " following the conclusion of this class.
