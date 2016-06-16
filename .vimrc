@@ -37,6 +37,7 @@ Plug 'brookhong/cscope.vim'
 Plug 'ciaranm/detectindent'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
+Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
@@ -49,8 +50,8 @@ Plug 'godlygeek/tabular'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'gioele/vim-autoswap'
-Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
 " Plug 'dahu/vim-fanfingtastic'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -164,10 +165,13 @@ set t_Co=256
 set smartcase
 set ignorecase
 
-" Colour scheme (there is a function call to cycle through all of these colours.
-" The colour in the list denoted by the index is the default)
-let g:my_colours = ["iceberg", "badwolf"]
-let g:index = 0
+" The colour in the list deonted by the index is the default)
+" The second number denotes whether to set the background
+" 1 = set background=dark
+" 0 = Do not set
+" -1 = set background=light
+let g:my_colours = [["iceberg", 0], ["badwolf", 0], ["gruvbox", 1]]
+let g:index = 2
 set encoding=utf-8
 
 " With both of these set, I get relative numbers, but the current line gets the
@@ -1331,7 +1335,13 @@ function! ToggleColourScheme()
   if (g:index >= len(g:my_colours))
     let g:index = 0
   endif
-  exec 'colorscheme ' . g:my_colours[g:index]
+  exec 'colorscheme ' . g:my_colours[g:index][0]
+  if (g:my_colours[g:index][1] == 1)
+    set background=dark
+  elseif (g:my_colours[g:index][1] == -1)
+    set background=light
+  endif
+  " set background=dark
 endfun
 
 "}}}
@@ -1524,9 +1534,19 @@ highlight colorcolumn ctermbg=red guibg=red
 "}}}
 
 
+" Set the gitgutter sign column to be bg0 - same as the background
+let g:gruvbox_sign_column="bg0"
+
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
-exec 'colorscheme ' . g:my_colours[g:index]
+exec 'colorscheme ' . g:my_colours[g:index][0]
+if (g:my_colours[g:index][1] == 1)
+  set background=dark
+elseif (g:my_colours[g:index][1] == -1)
+  set background=light
+endif
+
+
 
 
 
