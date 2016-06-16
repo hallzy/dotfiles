@@ -1,13 +1,15 @@
 # Dotfiles
 
-NOTE: I recently changed the repo to work better from a folder other than ~/
+### Colourschemes are at the bottom with the list of vim plugins.
 
-For this reason, it may turn out that something does not work as it should, or I
-may have missed a symlink in my new symlink script.
+#### Gruvbox Colourscheme
+![Gruvbox Colourscheme](./.screenshots/gruvbox-scheme.png)
 
-![C++ File](./.screenshots/c++.png)
+#### Iceberg Colourscheme
+![Iceberg Colourscheme](./.screenshots/iceberg-scheme.png)
 
-![C++ File with Nerdtree](./.screenshots/c++_w_nerdtree.png)
+#### Badwolf Colourscheme
+![Badwolf Colourscheme](./.screenshots/badwolf-scheme.png)
 
   This is a repo of the dot files that I use and have modifications for.
 
@@ -372,8 +374,8 @@ Plugins that I have:
   * [detectindent](https://github.com/ciaranm/detectindent)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
-  * [gruvbox colorscheme](https://github.com/morhetz/gruvbox)
-  * [iceberg colourscheme](https://github.com/cocopon/iceberg.vim)
+  * [gruvbox Colourscheme](https://github.com/morhetz/gruvbox)
+  * [iceberg Colourscheme](https://github.com/cocopon/iceberg.vim)
   * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [mru](https://github.com/vim-scripts/mru.vim)
   * [nerdtree](https://github.com/scrooloose/nerdtree)
