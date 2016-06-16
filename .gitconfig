@@ -73,7 +73,8 @@
   # commits all these changes, and resets the working directory as if it was all
   # deleted. This means if need be, I can get that commit back with reflog
   # eg. git wipe
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  wipe-all = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  wipe-modified = !git commit -aqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
   # Deletes a tag locally and remotely.
   delete-tag = "!f() { git push origin :refs/tags/$1; git tag -d $1; }; f"
