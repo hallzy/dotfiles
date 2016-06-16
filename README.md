@@ -372,6 +372,7 @@ Plugins that I have:
   * [detectindent](https://github.com/ciaranm/detectindent)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
   * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
+  * [gruvbox colorscheme](https://github.com/morhetz/gruvbox)
   * [iceberg colourscheme](https://github.com/cocopon/iceberg.vim)
   * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [mru](https://github.com/vim-scripts/mru.vim)
