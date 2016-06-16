@@ -64,3 +64,5 @@ alias untar='tar xvf'
 alias sbr='source ~/.bashrc'
 alias sba='source ~/.bash_aliases'
 
+alias reallykill='kill -9'
+

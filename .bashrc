@@ -227,10 +227,16 @@ vimfind () {
 #}}}
 
 
+# Operating Systems that I have tested that fit into one of these categories:
+# Ubuntu
+# Manjaro Mate
+# Antergos
 if [ -f /etc/debian_version ]; then
   OS="Debian"
 elif [ -f /etc/manjaro-release ]; then
   OS="Manjaro"
+elif [ -f /etc/arch-release ]; then
+  OS="Arch"
 else
   OS="none"
 fi
@@ -272,6 +278,7 @@ export PS1="$PS1\$(git-radar --bash --fetch) $ "
 eval $(thefuck --alias)
 
 export EDITOR="/usr/bin/vim"
+export editor="/usr/bin/vim"
 
 export NVM_DIR="/home/steven/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
