@@ -258,8 +258,10 @@ fi
 PROMPT_DIRTRIM=3
 export PS1="$PS1 \e[1;32m[\w]\e[m\n "
 
-export PATH=$PATH:$REPOS/useful-repos/git-radar
+# Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
+# This bin folder will be for scripts that are not mine... such as git-radar
+export PATH=$PATH:$HOME/.bin
 
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
