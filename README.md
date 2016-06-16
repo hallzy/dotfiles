@@ -1,6 +1,8 @@
 # Dotfiles
 
-### Colourschemes are at the bottom with the list of vim plugins.
+### Colourschemes
+
+Links for these colourschemes are at the bottom with the list of vim plugins.
 
 #### Gruvbox Colourscheme
 ![Gruvbox Colourscheme](./.screenshots/gruvbox-scheme.png)
