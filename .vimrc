@@ -346,13 +346,6 @@ xnoremap <silent> <space>c :!octave --silent \| cut -c8-<cr>:call AddCommas()<cr
 nnoremap <silent> <space>c v:!octave --silent \| cut -c8-<cr>:call AddCommas()<cr>
 
 "}}}
-" Make Errors"{{{
-
-" Navigate to errors that are given by a compiler
-nnoremap <leader>m :cnext<cr>
-nnoremap <leader>M :cprevious<cr>
-
-"}}}
 " For merge conflicts easily choose what version to use"{{{
 
 " For use in git mergetool using vimdiff
@@ -429,11 +422,11 @@ nnoremap ' `
 " ctrl+m, ctrl+h, ctrl+l"{{{
 
 " ctrl+m moves cursor to the middle of the screen
-noremap <leader>m M
+noremap <leader>M M
 " ctrl+h moves cursor to the top of the screen
-noremap <leader>h H
+noremap <leader>H H
 " ctrl+l moves cursor to the bottom of the screen
-noremap <leader>l L
+noremap <leader>L L
 
 " zh moves the current line to the top of the screen
 noremap zh zt
