@@ -165,7 +165,7 @@ set smartcase
 set ignorecase
 
 " Colour scheme (there is a function call to cycle through all of these colours.
-" The colour in the list deonted by the index is the default)
+" The colour in the list denoted by the index is the default)
 let g:my_colours = ["iceberg", "badwolf"]
 let g:index = 0
 set encoding=utf-8
