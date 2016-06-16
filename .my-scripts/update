@@ -6,11 +6,13 @@ echo "Ready to Update..."
 
 echo "OS is $OS"
 if [[ $OS  == "Debian" ]]; then
+  echo "Using apt-get"
   sudo apt-get update
   sudo apt-get -y dist-upgrade
-elif [[ $OS  == "Manjaro" &&
+elif [[ $OS  == "Manjaro" ||
         $OS  == "Arch"
      ]]; then
+  echo "Using pacman"
   sudo pacman -Syyu --noconfirm
 else
   echo "Could not determine what package manager to use."
