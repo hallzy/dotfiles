@@ -1476,7 +1476,7 @@ augroup END
 "}}}
 
 "}}}
-" highlightings"{{{
+" highlightings Before Colorscheme"{{{
 
 " diffs"{{{
 
@@ -1539,8 +1539,22 @@ elseif (g:my_colours[g:index][1] == -1)
   set background=light
 endif
 
+" highlightings After Colorscheme"{{{
 
+" trailing whitespace"{{{
 
+highlight highlighttrailingwhitespace ctermbg=white guibg=white ctermfg=white guifg=white
+
+augroup trailingwhitespacegroup
+  autocmd!
+  autocmd bufwinenter * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertleave * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
+augroup end
+
+"}}}
+
+"}}}
 
 
 " This is only for CPEN 331 for using gdb with os161. I will remove this
