@@ -1,6 +1,7 @@
 # some more ls aliases
-alias lal='ls -hAl'
-alias la='ls -A'
+alias ls='ls -F --color'
+alias lal='ls -hAlF'
+alias la='ls -AF'
 alias l='ls'
 
 # Spelling Mistakes
@@ -9,7 +10,7 @@ alias gti='git'
 alias gitst='git st'
 
 # Alias definitions.
-alias ll='ls -hl'
+alias ll='ls -hlF'
 
 # Give me a grep with 5 lines of context and line numbers
 alias grepcontext='grep -nC 5'
