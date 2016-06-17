@@ -115,11 +115,16 @@ All other changes I have made affect the prompt:
   * Appended the prompt so that it shows the 3 parent directories of the cwd.
   * Added git radar.
 
-The following is what my prompt looks like now:
+The colours of the prompt are taken straight from the palette of gruvbox, so it
+has a similar look to it. The only thing I can't change using the bashrc is the
+terminal background. The equivalent colour for what I am using is dark0 which
+has a hex value of "#282828", and an r-g-b value of "40-40-40". The value to use
+in bashrc is "235".
 
-![bash-gitradar](./.screenshots/bash-prompt-gitradar.png)
+The following is what my prompt looks like now (if the session is not an ssh
+session, then it will look the same, but without the ssh part):
 
-![bash-gitradar-ssh](./.screenshots/bash-prompt-gitradar-ssh.png)
+![bash-gitradar-ssh](./.screenshots/bash-prompt-gitradar.png)
 
 
 The above example is in an ssh session, in a git repo so git-radar is displayed
