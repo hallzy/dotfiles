@@ -43,6 +43,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'unblevable/quick-scope'
 Plug 'msanders/snipmate.vim'
 Plug 'scrooloose/syntastic'
@@ -170,7 +171,12 @@ set ignorecase
 " 1 = set background=dark
 " 0 = Do not set
 " -1 = set background=light
-let g:my_colours = [["iceberg", 0], ["badwolf", 0], ["gruvbox", 1]]
+" The 3rd field denotes whether or not to use their airline theme
+let g:my_colours = [["iceberg", 0, 0],
+                  \ ["badwolf", 0, 0],
+                  \ ["gruvbox", 1, 1],
+                  \ ["onedark", 0, 0],
+                  \]
 let g:index = 2
 set encoding=utf-8
 
