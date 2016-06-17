@@ -167,7 +167,7 @@ set smartcase
 set ignorecase
 
 " The colour in the list deonted by the index is the default)
-" The second number denotes whether to set the background
+" The second field denotes whether to set the background
 " 1 = set background=dark
 " 0 = Do not set
 " -1 = set background=light
@@ -668,7 +668,7 @@ let g:session_verbose_messages = 0
 
 " Use the powerline theme
 let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
+  \ 'colorscheme': 'powerline',
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
@@ -1338,18 +1338,42 @@ endfunction
 "}}}
 " ToggleColourScheme"{{{
 
+" Use this to check if this is the first execution of the function. The
+" first execution of this function is the startup of vim, so we just need to set
+" the colorscheme variable, and not call the lightline functions
+let g:tc_index = 0
+
 function! ToggleColourScheme()
-  let g:index = g:index + 1
   if (g:index >= len(g:my_colours))
     let g:index = 0
   endif
+
+  " Set the appropriate lightline theme
+  if (g:my_colours[g:index][2] == 1)
+    let g:lightline.colorscheme=g:my_colours[g:index][0]
+  else
+    let g:lightline.colorscheme="powerline"
+  endif
+
+  " If this is not the first execution, then run these
+  if (g:tc_index != 0)
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+  endif
+  let g:tc_index = 1
+
+  " Set the colorscheme
   exec 'colorscheme ' . g:my_colours[g:index][0]
+
+  " Set the appropriate background level
   if (g:my_colours[g:index][1] == 1)
     set background=dark
   elseif (g:my_colours[g:index][1] == -1)
     set background=light
   endif
-  " set background=dark
+
+  let g:index = g:index + 1
 endfun
 
 "}}}
@@ -1547,12 +1571,7 @@ let g:gruvbox_sign_column="bg0"
 
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
-exec 'colorscheme ' . g:my_colours[g:index][0]
-if (g:my_colours[g:index][1] == 1)
-  set background=dark
-elseif (g:my_colours[g:index][1] == -1)
-  set background=light
-endif
+call ToggleColourScheme()
 
 " highlightings After Colorscheme"{{{
 
