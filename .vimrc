@@ -440,6 +440,15 @@ noremap j jzt
 " Move up and put the cursor and line at the bottom of the file
 noremap k kzb
 
+" easier combinations. Consider the scenario where I use j to move down to a
+" line, but I go past the line. then I press k to go back up to the line, but
+" now my cursor is towards the bottom of the screen when I would prefer it to be
+" at the top, as if I was pressing j to go down, but without moving to the line
+" below. Basically, these mappings shift the screen just as j and k do, but
+" without moving my cursor up or down a line.
+noremap <c-k> zb
+noremap <c-j> zt
+
 "}}}
 " ToggleColourScheme"{{{
 
