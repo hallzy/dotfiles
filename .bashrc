@@ -244,9 +244,13 @@ fi
 export OS
 
 
-PS1="\e[0;31m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
+# All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
+
+
+PS1="\e[38;5;167m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
-export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
+# export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
+export PS1="$PS1 \e[38;5;167m[\$(date +"%r")]\e[m"
 
 # Bash Prompt Settings for SSH Sessions
 # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
@@ -255,14 +259,15 @@ export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   # Change colour of "git:" in git radar (the colour used by putty is the same as
   # background so I cannot see it.
-  export GIT_RADAR_FORMAT=" \\x01\\033[0;36m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[0;36m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
+  export GIT_RADAR_FORMAT=" \\x01\\033[38;5;109m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[38;5;109m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
   # Add SSH: to the prompt ("SSH:" is cyan)
-  export PS1="\e[0;36mSSH:\e[m $PS1"
+  # export PS1="\e[0;36mSSH:\e[m $PS1"
+  export PS1="\e[38;5;109mSSH:\e[m $PS1"
 fi
 
 # Show 3 parent directories
 PROMPT_DIRTRIM=3
-export PS1="$PS1 \e[1;32m[\w]\e[m\n "
+export PS1="$PS1 \e[38;5;142m[\w]\e[m\n "
 
 # Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
