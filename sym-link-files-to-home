@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILE_PATH=~/Documents/git-repos/remote-github/dotfiles
+DOTFILE_PATH=$dotfiles
 LN_CMD="ln -fs"
 
 CMD="$LN_CMD $DOTFILE_PATH"
@@ -21,7 +21,6 @@ $CMD/.gnome2/
 $CMD/.gvimrc
 $CMD/.inputrc
 $CMD/.my-scripts/
-$CMD/sym-link-files-to-home
 $CMD/update-all-repos
 $CMD/custom-fortunes
 $CMD/.gitradarrc
