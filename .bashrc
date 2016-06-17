@@ -287,3 +287,13 @@ export editor="/usr/bin/vim"
 
 export NVM_DIR="/home/steven/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# Setup the ls colours
+LS_COLORS=$LS_COLORS:'di=38;5;142:'
+LS_COLORS=$LS_COLORS:'ln=38;5;109:'
+LS_COLORS=$LS_COLORS:'or=38;5;208:'
+LS_COLORS=$LS_COLORS:'ex=38;5;167:'
+LS_COLORS=$LS_COLORS:'fi=38;5;229:'
+export LS_COLORS
+
