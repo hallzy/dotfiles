@@ -97,8 +97,8 @@ fi
 
 source /etc/environment
 
-REPOS=~/Documents/git-repos
-dotfiles=~/Documents/git-repos/remote-github/dotfiles
+export REPOS=~/Documents/git-repos
+export dotfiles=~/Documents/git-repos/remote-github/dotfiles
 
 
 exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
@@ -272,7 +272,7 @@ export PS1="$PS1 \e[38;5;142m[\w]\e[m\n "
 # Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
 # This bin folder will be for scripts that are not mine... such as git-radar
-export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$dotfiles/.bin
 
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
