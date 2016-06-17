@@ -336,7 +336,7 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 " Escape removes trailing whitespace from eol"{{{
 
 "esc now removes whitespace from the line that you are escaping from
-inoremap <silent> <esc> <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
+nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 "}}}
 "Evaluate a mathematical expression"{{{
