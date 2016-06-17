@@ -237,6 +237,9 @@ elif [ -f /etc/manjaro-release ]; then
   OS="Manjaro"
 elif [ -f /etc/arch-release ]; then
   OS="Arch"
+elif [ -f /etc/windows ]; then
+  # This file does not exist by default in git bash
+  OS="Windows"
 else
   OS="none"
 fi
@@ -250,7 +253,11 @@ export OS
 PS1="\e[38;5;167m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
 # Add Time stamp to bash prompt
 # export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
-export PS1="$PS1 \e[38;5;167m[\$(date +"%r")]\e[m"
+if [[ $OS != "Windows" ]]; then
+  # Don't get the date if we are running windows. The date function does not
+  # seem to work
+  export PS1="$PS1 \e[38;5;167m[\$(date +"%r")]\e[m"
+fi
 
 # Bash Prompt Settings for SSH Sessions
 # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
