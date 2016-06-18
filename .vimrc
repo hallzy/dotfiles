@@ -40,6 +40,7 @@ Plug 'vim-scripts/git-time-lapse'
 Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
 Plug '844196/lightline-badwolf.vim'
+Plug 'hallzy/lightline-onedark'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
 Plug 'scrooloose/nerdtree'
@@ -175,7 +176,7 @@ set ignorecase
 let g:my_colours = [["iceberg", 0, 0],
                   \ ["badwolf", 0, 1],
                   \ ["gruvbox", 1, 1],
-                  \ ["onedark", 0, 0],
+                  \ ["onedark", 0, 1],
                   \]
 let g:index = 2
 set encoding=utf-8
