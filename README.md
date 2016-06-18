@@ -376,6 +376,7 @@ Plugins that I have:
   * [a.vim](https://github.com/vim-scripts/a.vim)
   * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
   * [badwolf Colourscheme](https://github.com/sjl/badwolf)
+  * [badwolf lightline theme](https://github.com/844196/lightline-badwolf.vim)
   * [Conque GDB](https://github.com/vim-scripts/Conque-GDB)
   * [cscope.vim](https://github.com/brookhong/cscope.vim)
   * [detectindent](https://github.com/ciaranm/detectindent)

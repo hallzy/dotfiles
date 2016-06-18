@@ -39,6 +39,7 @@ Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
+Plug '844196/lightline-badwolf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
 Plug 'scrooloose/nerdtree'
@@ -51,9 +52,8 @@ Plug 'godlygeek/tabular'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'gioele/vim-autoswap'
-Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
-" Plug 'dahu/vim-fanfingtastic'
+Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
@@ -173,7 +173,7 @@ set ignorecase
 " -1 = set background=light
 " The 3rd field denotes whether or not to use their airline theme
 let g:my_colours = [["iceberg", 0, 0],
-                  \ ["badwolf", 0, 0],
+                  \ ["badwolf", 0, 1],
                   \ ["gruvbox", 1, 1],
                   \ ["onedark", 0, 0],
                   \]
