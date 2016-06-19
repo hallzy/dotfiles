@@ -40,6 +40,7 @@ Plug 'vim-scripts/git-time-lapse'
 Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
 Plug '844196/lightline-badwolf.vim'
+Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/mru.vim'
@@ -173,7 +174,7 @@ set ignorecase
 " 0 = Do not set
 " -1 = set background=light
 " The 3rd field denotes whether or not to use their airline theme
-let g:my_colours = [["iceberg", 0, 0],
+let g:my_colours = [["iceberg", 0, 1],
                   \ ["badwolf", 0, 1],
                   \ ["gruvbox", 1, 1],
                   \ ["onedark", 0, 1],
