@@ -1380,6 +1380,11 @@ function! ToggleColourScheme(direction)
   elseif (g:my_colours[g:index][1] == -1)
     set background=light
   endif
+
+  if (a:direction != "init")
+    redraw
+    echo g:my_colours[g:index][0]
+  endif
 endfun
 
 "}}}
