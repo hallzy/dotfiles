@@ -460,7 +460,8 @@ noremap <c-j> zt
 "}}}
 " ToggleColourScheme"{{{
 
-nnoremap <leader>tc :call ToggleColourScheme()<cr>
+nnoremap <leader>tc :call ToggleColourScheme("next")<cr>
+nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
 
 "}}}
 
@@ -1340,14 +1341,20 @@ endfunction
 "}}}
 " ToggleColourScheme"{{{
 
-" Use this to check if this is the first execution of the function. The
-" first execution of this function is the startup of vim, so we just need to set
-" the colorscheme variable, and not call the lightline functions
-let g:tc_index = 0
+" direction = next --> Go to the next colorscheme in the list
+" direction = prev --> Go to the prev colorscheme in the list
+" direction = init --> This is the first execution
+function! ToggleColourScheme(direction)
+  if (a:direction == "next")
+    let g:index = g:index + 1
+  elseif (a:direction == "prev")
+    let g:index = g:index - 1
+  endif
 
-function! ToggleColourScheme()
   if (g:index >= len(g:my_colours))
     let g:index = 0
+  elseif (g:index < 0)
+    let g:index = len(g:my_colours) - 1
   endif
 
   " Set the appropriate lightline theme
@@ -1358,12 +1365,11 @@ function! ToggleColourScheme()
   endif
 
   " If this is not the first execution, then run these
-  if (g:tc_index != 0)
+  if (a:direction != "init")
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
   endif
-  let g:tc_index = 1
 
   " Set the colorscheme
   exec 'colorscheme ' . g:my_colours[g:index][0]
@@ -1374,8 +1380,6 @@ function! ToggleColourScheme()
   elseif (g:my_colours[g:index][1] == -1)
     set background=light
   endif
-
-  let g:index = g:index + 1
 endfun
 
 "}}}
@@ -1573,7 +1577,7 @@ let g:gruvbox_sign_column="bg0"
 
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
-call ToggleColourScheme()
+call ToggleColourScheme("init")
 
 " highlightings After Colorscheme"{{{
 
