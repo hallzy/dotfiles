@@ -239,16 +239,16 @@ nnoremap <Down>   <C-w>-
 
 " Use ctrl+j to move to the window below, ctrl+k to move to the window above,
 " etc.
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+nnoremap UJ <C-W>j
+nnoremap UK <C-W>k
+nnoremap UL <C-W>l
+nnoremap UH <C-W>h
 
 " Move splits with U<movement>
-nnoremap UJ <C-W>J
-nnoremap UK <C-W>K
-nnoremap UL <C-W>L
-nnoremap UH <C-W>H
+nnoremap Uj <C-W>J
+nnoremap Uk <C-W>K
+nnoremap Ul <C-W>L
+nnoremap Uh <C-W>H
 
 "}}}
 " Change what "*" does"{{{
