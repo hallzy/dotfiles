@@ -17,11 +17,19 @@ if [[ $OS  == "Debian" ]]; then
   echo "Autoremoving Obsolete Packages"
   echo "=============================="
   sudo apt-get -y autoremove
+  echo "Performing autoclean"
+  echo "===================="
+  sudo apt-get -y autoclean
 elif [[ $OS  == "Manjaro" ||
         $OS  == "Arch"
      ]]; then
   echo "Using pacman"
+  echo ""
+  echo "Updating Repos and System"
+  echo "========================="
   sudo pacman -Syyu --noconfirm
+  echo "Autoremoving obsolete packages and cleaning"
+  echo "==========================================="
   sudo pacman -Rns --noconfirm $(pacman -Qqtd)
 else
   echo "Could not determine what package manager to use."
