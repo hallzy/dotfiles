@@ -117,9 +117,18 @@ All other changes I have made affect the prompt:
 
 The colours of the prompt are taken straight from the palette of gruvbox, so it
 has a similar look to it. The only thing I can't change using the bashrc is the
-terminal background. The equivalent colour for what I am using is dark0 which
+terminal background and text colour.
+
+####Background
+
+The equivalent colour for what I am using is dark0 which
 has a hex value of "#282828", and an r-g-b value of "40-40-40". The value to use
 in bashrc is "235".
+
+####Text
+
+has a hex value of "#BBBBBB", and an r-g-b value of "187-187-187".
+
 
 The following is what my prompt looks like now (if the session is not an ssh
 session, then it will look the same, but without the ssh part):
