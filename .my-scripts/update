@@ -7,8 +7,16 @@ echo "Ready to Update..."
 echo "OS is $OS"
 if [[ $OS  == "Debian" ]]; then
   echo "Using apt-get"
+  echo ""
+  echo "Updating Repos"
+  echo "=============="
   sudo apt-get update
+  echo "Updating System"
+  echo "==============="
   sudo apt-get -y dist-upgrade
+  echo "Autoremoving Obsolete Packages"
+  echo "=============================="
+  sudo apt-get -y autoremove
 elif [[ $OS  == "Manjaro" ||
         $OS  == "Arch"
      ]]; then
