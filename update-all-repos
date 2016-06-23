@@ -14,7 +14,7 @@ function updateRepo {
     exit
   fi
 
-  cd ~/Documents/git-repos/"$1" || exit
+  cd "$1" || exit
 
   REPO_NAMES=(*)
 
@@ -27,7 +27,9 @@ function updateRepo {
   done
 }
 
-updateRepo "remote-github"
-updateRepo "repos-i-contribute-to"
-updateRepo "useful-repos"
 
+
+updateRepo "$REPOS/remote-github"
+updateRepo "$REPOS/repos-i-contribute-to"
+updateRepo "$REPOS/useful-repos"
+updateRepo "$dotfiles/.submodules"

@@ -1,6 +1,11 @@
 #!/bin/bash
 
-DOTFILE_PATH=$dotfiles
+if [ -e $dotfiles ]; then
+  DOTFILE_PATH=$(pwd)
+else
+  DOTFILE_PATH=$dotfiles
+fi
+
 LN_CMD="ln -fs"
 
 CMD="$LN_CMD $DOTFILE_PATH"
