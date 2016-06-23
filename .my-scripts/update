@@ -22,6 +22,7 @@ elif [[ $OS  == "Manjaro" ||
      ]]; then
   echo "Using pacman"
   sudo pacman -Syyu --noconfirm
+  sudo pacman -Rns --noconfirm $(pacman -Qqtd)
 else
   echo "Could not determine what package manager to use."
   exit 1
