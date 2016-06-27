@@ -31,7 +31,8 @@ Then do these for the initial setup:
 ```bash
 $ mkdir Documents/git-repos/remote-github
 $ cd Documents/git-repos-remote-github
-$ git clone https://github.com/hallzy/dotfiles.git
+# --recursive will also get git-radar as a submodule
+$ git clone --recursive https://github.com/hallzy/dotfiles.git
 $ dotfiles/sym-link-files-to-home
 $ cd ~
 $ .auto-install-programs/install-programs
