@@ -26,6 +26,10 @@ sudo freshclam -v
 sudo /etc/init.d/clamav-freshclam start
 print_text "Updating Virus Definitions -- Completed"
 
+if [ "$1" == "update" ]; then
+  exit 0
+fi
+
 
 if [ "$1" = "-r" ]
 then
