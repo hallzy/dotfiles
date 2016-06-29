@@ -4,6 +4,7 @@ echo " " ;
 echo "==========================================="
 echo "Ready to Update..."
 
+# $OS is an environment variable that is set in my bashrc
 echo "OS is $OS"
 if [[ $OS  == "Debian" ]]; then
   echo "Using apt-get"
