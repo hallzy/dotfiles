@@ -332,7 +332,11 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 nnoremap <silent> H :call HMapping()<cr>
 onoremap <silent> H :call HMapping()<cr>
 vnoremap <silent> H <esc>:call HMappingVisual()<cr>
-noremap L $
+
+nnoremap <silent> L :call LMapping()<cr>
+onoremap <silent> L :call LMapping()<cr>
+vnoremap <silent> L <esc>:call LMappingVisual()<cr>
+
 
 "}}}
 "Create Closing Tag for HTML Tags"{{{
@@ -1233,6 +1237,33 @@ function! HMappingVisual()
 
   if startc <= endc
     exec "normal! gv0"
+  else
+    exec "normal! gv"
+  endif
+endfun
+
+"}}}
+"LMapping()"{{{
+
+" If I am on the first character of a line, and press H, take me to the
+" first column. Otherwise take me to the first non whitespace character of the
+" line.
+function! LMapping()
+  let c = col(".")
+  exec "normal! 80|"
+
+  if c >= col(".")
+    exec "normal! $"
+  endif
+endfun
+
+function! LMappingVisual()
+  let startc = col(".")
+  exec "normal! gv80|\<esc>"
+  let endc = col(".")
+
+  if startc >= endc
+    exec "normal! gv$"
   else
     exec "normal! gv"
   endif
