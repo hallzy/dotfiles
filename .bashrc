@@ -175,7 +175,7 @@ tm () {
         if (($(stat -c "%a" $session_path/$SESSION_NAME) < 666)); then
           sudo chmod 666 $session_path/$SESSION_NAME
         fi
-        tmux -S $session_path/$SESSION_NAME attach || rm -rf $SESSION_NAME
+        tmux -S $session_path/$SESSION_NAME attach
         break;;
       "Attach To Session From CWD")
         cd -
