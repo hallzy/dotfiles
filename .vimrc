@@ -59,6 +59,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
+Plug 'whatyouhide/vim-lengthmatters'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'osyo-manga/vim-over'
@@ -1593,12 +1594,9 @@ highlight colorcolumn guifg=white
 "}}}
 " highlightpast80"{{{
 
-" make it obvious where 80 characters is
-let &colorcolumn="81,82,".join(range(120,999),",")
-
 augroup vimrcex
   autocmd!
-  autocmd filetype gitcommit let &colorcolumn="51,73,74,".join(range(120,999),",")
+  autocmd filetype gitcommit let &colorcolumn="51"
 augroup end
 
 highlight colorcolumn ctermbg=red guibg=red

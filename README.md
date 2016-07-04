@@ -413,6 +413,7 @@ Plugins that I have:
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
   * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
+  * [vim-lengthmatters](https://github.com/whatyouhide/vim-lengthmatters)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
   * [vim-over](https://github.com/osyo-manga/vim-over)
