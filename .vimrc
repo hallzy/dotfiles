@@ -469,6 +469,11 @@ nnoremap <leader>tc :call ToggleColourScheme("next")<cr>
 nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
 
 "}}}
+" Make Y behave similarly to D."{{{
+
+nnoremap Y y$
+
+"}}}
 
 "}}}
 " abbrevs"{{{
