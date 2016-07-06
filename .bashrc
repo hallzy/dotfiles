@@ -156,7 +156,6 @@ tm () {
   if (($(stat -c "%a" $session_path) != 777)); then
     sudo chmod 777 $session_path
   fi
-  cd $session_path
   options=("New Session" "Attach To Session" "Attach To Session From CWD" "Remove Session")
   echo "Available sessions"
   echo "------------------"
@@ -170,7 +169,7 @@ tm () {
         cd -
         break;;
       "Attach To Session")
-        ls -1
+        ls -1 $session_path
         read -p "Enter session name: " SESSION_NAME
         if (($(stat -c "%a" $session_path/$SESSION_NAME) < 666)); then
           sudo chmod 666 $session_path/$SESSION_NAME
@@ -187,7 +186,7 @@ tm () {
         tmux -S ${PWD}/$SESSION_NAME attach
         break;;
       "Remove Session")
-        ls -1
+        ls -1 $session_path
         read -p "Session to Delete: " SESSION_NAME
         rm -rf $SESSION_NAME
         break;;
