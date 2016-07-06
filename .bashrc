@@ -174,7 +174,15 @@ tm () {
         if (($(stat -c "%a" $session_path/$SESSION_NAME) < 666)); then
           sudo chmod 666 $session_path/$SESSION_NAME
         fi
-        tmux -S $session_path/$SESSION_NAME attach
+        failed=0
+        tmux -S $session_path/$SESSION_NAME attach || failed=1
+        if (( failed == 1 )); then
+          echo "Session either does not exist, or it is inactive"
+          echo "Deleting Session"
+          rm -rf $session_path/$SESSION_NAME
+          echo "Creating new session"
+          tmux -S $session_path/$SESSION_NAME
+        fi
         break;;
       "Attach To Session From CWD")
         cd -
@@ -188,7 +196,7 @@ tm () {
       "Remove Session")
         ls -1 $session_path
         read -p "Session to Delete: " SESSION_NAME
-        rm -rf $SESSION_NAME
+        rm -rf $session_path/$SESSION_NAME
         break;;
       *)
         break;;
