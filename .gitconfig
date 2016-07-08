@@ -94,3 +94,5 @@
   showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
 [push]
   default = matching
+[rebase]
+	autosquash = true
