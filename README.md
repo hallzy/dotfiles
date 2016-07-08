@@ -432,6 +432,7 @@ Plugins that I have:
   * [vimShell](https://github.com/Shougo/vimshell.vim)
   * [vissort](https://github.com/yaroot/vissort)
   * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
+  * [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) - See the repo for installation instructions. Compilation is required
 
 Notes:
 

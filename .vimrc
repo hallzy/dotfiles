@@ -54,8 +54,8 @@ Plug 'godlygeek/tabular'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'gioele/vim-autoswap'
-Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
@@ -78,6 +78,7 @@ Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
 Plug 'gavinbeatty/vmath.vim'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
