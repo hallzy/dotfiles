@@ -12,6 +12,8 @@ alias gitst='git st'
 # Alias definitions.
 alias ll='ls -hlF'
 
+alias grep='grep -I'
+
 # Give me a grep with 5 lines of context and line numbers
 alias grepcontext='grep -nC 5'
 
