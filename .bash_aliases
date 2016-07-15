@@ -71,3 +71,6 @@ alias sba='source ~/.bash_aliases'
 
 alias reallykill='kill -9'
 
+# Show me disk info, like space that is left and disk capacity
+alias diskspace='df -kh .'
+
