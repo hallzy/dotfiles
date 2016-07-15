@@ -49,17 +49,18 @@
 
   newdifftool = !git difftool $1@{1}..$1@{0}
 
-  # Does a pull and shows the commits that were pulled in ls or ll format
-  pls = !git pull && git newls
-  pll = !git pull && git newll
-
   # Removes a file from version control, but does not remove the file itself
   # eg. git rmvc file
   rmvc = rm --cached
 
   # Creates a remote branch of the same name of the current checked out branch
   # and sets up tracking with that branch
-  track = !git push -u origin $(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+  track = "!f() { \
+              remote=${1:origin}; \
+              branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
+              git push -u $remote $branch; \
+            }; \
+            f"
 
   # Removes branches that are not being used anymore
   # eg. git rm-branch-auto-complete
@@ -77,22 +78,24 @@
   wipe-modified = !git commit -aqm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
   # Deletes a tag locally and remotely.
-  delete-tag = "!f() { git push origin :refs/tags/$1; git tag -d $1; }; f"
-
-  # deletes all branches already merged into master
-  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  delete-tag = " \
+    !f() {  \
+      git push origin :refs/tags/$1; \
+      git tag -d $1; \
+    }; \
+    f"
 
   # pulls changes from remote, removes remote-tracking branches that no longer
   # exist on remote
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
 
-  # deletes the specified remote branch, checks out master, calls git up, and
-  # calls git bclean
-  bdone = "!f() { git delete-remote-branch $1 && git checkout ${2-master} && git up && git bclean ${2-master}; }; f"
-
   # does a git difftool of a givem commit, or HEAD if none is specified
-  showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+  showtool = "!showci () { \
+                rev=${1:-HEAD}; \
+                git difftool $rev~1 $rev; \
+              }; \
+              showci"
 [push]
   default = matching
 [rebase]
-	autosquash = true
+  autosquash = true
