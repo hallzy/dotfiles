@@ -64,7 +64,7 @@
 
   # Removes branches that are not being used anymore
   # eg. git rm-branch-auto-complete
-  rm-branch-auto-complete = fetch --prune origin
+  rm-branch-auto-complete = fetch --prune -v origin
 
   # Deletes a remote branch
   # eg. git delete-remote-branch issue#6
@@ -87,7 +87,7 @@
 
   # pulls changes from remote, removes remote-tracking branches that no longer
   # exist on remote
-  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  up = !git pull -v --rebase --prune $@ && git submodule update --init --recursive
 
   # does a git difftool of a givem commit, or HEAD if none is specified
   showtool = "!showci () { \
