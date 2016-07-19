@@ -869,6 +869,8 @@ autocmd BufReadPost * :DetectIndent
 " Indentline"{{{
 
 let g:indentLine_char = '│'
+let g:indentLine_first_char='│'
+let g:indentLine_showFirstIndentLevel=1
 
 " Use the colour of gruvbox comments. Looks descent for my colourschemes
 let g:indentLine_color_term = 245
