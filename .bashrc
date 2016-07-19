@@ -311,3 +311,4 @@ LS_COLORS=$LS_COLORS:'ex=38;5;167:'
 LS_COLORS=$LS_COLORS:'fi=38;5;229:'
 export LS_COLORS
 
+source /home/steven/Documents/git-repos/bigdata/docker-bigdata-cluster/local-hadoop/source.sh
