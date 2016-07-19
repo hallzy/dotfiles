@@ -395,6 +395,7 @@ Plugins that I have:
   * [gruvbox Colourscheme](https://github.com/morhetz/gruvbox)
   * [iceberg Colourscheme](https://github.com/cocopon/iceberg.vim)
   * [iceberg lightline theme](https://github.com/halllzy/lightline-iceberg)
+  * [indentline](https://github.com/Yggdroot/indentLine)
   * [lightline.vim](https://github.com/itchyny/lightline.vim)
   * [mru](https://github.com/vim-scripts/mru.vim)
   * [nerdtree](https://github.com/scrooloose/nerdtree)

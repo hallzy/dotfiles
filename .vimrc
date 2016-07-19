@@ -39,6 +39,7 @@ Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
+Plug 'Yggdroot/indentLine'
 Plug '844196/lightline-badwolf.vim'
 Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
@@ -863,6 +864,15 @@ let g:detectindent_preferred_indent = 2
 
 " Automatically run detectIndent
 autocmd BufReadPost * :DetectIndent
+
+"}}}
+" Indentline"{{{
+
+let g:indentLine_char = '│'
+
+" Use the colour of gruvbox comments. Looks descent for my colourschemes
+let g:indentLine_color_term = 245
+let g:indentLine_color_gui = '#928374'
 
 "}}}
 
