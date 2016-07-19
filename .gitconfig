@@ -58,7 +58,7 @@
   track = "!f() { \
               remote=${1:origin}; \
               branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
-              git push -u $remote $branch; \
+              git branch -u $remote/$branch; \
             }; \
             f"
 
