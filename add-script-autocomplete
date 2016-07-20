@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Nothing is in this folder, so this script doesn't do anything currently
+cd /etc/bash_completion.d/
+ac_files=$(pwd)
+
+cd "$dotfiles"/.autocomplete
+
+CMD="ln -fs"
+
+for file in *
+do
+  sudo ln -sf "$(pwd)"/"$file" "$ac_files"
+done
+
