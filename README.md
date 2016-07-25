@@ -410,6 +410,7 @@ Plugins that I have:
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-easy-align](https://github.com/junegunn/vim-easy-align)
   * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
+  * [vim-endwise](https:github.com/tpope/vim-endwise)
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
