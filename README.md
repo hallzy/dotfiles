@@ -405,6 +405,7 @@ Plugins that I have:
   * [snipmate](https://github.com/msanders/snipmate.vim)
   * [syntastic](https://github.com/scrooloose/syntastic)
   * [tabular](https://github.com/godlygeek/tabular)
+  * [taghighlight](https://github.com/abudden/taghighlight-automirror)
   * [tComment](http://github.com/vim-scripts/tComment)
   * [unite.vim](https://github.com/Shougo/unite.vim)
   * [vim-abolish](https://github.com/tpope/vim-abolish)

@@ -52,6 +52,7 @@ Plug 'unblevable/quick-scope'
 Plug 'msanders/snipmate.vim'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
+Plug 'abudden/taghighlight-automirror'
 Plug 'vim-scripts/tComment'
 Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-abolish'
@@ -877,6 +878,16 @@ let g:indentLine_showFirstIndentLevel=1
 " Use the colour of gruvbox comments. Looks descent for my colourschemes
 let g:indentLine_color_term = 245
 let g:indentLine_color_gui = '#928374'
+
+"}}}
+" TagHighlight"{{{
+
+" Make the files hidden files
+if ! exists('g:TagHighlightSettings')
+  let g:TagHighlightSettings = {}
+endif
+let g:TagHighlightSettings['TypesFilePrefix'] = '.types'
+let g:TagHighlightSettings['TagFileName'] = '.tags'
 
 "}}}
 
