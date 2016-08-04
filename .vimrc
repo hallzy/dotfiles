@@ -887,6 +887,8 @@ let g:indentLine_color_gui = '#928374'
 if ! exists('g:TagHighlightSettings')
   let g:TagHighlightSettings = {}
 endif
+
+" Make the tag files be hidden files. I don't want to see them.
 let g:TagHighlightSettings['TypesFilePrefix'] = '.types'
 let g:TagHighlightSettings['TagFileName'] = '.tags'
 
