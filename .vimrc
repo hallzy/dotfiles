@@ -1724,13 +1724,13 @@ if has('conceal')
   au bufenter * hi! link Conceal Greek
 "}}}
 
+  au bufenter * set conceallevel=2
+
+  " Only conceal on the current line when it is a command line.
+  " au bufenter * set concealcursor=c
+  au bufenter * set concealcursor=c
+
 endif
-
-au bufenter * set conceallevel=2
-
-" Only conceal on the current line when it is a command line.
-" au bufenter * set concealcursor=c
-au bufenter * set concealcursor=c
 
 "}}}
 
