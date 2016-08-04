@@ -1669,6 +1669,59 @@ if has('conceal')
 
   au bufenter * hi! link Conceal Operator
 
+  " Greek Alphabet {{{
+  au bufenter * syntax match Greek "alpha" conceal cchar=α
+  au bufenter * syntax match Greek "Alpha" conceal cchar=Α
+  au bufenter * syntax match Greek "beta" conceal cchar=β
+  au bufenter * syntax match Greek "Beta" conceal cchar=Β
+  au bufenter * syntax match Greek "gamma" conceal cchar=γ
+  au bufenter * syntax match Greek "Gamma" conceal cchar=Γ
+  au bufenter * syntax match Greek "delta" conceal cchar=δ
+  au bufenter * syntax match Greek "Delta" conceal cchar=Δ
+  au bufenter * syntax match Greek "epsilon" conceal cchar=ε
+  au bufenter * syntax match Greek "Epsilon" conceal cchar=Ε
+  au bufenter * syntax match Greek "zeta" conceal cchar=ζ
+  au bufenter * syntax match Greek "Zeta" conceal cchar=Ζ
+  au bufenter * syntax match Greek "eta" conceal cchar=η
+  au bufenter * syntax match Greek "Eta" conceal cchar=Η
+  au bufenter * syntax match Greek "theta" conceal cchar=θ
+  au bufenter * syntax match Greek "Theta" conceal cchar=Θ
+  au bufenter * syntax match Greek "iota" conceal cchar=ι
+  au bufenter * syntax match Greek "Iota" conceal cchar=Ι
+  au bufenter * syntax match Greek "kappa" conceal cchar=κ
+  au bufenter * syntax match Greek "Kappa" conceal cchar=Κ
+  au bufenter * syntax match Greek "lambda" conceal cchar=λ
+  au bufenter * syntax match Greek "Lambda" conceal cchar=Λ
+  au bufenter * syntax match Greek "mu" conceal cchar=μ
+  au bufenter * syntax match Greek "Mu" conceal cchar=Μ
+  au bufenter * syntax match Greek "nu" conceal cchar=ν
+  au bufenter * syntax match Greek "Nu" conceal cchar=Ν
+  au bufenter * syntax match Greek "xi" conceal cchar=ξ
+  au bufenter * syntax match Greek "Xi" conceal cchar=Ξ
+  au bufenter * syntax match Greek "omicron" conceal cchar=ο
+  au bufenter * syntax match Greek "Omicron" conceal cchar=Ο
+  au bufenter * syntax match Greek "pi" conceal cchar=π
+  au bufenter * syntax match Greek "Pi" conceal cchar=Π
+  au bufenter * syntax match Greek "rho" conceal cchar=ρ
+  au bufenter * syntax match Greek "Rho" conceal cchar=Ρ
+  au bufenter * syntax match Greek "sigma" conceal cchar=σ
+  au bufenter * syntax match Greek "Sigma" conceal cchar=Σ
+  au bufenter * syntax match Greek "tau" conceal cchar=τ
+  au bufenter * syntax match Greek "Tau" conceal cchar=Τ
+  au bufenter * syntax match Greek "upsilon" conceal cchar=υ
+  au bufenter * syntax match Greek "Upsilon" conceal cchar=Υ
+  au bufenter * syntax match Greek "phi" conceal cchar=φ
+  au bufenter * syntax match Greek "Phi" conceal cchar=Φ
+  au bufenter * syntax match Greek "chi" conceal cchar=χ
+  au bufenter * syntax match Greek "Chi" conceal cchar=Χ
+  au bufenter * syntax match Greek "psi" conceal cchar=ψ
+  au bufenter * syntax match Greek "Psi" conceal cchar=Ψ
+  au bufenter * syntax match Greek "omega" conceal cchar=ω
+  au bufenter * syntax match Greek "Omega" conceal cchar=Ω
+
+  au bufenter * hi! link Conceal Greek
+"}}}
+
 endif
 
 au bufenter * set conceallevel=2
