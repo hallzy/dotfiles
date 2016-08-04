@@ -1660,6 +1660,25 @@ augroup end
 
 "}}}
 
+" Global Conceals"{{{
+if has('conceal')
+  au bufenter * syntax match Operator "==" conceal cchar=≡
+  au bufenter * syntax match Operator "!=" conceal cchar=≠
+  au bufenter * syntax match Operator ">=" conceal cchar=≥
+  au bufenter * syntax match Operator "<=" conceal cchar=≤
+
+  au bufenter * hi! link Conceal Operator
+
+endif
+
+au bufenter * set conceallevel=2
+
+" Only conceal on the current line when it is a command line.
+" au bufenter * set concealcursor=c
+au bufenter * set concealcursor=c
+
+"}}}
+
 "}}}
 
 
