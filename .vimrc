@@ -484,13 +484,55 @@ nnoremap Y y$
 "}}}
 " abbrevs"{{{
 
-" Typo fixes"{{{
-
-" Abbreviations that fix typos
-iabbrev waht what
-iabbrev adn and
-
-"}}}
+" Greek Alphabet
+inoremap   alpha''     α
+inoremap   Alpha''     Α
+inoremap   beta''      β
+inoremap   Beta''      Β
+inoremap   gamma''     γ
+inoremap   Gamma''     Γ
+inoremap   delta''     δ
+inoremap   Delta''     Δ
+inoremap   epsilon''   ε
+inoremap   Epsilon''   Ε
+inoremap   zeta''      ζ
+inoremap   Zeta''      Ζ
+inoremap   eta''       η
+inoremap   Eta''       Η
+inoremap   theta''     θ
+inoremap   Theta''     Θ
+inoremap   iota''      ι
+inoremap   Iota''      Ι
+inoremap   kappa''     κ
+inoremap   Kappa''     Κ
+inoremap   lambda''    λ
+inoremap   Lambda''    Λ
+inoremap   mu''        μ
+inoremap   Mu''        Μ
+inoremap   nu''        ν
+inoremap   Nu''        Ν
+inoremap   xi''        ξ
+inoremap   Xi''        Ξ
+inoremap   omicron''   ο
+inoremap   Omicron''   Ο
+inoremap   pi''        π
+inoremap   Pi''        Π
+inoremap   rho''       ρ
+inoremap   Rho''       Ρ
+inoremap   sigma''     σ
+inoremap   Sigma''     Σ
+inoremap   tau''       τ
+inoremap   Tau''       Τ
+inoremap   upsilon''   υ
+inoremap   Upsilon''   Υ
+inoremap   phi''       φ
+inoremap   Phi''       Φ
+inoremap   chi''       χ
+inoremap   Chi''       Χ
+inoremap   psi''       ψ
+inoremap   Psi''       Ψ
+inoremap   omega''     ω
+inoremap   Omega''     Ω
 
 "}}}
 " Plugins"{{{
@@ -1661,6 +1703,9 @@ augroup trailingwhitespacegroup
 augroup end
 
 "}}}
+
+" These conceals are basically only useful for programming, since they keep
+" ascii characters as the actual source.
 
 " Global Conceals"{{{
 if has('conceal')
