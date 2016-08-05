@@ -65,7 +65,7 @@ echo " "
 echo " "
 
 
-if [[ $do_user_interaction = "y" || $do_user_interaction = "Y" ]]
+if [[ $do_user_interaction == "y" || $do_user_interaction == "Y" ]]
 then
   # This is for programs that may require user interaction
   for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
@@ -102,10 +102,10 @@ then
 fi
 
 
-if [[ $do_long = "y" || $do_long = "Y" ]]
+if [[ $do_long == "y" || $do_long == "Y" ]]
 then
   # This is for programs that may require user interaction
-  for PROGRAM in "${PROGRAMS_USER_INTERACT[@]}"
+  for PROGRAM in "${PROGRAMS_LONG[@]}"
   do
     # Skip comments when parsing
     [[ ${PROGRAM:0:1} == "#" ]] && continue
