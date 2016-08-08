@@ -1713,6 +1713,7 @@ if has('conceal')
   au bufenter * syntax match Operator "!=" conceal cchar=≠
   au bufenter * syntax match Operator ">=" conceal cchar=≥
   au bufenter * syntax match Operator "<=" conceal cchar=≤
+  au bufenter * syntax match Operator "&nbsp;" conceal cchar=-
 
   au bufenter * hi! link Conceal Operator
 
