@@ -62,6 +62,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'jamessan/vim-gnupg'
 Plug 'suan/vim-instant-markdown'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'plasticboy/vim-markdown'
@@ -935,6 +936,16 @@ let g:TagHighlightSettings['TypesFilePrefix'] = '.types'
 let g:TagHighlightSettings['TagFileName'] = '.tags'
 
 "}}}
+" vim-gnupg
+
+" Source an external file that contains recipients. I keep it external so I don't
+" push identities of people I know. Identities can be found using the
+" \"gpg--list-keys" Command. The gpg_recipients.vim file looks like this:
+" let g:GPGPossibleRecipients=[
+"   \"Steven Hall <Hallzy.18@gmail.com>",
+"   \"Someone Else <other@person.com>"
+"   \]
+source $dotfiles/gpg_recipients.vim
 
 "}}}
 " Functions"{{{

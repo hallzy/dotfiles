@@ -7,3 +7,5 @@ tmux-*.log
 .vim/init.vim
 .vim/plugged/
 cscope.out
+gpg_recipients.vim
+.gnome2/Vim

@@ -416,6 +416,7 @@ Plugins that I have:
   * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
   * [vim-fugitive](https://github.com/tpope/vim-fugitive)
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+  * [vim-gnupg](jamessan/vim-gnupg)
   * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
   * [vim-lengthmatters](https://github.com/whatyouhide/vim-lengthmatters)
   * [vim-markdown](https://github.com/plasticboy/vim-markdown)
