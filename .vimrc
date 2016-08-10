@@ -176,18 +176,6 @@ set t_Co=256
 set smartcase
 set ignorecase
 
-" The colour in the list deonted by the index is the default)
-" The second field denotes whether to set the background
-" 1 = set background=dark
-" 0 = Do not set
-" -1 = set background=light
-" The 3rd field denotes whether or not to use their airline theme
-let g:my_colours = [["iceberg", 0, 1],
-                  \ ["badwolf", 0, 1],
-                  \ ["gruvbox", 1, 1],
-                  \ ["onedark", 0, 1],
-                  \]
-let g:index = 2
 set encoding=utf-8
 
 " With both of these set, I get relative numbers, but the current line gets the
@@ -1458,11 +1446,33 @@ endif
 endfunction
 
 "}}}
-" ToggleColourScheme"{{{
+" Colourscheme Related"{{{
 
+" The colour in the list deonted by the index is the default)
+" The second field denotes whether to set the background
+" 1 = set background=dark
+" 0 = Do not set
+" -1 = set background=light
+" The 3rd field denotes whether or not to use their airline theme
+let g:my_colours = [["iceberg", 0, 1],
+                  \ ["badwolf", 0, 1],
+                  \ ["gruvbox", 1, 1],
+                  \ ["onedark", 0, 1],
+                  \]
+
+" Make a list of just the colour names
+let g:colour_names = []
+for colour in g:my_colours
+  call add(colour_names, colour[0])
+endfor
+
+" ToggleColourScheme"{{{
 " direction = next --> Go to the next colorscheme in the list
 " direction = prev --> Go to the prev colorscheme in the list
-" direction = init --> This is the first execution
+" direction = setup --> This is the first execution, used as an initial
+"                       colourscheme to use.
+" direction = init --> This is the second execution, and assigns the
+"                      colourscheme that we will actually be using.
 function! ToggleColourScheme(direction)
   if (a:direction == "next")
     let g:index = g:index + 1
@@ -1483,13 +1493,6 @@ function! ToggleColourScheme(direction)
     let g:lightline.colorscheme="powerline"
   endif
 
-  " If this is not the first execution, then run these
-  if (a:direction != "init")
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-  endif
-
   " Set the colorscheme
   exec 'colorscheme ' . g:my_colours[g:index][0]
 
@@ -1500,11 +1503,36 @@ function! ToggleColourScheme(direction)
     set background=light
   endif
 
-  if (a:direction != "init")
+  " If this is not the first execution, then run these
+  if (a:direction != "setup")
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+  endif
+
+  if (a:direction != "setup")
     redraw
     echo g:my_colours[g:index][0]
   endif
 endfun
+
+"}}}
+
+" Get DefaultColour"{{{
+" This function finds the default colourscheme to use based on filetype
+function! GetDefaultColour()
+  " Setting up the default colourscheme
+  if (&ft=='lua')
+    " Default for lua
+    " Badwolf has the best support for lua so we will use that as a default
+    let g:index = index(g:colour_names, "badwolf")
+  else
+    " default for anything else
+    let g:index = index(g:colour_names, "gruvbox")
+  endif
+endfunction
+
+"}}}
 
 "}}}
 
@@ -1698,7 +1726,15 @@ let g:gruvbox_sign_column="bg0"
 
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
-call ToggleColourScheme("init")
+call GetDefaultColour()
+call ToggleColourScheme("setup")
+
+au BufRead,BufNewFile,BufEnter * call DoColour()
+function DoColour()
+  call GetDefaultColour()
+  call ToggleColourScheme("init")
+endfunction
+
 
 " highlightings After Colorscheme"{{{
 
