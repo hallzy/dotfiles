@@ -422,7 +422,7 @@ Plugins that I have:
   * [vim-markdown](https://github.com/plasticboy/vim-markdown)
   * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
   * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-  * [vim-notes](xolox/vim-notes)
+  * [vim-notes](https://github.com/xolox/vim-notes)
   * [vim-over](https://github.com/osyo-manga/vim-over)
   * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
   * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
