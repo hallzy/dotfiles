@@ -772,7 +772,7 @@ let g:lightline.tabline = {
 " still keep the multiple cursors active.
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
-noremap ? :MultipleCursorsFind<space>
+noremap <c-m> :MultipleCursorsFind<space>
 
 "}}}
 " Syntastic"{{{
