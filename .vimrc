@@ -925,7 +925,7 @@ let g:TagHighlightSettings['TypesFilePrefix'] = '.types'
 let g:TagHighlightSettings['TagFileName'] = '.tags'
 
 "}}}
-" vim-gnupg
+" vim-gnupg"{{{
 
 " Source an external file that contains recipients. I keep it external so I don't
 " push identities of people I know. Identities can be found using the
@@ -935,6 +935,15 @@ let g:TagHighlightSettings['TagFileName'] = '.tags'
 "   \"Someone Else <other@person.com>"
 "   \]
 source $dotfiles/gpg_recipients.vim
+
+"}}}
+" vim-notes"{{{
+
+let g:notes_directories = [
+      \ '~/Documents/notes',
+      \ ]
+
+"}}}
 
 "}}}
 " Functions"{{{
