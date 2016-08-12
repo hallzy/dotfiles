@@ -426,6 +426,7 @@ Plugins that I have:
 [vim-multiple-cursors][]
 [vim-notes][]
 [vim-over][]
+[vim-quicklink][]
 [vim-repeat][]  - Currently I only use this to support vim-fanfingtastic
 [vim-rhubarb][]  - copy netrc file to ~/.netrc and add login info for this plugin
 [vim-session][]
@@ -445,6 +446,7 @@ Plugins that I have:
 [vimproc][]  - Dependancy of Unite.vim and VimShell- need to run install command
 [vissort][]
 [vmath.vim][]
+[webapi-vim][]
 [youcompleteme][]  - See the repo for installation instructions. Compilation is required
 
 [a.vim]: https://github.com/vim-scripts/a.vim
@@ -490,6 +492,7 @@ Plugins that I have:
 [vim-multiple-cursors]: https://github.com/terryma/vim-multiple-cursors
 [vim-notes]: https://github.com/xolox/vim-notes
 [vim-over]: https://github.com/osyo-manga/vim-over
+[vim-quicklink]: https://github.com/christoomey/vim-quicklink
 [vim-repeat]: https://github.com/tpope/vim-repeat
 [vim-rhubarb]: https://github.com/tpope/vim-rhubarb
 [vim-session]: https://github.com/xolox/vim-session.git
@@ -509,6 +512,7 @@ Plugins that I have:
 [vimproc]: https://github.com/Shougo/vimproc.vim
 [vissort]: https://github.com/yaroot/vissort
 [vmath.vim]: https://github.com/gavinbeatty/vmath.vim
+[webapi-vim]: https://github.com/mattn/webapi-vim
 [youcompleteme]: https://github.com/Valloric/YouCompleteMe
 
 Notes:
