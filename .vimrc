@@ -401,15 +401,11 @@ vnoremap Q J
 "}}}
 " Remap w W e and E"{{{
 
-" I find that I don't often use the lowercase versions of these, so I will just
-" map them to the uppercase versions, and the uppercase letters will be to go
-" backwards. This leaves b and B freen, which are now used for easymotion
-" movements.
-noremap w W
-noremap W B
+" Don't often use W or E so I will make them the backwards equivalent of their
+" lowercase counterparts
+noremap W b
 
-noremap e E
-noremap E gE
+noremap E ge
 
 "}}}
 " Extra mappings for saving and closing vim"{{{
