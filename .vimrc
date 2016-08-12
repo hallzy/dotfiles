@@ -1470,9 +1470,10 @@ endfunction
 " 0 = Do not set
 " -1 = set background=light
 " The 3rd field denotes whether or not to use their airline theme
-let g:my_colours = [["iceberg", 0, 1],
+let g:my_colours = [
                   \ ["badwolf", 0, 1],
                   \ ["gruvbox", 1, 1],
+                  \ ["iceberg", 0, 1],
                   \ ["onedark", 0, 1],
                   \]
 
