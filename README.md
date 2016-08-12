@@ -439,6 +439,7 @@ Plugins that I have:
 [vim-textobj-function][]
 [vim-textobj-indent][]
 [vim-textobj-user][]
+[vim-titlecase][]
 [vim-visualMarks][]
 [vimShell][]
 [vimlint][]  - Dependancy of syntastic for vimL
@@ -505,6 +506,7 @@ Plugins that I have:
 [vim-textobj-function]: https://github.com/kana/vim-textobj-function
 [vim-textobj-indent]: https://github.com/kana/vim-textobj-indent
 [vim-textobj-user]: https://github.com/kana/vim-textobj-user
+[vim-titlecase]: https://github.com/christoomey/vim-titlecase
 [vim-visualMarks]: https://github.com/iago-lito/vim-visualMarks
 [vimShell]: https://github.com/Shougo/vimshell.vim
 [vimlint]: https://github.com/syngan/vim-vimlint
