@@ -387,7 +387,7 @@ Plugins that I have:
   * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
   * [badwolf Colourscheme](https://github.com/sjl/badwolf)
   * [badwolf lightline theme](https://github.com/844196/lightline-badwolf.vim)
-  * [Conque GDB](https://github.com/vim-scripts/Conque-GDB)
+  * [conque gdb](https://github.com/vim-scripts/Conque-GDB)
   * [cscope.vim](https://github.com/brookhong/cscope.vim)
   * [detectindent](https://github.com/ciaranm/detectindent)
   * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
@@ -404,9 +404,9 @@ Plugins that I have:
   * [quick-scope](https://github.com/unblevable/quick-scope)
   * [snipmate](https://github.com/msanders/snipmate.vim)
   * [syntastic](https://github.com/scrooloose/syntastic)
+  * [tComment](http://github.com/vim-scripts/tComment)
   * [tabular](https://github.com/godlygeek/tabular)
   * [taghighlight](https://github.com/abudden/taghighlight-automirror)
-  * [tComment](http://github.com/vim-scripts/tComment)
   * [unite.vim](https://github.com/Shougo/unite.vim)
   * [vim-abolish](https://github.com/tpope/vim-abolish)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
@@ -433,13 +433,13 @@ Plugins that I have:
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
+  * [vimShell](https://github.com/Shougo/vimshell.vim)
   * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
   * [vimlparser](https://github.com/ynkdir/vim-vimlparser) - Dependancy of syntastic for vimL
   * [vimproc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim and VimShell- need to run install command
-  * [vimShell](https://github.com/Shougo/vimshell.vim)
   * [vissort](https://github.com/yaroot/vissort)
   * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
-  * [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) - See the repo for installation instructions. Compilation is required
+  * [youcompleteme](https://github.com/Valloric/YouCompleteMe) - See the repo for installation instructions. Compilation is required
 
 Notes:
 
