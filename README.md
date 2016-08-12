@@ -383,69 +383,133 @@ I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 
 Plugins that I have:
 
-  * [a.vim](https://github.com/vim-scripts/a.vim)
-  * [auto-pairs](https://github.com/jiangmiao/auto-pairs)
-  * [badwolf Colourscheme](https://github.com/sjl/badwolf)
-  * [badwolf lightline theme](https://github.com/844196/lightline-badwolf.vim)
-  * [conque gdb](https://github.com/vim-scripts/Conque-GDB)
-  * [cscope.vim](https://github.com/brookhong/cscope.vim)
-  * [detectindent](https://github.com/ciaranm/detectindent)
-  * [dragvisuals](https://github.com/gavinbeatty/dragvisuals.vim)
-  * [git-time-lapse](https://github.com/vim-scripts/git-time-lapse)
-  * [gruvbox Colourscheme](https://github.com/morhetz/gruvbox)
-  * [iceberg Colourscheme](https://github.com/cocopon/iceberg.vim)
-  * [iceberg lightline theme](https://github.com/halllzy/lightline-iceberg)
-  * [indentline](https://github.com/Yggdroot/indentLine)
-  * [lightline.vim](https://github.com/itchyny/lightline.vim)
-  * [mru](https://github.com/vim-scripts/mru.vim)
-  * [nerdtree](https://github.com/scrooloose/nerdtree)
-  * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
-  * [onedark lightline theme](https://github.com/halllzy/lightline-onedark)
-  * [quick-scope](https://github.com/unblevable/quick-scope)
-  * [replacewithregister](https://github.com/vim-scripts/ReplaceWithRegister)
-  * [snipmate](https://github.com/msanders/snipmate.vim)
-  * [syntastic](https://github.com/scrooloose/syntastic)
-  * [tabular](https://github.com/godlygeek/tabular)
-  * [taghighlight](https://github.com/abudden/taghighlight-automirror)
-  * [unite.vim](https://github.com/Shougo/unite.vim)
-  * [vim-abolish](https://github.com/tpope/vim-abolish)
-  * [vim-argumentative](https://github.com/PeterRincker/vim-argumentative)
-  * [vim-autoswap](https://github.com/gioele/vim-autoswap)
-  * [vim-commentary](https://github.com/tpope/vim-commentary)
-  * [vim-easy-align](https://github.com/junegunn/vim-easy-align)
-  * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
-  * [vim-endwise](https:github.com/tpope/vim-endwise)
-  * [vim-fanfingtastic](https://github.com/dahu/vim-fanfingtastic)
-  * [vim-fugitive](https://github.com/tpope/vim-fugitive)
-  * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
-  * [vim-gnupg](jamessan/vim-gnupg)
-  * [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
-  * [vim-lengthmatters](https://github.com/whatyouhide/vim-lengthmatters)
-  * [vim-markdown](https://github.com/plasticboy/vim-markdown)
-  * [vim-misc](https://github.com/xolox/vim-misc.git) - A dependancy of vim-session
-  * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-  * [vim-notes](https://github.com/xolox/vim-notes)
-  * [vim-over](https://github.com/osyo-manga/vim-over)
-  * [vim-repeat](https://github.com/tpope/vim-repeat) - Currently I only use this to support vim-fanfingtastic
-  * [vim-rhubarb](https://github.com/tpope/vim-rhubarb) - copy netrc file to ~/.netrc and add login info for this plugin
-  * [vim-session](https://github.com/xolox/vim-session.git)
-  * [vim-signature](https://github.com/kshenoy/vim-signature)
-  * [vim-sort-motion](https://github.com/christoomey/vim-sort-motion)
-  * [vim-startify](https://github.com/mhinz/vim-startify)
-  * [vim-surround](https://github.com/tpope/vim-surround)
-  * [vim-swap](https://github.com/kurkale6ka/vim-swap)
-  * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
-  * [vim-textobj-function](https://github.com/kana/vim-textobj-function)
-  * [vim-textobj-indent](https://github.com/kana/vim-textobj-indent)
-  * [vim-textobj-user](https://github.com/kana/vim-textobj-user)
-  * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
-  * [vimShell](https://github.com/Shougo/vimshell.vim)
-  * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
-  * [vimlparser](https://github.com/ynkdir/vim-vimlparser) - Dependancy of syntastic for vimL
-  * [vimproc](https://github.com/Shougo/vimproc.vim) - Dependancy of Unite.vim and VimShell- need to run install command
-  * [vissort](https://github.com/yaroot/vissort)
-  * [vmath.vim](https://github.com/gavinbeatty/vmath.vim)
-  * [youcompleteme](https://github.com/Valloric/YouCompleteMe) - See the repo for installation instructions. Compilation is required
+[a.vim][]
+[auto-pairs][]
+[badwolf Colourscheme][]
+[badwolf lightline theme][]
+[conque gdb][]
+[cscope.vim][]
+[detectindent][]
+[dragvisuals][]
+[git-time-lapse][]
+[gruvbox Colourscheme][]
+[iceberg Colourscheme][]
+[iceberg lightline theme][]
+[indentline][]
+[lightline.vim][]
+[mru][]
+[nerdtree][]
+[numbers.vim][]
+[onedark lightline theme][]
+[quick-scope][]
+[replacewithregister][]
+[snipmate][]
+[syntastic][]
+[tabular][]
+[taghighlight][]
+[unite.vim][]
+[vim-abolish][]
+[vim-argumentative][]
+[vim-autoswap][]
+[vim-commentary][]
+[vim-easy-align][]
+[vim-easymotion][]
+[vim-endwise][]
+[vim-fanfingtastic][]
+[vim-fugitive][]
+[vim-gitgutter][]
+[vim-gnupg][]
+[vim-instant-markdown][]
+[vim-lengthmatters][]
+[vim-markdown][]
+[vim-misc][]  - A dependancy of vim-session
+[vim-multiple-cursors][]
+[vim-notes][]
+[vim-over][]
+[vim-repeat][]  - Currently I only use this to support vim-fanfingtastic
+[vim-rhubarb][]  - copy netrc file to ~/.netrc and add login info for this plugin
+[vim-session][]
+[vim-signature][]
+[vim-sort-motion][]
+[vim-startify][]
+[vim-surround][]
+[vim-swap][]
+[vim-table-mode][]
+[vim-textobj-function][]
+[vim-textobj-indent][]
+[vim-textobj-user][]
+[vim-visualMarks][]
+[vimShell][]
+[vimlint][]  - Dependancy of syntastic for vimL
+[vimlparser][]  - Dependancy of syntastic for vimL
+[vimproc][]  - Dependancy of Unite.vim and VimShell- need to run install command
+[vissort][]
+[vmath.vim][]
+[youcompleteme][]  - See the repo for installation instructions. Compilation is required
+
+[a.vim]: https://github.com/vim-scripts/a.vim
+[auto-pairs]: https://github.com/jiangmiao/auto-pairs
+[badwolf Colourscheme]: https://github.com/sjl/badwolf
+[badwolf lightline theme]: https://github.com/844196/lightline-badwolf.vim
+[conque gdb]: https://github.com/vim-scripts/Conque-GDB
+[cscope.vim]: https://github.com/brookhong/cscope.vim
+[detectindent]: https://github.com/ciaranm/detectindent
+[dragvisuals]: https://github.com/gavinbeatty/dragvisuals.vim
+[git-time-lapse]: https://github.com/vim-scripts/git-time-lapse
+[gruvbox Colourscheme]: https://github.com/morhetz/gruvbox
+[iceberg Colourscheme]: https://github.com/cocopon/iceberg.vim
+[iceberg lightline theme]: https://github.com/halllzy/lightline-iceberg
+[indentline]: https://github.com/Yggdroot/indentLine
+[lightline.vim]: https://github.com/itchyny/lightline.vim
+[mru]: https://github.com/vim-scripts/mru.vim
+[nerdtree]: https://github.com/scrooloose/nerdtree
+[numbers.vim]: https://github.com/myusuf3/numbers.vim.git
+[onedark lightline theme]: https://github.com/halllzy/lightline-onedark
+[quick-scope]: https://github.com/unblevable/quick-scope
+[replacewithregister]: https://github.com/vim-scripts/ReplaceWithRegister
+[snipmate]: https://github.com/msanders/snipmate.vim
+[syntastic]: https://github.com/scrooloose/syntastic
+[tabular]: https://github.com/godlygeek/tabular
+[taghighlight]: https://github.com/abudden/taghighlight-automirror
+[unite.vim]: https://github.com/Shougo/unite.vim
+[vim-abolish]: https://github.com/tpope/vim-abolish
+[vim-argumentative]: https://github.com/PeterRincker/vim-argumentative
+[vim-autoswap]: https://github.com/gioele/vim-autoswap
+[vim-commentary]: https://github.com/tpope/vim-commentary
+[vim-easy-align]: https://github.com/junegunn/vim-easy-align
+[vim-easymotion]: https://github.com/Lokaltog/vim-easymotion
+[vim-endwise]: https:github.com/tpope/vim-endwise
+[vim-fanfingtastic]: https://github.com/dahu/vim-fanfingtastic
+[vim-fugitive]: https://github.com/tpope/vim-fugitive
+[vim-gitgutter]: https://github.com/airblade/vim-gitgutter
+[vim-gnupg]: jamessan/vim-gnupg
+[vim-instant-markdown]: https://github.com/suan/vim-instant-markdown
+[vim-lengthmatters]: https://github.com/whatyouhide/vim-lengthmatters
+[vim-markdown]: https://github.com/plasticboy/vim-markdown
+[vim-misc]: https://github.com/xolox/vim-misc.git
+[vim-multiple-cursors]: https://github.com/terryma/vim-multiple-cursors
+[vim-notes]: https://github.com/xolox/vim-notes
+[vim-over]: https://github.com/osyo-manga/vim-over
+[vim-repeat]: https://github.com/tpope/vim-repeat
+[vim-rhubarb]: https://github.com/tpope/vim-rhubarb
+[vim-session]: https://github.com/xolox/vim-session.git
+[vim-signature]: https://github.com/kshenoy/vim-signature
+[vim-sort-motion]: https://github.com/christoomey/vim-sort-motion
+[vim-startify]: https://github.com/mhinz/vim-startify
+[vim-surround]: https://github.com/tpope/vim-surround
+[vim-swap]: https://github.com/kurkale6ka/vim-swap
+[vim-table-mode]: https://github.com/dhruvasagar/vim-table-mode
+[vim-textobj-function]: https://github.com/kana/vim-textobj-function
+[vim-textobj-indent]: https://github.com/kana/vim-textobj-indent
+[vim-textobj-user]: https://github.com/kana/vim-textobj-user
+[vim-visualMarks]: https://github.com/iago-lito/vim-visualMarks
+[vimShell]: https://github.com/Shougo/vimshell.vim
+[vimlint]: https://github.com/syngan/vim-vimlint
+[vimlparser]: https://github.com/ynkdir/vim-vidlparser
+[vimproc]: https://github.com/Shougo/vimproc.vim
+[vissort]: https://github.com/yaroot/vissort
+[vmath.vim]: https://github.com/gavinbeatty/vmath.vim
+[youcompleteme]: https://github.com/Valloric/YouCompleteMe
 
 Notes:
 
