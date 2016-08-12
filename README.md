@@ -409,6 +409,7 @@ Plugins that I have:
   * [taghighlight](https://github.com/abudden/taghighlight-automirror)
   * [unite.vim](https://github.com/Shougo/unite.vim)
   * [vim-abolish](https://github.com/tpope/vim-abolish)
+  * [vim-argumentative](https://github.com/PeterRincker/vim-argumentative)
   * [vim-autoswap](https://github.com/gioele/vim-autoswap)
   * [vim-commentary](https://github.com/tpope/vim-commentary)
   * [vim-easy-align](https://github.com/junegunn/vim-easy-align)
