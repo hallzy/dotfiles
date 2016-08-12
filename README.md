@@ -435,6 +435,8 @@ Plugins that I have:
   * [vim-surround](https://github.com/tpope/vim-surround)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
+  * [vim-textobj-indent](https://github.com/kana/vim-textobj-indent)
+  * [vim-textobj-user](https://github.com/kana/vim-textobj-user)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
   * [vimShell](https://github.com/Shougo/vimshell.vim)
   * [vimlint](https://github.com/syngan/vim-vimlint) - Dependancy of syntastic for vimL
