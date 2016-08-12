@@ -341,7 +341,7 @@ onoremap <silent> H :call HMapping()<cr>
 vnoremap <silent> H <esc>:call HMappingVisual()<cr>
 
 nnoremap <silent> L :call LMapping()<cr>
-onoremap <silent> L :call LMapping()<cr>
+onoremap <silent> L g_
 vnoremap <silent> L <esc>:call LMappingVisual()<cr>
 
 
