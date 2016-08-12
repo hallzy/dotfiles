@@ -435,6 +435,7 @@ Plugins that I have:
   * [vim-surround](https://github.com/tpope/vim-surround)
   * [vim-swap](https://github.com/kurkale6ka/vim-swap)
   * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
+  * [vim-textobj-function](https://github.com/kana/vim-textobj-function)
   * [vim-textobj-indent](https://github.com/kana/vim-textobj-indent)
   * [vim-textobj-user](https://github.com/kana/vim-textobj-user)
   * [vim-visualMarks](https://github.com/iago-lito/vim-visualMarks)
