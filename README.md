@@ -438,6 +438,7 @@ Plugins that I have:
 [vim-table-mode][]
 [vim-textobj-function][]
 [vim-textobj-indent][]
+[vim-textobj-line][]
 [vim-textobj-user][]
 [vim-titlecase][]
 [vim-visualMarks][]
@@ -505,6 +506,7 @@ Plugins that I have:
 [vim-table-mode]: https://github.com/dhruvasagar/vim-table-mode
 [vim-textobj-function]: https://github.com/kana/vim-textobj-function
 [vim-textobj-indent]: https://github.com/kana/vim-textobj-indent
+[vim-textobj-line]: https://github.com/kana/vim-textobj-line
 [vim-textobj-user]: https://github.com/kana/vim-textobj-user
 [vim-titlecase]: https://github.com/christoomey/vim-titlecase
 [vim-visualMarks]: https://github.com/iago-lito/vim-visualMarks
