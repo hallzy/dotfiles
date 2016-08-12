@@ -476,6 +476,12 @@ nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
 nnoremap Y y$
 
 "}}}
+" Fix previous and next spelling mistakes"{{{
+
+nnoremap <silent> <leader>sp :normal! mz[s1z=`z<cr>:delmarks z<cr>
+nnoremap <silent> <leader>sn :normal! mz]s1z=`z<cr>:delmarks z<cr>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
