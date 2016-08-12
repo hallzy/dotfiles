@@ -402,6 +402,7 @@ Plugins that I have:
   * [numbers.vim](https://github.com/myusuf3/numbers.vim.git)
   * [onedark lightline theme](https://github.com/halllzy/lightline-onedark)
   * [quick-scope](https://github.com/unblevable/quick-scope)
+  * [replacewithregister](https://github.com/vim-scripts/ReplaceWithRegister)
   * [snipmate](https://github.com/msanders/snipmate.vim)
   * [syntastic](https://github.com/scrooloose/syntastic)
   * [tComment](http://github.com/vim-scripts/tComment)
