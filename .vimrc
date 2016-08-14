@@ -71,7 +71,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'xolox/vim-notes'
-Plug 'osyo-manga/vim-over'
 Plug 'christoomey/vim-quicklink'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
@@ -859,13 +858,6 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " Make vissort case insensitive
 let g:vissort_option= "i"
-
-"}}}
-" vim-over"{{{
-
-" Easy mapping to do substitutions live
-noremap :%s/ :OverCommandLine<cr>:%s/
-noremap :s/ :OverCommandLine<cr>:s/
 
 "}}}
 " Vim table mode"{{{
