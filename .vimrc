@@ -481,6 +481,21 @@ nnoremap <silent> <leader>sp :normal! mz[s1z=`z<cr>:delmarks z<cr>
 nnoremap <silent> <leader>sn :normal! mz]s1z=`z<cr>:delmarks z<cr>
 
 "}}}
+" Command line mode"{{{
+
+" Custom mappings for command line mode so that the default / ? and : keys open
+" command line mode
+
+nnoremap / q/i
+vnoremap / q/i
+
+nnoremap ? q?i
+vnoremap ? q?i
+
+nnoremap : q:i
+vnoremap : q:i
+
+"}}}
 
 "}}}
 " abbrevs"{{{
