@@ -1,0 +1,151 @@
+if has("gui_running")
+  " Use the specified location, and supress the git error.
+  silent call plug#begin('~/vim/vimfiles/plugged')
+else
+  call plug#begin()
+endif
+
+Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+filetype plugin indent on
+set nocompatible  " Use Vim settings, rather then Vi settings
+
+set ttyfast
+set lazyredraw
+
+" Turn off column and cursor highlight when leaving a vim window, and turn them
+" on when entering
+augroup highlightCursorLine
+  autocmd!
+  autocmd WinLeave * set nocursorline nocursorcolumn
+  autocmd WinEnter * set cursorline cursorcolumn
+augroup END
+
+" Start with highlighted columns and lines
+set cursorline
+set cursorcolumn
+
+set backspace=2   " Backspace deletes like most programs in insert mode
+set nobackup
+set nowritebackup
+  " When editing a file, always jump to the last known cursor position.
+set history=500
+set ruler             " show the cursor position all the time
+set showcmd           " display incomplete commands
+set incsearch         " do incremental searching
+set hlsearch          " highlight matches
+set laststatus=2      " Always display the status line
+set autowrite         " Automatically :write before running commands
+set autoread          " If the current file is updated elsewhere auto update it
+set showmatch         " Shows the matching bracket or brace
+
+set nostartofline     " when using gg or G, stay in the same column
+
+syntax on
+
+set textwidth=80
+set shortmess+=A
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+" Display extra whitespace
+set list listchars=tab:>-,trail:-
+
+set encoding=utf-8
+
+" Color scheme (terminal)
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
+" With both of these set, I get relative numbers, but the current line gets the
+" line number - Hybrid Numbering
+set number
+set relativenumber
+
+set numberwidth=5
+
+set undolevels=1000
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Use markers for folds
+set foldmethod=marker
+
+" Set the gitgutter sign column to be bg0 - same as the background
+let g:gruvbox_sign_column="bg0"
+
+
+
+" Lightline - Status Bar"{{{
+
+" Use the powerline theme
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
+  \ 'component': {
+      \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
+      \ 'lineinfo': "LN %l/%{line('$')}",
+      \ 'colinfo': "COL %-2v",
+      \ 'charvaluehex' : "char: 0x%B",
+  \ },
+  \ 'component_visible_condition': {
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+  \ },
+\ }
+
+" This is where I define a variable to a function
+" I used to use this but I left it here as an example in case I want to use this
+" in the future. The total number of lines is done above in lineinfo
+" TotalNumberOfLines will contain the number of lines in a file.
+" let g:lightline.component_function = {
+"       \ 'totalNumberOfLines': 'NumberOfLinesFunction',
+"       \ }
+
+" The layout of lightline when it is the active window
+" Left Side
+" Mode | Paste Mode || Branch | Read Only | Relative Path | Modified ||
+"Right Side
+" Format | Encoding | Filetype || Percent || line info | column ||
+let g:lightline.active = {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
+    \            [ 'percent' ],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+
+" The layout of lightline when it is not the active window
+" Left Side
+" Read Only |  Relative Path | Modified ||
+"Right Side
+" Percent || line info | column ||
+let g:lightline.inactive = {
+    \ 'left': [ [ 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
+    \            [ 'percent' ] ] }
+
+" The layout of lightline for the tab line when tabs exist.
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ] }
+
+"}}}
+
+" trailing whitespace"{{{
+
+highlight highlighttrailingwhitespace ctermbg=white guibg=white ctermfg=white guifg=white
+
+augroup trailingwhitespacegroup
+  autocmd!
+  autocmd bufwinenter * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertleave * match highlighttrailingwhitespace /\s\+$/
+  autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
+augroup end
+
+"}}}

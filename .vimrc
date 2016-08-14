@@ -500,6 +500,14 @@ nnoremap : q:i
 vnoremap : q:i
 
 "}}}
+" Vim Easy-Mode"{{{
+
+" This is a mode for others to use. Because my vimrc is so customized, I imagine
+" it being difficult for others to use. This will load the open file with a
+" minimalistic vimrc file.
+nnoremap <silent> <leader>em :!vim -u $dotfiles/.vimrc-others %<cr>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
