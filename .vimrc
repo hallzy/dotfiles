@@ -414,6 +414,10 @@ nnoremap ZX :qa!<cr>
 nnoremap ZA :wqa<cr>
 nnoremap ZS :w<cr>
 
+" When using q: or q/ or q? for some reason ZQ doesn't seem to work. Creating an
+" explicit mapping makes it work.
+nnoremap ZQ :q!<cr>
+
 "}}}
 " _ is now K - but special"{{{
 
