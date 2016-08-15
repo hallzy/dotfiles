@@ -971,7 +971,9 @@ let g:TagHighlightSettings['TagFileName'] = '.tags'
 "   \"Steven Hall <Hallzy.18@gmail.com>",
 "   \"Someone Else <other@person.com>"
 "   \]
-source $dotfiles/gpg_recipients.vim
+if filereadable($dotfiles . "/gpg_recipients.vim")
+  source $dotfiles/gpg_recipients.vim
+endif
 
 "}}}
 " vim-notes"{{{
