@@ -508,6 +508,12 @@ vnoremap : q:i
 nnoremap <silent> <leader>em :!vim -u $dotfiles/.vimrc-others %<cr>
 
 "}}}
+" Units"{{{
+
+" Convert units using the external units command
+nnoremap <silent> <leader>u :call Units()<cr>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
@@ -1575,6 +1581,70 @@ function! GetDefaultColour()
 endfunction
 
 "}}}
+
+"}}}
+" Units Function"{{{
+
+" This function uses the units bash program to convert values. Upon execution,
+" the function will ask for the starting value and units (default value is 1),
+" and the destination units. It will then use the units program to find the
+" converted value. The answer will be stored in register @a, the source in
+" register @s and the destination in register @d. The values will also be shown
+" in the bottom of the page after function execution.
+
+" If you do not type in any information at the proompts, the function checks @s
+" and @d for inputs and uses those as defaults, so you can copy a value into
+" those registers directly from vim. They just can't have a newline on them.
+function Units()
+  let source = input('Enter Starting Units: ')
+  let dest = input('Enter the Units that you Want: ')
+
+  " If the above variables are empty because the user did not enter anything,
+  " assume we are using the @s and @d registers.
+  if source == ''
+    let source = @s
+  endif
+
+  if dest == ''
+    let dest = @d
+  endif
+
+
+  let mycommand = ":read !units \'" . source . "\' \'" . dest . "\' \| grep -oP \'\\* \\K.*\' \|\| echo \'AnErrorOcurred\'"
+
+  exec mycommand
+  " Append the units to the end of the answer
+  exec "normal! A " . dest
+  " Save the answer in register 'a'
+  exec "normal! ^vg_\"adddk"
+
+  if @a =~ "AnErrorOcurred"
+    echoe "An Error Ocurred during Conversion. Double check that the units you are using are recognized by \"units\". Check the config file specified with the command: \"units -U\""
+  else
+    let @s = source
+    let @d = dest
+    " Report the answer and save everything into a register
+    let s:REPORT_GAP = 5  "spaces between components
+    let gap = repeat(" ", s:REPORT_GAP)
+    highlight NormalUnderlined term=underline cterm=underline gui=underline
+
+    echohl NormalUnderlined
+    echon 'a'
+    echohl NONE
+    echon  'nswer: ' . @a . gap
+
+    echohl NormalUnderlined
+    echo  's'
+    echohl NONE
+    echon  'rc: ' . @s . gap
+
+    echohl NormalUnderlined
+    echon 'd'
+    echohl NONE
+    echon  'est: ' . @d . gap
+  endif
+
+endfunction
 
 "}}}
 
