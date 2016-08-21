@@ -1,0 +1,11 @@
+#!/bin/bash
+
+file1hash=($(md5sum $1))
+file2hash=($(md5sum $2))
+
+if [ "${file1hash[0]}" = "${file2hash[0]}" ]; then
+  echo "Files are Identical"
+  echo "${file1hash[0]}"
+else
+  echo "Files are Different"
+fi
