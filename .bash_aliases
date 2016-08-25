@@ -3,6 +3,8 @@ alias ls='ls -Fh --color'
 alias lal='ls -hAlF'
 alias la='ls -AF'
 alias l='ls'
+alias l.='ls -d .*'
+alias ll.='ls -ld .*'
 
 # Spelling Mistakes
 alias sl='ls'
