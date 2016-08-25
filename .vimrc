@@ -30,6 +30,7 @@ else
 endif
 
 Plug 'vim-scripts/a.vim'
+Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
@@ -981,6 +982,22 @@ endif
 let g:notes_directories = [
       \ '~/Documents/notes',
       \ ]
+
+"}}}
+" ack.vim"{{{
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+nnoremap <leader>a :Ack!<space>
+
+"Search for the word under my cursor, or being highlighted
+nnoremap <leader>A :Ack! <c-r><c-w><cr>
+vnoremap <leader>A y:Ack! "<c-r>""<cr>
+
+" Highlight the results
+let g:ackhighlight = 1
 
 "}}}
 

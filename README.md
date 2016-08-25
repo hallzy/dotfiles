@@ -384,6 +384,7 @@ I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 Plugins that I have:
 
 [a.vim][]
+[ack.vim][]
 [auto-pairs][]
 [badwolf Colourscheme][]
 [badwolf lightline theme][]
@@ -451,6 +452,7 @@ Plugins that I have:
 [youcompleteme][]  - See the repo for installation instructions. Compilation is required
 
 [a.vim]: https://github.com/vim-scripts/a.vim
+[ack.vim]: https://github.com/mileszs/ack.vim
 [auto-pairs]: https://github.com/jiangmiao/auto-pairs
 [badwolf Colourscheme]: https://github.com/sjl/badwolf
 [badwolf lightline theme]: https://github.com/844196/lightline-badwolf.vim
