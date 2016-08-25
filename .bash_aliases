@@ -78,3 +78,6 @@ alias reallykill='kill -9'
 # Show me disk info, like space that is left and disk capacity
 alias diskspace='df -kh .'
 
+# Get disk usage for the current Directory and subfolders
+alias diskusage="du -sh ./"
+
