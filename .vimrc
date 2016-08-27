@@ -169,6 +169,12 @@ set nostartofline     " when using gg or G, stay in the same column
 
 syntax on
 
+" Only do syntax highlighting for the first 81 columns. This improves
+" performance for files with massively long lines like for example, a json file.
+" Normally vim would slow to a crawl, but this prevents that. Given that columns
+" past 80 don't highlight for me anyways, this makes no visual differnece for me
+" anyways.
+set synmaxcol=81
 
 set textwidth=80
 
