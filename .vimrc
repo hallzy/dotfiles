@@ -1750,6 +1750,17 @@ augroup markdownGroup
 augroup END
 
 "}}}
+" Google Script Group"{{{
+
+augroup googleScriptGroup
+  autocmd!
+  " Set syntax highlighting for specific file types
+  " Google Script is basically javascript, so I will just pretend it is a
+  " javascript file for syntax highlighting
+  autocmd BufRead,BufNewFile *.gs set filetype=javascript
+augroup END
+
+"}}}
 " spellCheck"{{{
 
 augroup spellCheck
