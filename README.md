@@ -422,7 +422,6 @@ Plugins that I have:
 [vim-gnupg][]
 [vim-instant-markdown][]
 [vim-lengthmatters][]
-[vim-markdown][]
 [vim-misc][]  - A dependancy of vim-session
 [vim-multiple-cursors][]
 [vim-notes][]
@@ -490,7 +489,6 @@ Plugins that I have:
 [vim-gnupg]: jamessan/vim-gnupg
 [vim-instant-markdown]: https://github.com/suan/vim-instant-markdown
 [vim-lengthmatters]: https://github.com/whatyouhide/vim-lengthmatters
-[vim-markdown]: https://github.com/plasticboy/vim-markdown
 [vim-misc]: https://github.com/xolox/vim-misc.git
 [vim-multiple-cursors]: https://github.com/terryma/vim-multiple-cursors
 [vim-notes]: https://github.com/xolox/vim-notes
