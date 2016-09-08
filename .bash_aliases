@@ -81,3 +81,6 @@ alias diskspace='df -kh .'
 # Get disk usage for the current Directory and subfolders
 alias diskusage="du -sh ./"
 
+alias localserver="python -m SimpleHTTPServer"
+
+alias restart-wifi="sudo service network-manager restart"
