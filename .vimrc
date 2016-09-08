@@ -1904,14 +1904,6 @@ augroup end
 
 " Global Conceals"{{{
 if has('conceal')
-  au bufenter * syntax match Operator "==" conceal cchar=≡
-  au bufenter * syntax match Operator "!=" conceal cchar=≠
-  au bufenter * syntax match Operator ">=" conceal cchar=≥
-  au bufenter * syntax match Operator "<=" conceal cchar=≤
-  au bufenter * syntax match Operator "&nbsp;" conceal cchar=-
-
-  au bufenter * hi! link Conceal Operator
-
   " Greek Alphabet {{{
   au bufenter * syntax match Greek "greek_alpha" conceal cchar=α
   au bufenter * syntax match Greek "greek_Alpha" conceal cchar=Α
