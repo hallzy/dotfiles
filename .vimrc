@@ -1768,6 +1768,7 @@ augroup spellCheck
   " Enable spellchecking for Markdown and gitcommit messages
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
+  autocmd FileType notes setlocal spell
 augroup END
 
 "}}}
