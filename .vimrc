@@ -1961,7 +1961,6 @@ if has('conceal')
   au bufenter * set conceallevel=2
 
   " Only conceal on the current line when it is a command line.
-  " au bufenter * set concealcursor=c
   au bufenter * set concealcursor=c
 
 endif
