@@ -525,7 +525,8 @@ nnoremap <silent> <leader>u :call Units()<cr>
 "}}}
 " abbrevs"{{{
 
-" Greek Alphabet
+" Greek Alphabet"{{{
+
 inoremap   alpha''     α
 inoremap   Alpha''     Α
 inoremap   beta''      β
@@ -574,6 +575,28 @@ inoremap   psi''       ψ
 inoremap   Psi''       Ψ
 inoremap   omega''     ω
 inoremap   Omega''     Ω
+
+"}}}
+" Math"{{{
+
+inoremap forall''          ∀
+inoremap thereexists''     ∃
+inoremap therefore''       ∴
+inoremap because''         ∵
+inoremap in''              ∈
+inoremap intersect''       ∩
+inoremap union''           ∪
+inoremap subset''          ⊂
+inoremap subset_eq''       ⊆
+inoremap integral''        ∫
+inoremap double_integral'' ∬
+inoremap natural''         ℕ
+inoremap rational''        ℚ
+inoremap real''            ℝ
+inoremap integer''         ℤ
+
+"}}}
+
 
 "}}}
 " Plugins"{{{
