@@ -596,7 +596,11 @@ inoremap real''            ℝ
 inoremap integer''         ℤ
 
 "}}}
+" Other"{{{
 
+inoremap degrees'' °
+
+"}}}
 
 "}}}
 " Plugins"{{{
