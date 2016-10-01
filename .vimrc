@@ -525,6 +525,11 @@ nnoremap <silent> <leader>u :call Units()<cr>
 "}}}
 " abbrevs"{{{
 
+" spelling"{{{
+
+" These are all in ~/.vim/after/plugin/abolish.vim
+
+"}}}
 " Greek Alphabet"{{{
 
 inoremap   alpha''     α

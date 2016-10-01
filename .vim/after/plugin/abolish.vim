@@ -7,3 +7,7 @@ endif
 
 " I always spell definitely wrong.
 Abolish defi{nate,ant,nita}{ly} definite{ly}
+
+" Fix the word foreign
+Abolish foregin{er} foreign{er}
+
