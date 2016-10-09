@@ -599,6 +599,7 @@ inoremap natural''         ℕ
 inoremap rational''        ℚ
 inoremap real''            ℝ
 inoremap integer''         ℤ
+inoremap join''            ⋈
 
 "}}}
 " Other"{{{
