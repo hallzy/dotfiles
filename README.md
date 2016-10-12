@@ -383,72 +383,74 @@ I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins:
 
 Plugins that I have:
 
-[a.vim][]
-[ack.vim][]
-[auto-pairs][]
-[badwolf Colourscheme][]
-[badwolf lightline theme][]
-[conque gdb][]
-[cscope.vim][]
-[detectindent][]
-[dragvisuals][]
-[git-time-lapse][]
-[gruvbox Colourscheme][]
-[iceberg Colourscheme][]
-[iceberg lightline theme][]
-[indentline][]
-[lightline.vim][]
-[mru][]
-[nerdtree][]
-[numbers.vim][]
-[onedark lightline theme][]
-[quick-scope][]
-[replacewithregister][]
-[snipmate][]
-[syntastic][]
-[tabular][]
-[taghighlight][]
-[unite.vim][]
-[vim-abolish][]
-[vim-argumentative][]
-[vim-autoswap][]
-[vim-commentary][]
-[vim-easy-align][]
-[vim-easymotion][]
-[vim-endwise][]
-[vim-fanfingtastic][]
-[vim-fugitive][]
-[vim-gitgutter][]
-[vim-gnupg][]
-[vim-instant-markdown][]
-[vim-lengthmatters][]
-[vim-misc][]  - A dependancy of vim-session
-[vim-multiple-cursors][]
-[vim-notes][]
-[vim-quicklink][]
-[vim-repeat][]  - Currently I only use this to support vim-fanfingtastic
-[vim-rhubarb][]  - copy netrc file to ~/.netrc and add login info for this plugin
-[vim-session][]
-[vim-signature][]
-[vim-sort-motion][]
-[vim-startify][]
-[vim-surround][]
-[vim-swap][]
-[vim-table-mode][]
-[vim-textobj-function][]
-[vim-textobj-indent][]
-[vim-textobj-line][]
-[vim-textobj-user][]
-[vim-titlecase][]
-[vim-visualMarks][]
-[vimShell][]
-[vimlint][]  - Dependancy of syntastic for vimL
-[vimlparser][]  - Dependancy of syntastic for vimL
-[vimproc][]  - Dependancy of Unite.vim and VimShell- need to run install command
-[vissort][]
-[vmath.vim][]
-[webapi-vim][]
-[youcompleteme][]  - See the repo for installation instructions. Compilation is required
+* [a.vim][]
+* [ack.vim][]
+* [auto-pairs][]
+* [badwolf Colourscheme][]
+* [badwolf lightline theme][]
+* [conque gdb][]
+* [cscope.vim][]
+* [detectindent][]
+* [dragvisuals][]
+* [git-time-lapse][]
+* [gruvbox Colourscheme][]
+* [iceberg Colourscheme][]
+* [iceberg lightline theme][]
+* [indentline][]
+* [jedi-vim][]
+* [lightline.vim][]
+* [mru][]
+* [nerdtree][]
+* [numbers.vim][]
+* [onedark lightline theme][]
+* [quick-scope][]
+* [replacewithregister][]
+* [snipmate][]
+* [syntastic][]
+* [tabular][]
+* [taghighlight][]
+* [unite.vim][]
+* [vim-abolish][]
+* [vim-argumentative][]
+* [vim-autoswap][]
+* [vim-commentary][]
+* [vim-easy-align][]
+* [vim-easymotion][]
+* [vim-endwise][]
+* [vim-fanfingtastic][]
+* [vim-fugitive][]
+* [vim-gitgutter][]
+* [vim-glsl][]
+* [vim-gnupg][]
+* [vim-instant-markdown][]
+* [vim-lengthmatters][]
+* [vim-misc][]  - A dependancy of vim-session
+* [vim-multiple-cursors][]
+* [vim-notes][]
+* [vim-quicklink][]
+* [vim-repeat][]  - Currently I only use this to support vim-fanfingtastic
+* [vim-rhubarb][]  - copy netrc file to ~/.netrc and add login info for this plugin
+* [vim-session][]
+* [vim-signature][]
+* [vim-sort-motion][]
+* [vim-startify][]
+* [vim-surround][]
+* [vim-swap][]
+* [vim-table-mode][]
+* [vim-textobj-function][]
+* [vim-textobj-indent][]
+* [vim-textobj-line][]
+* [vim-textobj-user][]
+* [vim-titlecase][]
+* [vim-visualMarks][]
+* [vimShell][]
+* [vimlint][]  - Dependancy of syntastic for vimL
+* [vimlparser][]  - Dependancy of syntastic for vimL
+* [vimproc][]  - Dependancy of Unite.vim and VimShell- need to run install command
+* [vissort][]
+* [vmath.vim][]
+* [webapi-vim][]
+* [youcompleteme][]  - See the repo for installation instructions. Compilation is required
 
 [a.vim]: https://github.com/vim-scripts/a.vim
 [ack.vim]: https://github.com/mileszs/ack.vim
@@ -464,6 +466,7 @@ Plugins that I have:
 [iceberg Colourscheme]: https://github.com/cocopon/iceberg.vim
 [iceberg lightline theme]: https://github.com/halllzy/lightline-iceberg
 [indentline]: https://github.com/Yggdroot/indentLine
+[jedi-vim]: https://github.com/davidhalter/jedi-vim
 [lightline.vim]: https://github.com/itchyny/lightline.vim
 [mru]: https://github.com/vim-scripts/mru.vim
 [nerdtree]: https://github.com/scrooloose/nerdtree
@@ -486,7 +489,8 @@ Plugins that I have:
 [vim-fanfingtastic]: https://github.com/dahu/vim-fanfingtastic
 [vim-fugitive]: https://github.com/tpope/vim-fugitive
 [vim-gitgutter]: https://github.com/airblade/vim-gitgutter
-[vim-gnupg]: jamessan/vim-gnupg
+[vim-glsl]: https://github.com/tikhomirov/vim-glsl
+[vim-gnupg]: https://github.com/jamessan/vim-gnupg
 [vim-instant-markdown]: https://github.com/suan/vim-instant-markdown
 [vim-lengthmatters]: https://github.com/whatyouhide/vim-lengthmatters
 [vim-misc]: https://github.com/xolox/vim-misc.git

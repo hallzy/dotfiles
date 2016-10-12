@@ -36,12 +36,12 @@ Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
 Plug 'ciaranm/detectindent'
-Plug 'tikhomirov/vim-glsl'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'morhetz/gruvbox'
 Plug 'cocopon/iceberg.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
 Plug '844196/lightline-badwolf.vim'
 Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
@@ -66,6 +66,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tikhomirov/vim-glsl'
 Plug 'jamessan/vim-gnupg'
 Plug 'suan/vim-instant-markdown'
 Plug 'whatyouhide/vim-lengthmatters'
@@ -1037,6 +1038,12 @@ vnoremap <leader>A y:Ack! "<c-r>""<cr>
 
 " Highlight the results
 let g:ackhighlight = 1
+
+"}}}
+" jedi-vim"{{{
+
+" Disable this
+let g:jedi#documentation_command = ""
 
 "}}}
 
