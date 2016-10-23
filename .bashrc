@@ -100,6 +100,7 @@ source /etc/environment
 export REPOS=~/Documents/git-repos
 export dotfiles=~/Documents/git-repos/remote-github/dotfiles
 export cs314=~/Documents/school-assignments/cs314/programming-assignments
+export cs304=~/Documents/school-assignments/cs304/cs304-default-team-name
 
 
 exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
