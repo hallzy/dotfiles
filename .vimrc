@@ -968,6 +968,8 @@ let g:startify_change_to_vcs_root = 1
 "}}}
 " DetectIndent"{{{
 
+" NOTE: Specific filetype settings can be set in ~/.vim/after/ftplugin
+
 " When the correct value of expandtab cannot be determined, treat it as though
 " expandtab is set, meaning that pressing tab gives x number of spaces
 let g:detectindent_preferred_expandtab = 1
