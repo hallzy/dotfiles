@@ -1046,6 +1046,12 @@ let g:ackhighlight = 1
 let g:jedi#documentation_command = ""
 
 "}}}
+" youcompleteme"{{{
+
+let g:ycm_global_ycm_extra_conf =
+\ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+"}}}
 
 "}}}
 " Functions"{{{
