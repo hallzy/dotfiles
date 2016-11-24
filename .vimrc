@@ -258,6 +258,14 @@ nnoremap UK <C-W>k
 nnoremap UL <C-W>l
 nnoremap UH <C-W>h
 
+if has ('nvim')
+  tnoremap <esc> <C-\><C-n>
+  tnoremap UJ <C-\><C-n><C-w>j
+  tnoremap UK <C-\><C-n><C-w>k
+  tnoremap UL <C-\><C-n><C-w>l
+  tnoremap UH <C-\><C-n><C-w>h
+endif
+
 " Move splits with U<movement>
 nnoremap Uj <C-W>J
 nnoremap Uk <C-W>K
