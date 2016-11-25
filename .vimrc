@@ -110,7 +110,7 @@ set nocompatible  " Use Vim settings, rather then Vi settings
 set shell=/bin/bash
 set title titlestring=
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Disable mouse
 set mouse=
