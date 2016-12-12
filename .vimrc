@@ -91,7 +91,7 @@ Plug 'christoomey/vim-titlecase'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'iago-lito/vim-visualMarks'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
 Plug 'gavinbeatty/vmath.vim'
