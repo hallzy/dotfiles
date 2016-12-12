@@ -530,6 +530,12 @@ nnoremap <silent> <leader>em :!vim -u $dotfiles/.vimrc-others %<cr>
 nnoremap <silent> <leader>u :call Units()<cr>
 
 "}}}
+" Bold a words using markdown syntax"{{{
+
+nnoremap <c-b> viw<esc>a**<esc>`<i**<esc>
+vnoremap <c-b> <esc>`>a**<esc>`<i**<esc>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
