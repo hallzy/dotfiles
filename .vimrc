@@ -995,6 +995,15 @@ let g:detectindent_preferred_indent = 2
 " Automatically run detectIndent
 autocmd BufReadPost * :DetectIndent
 
+function! CheckExpandTab()
+  " If expandtab is off, then set the tabs to be 2 columns long
+  if (&expandtab == 0)
+    set tabstop=2
+  endif
+endfunction
+
+autocmd BufReadPost * :call CheckExpandTab()
+
 "}}}
 " Indentline"{{{
 
