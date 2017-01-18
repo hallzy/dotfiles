@@ -128,6 +128,15 @@ downloadMusic () { youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format m
 
 downloadVideo () { youtube-dl -o "${1}.%(ext)s" $2; }
 
+trimVideo () {
+  if [ "$#" -ne 4 ]; then
+    echo "Expected: source_video dest_video start_time duration"
+    echo "start_time and duration are of the form hh:mm:ss"
+  else
+    ffmpeg -i ${1} -vcodec copy -acodec copy -ss ${3} -t ${4} ${2}
+  fi
+}
+
 # up () - moves up x number of directories. eg. up 4#{{{
 up () {
   local d=""
