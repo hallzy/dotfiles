@@ -84,3 +84,5 @@ alias diskusage="du -sh ./"
 alias localserver="python -m SimpleHTTPServer"
 
 alias restart-wifi="sudo service network-manager restart"
+
+alias ubc-tunnel="ssh -D1337 -L1706:service:1706 -L1711:service:1711 -X f4y8@ssh.ece.ubc.ca"
