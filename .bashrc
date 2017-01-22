@@ -308,6 +308,7 @@ export PATH=$PATH:$HOME/.my-scripts
 # This bin folder will be for scripts that are not mine... such as git-radar
 export PATH=$PATH:$dotfiles/.bin
 
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
 
 
