@@ -141,7 +141,7 @@ trimVideo () {
     fi
   fi
 
-  echo "Expected: source_video dest_video start_time duration (optional: no_audio)"
+  echo "Expected: source_video dest_video start_time duration (optional: no-audio)"
   echo "start_time and duration are of the form hh:mm:ss"
 }
 
