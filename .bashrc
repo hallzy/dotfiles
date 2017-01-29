@@ -145,6 +145,15 @@ trimVideo () {
   echo "start_time and duration are of the form hh:mm:ss"
 }
 
+joinVideo () {
+  if [ "$#" -eq 3 ]; then
+    MP4Box -add ${1} -cat ${2} -new ${3}
+    return
+  fi
+
+  echo "Expected: video name 1, video name 2, output video name"
+}
+
 # up () - moves up x number of directories. eg. up 4#{{{
 up () {
   local d=""
