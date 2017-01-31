@@ -14,6 +14,7 @@
   prompt = false
   keepBackup = false
 [alias]
+  b = branch
   co = checkout
   pop = stash pop
   br = branch
