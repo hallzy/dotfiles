@@ -15,6 +15,7 @@
   keepBackup = false
 [alias]
   co = checkout
+  pop = stash pop
   br = branch
   ci = commit -v
   st = status
