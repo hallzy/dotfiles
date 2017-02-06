@@ -428,6 +428,7 @@ Plugins that I have:
 * [vim-multiple-cursors][]
 * [vim-notes][]
 * [vim-quicklink][]
+* [vim-renamer][]
 * [vim-repeat][]  - Currently I only use this to support vim-fanfingtastic
 * [vim-rhubarb][]  - copy netrc file to ~/.netrc and add login info for this plugin
 * [vim-session][]
@@ -497,6 +498,7 @@ Plugins that I have:
 [vim-multiple-cursors]: https://github.com/terryma/vim-multiple-cursors
 [vim-notes]: https://github.com/xolox/vim-notes
 [vim-quicklink]: https://github.com/christoomey/vim-quicklink
+[vim-renamer]: https://github.com/qpkorr/vim-renamer
 [vim-repeat]: https://github.com/tpope/vim-repeat
 [vim-rhubarb]: https://github.com/tpope/vim-rhubarb
 [vim-session]: https://github.com/xolox/vim-session.git
