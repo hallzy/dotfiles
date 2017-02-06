@@ -16,6 +16,7 @@
 [alias]
   b = branch
   co = checkout
+  ssh = "!git_to_ssh.sh"
   pop = stash pop
   br = branch
   ci = commit -v
