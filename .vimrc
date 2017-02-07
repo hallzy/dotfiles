@@ -1078,6 +1078,13 @@ let g:ycm_global_ycm_extra_conf =
 \ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 "}}}
+" Renamer"{{{
+
+nnoremap <leader>rr :Renamer<space>
+nnoremap <leader>rs :Ren<cr>
+
+
+"}}}
 
 "}}}
 " Functions"{{{
