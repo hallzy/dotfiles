@@ -1751,6 +1751,49 @@ function Units()
 endfunction
 
 "}}}
+" Dash to Dots and Dots to Dash"{{{
+
+function! DashToDots()
+  exec "normal! '<"
+  let l = line(".")
+  let c = col(".")
+  '<,'>:Tabularize /-
+  let endline=line("'>")
+  " Go to the top of the visual selection and the beginning of the line
+  exec "normal! '<0"
+
+  set visualbell
+  set t_vb=
+
+  let currentLine = line(".")
+  while currentLine != endline + 1
+    exec "normal! f-vgEllr."
+    exec "normal! j0"
+    let currentLine = line(".")
+  endwhile
+
+  set novisualbell
+endfunction
+
+function! DotsToDash()
+  let endline=line("'>")
+  " Go to the top of the visual selection and the beginning of the line
+  exec "normal! '<0"
+
+  set visualbell
+  set t_vb=
+
+  let currentLine = line(".")
+  while currentLine != endline + 1
+    exec "normal! f.hvec -"
+    exec "normal! j0"
+    let currentLine = line(".")
+  endwhile
+
+  set novisualbell
+endfunction
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -1801,6 +1844,12 @@ nnoremap <f1> :call OpenMultipleFilesVSplit()<cr>
 " Togglenrformats - toggles functionality of ctrl+a and ctrl+x"{{{
 
 nnoremap ! :call Togglenrformats()<cr>
+"}}}
+" Dash to dots and dots to dash"{{{
+
+vnoremap z-. :call DashToDots()<cr>
+vnoremap z.- :call DotsToDash()<cr>
+
 "}}}
 
 "}}}
