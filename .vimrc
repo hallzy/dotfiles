@@ -1794,6 +1794,25 @@ function! DotsToDash()
 endfunction
 
 "}}}
+" Setup a line in a table of contents format"{{{
+
+" it is delimited by a --
+
+function! TableOfContentsFormat()
+  " Go to end of line and get column number
+  exec "normal! $"
+  let number_of_chars = col(".")
+  let number_of_chars_to_add = 79-number_of_chars
+
+  " Go to the first occurence of two dashes (signaling the point to split)
+  exec "normal! 0/--\<cr>r.lr."
+
+  " append a dot from where we are
+  let my_command = "normal! a.\<esc>" . number_of_chars_to_add . "."
+  exec my_command
+endfunction
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -1849,6 +1868,14 @@ nnoremap ! :call Togglenrformats()<cr>
 
 vnoremap z-. :call DashToDots()<cr>
 vnoremap z.- :call DotsToDash()<cr>
+
+"}}}
+" Table of contents format"{{{
+
+"Complicated, so that I can continue repeating the command with the . command
+nnoremap <silent> <Plug>TableOfContentsPlug :call TableOfContentsFormat()<cr>
+                          \:call repeat#set("\<Plug>TableOfContentsPlug")<cr>
+nmap <leader>toc <Plug>TableOfContentsPlug
 
 "}}}
 
