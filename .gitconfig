@@ -28,6 +28,8 @@
   discard = checkout --
   amend = commit -a --amend
 
+  cleaner = clean -i
+
   # Show log as oneliner
   ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
   lsgraphall = !git ls --decorate --graph --all
