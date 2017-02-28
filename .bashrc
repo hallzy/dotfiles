@@ -302,7 +302,7 @@ fi
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   # Change colour of "git:" in git radar (the colour used by putty is the same as
   # background so I cannot see it.
-  export GIT_RADAR_FORMAT=" \\x01\\033[38;5;109m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[38;5;109m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
+  export GIT_RADAR_FORMAT="\\x01\\033[38;5;109m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[38;5;109m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
   # Add SSH: to the prompt ("SSH:" is cyan)
   # export PS1="\e[0;36mSSH:\e[m $PS1"
   export PS1="\e[38;5;109mSSH:\e[m $PS1"
