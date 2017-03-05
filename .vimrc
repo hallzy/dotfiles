@@ -1813,6 +1813,21 @@ function! TableOfContentsFormat()
 endfunction
 
 "}}}
+" Leet Function"{{{
+
+function! Leet()
+  :s/a/4/gie
+  :s/b/8/gie
+  :s/c/</gie
+  :s/e/3/gie
+  :s/g/6/gie
+  :s/i/1/gie
+  :s/o/0/gie
+  :s/s/5/gie
+  :s/z/2/gie
+endfunction
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -1876,6 +1891,11 @@ vnoremap z.- :call DotsToDash()<cr>
 nnoremap <silent> <Plug>TableOfContentsPlug :call TableOfContentsFormat()<cr>
                           \:call repeat#set("\<Plug>TableOfContentsPlug")<cr>
 nmap <leader>toc <Plug>TableOfContentsPlug
+
+"}}}
+" Leet Function Mapping"{{{
+
+noremap <leader>leet :call Leet()<cr>
 
 "}}}
 
