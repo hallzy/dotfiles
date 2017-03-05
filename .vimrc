@@ -925,7 +925,7 @@ nnoremap <leader>vs :VimShell<cr>
 
 set cscopetag
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+nnoremap <leader>ll :call ToggleLocationList()<CR>
 
 "}}}
 " Conque GDB"{{{
