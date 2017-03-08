@@ -1493,7 +1493,7 @@ function! MyFormattingSubs()
   " Just leaving this here as an example of how to change it if I decide I need
   " exclusions
   " if (&filetype != 'java')
-    %s/\s\+$//ge
+    " %s/\s\+$//ge
   " endif
 
   let @/=l:_s
