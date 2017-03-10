@@ -1,0 +1,12 @@
+If you don't already have it, download the oxt file for the languages. Just
+search for your language here: https://extensions.libreoffice.org/
+
+* Open LibreOffice
+* Tools -> Extension Manager -> Add
+* Find the Language file and accept
+* Check for updates
+* Exit Libre office, and restart
+* Tools -> Options -> Language Settings -> Languages
+* Select your language under "Default Languages for Documents"
+* That language should now have a spell check icon beside it.
+
