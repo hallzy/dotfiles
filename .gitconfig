@@ -32,6 +32,19 @@
 
   enforce-gitignore = !git rm -rf --cached . &&  git add .
 
+  update-master-from-upstream = "!f() { \
+      default=\"master-upstream\" \
+      master_up=${1:-$default}; \
+      current_branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
+      git checkout ${master_up}; \
+      git pull; \
+      git checkout master; \
+      git rebase ${master_up}; \
+      git push; \
+      git checkout ${current_branch}; \
+    }; \
+    f"
+
   # Show log as oneliner
   ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
   lsgraphall = !git ls --decorate --graph --all
