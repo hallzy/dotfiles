@@ -70,6 +70,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tikhomirov/vim-glsl'
 Plug 'jamessan/vim-gnupg'
 Plug 'suan/vim-instant-markdown'
+Plug 'KuoE0/vim-janitor'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
@@ -1084,6 +1085,11 @@ let g:ycm_global_ycm_extra_conf =
 nnoremap <leader>rr :Renamer<space>
 nnoremap <leader>rs :Ren<cr>
 
+"}}}
+" vim-janitor"{{{
+
+let g:janitor_auto_clean_up_trailing_ws_only_added = 1
+let g:janitor_auto_clean_up_on_write = 1
 
 "}}}
 
