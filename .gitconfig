@@ -33,6 +33,7 @@
   enforce-gitignore = !git rm -rf --cached . &&  git add .
 
   update-master-from-upstream = "!f() { \
+      git stash -u; \
       default=\"master-upstream\" \
       master_up=${1:-$default}; \
       current_branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
@@ -42,6 +43,7 @@
       git rebase ${master_up}; \
       git push; \
       git checkout ${current_branch}; \
+      git stash pop; \
     }; \
     f"
 
