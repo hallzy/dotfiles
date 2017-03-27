@@ -32,6 +32,10 @@
 
   enforce-gitignore = !git rm -rf --cached . &&  git add .
 
+  # before I add any files to the staging area, check to make sure whitespace is
+  # all good, and no conflict markers are present.
+  a = !git diff --check && git add
+
   update-master-from-upstream = "!f() { \
       git stash -u; \
       default=\"master-upstream\" \
