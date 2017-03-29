@@ -23,7 +23,7 @@
   b = branch
   co = checkout
   ssh = "!git_to_ssh.sh"
-  pop = stash pop
+  p = stash pop
   br = branch
   ci = commit -v
   st = status
