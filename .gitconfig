@@ -25,7 +25,7 @@
   ssh = "!git_to_ssh.sh"
   p = stash pop
   br = branch
-  ci = commit -v
+  ci = !git diff --check --cached && git diff --check && git commit -v
   st = status
   s = status -sb
   d = diff --word-diff
