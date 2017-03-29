@@ -95,32 +95,6 @@
   # eg. git rmvc file
   rmvc = rm --cached
 
-  # Creates a remote branch of the same name of the current checked out branch
-  # and sets up tracking with that branch
-  track = "!f() { \
-              remote=${1:-origin}; \
-              branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
-              branch=${2:-$branch}; \
-              git branch -u $remote/$branch; \
-            }; \
-            f"
-
-  create-remote-and-track = "!f() { \
-                                remote=${1:-origin}; \
-                                branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD); \
-                                branch=${2:-$branch}; \
-                                git push -u $remote $branch; \
-                              }; \
-                              f"
-
-  # Removes branches that are not being used anymore
-  # eg. git rm-branch-auto-complete
-  rm-branch-auto-complete = fetch --prune -v origin
-
-  # Deletes a remote branch
-  # eg. git delete-remote-branch issue#6
-  delete-remote-branch = push origin --delete
-
   # Used when you want to remove all the uncommitted changes I have made. It
   # commits all these changes, and resets the working directory as if it was all
   # deleted. This means if need be, I can get that commit back with reflog
@@ -135,10 +109,6 @@
       git tag -d $1; \
     }; \
     f"
-
-  # pulls changes from remote, removes remote-tracking branches that no longer
-  # exist on remote
-  up = !git pull -v --rebase --prune $@ && git submodule update --init --recursive
 
   # does a git difftool of a givem commit, or HEAD if none is specified
   showtool = "!showci () { \
