@@ -27,12 +27,18 @@
   br = branch
   ci = commit -v
   st = status
-  stat = status
+  s = status -sb
+  d = diff --word-diff
+  dc = diff --word-diff --cached
   unstage = reset HEAD --
   graphlog = log --decorate --graph
   graphlogall = log --decorate --graph --all
   discard = checkout --
   amend = commit -a --amend
+  r = rebase
+  ri = rebase -i
+  rix = rebase -ix
+  rx = rebase -ix
 
   cleaner = clean -i
 
@@ -78,6 +84,10 @@
   newls = !sh -c 'git ls $1@{1}..$1@{0} "$@"'
   newlog = !sh -c 'git log $1@{1}..$1@{0} "$@"'
   new = !git newls
+
+  fl = log -u
+
+  find = "!git ls-files | grep -i"
 
   newdifftool = !git difftool $1@{1}..$1@{0}
 
