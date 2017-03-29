@@ -8,8 +8,23 @@ alias ll.='ls -ld .*'
 
 # Spelling Mistakes
 alias sl='ls'
+
+# git#{{{
+alias g='git'
 alias gti='git'
+
 alias gitst='git st'
+alias gs='git s'
+alias gst='git st'
+
+alias ga='git a'
+alias gd='git d'
+alias gdc='git dc'
+alias gr='git r'
+alias gri='git ri'
+alias grx='git rx'
+alias grix='git rix'
+#}}}
 
 # Alias definitions.
 alias ll='ls -hlF'
