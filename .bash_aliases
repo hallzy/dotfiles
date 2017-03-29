@@ -17,6 +17,8 @@ alias gitst='git st'
 alias gs='git s'
 alias gst='git st'
 
+alias gco='git co'
+
 alias ga='git a'
 alias gd='git d'
 alias gdc='git dc'
