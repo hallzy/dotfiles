@@ -13,6 +13,12 @@
 [mergetool]
   prompt = false
   keepBackup = false
+[push]
+  default = simple
+[rebase]
+  autosquash = true
+[pull]
+	rebase = true
 [alias]
   b = branch
   co = checkout
@@ -130,7 +136,3 @@
                 git difftool $rev~1 $rev; \
               }; \
               showci"
-[push]
-  default = simple
-[rebase]
-  autosquash = true
