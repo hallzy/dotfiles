@@ -319,6 +319,8 @@ export PATH=$PATH:$dotfiles/.bin
 
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 export PS1="$PS1\$(git-radar --bash --fetch) $ "
+## Add this line to easily switch to my local fork for checking changes
+# export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
 
 
 # helps me with typos in terminal:
