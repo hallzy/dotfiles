@@ -297,9 +297,9 @@ __prompt_command() {
   # All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
   # find colour codes here: # http://misc.flogisoft.com/bash/tip_colors_and_formatting
   # Color Codes
-  red="\e[38;5;167m"
-  blue="\e[38;5;109m"
-  yellow="\e[38;5;142m"
+  red="\e[38;5;167m"    # Hex = d75f5f
+  blue="\e[38;5;109m"   # Hex = 87afaf
+  yellow="\e[38;5;142m" # Hex = afaf00
   end_colour="\e[m"
 
   PS1="${red}${debian_chroot:+($debian_chroot)}\u@\h"
