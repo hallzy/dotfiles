@@ -282,45 +282,57 @@ fi
 
 export OS
 
-
-# All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
-
-
-PS1="\e[38;5;167m${debian_chroot:+($debian_chroot)}\u@\h\e[m"
-# Add Time stamp to bash prompt
-# export PS1="$PS1 \e[0;31m[\$(date +"%r")]\e[m"
-if [[ $OS != "Windows" ]]; then
-  # Don't get the date if we are running windows. The date function does not
-  # seem to work
-  export PS1="$PS1 \e[38;5;167m[\$(date +"%r")]\e[m"
-fi
-
-# Bash Prompt Settings for SSH Sessions
-# Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
-# ssh session. If they do contain something, we assume it is an ssh session and
-# make the changes below
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  # Change colour of "git:" in git radar (the colour used by putty is the same as
-  # background so I cannot see it.
-  export GIT_RADAR_FORMAT="\\x01\\033[38;5;109m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[38;5;109m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
-  # Add SSH: to the prompt ("SSH:" is cyan)
-  # export PS1="\e[0;36mSSH:\e[m $PS1"
-  export PS1="\e[38;5;109mSSH:\e[m $PS1"
-fi
-
-# Show 3 parent directories
-PROMPT_DIRTRIM=3
-export PS1="$PS1 \e[38;5;142m[\w]\e[m\n "
-
 # Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
 # This bin folder will be for scripts that are not mine... such as git-radar
 export PATH=$PATH:$dotfiles/.bin
 
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-export PS1="$PS1\$(git-radar --bash --fetch) $ "
-## Add this line to easily switch to my local fork for checking changes
-# export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
+PROMPT_COMMAND=__prompt_command
+
+__prompt_command() {
+  ## Get the exit code of the last command that was run
+  exit="$?"
+  PS1=""
+
+  # All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
+  # find colour codes here: # http://misc.flogisoft.com/bash/tip_colors_and_formatting
+  # Color Codes
+  red="\e[38;5;167m"
+  blue="\e[38;5;109m"
+  yellow="\e[38;5;142m"
+  end_colour="\e[m"
+
+  PS1="${red}${debian_chroot:+($debian_chroot)}\u@\h"
+  # Add Time stamp to bash prompt
+  if [[ $OS != "Windows" ]]; then
+    # Don't get the date if we are running windows. The date function does not
+    # seem to work
+    export PS1="$PS1 ${red}[\$(date +"%r")]"
+  fi
+
+  # Bash Prompt Settings for SSH Sessions
+  # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
+  # ssh session. If they do contain something, we assume it is an ssh session and
+  # make the changes below
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    # Change colour of "git:" in git radar (the colour used by putty is the same as
+    # background so I cannot see it.
+    export GIT_RADAR_FORMAT="\\x01\\033[38;5;109m\\x02git:(\\x01\\033[0m\\x02%{remote: }%{branch}%{ :local}\\x01\\033[38;5;109m\\x02)\\x01\\033[0m\\x02%{ :stash}%{ :changes}"
+    # Add SSH: to the prompt ("SSH:" is cyan)
+    export PS1="${blue}SSH:${end_colour} $PS1"
+  fi
+
+  # Show 3 parent directories
+  PROMPT_DIRTRIM=3
+  export PS1="$PS1 ${yellow}[\w]${end_colour}\n "
+
+  history -a;
+  PS1+="${blue}RET=${exit}${end_colour}"
+
+  export PS1+="\$(git-radar --bash --fetch) $ "
+  ## Add this line to easily switch to my local fork for checking changes
+  # export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
+}
 
 
 # helps me with typos in terminal:
