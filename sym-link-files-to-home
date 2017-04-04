@@ -36,3 +36,7 @@ $CMD/.procmailrc
 $CMD/.tmux.conf
 $CMD/.tmux_theme.sh
 
+## .config
+
+cd ~/.config/
+$CMD/.config/fish/
