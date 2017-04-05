@@ -46,13 +46,15 @@ function fish_prompt
 
 	set_color -o $blue
 	echo -n "RET="
-	echo -n $status
+	# exit code is defined in config.fish in function get_ret_value
+	echo -n $exit_code
 
 	# git-radar
 	set_color normal
-	echo -n (git-radar --fish --fetch)
+	# echo -n (git-radar --fish --fetch)
+	echo -n (~/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --fish --fetch)
 
 	# $ prompt
-	echo -n '  $ '
+	echo -n ' $ '
 	set_color normal
 end
