@@ -39,6 +39,7 @@
   ri = rebase -i
   rix = rebase -ix
   rx = rebase -ix
+  better-blame = log -p -M --follow --stat --
 
   cleaner = clean -i
 
