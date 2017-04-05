@@ -100,7 +100,7 @@ Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
 Plug 'gavinbeatty/vmath.vim'
 Plug 'mattn/webapi-vim'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
