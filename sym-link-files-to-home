@@ -40,3 +40,8 @@ $CMD/.tmux_theme.sh
 
 cd ~/.config/
 $CMD/.config/fish/
+
+# moc
+mkdir -p ~/.moc
+cd ~/.moc
+ln -sf $dotfiles/.moc/config
