@@ -45,6 +45,7 @@ $CMD/.config/fish/
 mkdir -p ~/.moc
 cd ~/.moc
 ln -sf $dotfiles/.moc/config
+ln -sf $dotfiles/.moc/themes
 
 
 mkdir -p ~/.config/ranger
