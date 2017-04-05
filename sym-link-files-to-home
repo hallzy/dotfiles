@@ -45,3 +45,9 @@ $CMD/.config/fish/
 mkdir -p ~/.moc
 cd ~/.moc
 ln -sf $dotfiles/.moc/config
+
+
+mkdir -p ~/.config/ranger
+cd ~/.config/ranger
+ln -sf $dotfiles/.config/ranger/rc.conf
+ln -sf $dotfiles/.config/ranger/scope.sh
