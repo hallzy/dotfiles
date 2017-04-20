@@ -86,6 +86,8 @@ alias tmux='tmux -2'
 # Unzips any type of tar file.
 alias untar='tar xvf'
 
+alias tarcompress='tar cvzf'
+
 # source bashrc and bash_alias
 alias sbr='source ~/.bashrc'
 alias sba='source ~/.bash_aliases'
