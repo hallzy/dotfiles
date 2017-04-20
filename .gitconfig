@@ -17,8 +17,6 @@
   default = simple
 [rebase]
   autosquash = true
-[pull]
-	rebase = true
 [alias]
   b = branch
   co = checkout
