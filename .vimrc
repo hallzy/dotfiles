@@ -949,6 +949,8 @@ noremap <leader>tz :Tabularize /
 "}}}
 " EasyAlign"{{{
 
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "}}}
