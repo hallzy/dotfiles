@@ -541,6 +541,11 @@ nnoremap <c-b> viw<esc>a**<esc>`<i**<esc>
 vnoremap <c-b> <esc>`>a**<esc>`<i**<esc>
 
 "}}}
+" Insert the current date"{{{
+
+nnoremap <leader>icd i<C-R>=strftime('%Y/%m/%d')<cr><esc>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
