@@ -311,6 +311,7 @@ __prompt_command() {
     # seem to work
     export PS1="$PS1 ${red}[\$(date +"%r")]"
   fi
+  PS1+=" ${blue}RET=${exit}${end_colour}"
 
   # Bash Prompt Settings for SSH Sessions
   # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
@@ -329,7 +330,6 @@ __prompt_command() {
   export PS1="$PS1 ${yellow}[\w]${end_colour}\n "
 
   history -a;
-  PS1+="${blue}RET=${exit}${end_colour}"
 
   export PS1+="\$(git-radar --bash --fetch) $ "
   ## Add this line to easily switch to my local fork for checking changes
