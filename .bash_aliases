@@ -105,3 +105,14 @@ alias localserver="python -m SimpleHTTPServer"
 alias restart-wifi="sudo service network-manager restart"
 
 alias ubc-tunnel="ssh -D1337 -L1706:service:1706 -L1711:service:1711 -X f4y8@ssh.ece.ubc.ca"
+
+# this installs the package that is recommended to you in the previous command
+# output. For example: entering the command "sl" without having it installed
+# would result in the following output:
+################################################################################
+# The program 'sl' is currently not installed. You can install it by typing:
+# sudo apt install sl
+################################################################################
+# executing this alias would then install sl using the second line of that
+# previous output
+alias i='$($(history | tail -2 | head -1 | cut -d" " -f4-) 2>&1 > /dev/null | tail -1)'
