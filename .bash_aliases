@@ -116,3 +116,5 @@ alias ubc-tunnel="ssh -D1337 -L1706:service:1706 -L1711:service:1711 -X f4y8@ssh
 # executing this alias would then install sl using the second line of that
 # previous output
 alias i='$($(history | tail -2 | head -1 | cut -d" " -f4-) 2>&1 > /dev/null | tail -1)'
+
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
