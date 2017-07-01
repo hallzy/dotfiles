@@ -262,6 +262,58 @@ vimfind () {
   fi
 }
 
+md5dir () {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  find . -xtype f -print0 | xargs -0 md5sum | cut -d" " -f1 | sort | md5sum | \
+    cut -d" " -f1
+
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+
+sha1dir () {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  find . -xtype f -print0 | xargs -0 sha1sum | cut -d" " -f1 | sort | sha1sum \
+    | cut -d" " -f1
+
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+
+sha256dir () {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  find . -xtype f -print0 | xargs -0 sha256sum | cut -d" " -f1 | sort | \
+    sha256sum | cut -d" " -f1
+
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+
+sha512dir () {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  find . -xtype f -print0 | xargs -0 sha512sum | cut -d" " -f1 | sort | \
+    sha512sum | cut -d" " -f1
+
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+
 #}}}
 
 
