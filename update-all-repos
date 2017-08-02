@@ -20,7 +20,7 @@ function updateRepo {
 
   for REPO in "${REPO_NAMES[@]}"
   do
-    cd $REPO || exit
+    cd $REPO || continue
     echo "Updating $1/${REPO}..."
     git pull
     cd ..
