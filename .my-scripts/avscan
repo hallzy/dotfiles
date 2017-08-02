@@ -22,7 +22,15 @@ touch $PATH_TO_SCAN_RESULTS
 # Update Definitions before running the scan.
 print_text "Updating Virus Definitions"
 sudo /etc/init.d/clamav-freshclam stop
+echo ""
+echo "Old Clam Definitions:"
+sudo freshclam -V
+echo ""
 sudo freshclam -v
+echo ""
+echo "New Clam Definitions:"
+sudo freshclam -V
+echo ""
 sudo /etc/init.d/clamav-freshclam start
 print_text "Updating Virus Definitions -- Completed"
 
