@@ -35,9 +35,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
-Plug 'mattn/emmet-vim'
 Plug 'ciaranm/detectindent'
 Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'hallzy/gravity.vim'
 Plug 'morhetz/gruvbox'
@@ -781,7 +781,7 @@ nmap ]h <plug>GitGutterNextHunk
 nmap [h <plug>GitGutterPrevHunk
 
 " Now the sign column will always be open
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 
 "}}}
 " vim-signature"{{{
