@@ -122,3 +122,5 @@ alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 # Open up the backup program as root so that I can make sure everything is
 # backing up
 alias backup='gksu deja-dup-preferences'
+
+alias trim='sudo fstrim -v --all'
