@@ -474,10 +474,12 @@ noremap zm zz
 " zh moves the current line to the top of the screen
 noremap zl zb
 
-" Move down and put the cursor and line at the top of the file
-noremap j jzt
-" Move up and put the cursor and line at the bottom of the file
-noremap k kzb
+" Move down and put the cursor and line at the top of the file. Also treat
+" wrapped lines as new lines when moving up and down
+noremap j gjzt
+" Move up and put the cursor and line at the bottom of the file. Also treat
+" wrapped lines as new lines when moving up and down
+noremap k gkzb
 
 " easier combinations. Consider the scenario where I use j to move down to a
 " line, but I go past the line. then I press k to go back up to the line, but
