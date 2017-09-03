@@ -1468,20 +1468,24 @@ endfun
 " line.
 function! HMapping()
   let c = col(".")
-  exec "normal! ^"
+  " g is so it treats a word wrap as a newline
+  exec "normal! g^"
 
   if c <= col(".")
-    exec "normal! 0"
+    " g is so it treats a word wrap as a newline
+    exec "normal! g0"
   endif
 endfun
 
 function! HMappingVisual()
   let startc = col(".")
-  exec "normal! gv^\<esc>"
+  " second g is so it treats a word wrap as a newline
+  exec "normal! gvg^\<esc>"
   let endc = col(".")
 
   if startc <= endc
-    exec "normal! gv0"
+    " second g is so it treats a word wrap as a newline
+    exec "normal! gvg0"
   else
     exec "normal! gv"
   endif
@@ -1490,15 +1494,45 @@ endfun
 "}}}
 "LMapping()"{{{
 
-" If I am on the first character of a line, and press H, take me to the
-" first column. Otherwise take me to the first non whitespace character of the
-" line.
+" If I am to the left of the 80th column and press L, take me to the last space
+" character before the 80th column. Otherwise take me to the end of the line.
 function! LMapping()
   let c = col(".")
-  exec "normal! 80|"
+  exec "normal! g$"
+  if col(".") <= 80
+    " If my current position after moving to the end of the line is at 80 or
+    " less, then just move to the end of the line and leave it, because you have
+    " reached the end of the line.
+    return
+  endif
 
+  exec "normal! 80|F "
+
+  " If my cursor position is further right than the last space until the 80th
+  " column, then go to the end of the line
   if c >= col(".")
-    exec "normal! $"
+    " the g makes it so that it won't go to the end of a wrapped line
+    exec "normal! g$"
+
+    " If I am not more to the right than the 80th column, then move to the first
+    " space character before the 80th column.
+  else
+    " c is now the 80th column
+    exec "normal! 80|"
+    let c = col(".")
+    " move to the next space character
+    exec "normal! f "
+    " of the 81st column is not a space, then go to the previous space
+    if c+1 != col(".")
+      exec "normal! F "
+      if col(".") <= 60
+        " If after that last move to the previous space, we are further to the
+        " left than the 60th column, just go to the 80th column because now we
+        " are just too far.
+        exec "normal! 80|"
+      endif
+    endif
+    " Otherwise, just stay on the 81st column
   endif
 endfun
 
@@ -1508,7 +1542,8 @@ function! LMappingVisual()
   let endc = col(".")
 
   if startc >= endc
-    exec "normal! gv$"
+    " the second g makes it so that it won't go to the end of a wrapped line
+    exec "normal! gvg$"
   else
     exec "normal! gv"
   endif
