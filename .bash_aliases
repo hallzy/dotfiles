@@ -124,3 +124,6 @@ alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 alias backup='gksu deja-dup-preferences'
 
 alias trim='sudo fstrim -v --all'
+
+# Shows the DNS Servers this computer uses
+alias dns_servers='nmcli device show wlp2s0 | grep IP4.DNS | grep_ip -o'
