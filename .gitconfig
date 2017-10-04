@@ -3,6 +3,12 @@
   email = Hallzy.18@gmail.com
 [core]
   editor = vim
+  # Whitespace is used with "diff --check"
+  whitespace = blank-at-eol,space-before-tab,blank-at-eof
+  # Raise error for tabs in indent
+  # whitespace = blank-at-eol,space-before-tab,tab-in-indent,blank-at-eof
+  # Raise error for space in indent
+  # whitespace = blank-at-eol,space-before-tab,indent-with-non-tab,blank-at-eof
 [diff]
   tool = vimdiff
 [merge]
