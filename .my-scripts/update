@@ -11,16 +11,16 @@ if [[ $OS  == "Debian" ]]; then
   echo ""
   echo "Updating Repos"
   echo "=============="
-  sudo apt-get update
+  sudo apt update || sudo apt-get update
   echo "Updating System"
   echo "==============="
-  sudo apt-get -y dist-upgrade
+  sudo apt -y dist-upgrade || sudo apt-get -y dist-upgrade
   echo "Autoremoving Obsolete Packages"
   echo "=============================="
-  sudo apt-get -y autoremove
+  sudo apt -y autoremove || sudo apt-get -y autoremove
   echo "Performing autoclean"
   echo "===================="
-  sudo apt-get -y autoclean
+  sudo apt -y autoclean || sudo apt-get -y autoclean
 elif [[ $OS  == "Manjaro" ||
         $OS  == "Arch"
      ]]; then
