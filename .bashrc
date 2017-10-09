@@ -353,6 +353,9 @@ __prompt_command() {
   # All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
   # find colour codes here: # http://misc.flogisoft.com/bash/tip_colors_and_formatting
   # Color Codes
+  # NOTE: the background colour of the terminal is #282828
+  #       the font of the terminal is "DejaVu Sans Mono"
+  #       the font size of the terminal is 9
   red="\e[38;5;167m"    # Hex = d75f5f
   blue="\e[38;5;109m"   # Hex = 87afaf
   yellow="\e[38;5;142m" # Hex = afaf00
