@@ -122,6 +122,11 @@ MAIL=/var/spool/mail/steven && export MAIL
 
 # Functions#{{{
 
+# Git add files matching a regex
+ga () {
+  git add $(find . -regextype grep -regex ".*/[\.]\{0,1\}${1}")
+}
+
 screencast () { mplayer -tv driver=v4l2:width=320:height=240: -vo xv tv:// -geometry "99%:95%" -noborder -ontop; }
 
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
@@ -413,4 +418,3 @@ LS_COLORS=$LS_COLORS:'or=38;5;208:'
 LS_COLORS=$LS_COLORS:'ex=38;5;167:'
 LS_COLORS=$LS_COLORS:'fi=38;5;229:'
 export LS_COLORS
-

@@ -19,7 +19,6 @@ alias gst='git st'
 
 alias gco='git co'
 
-alias ga='git a'
 alias gd='git d'
 alias gdc='git dc'
 alias gr='git r'
