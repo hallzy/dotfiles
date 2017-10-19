@@ -64,6 +64,7 @@ Plug 'tpope/vim-abolish'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'gioele/vim-autoswap'
 Plug 'tpope/vim-commentary'
+Plug 'blueyed/vim-diminactive'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-endwise'
@@ -1104,6 +1105,12 @@ let g:janitor_auto_clean_up_trailing_ws_only_added = 1
 let g:janitor_auto_clean_up_on_write = 1
 
 "}}}
+" vim-diminactive"{{{
+
+" Dim inactive splits
+let g:diminactive_enable_focus = 1
+
+"}}}
 
 "}}}
 " Functions"{{{
@@ -1318,25 +1325,6 @@ function! UnderlineCurrentLineWithEquals()
     let c -= 1
   endwhile
 endfunc
-"}}}
-" DimInactiveWindows"{{{
-
-" This changes the way that non active splits appear.
-" The background will be a lighter black and will have no colour.
-function! s:DimInactiveWindows()
-  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
-    let l:range = ""
-    if i != winnr()
-      if &wrap
-        let l:width=256 " max
-      else
-        let l:width=winwidth(i)
-      endif
-      let l:range = join(range(1, l:width), ',')
-    endif
-    call setwinvar(i, '&colorcolumn', l:range)
-  endfor
-endfunction
 "}}}
 " OpenMultipleFilesVSplit"{{{
 
@@ -2009,28 +1997,6 @@ augroup FormattingSubGroup
 augroup END
 
 "}}}
-" DimInactiveWindows"{{{
-
-let g:opt_DimInactiveWin=0
-highlight Inactive ctermfg=237 guifg=#3a3a3a
-function! ToggleDimInactiveWin()
-  if g:opt_DimInactiveWin
-    autocmd! DimWindows
-    windo syntax clear Inactive
-  else
-    windo syntax region Inactive start='^' start='\vl' end='$'
-    syntax clear Inactive
-    augroup DimWindows
-      autocmd BufEnter * syntax clear Inactive
-      autocmd BufLeave * syntax region Inactive start='^' start='0' end='$'
-    augroup end
-  endif
-  let g:opt_DimInactiveWin=!g:opt_DimInactiveWin
-endfun
-
-:call ToggleDimInactiveWin()
-
-"}}}
 " Format Options"{{{
 
 augroup formatOptions
@@ -2079,11 +2045,6 @@ augroup trailingwhitespacegroup
   autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
 augroup end
 
-"}}}
-" highlighting for diminactivewindows()"{{{
-
-highlight colorcolumn ctermfg=white
-highlight colorcolumn guifg=white
 "}}}
 " highlightpast80"{{{
 
