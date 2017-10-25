@@ -30,10 +30,6 @@ alias grix='git rix'
 # Alias definitions.
 alias ll='ls -hlF'
 
-# -I ignores binary files. It tells grep to process them as if there is no
-# match.
-alias grep='grep -I'
-
 # Give me a grep with 5 lines of context and line numbers
 alias grepcontext='grep -nC 5'
 
