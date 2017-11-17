@@ -393,9 +393,24 @@ __prompt_command() {
 
   history -a;
 
-  export PS1+="\$(git-radar --bash --fetch) $ "
+  export PS1+="\$(git-radar --bash --fetch) "
   ## Add this line to easily switch to my local fork for checking changes
-  # export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) $ "
+  # export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) "
+
+  # This is a command to check if we have sudo privileges currently
+  sudo -n true 2> /dev/null
+  is_root=$?
+  ## If we are root or we have sudo privileges then let us know
+  if [[ $USER == "root" ]]; then
+    echo -ne "\033]0;ROOT SHELL\007"
+    export PS1+="${red}ROOT SHELL${end_colour} $ "
+  elif [[ $is_root == 0 ]]; then
+    echo -ne "\033]0;ELEVATED PRIVILEGES\007"
+    export PS1+="${red}ELEVATED PRIVILEGES${end_colour} $ "
+  else
+    echo -ne "\033]0;Terminal\007"
+    export PS1+="$ "
+  fi
 }
 
 
