@@ -39,7 +39,7 @@
   graphlogall = log --decorate --graph --all
   l = log --show-signature
   discard = checkout --
-  amend = commit -v -S -a --amend
+  amend = commit -v -S --amend
   r = rebase
   ri = rebase -i
   rix = rebase -ix
