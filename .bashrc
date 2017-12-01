@@ -419,8 +419,15 @@ __prompt_command() {
 # install with alias: install-thefuck
 eval $(thefuck --alias)
 
+## Some Defaults
 export EDITOR="/usr/bin/vim"
 export editor="/usr/bin/vim"
+### As far as I know this isn't used for anything by default, but I will use it
+### for my own stuff including my "git open" alias. Whenever I used the commands
+### that are supposed to open my default browser it always opens up chrome
+### instead for some reason, so this is my way of getting around it.
+export BROWSER="/usr/bin/firefox"
+export browser="/usr/bin/firefox"
 
 export NVM_DIR="/home/steven/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

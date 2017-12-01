@@ -27,6 +27,7 @@
   b = branch
   co = checkout
   ssh = "!git_to_ssh.sh"
+  open = "!git_open.sh"
   p = stash pop
   br = branch
   ci = !git diff --check --cached && git diff --check && git commit -v -S
