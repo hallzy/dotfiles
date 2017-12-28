@@ -319,6 +319,10 @@ sha512dir () {
   fi
 }
 
+uninstall () {
+  sudo apt purge $@ && sudo apt autoremove
+}
+
 #}}}
 
 
