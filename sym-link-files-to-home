@@ -40,6 +40,8 @@ $CMD/.tmux_theme.sh
 
 cd ~/.config/
 $CMD/.config/fish/
+cd ~/.config/caja
+$CMD/.config/caja/scripts
 
 # moc
 mkdir -p ~/.moc
