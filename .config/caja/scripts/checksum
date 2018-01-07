@@ -1,0 +1,360 @@
+#!/bin/bash
+# Purpose:   Caja Custom Action. Calculates hashes.
+# Version:   1.3  (January 2017) - Misko_2083
+# Licence:   GPLv2
+
+if ! hash zenity &>/dev/null ; then
+  echo "zenity is not installed!"
+  echo "please install zenity"
+  exit 1
+fi
+
+if ! hash pv &>/dev/null ; then
+  echo "pv is not installed!"
+  echo "please install pv"
+  zenity --error --text="pv is not installed\nplease install pv"
+  exit 1
+fi
+
+MD5=(`echo "" | awk '{print "TRUE","MD5", $0}'`)
+SHA1=(`echo "" | awk '{print "FALSE","SHA-1", $0}'`)
+SHA224=(`echo "" | awk '{print "FALSE","SHA-224", $0}'`)
+SHA256=(`echo "" | awk '{print "FALSE","SHA-256", $0}'`)
+SHA384=(`echo "" | awk '{print "FALSE","SHA-384", $0}'`)
+SHA512=(`echo "" | awk '{print "FALSE","SHA-512", $0}'`)
+
+# progressbar() {{{
+progressbar(){
+  read PIPED_PID
+  zenity --progress --title="${1} Checksum" \
+    --text="Calculating ${1} for:\n${file##*/}" --auto-close \
+    || (kill $PIPED_PID; rm $sum_temp)
+}
+#}}}
+# do_md5() {{{
+do_md5(){
+  if [[ -f "${file}" ]]; then
+    get_hash="md5sum"
+  else
+    get_hash="md5dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "MD5"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "MD5"
+}
+#}}}
+# do_sha1() {{{
+do_sha1(){
+  if [[ -f "${file}" ]]; then
+    get_hash="sha1sum"
+  else
+    get_hash="sha1dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "SHA-1"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "SHA-1"
+}
+#}}}
+# do_sha224() {{{
+do_sha224(){
+  if [[ -f "${file}" ]]; then
+    get_hash="sha224sum"
+  else
+    get_hash="sha224dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "SHA-224"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "SHA-224"
+}
+#}}}
+# do_sha256() {{{
+do_sha256(){
+  if [[ -f "${file}" ]]; then
+    get_hash="sha256sum"
+  else
+    get_hash="sha256dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "SHA-256"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "SHA-256"
+}
+#}}}
+# do_sha384() {{{
+do_sha384(){
+  if [[ -f "${file}" ]]; then
+    get_hash="sha384sum"
+  else
+    get_hash="sha384dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "SHA-384"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "SHA-384"
+}
+#}}}
+# do_sha512() {{{
+do_sha512(){
+  if [[ -f "${file}" ]]; then
+    get_hash="sha512sum"
+  else
+    get_hash="sha512dir ${file}"
+  fi
+  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
+    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
+    2>&1 | progressbar "SHA-512"
+  # If Cancel is clicked then exit
+  if [[ ! -f "$sum_temp" ]]; then
+    exit 0
+  fi
+  show_results "SHA-512"
+}
+#}}}
+# md5dir() {{{
+md5dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 md5sum | cut -d" " -f1 | sort | \
+    md5sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+# sha1dir() {{{
+sha1dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 sha1sum | cut -d" " -f1 | sort | \
+    sha1sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+# sha224dir() {{{
+sha224dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 sha224sum | cut -d" " -f1 | sort | \
+    sha224sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+# sha256dir() {{{
+sha256dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 sha256sum | cut -d" " -f1 | sort | \
+    sha256sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+# sha384dir() {{{
+sha384dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 sha384sum | cut -d" " -f1 | sort | \
+    sha384sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+# sha512dir() {{{
+sha512dir() {
+  # if argument is not empty cd into it
+  if [ -n "$1" ]; then
+    cd "$1"
+  fi
+  filename=$(basename "$PWD")
+  hash=$(find . -xtype f -print0 | xargs -0 sha512sum | cut -d" " -f1 | sort | \
+    sha512sum | cut -d" " -f1)
+  echo "${hash}  ${filename}/"
+  if [ -n "$1" ]; then
+    cd - > /dev/null
+  fi
+}
+#}}}
+
+# show_results() {{{
+show_results(){
+  sum=`cat $sum_temp`
+  if zenity --question --title="$1" \
+    --text="$1 : $sum\nFile :          ${file##*/}\n
+  If you have a correct checksum on clipboard you can compare it with this one.
+  Do you want to compare?" --no-wrap
+  then
+    # Compare with clipboard
+    sum_paste="$(zenity --entry --title="Compare sum" \
+      --text="If xsel is installed it will paste into text entry box
+    automatically. Enter the sum to compare:" \
+      --entry-text="$(xsel -b -o 2>/dev/null || echo "Paste Here")"
+    )"
+    if [ $? = 0 ]; then
+      if [ "$sum_paste" == "$(cat $sum_temp)" ];then
+        zenity --info --title="${1}" --text="Checksums are IDENTICAL!" \
+          --icon-name="gtk-yes"
+      else
+        zenity --info --title="${1}" --text="Checksums are DIFFERENT!" \
+          --icon-name="gtk-no"
+      fi
+    fi
+  fi
+}
+#}}}
+# selection_dialog() {{{
+selection_dialog(){
+  selection=$(zenity --list --radiolist --height=300 \
+    --title="Checksum" \
+    --text="File:  <b>${file##*/}</b>\nPick the hash function." \
+    --column="Pick" --column="Hash" \
+    "${MD5[@]}" "${SHA1[@]}" "${SHA224[@]}" "${SHA256[@]}" "${SHA384[@]}" \
+    "${SHA512[@]}")
+  # If Cancel is clicked then exit
+  if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+    exit 0
+  fi
+
+  # Create a temp file
+  sum_temp=$(mktemp /tmp/sum.XXXXXXXX)
+  case "${selection}" in
+    "MD5") do_md5 ;;
+    "SHA-1") do_sha1 ;;
+    "SHA-224") do_sha224 ;;
+    "SHA-256") do_sha256 ;;
+    "SHA-384") do_sha384 ;;
+    "SHA-512") do_sha512 ;;
+  esac
+}
+#}}}
+# multi_checksum() {{{
+multi_checksum(){
+  if [[ -f "${2}" ]]; then
+    func="sum"
+  else
+    func="dir"
+  fi
+  case "${1}" in
+    "MD5") md5${func} "${2}" >> md5.checksum ;;
+    "SHA-1") sha1${func} "${2}" >> sha1.checksum ;;
+    "SHA-224") sha224${func} "${2}" >> sha224.checksum ;;
+    "SHA-256") sha256${func} "${2}" >> sha256.checksum ;;
+    "SHA-384") sha384${func} "${2}" >> sha384.checksum ;;
+    "SHA-512") sha512${func} "${2}" >> sha512.checksum ;;
+  esac
+}
+#}}}
+# do_multi() {{{
+do_multi(){
+  if zenity --question --title="${1} Checksumsum" --no-wrap \
+    --text="Multiple files selected.\nThis will create/overwrite a file
+named <b>${2}.checksum</b> in the directory where the selected files are stored.
+  Proceed?"
+then
+  > ${2}.checksum
+  i=0
+  TOTAL="$counter"
+  while read -r line || [[ -n "$line" ]]; do
+    ((++i))
+    PERCENT=$(($i*100/${TOTAL}))
+    echo "#${2} $i/$TOTAL: $line"
+    multi_checksum "${1}" "${line}" >&1
+    echo "$PERCENT"
+  done < "$LST" | zenity --progress --title="${1}" --auto-close
+
+  exo-open "${2}.checksum" 2>/dev/null || \
+    zenity --text-info --title="${1} checksums" < ${2}.checksum
+  rm -rf ${2}.checksum
+fi
+}
+#}}}
+# selection_dialog_multi() {{{
+selection_dialog_multi(){
+  selection=$(zenity --list --radiolist --height=300 \
+    --title="Checksum" --text="Pick the hash function." \
+    --column="Pick" --column="Hash" \
+    "${MD5[@]}" "${SHA1[@]}" "${SHA224[@]}" "${SHA256[@]}" "${SHA384[@]}" \
+    "${SHA512[@]}")
+  # If Cancel is clicked then exit
+  if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+    exit 0
+  fi
+  case "${selection}" in
+    "MD5") do_multi "MD5" "md5" ;;
+    "SHA-1") do_multi "SHA-1" "sha1" ;;
+    "SHA-224") do_multi "SHA-224" "sha224" ;;
+    "SHA-256") do_multi "SHA-256" "sha256" ;;
+    "SHA-384") do_multi "SHA-384" "sha384" ;;
+    "SHA-512") do_multi "SHA-512" "sha512" ;;
+  esac
+}
+#}}}
+LST=$(mktemp /tmp/XXXXXX)
+> $LST
+for arg
+do
+  if [[ -f "${arg}" ]]; then
+    echo ${arg} >> $LST
+  elif [[ -d "${arg}" ]]; then
+    echo ${arg} >> $LST
+  fi
+done
+
+counter="$(wc -l "$LST" | cut -d' ' -f1)"
+
+case "${counter}" in
+  ""|0) zenity --error --text="Nothing to calculate!" ;;
+  1) file="$@"; selection_dialog ; rm $sum_temp;;
+  *) selection_dialog_multi ;;
+esac
+
+rm $LST
+#End of script
