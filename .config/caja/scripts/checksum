@@ -31,197 +31,111 @@ progressbar(){
     || (kill $PIPED_PID; rm $sum_temp)
 }
 #}}}
-# do_md5() {{{
-do_md5(){
+
+# do_hash() {{{
+do_hash(){
+  short_name=${1}
+  formal_name=${2}
   if [[ -f "${file}" ]]; then
-    get_hash="md5sum"
+    get_hash="${short_name}sum"
   else
-    get_hash="md5dir ${file}"
+    get_hash="${short_name}dir ${file}"
   fi
   ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
     | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "MD5"
+    2>&1 | progressbar "${formal_name}"
   # If Cancel is clicked then exit
   if [[ ! -f "$sum_temp" ]]; then
     exit 0
   fi
-  show_results "MD5"
+  show_results "${formal_name}"
+}
+#}}}
+# Specific file hashes#{{{
+# do_md5() {{{
+do_md5(){
+  do_hash "md5" "MD5"
 }
 #}}}
 # do_sha1() {{{
 do_sha1(){
-  if [[ -f "${file}" ]]; then
-    get_hash="sha1sum"
-  else
-    get_hash="sha1dir ${file}"
-  fi
-  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
-    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "SHA-1"
-  # If Cancel is clicked then exit
-  if [[ ! -f "$sum_temp" ]]; then
-    exit 0
-  fi
-  show_results "SHA-1"
+  do_hash "sha1" "sha1"
 }
 #}}}
 # do_sha224() {{{
 do_sha224(){
-  if [[ -f "${file}" ]]; then
-    get_hash="sha224sum"
-  else
-    get_hash="sha224dir ${file}"
-  fi
-  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
-    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "SHA-224"
-  # If Cancel is clicked then exit
-  if [[ ! -f "$sum_temp" ]]; then
-    exit 0
-  fi
-  show_results "SHA-224"
+  do_hash "sha224" "sha224"
 }
 #}}}
 # do_sha256() {{{
 do_sha256(){
-  if [[ -f "${file}" ]]; then
-    get_hash="sha256sum"
-  else
-    get_hash="sha256dir ${file}"
-  fi
-  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
-    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "SHA-256"
-  # If Cancel is clicked then exit
-  if [[ ! -f "$sum_temp" ]]; then
-    exit 0
-  fi
-  show_results "SHA-256"
+  do_hash "sha256" "sha256"
 }
 #}}}
 # do_sha384() {{{
 do_sha384(){
-  if [[ -f "${file}" ]]; then
-    get_hash="sha384sum"
-  else
-    get_hash="sha384dir ${file}"
-  fi
-  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
-    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "SHA-384"
-  # If Cancel is clicked then exit
-  if [[ ! -f "$sum_temp" ]]; then
-    exit 0
-  fi
-  show_results "SHA-384"
+  do_hash "sha384" "sha384"
 }
 #}}}
 # do_sha512() {{{
 do_sha512(){
-  if [[ -f "${file}" ]]; then
-    get_hash="sha512sum"
-  else
-    get_hash="sha512dir ${file}"
-  fi
-  ((pv -n "$file" | ${get_hash} 2>&1 | tee >(cut -d ' ' -f1 > $sum_temp) 2>&1 \
-    | awk '{if ($1 <=99) print $1; else print 99; fflush(stdout)}')& echo $!) \
-    2>&1 | progressbar "SHA-512"
-  # If Cancel is clicked then exit
-  if [[ ! -f "$sum_temp" ]]; then
-    exit 0
-  fi
-  show_results "SHA-512"
+  do_hash "sha512" "sha512"
 }
 #}}}
-# md5dir() {{{
-md5dir() {
+#}}}
+
+# dir_hash()#{{{
+dir_hash() {
   # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
+  if [ -n "$2" ]; then
+    cd "$2"
   fi
   filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 md5sum | cut -d" " -f1 | sort | \
-    md5sum | cut -d" " -f1)
+  hash=$(find . -xtype f -print0 | xargs -0 ${1}sum | cut -d" " -f1 | sort | \
+    ${1}sum | cut -d" " -f1)
   echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
+  if [ -n "$2" ]; then
     cd - > /dev/null
   fi
+}
+#}}}
+# Specific Directory Hashes#{{{
+# md5dir() {{{
+md5dir() {
+  input_file=${1}
+  dir_hash "md5" ${input_file}
 }
 #}}}
 # sha1dir() {{{
 sha1dir() {
-  # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
-  fi
-  filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 sha1sum | cut -d" " -f1 | sort | \
-    sha1sum | cut -d" " -f1)
-  echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
-    cd - > /dev/null
-  fi
+  input_file=${1}
+  dir_hash "sha1" ${input_file}
 }
 #}}}
 # sha224dir() {{{
 sha224dir() {
-  # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
-  fi
-  filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 sha224sum | cut -d" " -f1 | sort | \
-    sha224sum | cut -d" " -f1)
-  echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
-    cd - > /dev/null
-  fi
+  input_file=${1}
+  dir_hash "sha224" ${input_file}
 }
 #}}}
 # sha256dir() {{{
 sha256dir() {
-  # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
-  fi
-  filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 sha256sum | cut -d" " -f1 | sort | \
-    sha256sum | cut -d" " -f1)
-  echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
-    cd - > /dev/null
-  fi
+  input_file=${1}
+  dir_hash "sha256" ${input_file}
 }
 #}}}
 # sha384dir() {{{
 sha384dir() {
-  # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
-  fi
-  filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 sha384sum | cut -d" " -f1 | sort | \
-    sha384sum | cut -d" " -f1)
-  echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
-    cd - > /dev/null
-  fi
+  input_file=${1}
+  dir_hash "sha384" ${input_file}
 }
 #}}}
 # sha512dir() {{{
 sha512dir() {
-  # if argument is not empty cd into it
-  if [ -n "$1" ]; then
-    cd "$1"
-  fi
-  filename=$(basename "$PWD")
-  hash=$(find . -xtype f -print0 | xargs -0 sha512sum | cut -d" " -f1 | sort | \
-    sha512sum | cut -d" " -f1)
-  echo "${hash}  ${filename}/"
-  if [ -n "$1" ]; then
-    cd - > /dev/null
-  fi
+  input_file=${1}
+  dir_hash "sha512" ${input_file}
 }
+#}}}
 #}}}
 
 # show_results() {{{
