@@ -1,0 +1,50 @@
+#!/bin/bash
+
+function help() {
+  echo "Usage: os_info [options]"
+  echo ""
+  echo "Options:"
+  echo "  distro, distribution      Show Distribution ID"
+  echo "  version, release, number  Show release number of this distribution"
+  echo "  name, codename            Show code name of this distribution"
+  echo "  distro-version            Show description of this distribution"
+  echo "  all                       Show all of the above information"
+  echo "  short                     Show requested information in short format"
+}
+
+options=""
+
+for arg in "$@"; do
+  case "$arg" in
+    all)
+      options="${options} -a"
+      ;;
+    distro|distribution)
+      options="${options} -i"
+      ;;
+    version|release|number)
+      options="${options} -r"
+      ;;
+    name|codename)
+      options="${options} -c"
+      ;;
+    short)
+      options="${options} -s"
+      ;;
+    distro-version)
+      options="${options} -d"
+      ;;
+    *)
+      echo "Option \"${arg}\" not found."
+      help
+      exit 1
+      ;;
+  esac
+done
+
+if [ "$#" -eq 0 ]; then
+  help
+else
+  # Execute the command
+  lsb_release ${options}
+fi
