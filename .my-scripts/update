@@ -1,5 +1,28 @@
 #!/bin/bash
 
+is_checking_for_antivirus=1
+command_to_disable_antivirus="sudo /opt/sophos-av/bin/savdctl disable"
+command_to_enable_antivirus="sudo /opt/sophos-av/bin/savdctl enable"
+command_to_check_if_antivirus_is_active="sudo /opt/sophos-av/bin/savdstatus"
+status_is_inactive=4
+status_is_active=0
+
+if [[ $is_checking_for_antivirus -eq 1 ]]; then
+  echo " " ;
+  echo "==========================================="
+  echo "Temporarily Disabling Antivirus"
+  ${command_to_disable_antivirus}
+  sleep 5
+  echo "Checking if antivirus is disabled..."
+  ${command_to_check_if_antivirus_is_active}
+  if [[ $? -eq $status_is_inactive ]]; then
+    echo "Antivirus is Successfully Disabled, continuing with update."
+  else
+    echo "FAILED to disable antivirus, exiting without updating"
+    exit 2
+  fi
+fi
+
 echo " " ;
 echo "==========================================="
 echo "Ready to Update..."
@@ -40,3 +63,22 @@ fi
 echo " "
 echo "Update Complete!"
 echo "==========================================="
+
+if [[ $is_checking_for_antivirus -eq 1 ]]; then
+  echo " " ;
+  echo "==========================================="
+  echo "Enabling Antivirus"
+  ${command_to_enable_antivirus}
+  sleep 5
+  echo "Checking if antivirus is enabled..."
+  ${command_to_check_if_antivirus_is_active}
+  if [[ $? -eq $status_is_active ]]; then
+    echo "Antivirus is Successfully Enabled"
+  else
+    echo "FAILED to enable antivirus"
+    echo "MANUALLY REENABLE YOUR ANTIVIRUS!"
+    exit 3
+  fi
+fi
+
+exit 0
