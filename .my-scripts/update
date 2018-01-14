@@ -76,7 +76,9 @@ if [[ $is_checking_for_antivirus -eq 1 ]]; then
     echo "Antivirus is Successfully Enabled"
   else
     echo "FAILED to enable antivirus"
-    echo "MANUALLY REENABLE YOUR ANTIVIRUS!"
+    echo "********** MANUALLY REENABLE YOUR ANTIVIRUS! **********"
+    echo "Enable your AV  : \"${command_to_enable_antivirus}\""
+    echo "Check AV status : \"${command_to_check_if_antivirus_is_active}\""
     exit 3
   fi
 fi
