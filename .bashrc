@@ -127,9 +127,15 @@ screencast () { mplayer -tv driver=v4l2:width=320:height=240: -vo xv tv:// -geom
 
 sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
 
-downloadMusic () { youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2; }
+downloadMusic () {
+  sudo youtube-dl -U
+  youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2
+}
 
-downloadVideo () { sudo youtube-dl -U; youtube-dl -o "${1}.%(ext)s" $2; }
+downloadVideo () {
+  sudo youtube-dl -U
+  youtube-dl -o "${1}.%(ext)s" $2
+}
 
 trimVideo () {
   if [ "$#" -eq 4 ]; then
