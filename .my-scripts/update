@@ -1,9 +1,40 @@
 #!/bin/bash
 
+function enable_antivirus {
+  if [[ $is_checking_for_antivirus -eq 1 ]]; then
+    echo " " ;
+    echo "==========================================="
+    echo "Enabling Antivirus"
+    ${command_to_enable_antivirus}
+    sleep 5
+    echo "Checking if antivirus is enabled..."
+    ${command_to_check_if_antivirus_is_active}
+    if [[ $? -eq $status_is_active ]]; then
+      echo "Antivirus is Successfully Enabled"
+    else
+      echo "FAILED to enable antivirus"
+      echo "********** MANUALLY REENABLE YOUR ANTIVIRUS! **********"
+      echo "Enable your AV  : \"${command_to_enable_antivirus}\""
+      echo "Check AV status : \"${command_to_check_if_antivirus_is_active}\""
+      exit 3
+    fi
+  fi
+}
+
+# Before we do anything, make sure the script has been executed by the root
+# user. This way, the commands in this script don't need to be individually run
+# as root. This means that the script will run to finish without needing a
+# password again if it times out.
+if [ "$EUID" -ne 0  ]; then
+  echo "ERROR: Not root"
+  echo "This script MUST be excuted as root, or with sudo"
+  exit 1
+fi
+
 is_checking_for_antivirus=1
-command_to_disable_antivirus="sudo /opt/sophos-av/bin/savdctl disable"
-command_to_enable_antivirus="sudo /opt/sophos-av/bin/savdctl enable"
-command_to_check_if_antivirus_is_active="sudo /opt/sophos-av/bin/savdstatus"
+command_to_disable_antivirus="/opt/sophos-av/bin/savdctl disable"
+command_to_enable_antivirus="/opt/sophos-av/bin/savdctl enable"
+command_to_check_if_antivirus_is_active="/opt/sophos-av/bin/savdstatus"
 status_is_inactive=4
 status_is_active=0
 
@@ -27,6 +58,20 @@ echo " " ;
 echo "==========================================="
 echo "Ready to Update..."
 
+# OS Detection
+if [ -f /etc/debian_version ]; then
+  OS="Debian"
+elif [ -f /etc/manjaro-release ]; then
+  OS="Manjaro"
+elif [ -f /etc/arch-release ]; then
+  OS="Arch"
+elif [ -f /etc/windows ]; then
+  # This file does not exist by default in git bash
+  OS="Windows"
+else
+  OS="none"
+fi
+
 # $OS is an environment variable that is set in my bashrc
 echo "OS is $OS"
 if [[ $OS  == "Debian" ]]; then
@@ -34,16 +79,16 @@ if [[ $OS  == "Debian" ]]; then
   echo ""
   echo "Updating Repos"
   echo "=============="
-  sudo apt update || sudo apt-get update
+  apt update || apt-get update
   echo "Updating System"
   echo "==============="
-  sudo apt -y dist-upgrade || sudo apt-get -y dist-upgrade
+  apt -y dist-upgrade || apt-get -y dist-upgrade
   echo "Autoremoving Obsolete Packages"
   echo "=============================="
-  sudo apt -y autoremove || sudo apt-get -y autoremove
+  apt -y autoremove || apt-get -y autoremove
   echo "Performing autoclean"
   echo "===================="
-  sudo apt -y autoclean || sudo apt-get -y autoclean
+  apt -y autoclean || apt-get -y autoclean
 elif [[ $OS  == "Manjaro" ||
         $OS  == "Arch"
      ]]; then
@@ -51,36 +96,18 @@ elif [[ $OS  == "Manjaro" ||
   echo ""
   echo "Updating Repos and System"
   echo "========================="
-  sudo pacman -Syyu --noconfirm
+  pacman -Syyu --noconfirm
   echo "Autoremoving obsolete packages and cleaning"
   echo "==========================================="
-  sudo pacman -Rns --noconfirm $(pacman -Qqtd)
+  pacman -Rns --noconfirm $(pacman -Qqtd)
 else
   echo "Could not determine what package manager to use."
+  enable_antivirus
   exit 1
 fi
 
 echo " "
 echo "Update Complete!"
 echo "==========================================="
-
-if [[ $is_checking_for_antivirus -eq 1 ]]; then
-  echo " " ;
-  echo "==========================================="
-  echo "Enabling Antivirus"
-  ${command_to_enable_antivirus}
-  sleep 5
-  echo "Checking if antivirus is enabled..."
-  ${command_to_check_if_antivirus_is_active}
-  if [[ $? -eq $status_is_active ]]; then
-    echo "Antivirus is Successfully Enabled"
-  else
-    echo "FAILED to enable antivirus"
-    echo "********** MANUALLY REENABLE YOUR ANTIVIRUS! **********"
-    echo "Enable your AV  : \"${command_to_enable_antivirus}\""
-    echo "Check AV status : \"${command_to_check_if_antivirus_is_active}\""
-    exit 3
-  fi
-fi
-
+enable_antivirus
 exit 0
