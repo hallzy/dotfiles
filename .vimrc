@@ -383,8 +383,13 @@ nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 "Evaluate a mathematical expression"{{{
 
 " Calculate Math
-xnoremap <silent> <space>c :!octave --silent \| cut -c8-<cr>:call AddCommas()<cr>
-nnoremap <silent> <space>c v:!octave --silent \| cut -c8-<cr>:call AddCommas()<cr>
+function! OctaveMathVisual()
+  exec "normal! `<v`>yo\<esc>p`>mzj"
+  exec "normal! v:!octave --silent \| cut -d' ' -f3-\<cr>kJxD`za = \<esc>pjdd`zee"
+endfunction
+
+xnoremap <silent> <space>c <esc>:call OctaveMathVisual()<cr>:delmarks z<cr>
+nnoremap <silent> <space>c yypv:!octave --silent \| cut -d' ' -f3-<cr>kJi =<esc>jddk$
 
 "}}}
 " For merge conflicts easily choose what version to use"{{{
