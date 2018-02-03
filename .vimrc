@@ -1991,6 +1991,7 @@ augroup spellCheck
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
   autocmd FileType notes setlocal spell
+  autocmd FileType text setlocal spell
 augroup END
 
 "}}}
