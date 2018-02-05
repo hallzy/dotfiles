@@ -1964,7 +1964,7 @@ nnoremap <leader>- :call UnderlineCurrentLineWithDash()<cr>
 "}}}
 " OpenMultipleFilesVSplit"{{{
 
-nnoremap <f1> :call OpenMultipleFilesVSplit()<cr>
+nnoremap <f3> :call OpenMultipleFilesVSplit()<cr>
 "}}}
 "SaveVimSession"{{{
 
