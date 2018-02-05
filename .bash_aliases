@@ -41,7 +41,7 @@ alias trash='gvfs-trash'
 alias show-trash='gvfs-ls trash://'
 alias trash-ls='gvfs-ls trash://'
 
-# If the directory exists, dont give an error, and dont create a new empty
+# If the directory exists, don't give an error, and don't create a new empty
 # folder
 alias mkdir='mkdir -p'
 
@@ -92,7 +92,7 @@ alias reallykill='kill -9'
 # Show me disk info, like space that is left and disk capacity
 alias diskspace='df -kh .'
 
-# Get disk usage for the current Directory and subfolders
+# Get disk usage for the current Directory and sub folders
 alias diskusage="du -sh ./"
 
 alias localserver="python -m SimpleHTTPServer"
