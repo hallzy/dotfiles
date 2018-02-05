@@ -173,6 +173,7 @@ set tildeop           " Tilde (~) changes case of letter. Setting this option
                       " lets the tilde have movement options
 set pastetoggle=<f2>  " The toggle for paste mode is F2
 set spelllang=en_ca
+set spell
 set nostartofline     " when using gg or G, stay in the same column
 
 syntax on
@@ -2038,14 +2039,14 @@ augroup END
 "}}}
 " spellCheck"{{{
 
-augroup spellCheck
-  autocmd!
-  " Enable spellchecking for Markdown and gitcommit messages
-  autocmd FileType markdown setlocal spell
-  autocmd FileType gitcommit setlocal spell
-  autocmd FileType notes setlocal spell
-  autocmd FileType text setlocal spell
-augroup END
+" augroup spellCheck
+"   autocmd!
+"   " Enable spellchecking for Markdown and gitcommit messages
+"   autocmd FileType markdown setlocal spell
+"   autocmd FileType gitcommit setlocal spell
+"   autocmd FileType notes setlocal spell
+"   autocmd FileType text setlocal spell
+" augroup END
 
 "}}}
 " MyFormattingSubs"{{{
