@@ -76,7 +76,6 @@ Plug 'suan/vim-instant-markdown'
 Plug 'KuoE0/vim-janitor'
 Plug 'whatyouhide/vim-lengthmatters'
 Plug 'xolox/vim-misc'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'xolox/vim-notes'
 Plug 'christoomey/vim-quicklink'
@@ -1120,16 +1119,6 @@ let g:janitor_auto_clean_up_on_write = 1
 
 " Dim inactive splits
 let g:diminactive_enable_focus = 1
-
-"}}}
-" MuComplete"{{{
-
-set completeopt+=menuone
-set completeopt+=noinsert
-set shortmess+=c
-
-let g:mucomplete#enable_auto_at_startup = 1
-imap <c-n> <plug>(MUcompleteFwd)
 
 "}}}
 
