@@ -507,7 +507,7 @@ nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
 "}}}
 " Fix previous and next spelling mistakes"{{{
 
-nnoremap <silent> <leader>sp :normal! mz[s1z=`z<cr>:delmarks z<cr>
+nnoremap <silent> <leader>sp :normal! mzl[s1z=`z<cr>:delmarks z<cr>
 nnoremap <silent> <leader>sn :normal! mz]s1z=`z<cr>:delmarks z<cr>
 
 "}}}
