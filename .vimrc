@@ -657,11 +657,13 @@ map <leader>/ <Plug>(easymotion-sn)
 omap <leader>/ <Plug>(easymotion-tn)
 
 " Easy Vertical Motion
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <Leader>j <Plug>(easymotion-sol-j)
+map <Leader>k <Plug>(easymotion-sol-k)
+map <Leader>L <Plug>(easymotion-lineforward)
+map <Leader>H <Plug>(easymotion-linebackward)
 
 map <leader>; <plug>(easymotion-repeat)
-let g:EasyMotion_startofline = 0
+let g:EasyMotion_startofline = 1
 
 "use easy motion with no case sensitivity
 let g:EasyMotion_smartcase = 1
