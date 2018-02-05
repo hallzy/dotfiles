@@ -505,11 +505,6 @@ nnoremap <leader>tc :call ToggleColourScheme("next")<cr>
 nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
 
 "}}}
-" Make Y behave similarly to D."{{{
-
-nnoremap Y y$
-
-"}}}
 " Fix previous and next spelling mistakes"{{{
 
 nnoremap <silent> <leader>sp :normal! mz[s1z=`z<cr>:delmarks z<cr>
@@ -1891,6 +1886,54 @@ function! Leet()
   :s/o/0/gie
   :s/s/5/gie
   :s/z/2/gie
+endfunction
+
+"}}}
+" Append to copy"{{{
+
+" This is From Damian Conway
+" NOTE: that I am using '@+' because I use the unnamedplus register for my
+" cipboard. This will not work if you use a different register
+
+" Make v<motions>Y act like an incremental v<motion>y
+vnoremap <silent> Y  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
+
+" Make Y<motion> act like an incremental y<motion>
+nnoremap <silent><expr> Y  Incremental_Y()
+
+function! Incremental_Y ()
+  " After the Y operator, read in the associated motion
+  let motion = nr2char(getchar())
+
+  " If it's a (slowly typed) YY, do the optimized version instead (see below)
+  if motion == 'Y'
+    call Incremental_YY()
+    return
+
+  " If it's a text object, read in the associated motion
+  elseif motion =~ '[ia]'
+    let motion .= nr2char(getchar())
+
+  " If it's a search, read in the associated pattern
+  elseif motion =~ '[/?]'
+    let motion .= input(motion) . "\<CR>"
+  endif
+
+  " Copy the current contents of the default register into the 'y register
+  let @y = @+
+
+  " Return a command sequence that yanks into the 'Y register,
+  " then assigns that cumulative yank back to the default register
+  return '"Yy' . motion . ':let @+ = @y' . "\<CR>"
+endfunction
+
+
+" Make YY act like an incremental yy
+nnoremap <silent>  YY  :call Incremental_YY()<CR>
+
+function! Incremental_YY () range
+  " Grab all specified lines and append them to the default register
+  let @+ .= join(getline(a:firstline, a:lastline), "\n") . "\n"
 endfunction
 
 "}}}
