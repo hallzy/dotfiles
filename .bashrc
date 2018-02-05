@@ -31,19 +31,19 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
+# set a fancy prompt (non-color, unless we know we "want" colour)
 case "$TERM" in
   xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
+# Uncomment for a coloured prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+#force_colour_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
+    # We have colour support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
     color_prompt=yes
@@ -68,7 +68,7 @@ case "$TERM" in
   ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# enable colour support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
@@ -103,7 +103,7 @@ export dotfiles=~/Documents/git-repos/remote-github/dotfiles
 exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
 
 
-# Retrives the creation time of a given file
+# Retrieves the creation time of a given file
 get_crtime() {
   for target in "${@}"; do
     inode=$(stat -c '%i' "${target}")
@@ -187,7 +187,7 @@ tm () {
     exit 0
   fi
 
-  # present menu for user to choose which workspace to open
+  # present menu for user to choose which work space to open
   PS3="Please choose your session: "
   session_path=~/.tmp_tmux
   mkdir -p $session_path
@@ -382,7 +382,7 @@ export OS
 
 # Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
-# This bin folder will be for scripts that are not mine... such as git-radar
+# This bin folder will be for scripts that are not mine... Such as git-radar
 export PATH=$PATH:$dotfiles/.bin
 # This bin folder is for go scripts I have downloaded/installed
 export PATH=$PATH:$HOME/go/bin
@@ -394,9 +394,9 @@ __prompt_command() {
   exit="$?"
   PS1=""
 
-  # All Colours I used are from the gruvbox pallete -- .vim/plugged/gruvbox/colors/
+  # All Colours I used are from the gruvbox pallet -- .vim/plugged/gruvbox/colors/
   # find colour codes here: # http://misc.flogisoft.com/bash/tip_colors_and_formatting
-  # Color Codes
+  # Colour Codes
   # NOTE: the background colour of the terminal is #282828
   #       the text colour of the terminal is #AAAAAA (not part of gruvbox)
   #       the font of the terminal is "DejaVu Sans Mono"
