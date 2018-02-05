@@ -466,8 +466,8 @@ export editor="/usr/bin/vim"
 ### for my own stuff including my "git open" alias. Whenever I used the commands
 ### that are supposed to open my default browser it always opens up chrome
 ### instead for some reason, so this is my way of getting around it.
-export BROWSER="/usr/bin/firefox"
-export browser="/usr/bin/firefox"
+export BROWSER="/usr/bin/palemoon"
+export browser="/usr/bin/palemoon"
 
 export NVM_DIR="/home/steven/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
