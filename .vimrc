@@ -7,7 +7,7 @@
 "
 " =============================================================================
 
-" keys that I dont use so are free for mappings"{{{
+" keys that I don't use so are free for mappings"{{{
 
 """" Normal Mode
 
@@ -22,7 +22,7 @@
 " vim-plug Settings"{{{
 
 if has("gui_running")
-  " Use the specified location, and supress the git error.
+  " Use the specified location, and suppress the git error.
   silent call plug#begin('~/vim/vimfiles/plugged')
 else
   call plug#begin()
@@ -133,7 +133,7 @@ set lazyredraw
 
 let $PATH='/usr/local/bin:' . $PATH
 
-" Reduce timeout after <ESC> is recvd. This is only a good idea on fast links.
+" Reduce timeout after <ESC> is received. This is only a good idea on fast links
 set ttimeout
 set ttimeoutlen=3
 set notimeout
@@ -181,7 +181,7 @@ syntax on
 " Only do syntax highlighting for the first 81 columns. This improves
 " performance for files with massively long lines like for example, a json file.
 " Normally vim would slow to a crawl, but this prevents that. Given that columns
-" past 80 don't highlight for me anyways, this makes no visual differnece for me
+" past 80 don't highlight for me anyways, this makes no visual difference for me
 " anyways.
 set synmaxcol=81
 
@@ -192,7 +192,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Display extra whitespace
+" Display extra white space
 set list listchars=tab:>-,trail:-
 
 set t_Co=256
@@ -357,7 +357,7 @@ vnoremap J <esc>'<V'>dp`[V`]=gv
 " H and L move to the beginning and end of the line"{{{
 
 " If I am on the first character of a line, and press H, take me to the
-" first column. Otherwise take me to the first non whitespace character of the
+" first column. Otherwise take me to the first non white space character of the
 " line.
 nnoremap <silent> H :call HMapping()<cr>
 onoremap <silent> H :call HMapping()<cr>
@@ -375,9 +375,9 @@ vnoremap <silent> L <esc>:call LMappingVisual()<cr>
 nnoremap cct F<yf>f>pF<a/<esc>hi
 
 "}}}
-" Escape removes trailing whitespace from eol"{{{
+" Escape removes trailing white space from eol"{{{
 
-"esc now removes whitespace from the line that you are escaping from
+"esc now removes white space from the line that you are escaping from
 nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 "}}}
@@ -451,7 +451,7 @@ nnoremap ZQ :q!<cr>
 " _ is now K - but special"{{{
 
 " _ behaves like the default K, except for files of the "vim" or "help"
-" filetypes, where it opens help
+" file types, where it opens help
 nnoremap <expr> _ OpenHelp()
 vnoremap <expr> _ OpenHelp()
 
@@ -490,7 +490,7 @@ noremap j gjzt
 noremap k gkzb
 
 " easier combinations. Consider the scenario where I use j to move down to a
-" line, but I go past the line. then I press k to go back up to the line, but
+" line, but I go past the line. Then I press k to go back up to the line, but
 " now my cursor is towards the bottom of the screen when I would prefer it to be
 " at the top, as if I was pressing j to go down, but without moving to the line
 " below. Basically, these mappings shift the screen just as j and k do, but
@@ -728,7 +728,7 @@ endif
 " autocmd VimEnter * call OpenNerdTreeStartup()
 
 
-" Toggle nerdtree with F10
+" Toggle nerdtree
 noremap <F8> :NERDTreeToggle<CR>
 " Current file in nerdtree
 noremap <F9> :NERDTreeFind<CR>
@@ -760,7 +760,7 @@ vmap <unique> Dl      <Plug>SchleppDupRight
 let g:Schlepp#allowSquishingLines = 1
 let g:Schlepp#allowSquishingBlocks = 1
 
-" " Remove any introduced trailing whitespace after moving...
+" " Remove any introduced trailing white space after moving...
 let g:Schlepp#dupTrimWS = 1
 
 "}}}
@@ -1226,17 +1226,17 @@ function! MyFormattingSubs()
           " project that would make lots of changes to many files which would
           " be a bit of a waste
 
-  "Replace a tab wtih 2 spaces, except for the filetypes specified
+  "Replace a tab with 2 spaces, except for the filetypes specified
   if (&filetype !~ 'make' &&
      \&filetype !~ 'xml' &&
      \&filetype != 'java')
 
     " Don't do this now. DetectIndent will make it so that I may have tabs. Just
-    " leaving this here incase I decide to get rid of detectIndent
+    " leaving this here in case I decide to get rid of detectIndent
     " %s/\t/  /ge
   endif
 
-  " Remove trailing whitespace except for the filetypes specified
+  " Remove trailing white space except for the filetypes specified
   " Commented because I should still remove trailing whitespace from java files.
   " Just leaving this here as an example of how to change it if I decide I need
   " exclusions
@@ -1555,11 +1555,11 @@ endfun
 " This function has no mapping.
 
 " This function sorts my list of plugins at the top of this file by the plugin
-" name... not by the actual line
+" name... Not by the actual line
 function! SortPlugins()
   if exists(':Tabularize') && exists(':Vissort')
-    "Save current cursor position. We will go back here once the function is done
-    " Also save the search history
+    "Save current cursor position. We will go back here once the function is
+    " done Also save the search history
     let _s=@/
     let l = line(".")
     let c = col(".")
@@ -1568,22 +1568,22 @@ function! SortPlugins()
     exec "normal! gg/Plug\<cr>"
     let top = line(".")
 
-    " Open the fold and go to the last line of the Plug list. Set this line number
-    " to bottom
+    " Open the fold and go to the last line of the Plug list. Set this line
+    " number to bottom
     exec "normal! zo}k"
     let bottom = line(".")
 
     " Call tabularize to align all / slash characters in the plug block
     :Tabularize /\/
-    " Move to the / character, and go ahead one word. This is the column I want to
-    " sort.
+    " Move to the / character, and go ahead one word. This is the column I want
+    " to sort.
     exec "normal! f/w"
 
-    " Enter block visual mode, and move the cursor to the top of the block in the
-    " Last column (I gave 200 because it is easier, and no line should be that
-    " long anyways. And if there are, it should be unique before it reaches the
-    " 200th column). Escape out of visual mode. This will save the bounds of the
-    " visual selection in '< and '>
+    " Enter block visual mode, and move the cursor to the top of the block in
+    " the Last column (I gave 200 because it is easier, and no line should be
+    " that long anyways. And if there are, it should be unique before it reaches
+    " the 200th column). Escape out of visual mode. This will save the bounds of
+    " the visual selection in '< and '>
     exec "normal! \<c-v>"
     call cursor(top, 200)
     exec "normal! \<esc>"
@@ -1652,7 +1652,7 @@ endfunction
 "}}}
 " Colourscheme Related"{{{
 
-" The colour in the list deonted by the index is the default)
+" The colour in the list denoted by the index is the default)
 " The second field denotes whether to set the background
 " 1 = set background=dark
 " 0 = Do not set
@@ -1749,7 +1749,7 @@ endfunction
 " register @s and the destination in register @d. The values will also be shown
 " in the bottom of the page after function execution.
 
-" If you do not type in any information at the proompts, the function checks @s
+" If you do not type in any information at the prompts, the function checks @s
 " and @d for inputs and uses those as defaults, so you can copy a value into
 " those registers directly from vim. They just can't have a newline on them.
 function Units()
@@ -1776,7 +1776,7 @@ function Units()
   exec "normal! ^vg_\"adddk"
 
   if @a =~ "AnErrorOcurred"
-    echoe "An Error Ocurred during Conversion. Double check that the units you are using are recognized by \"units\". Check the config file specified with the command: \"units -U\""
+    echoe "An Error Occurred during Conversion. Double check that the units you are using are recognized by \"units\". Check the config file specified with the command: \"units -U\""
   else
     let @s = source
     let @d = dest
@@ -1857,7 +1857,7 @@ function! TableOfContentsFormat()
   let number_of_chars = col(".")
   let number_of_chars_to_add = 79-number_of_chars
 
-  " Go to the first occurence of two dashes (signaling the point to split)
+  " Go to the first occurrence of two dashes (signalling the point to split)
   exec "normal! 0/--\<cr>r.lr."
 
   " append a dot from where we are
@@ -1885,7 +1885,7 @@ endfunction
 
 " This is From Damian Conway
 " NOTE: that I am using '@+' because I use the unnamedplus register for my
-" cipboard. This will not work if you use a different register
+" clipboard. This will not work if you use a different register
 
 " Make v<motions>Y act like an incremental v<motion>y
 vnoremap <silent> Y  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
@@ -1936,7 +1936,7 @@ endfunction
 " HLNext"{{{
 
 " Highlight matches when jumping to next
-" This rewires n and N to do the highlighing...
+" This rewires n and N to do the highlighting...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
@@ -2031,8 +2031,8 @@ augroup END
 augroup googleScriptGroup
   autocmd!
   " Set syntax highlighting for specific file types
-  " Google Script is basically javascript, so I will just pretend it is a
-  " javascript file for syntax highlighting
+  " Google Script is basically JavaScript, so I will just pretend it is a
+  " JavaScript file for syntax highlighting
   autocmd BufRead,BufNewFile *.gs set filetype=javascript
 augroup END
 
@@ -2077,7 +2077,7 @@ augroup END
 "}}}
 
 "}}}
-" highlightings Before Colorscheme"{{{
+" highlighting Before Colorscheme"{{{
 
 " diffs"{{{
 
@@ -2094,7 +2094,7 @@ highlight diffchanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=
 highlight diffline    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=darkmagenta guifg=white gui=none
 highlight difffile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=darkyellow  guifg=white gui=none
 "}}}
-" trailing whitespace"{{{
+" trailing white space"{{{
 
 highlight highlighttrailingwhitespace ctermbg=white guibg=white
 
@@ -2151,7 +2151,7 @@ augroup end
 "}}}
 
 " These conceals are basically only useful for programming, since they keep
-" ascii characters as the actual source.
+" ASCII characters as the actual source.
 
 " Global Conceals"{{{
 if has('conceal')
