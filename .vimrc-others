@@ -1,5 +1,5 @@
 if has("gui_running")
-  " Use the specified location, and supress the git error.
+  " Use the specified location, and suppress the git error.
   silent call plug#begin('~/vim/vimfiles/plugged')
 else
   call plug#begin()
@@ -54,12 +54,12 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Display extra whitespace
+" Display extra white space
 set list listchars=tab:>-,trail:-
 
 set encoding=utf-8
 
-" Color scheme (terminal)
+" Colour scheme (terminal)
 set t_Co=256
 set background=dark
 colorscheme gruvbox
@@ -137,7 +137,7 @@ let g:lightline.tabline = {
 
 "}}}
 
-" trailing whitespace"{{{
+" trailing white space"{{{
 
 highlight highlighttrailingwhitespace ctermbg=white guibg=white ctermfg=white guifg=white
 
