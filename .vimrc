@@ -35,7 +35,6 @@ Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
 Plug 'ciaranm/detectindent'
-Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'hallzy/gravity.vim'
@@ -84,6 +83,7 @@ Plug 'christoomey/vim-quicklink'
 Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
+Plug 'zirrostig/vim-schlepp'
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
 Plug 'christoomey/vim-sort-motion'
@@ -744,19 +744,27 @@ vnoremap ++  y:call VMATH_Analyse()<CR>
 nnoremap ++  vipy:call VMATH_Analyse()<CR>
 
 "}}}
-" dragvisuals"{{{
+" vim-schlepp "{{{
 
-" This is for dragvisuals.vim
-runtime plugin/dragvisuals.vim
+" Improved form of dragvisuals
 
-vmap  <expr>  <left>   DVB_Drag('left')
-vmap  <expr>  <right>  DVB_Drag('right')
-vmap  <expr>  <down>   DVB_Drag('down')
-vmap  <expr>  <up>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
+" Move
+vmap <unique> <up>    <Plug>SchleppUp
+vmap <unique> <down>  <Plug>SchleppDown
+vmap <unique> <left>  <Plug>SchleppLeft
+vmap <unique> <right> <Plug>SchleppRight
 
-" Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS = 1
+" Duplicate
+vmap <unique> Dk      <Plug>SchleppDupUp
+vmap <unique> Dj      <Plug>SchleppDupDown
+vmap <unique> Dh      <Plug>SchleppDupLeft
+vmap <unique> Dl      <Plug>SchleppDupRight
+
+let g:Schlepp#allowSquishingLines = 1
+let g:Schlepp#allowSquishingBlocks = 1
+
+" " Remove any introduced trailing whitespace after moving...
+let g:Schlepp#dupTrimWS = 1
 
 "}}}
 " Visual Marks"{{{
