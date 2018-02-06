@@ -527,11 +527,23 @@ nnoremap <silent> <leader>sn :normal! mz]s1z=`z<cr>:delmarks z<cr>
 nnoremap / q/i
 vnoremap / q/i
 
-nnoremap ? q?i
-vnoremap ? q?i
-
 nnoremap : q:i
 vnoremap : q:i
+
+
+
+" Also, preserve a way to get the original functionality back. For instance, if
+" I want the default behaviour, or if I am recording a macro. As you can see
+" with the above commands, it first performs a "q" command, which closes a
+" macro. So doing either of those in a macro stops the macro and I need these 4
+" following mappings to get around that.
+
+" I never ever use the "?" key, so just make it the regular search.
+nnoremap ? /
+vnoremap ? /
+
+nnoremap <leader>: :
+vnoremap <leader>: :
 
 "}}}
 " Vim Easy-Mode"{{{
