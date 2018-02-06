@@ -296,6 +296,13 @@ nnoremap * *N
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 "}}}
+" Shortcut for sourcing vimrc"{{{
+
+" If $MYVIMRC does not work as a path, either add it, or replace it with the
+" path of your vimrc file.
+nnoremap <leader>sev :source $MYVIMRC<cr>
+
+"}}}
 "German Chars"{{{
 
 " ä
@@ -747,16 +754,16 @@ nnoremap ++  vipy:call VMATH_Analyse()<CR>
 " Improved form of dragvisuals
 
 " Move
-vmap <unique> <up>    <Plug>SchleppUp
-vmap <unique> <down>  <Plug>SchleppDown
-vmap <unique> <left>  <Plug>SchleppLeft
-vmap <unique> <right> <Plug>SchleppRight
+vmap <up>    <Plug>SchleppUp
+vmap <down>  <Plug>SchleppDown
+vmap <left>  <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
 
 " Duplicate
-vmap <unique> Dk      <Plug>SchleppDupUp
-vmap <unique> Dj      <Plug>SchleppDupDown
-vmap <unique> Dh      <Plug>SchleppDupLeft
-vmap <unique> Dl      <Plug>SchleppDupRight
+vmap Dk      <Plug>SchleppDupUp
+vmap Dj      <Plug>SchleppDupDown
+vmap Dh      <Plug>SchleppDupLeft
+vmap Dl      <Plug>SchleppDupRight
 
 let g:Schlepp#allowSquishingLines = 1
 let g:Schlepp#allowSquishingBlocks = 1
@@ -1753,7 +1760,7 @@ endfunction
 " If you do not type in any information at the prompts, the function checks @s
 " and @d for inputs and uses those as defaults, so you can copy a value into
 " those registers directly from vim. They just can't have a newline on them.
-function Units()
+function! Units()
   let source = input('Enter Starting Units: ')
   let dest = input('Enter the Units that you Want: ')
 
@@ -2130,7 +2137,7 @@ call GetDefaultColour()
 call ToggleColourScheme("setup")
 
 au BufRead,BufNewFile,BufEnter * call DoColour()
-function DoColour()
+function! DoColour()
   call GetDefaultColour()
   call ToggleColourScheme("init")
 endfunction
