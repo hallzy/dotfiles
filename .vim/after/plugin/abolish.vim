@@ -6,7 +6,7 @@ if !exists(':Abolish')
 endif
 
 " I always spell definitely wrong.
-Abolish defi{nate,ant,nita}{ly} definite{ly}
+Abolish defi{nate,ant,nita}{ly} defi{nite}{}
 
 " Fix the word foreign
 Abolish foregin{er,} foreign{}
