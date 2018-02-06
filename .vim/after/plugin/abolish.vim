@@ -9,5 +9,5 @@ endif
 Abolish defi{nate,ant,nita}{ly} definite{ly}
 
 " Fix the word foreign
-Abolish foregin{er} foreign{er}
+Abolish foregin{er,} foreign{}
 
