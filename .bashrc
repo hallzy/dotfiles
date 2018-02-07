@@ -41,6 +41,8 @@ esac
 # should be on the output of commands, not on the prompt
 #force_colour_prompt=yes
 
+# Shellcheck ignore this as it was a default that came with ubuntu
+# shellcheck disable=SC2154
 if [ -n "$force_color_prompt" ]; then
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     # We have colour support; assume it's compliant with Ecma-48
@@ -48,6 +50,8 @@ if [ -n "$force_color_prompt" ]; then
     # a case would tend to support setf rather than setaf.)
     color_prompt=yes
   else
+# Shellcheck ignore this as it was a default that came with ubuntu
+# shellcheck disable=SC2034
     color_prompt=
   fi
 fi
@@ -70,11 +74,16 @@ esac
 
 # enable colour support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  # Shellcheck ignore this as it was a default that came with ubuntu
+  # shellcheck disable=SC2015
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
+    eval "$(dircolors -b)"
   alias ls='ls --color=auto'
   #alias dir='dir --color=auto'
   #alias vdir='vdir --color=auto'
 
+  # Shellcheck ignore this as it was a default that came with ubuntu
+  # shellcheck disable=SC2032
   alias grep='grep --color=auto -n -I'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
@@ -100,18 +109,8 @@ source /etc/environment
 export REPOS=~/Documents/git-repos
 export dotfiles=~/Documents/git-repos/remote-github/dotfiles
 
-exec /usr/games/fortune quotes | /usr/games/cowsay -f tux
+/usr/games/fortune quotes | /usr/games/cowsay -f tux
 
-
-# Retrieves the creation time of a given file
-get_crtime() {
-  for target in "${@}"; do
-    inode=$(stat -c '%i' "${target}")
-    fs=$(df  --output=source "${target}"  | tail -1)
-    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "/dev/sda1" 2>/dev/null | grep -oP 'crtime.*--\s*\K.*')
-    printf "%s\t%s\n" "${target}" "${crtime}"
-  done
-}
 
 # Sets the Mail Environment Variable
 MAIL=/var/spool/mail/steven && export MAIL
@@ -120,32 +119,35 @@ MAIL=/var/spool/mail/steven && export MAIL
 
 # Git add files matching a regex
 ga () {
+  # Shellcheck ignore because I possibly want splitting
+  # Also, grep isn't a command, its an argument
+  # shellcheck disable=SC2046,SC2033
   git add $(find . -regextype grep -regex ".*/[\.]\{0,1\}${1}")
 }
 
 screencast () { mplayer -tv driver=v4l2:width=320:height=240: -vo xv tv:// -geometry "99%:95%" -noborder -ontop; }
 
-sendtext () { curl http://textbelt.com/text -d number=$1 -d "message=$2";echo message sent; }
+sendtext () { curl http://textbelt.com/text -d number="$1" -d "message=$2";echo message sent; }
 
 downloadMusic () {
   sudo youtube-dl -U
-  youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 $2
+  youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 "$2"
 }
 
 downloadVideo () {
   sudo youtube-dl -U
-  youtube-dl -o "${1}.%(ext)s" $2
+  youtube-dl -o "${1}.%(ext)s" "$2"
 }
 
 trimVideo () {
   if [ "$#" -eq 4 ]; then
-    ffmpeg -i ${1} -vcodec copy -acodec copy -ss ${3} -t ${4} ${2}
+    ffmpeg -i "${1}" -vcodec copy -acodec copy -ss "${3}" -t "${4}" "${2}"
     return
   fi
 
   if [ "$#" -eq 5 ]; then
     if [ "$5" == "no-audio" ]; then
-      ffmpeg -i ${1} -vcodec copy -acodec copy -ss ${3} -t ${4} -an ${2}
+      ffmpeg -i "${1}" -vcodec copy -acodec copy -ss "${3}" -t "${4}" -an "${2}"
       return
     fi
   fi
@@ -156,7 +158,7 @@ trimVideo () {
 
 joinVideo () {
   if [ "$#" -eq 3 ]; then
-    MP4Box -add ${1} -cat ${2} -new ${3}
+    MP4Box -add "${1}" -cat "${2}" -new "${3}"
     return
   fi
 
@@ -203,38 +205,38 @@ tm () {
     case $opt in
       "New Session")
         read -p "Enter new session name: " SESSION_NAME
-        tmux -S $session_path/$SESSION_NAME
+        tmux -S "$session_path"/"$SESSION_NAME"
         cd -
         break;;
       "Attach To Session")
         ls -1 $session_path
         read -p "Enter session name: " SESSION_NAME
-        if (($(stat -c "%a" $session_path/$SESSION_NAME) < 666)); then
-          sudo chmod 666 $session_path/$SESSION_NAME
+        if (($(stat -c "%a" "$session_path"/"$SESSION_NAME") < 666)); then
+          sudo chmod 666 "$session_path"/"$SESSION_NAME"
         fi
         failed=0
-        tmux -S $session_path/$SESSION_NAME attach || failed=1
+        tmux -S "$session_path"/"$SESSION_NAME" attach || failed=1
         if (( failed == 1 )); then
           echo "Session either does not exist, or it is inactive"
           echo "Deleting Session"
-          rm -rf $session_path/$SESSION_NAME
+          rm -rf "${session_path:?}"/"$SESSION_NAME"
           echo "Creating new session"
-          tmux -S $session_path/$SESSION_NAME
+          tmux -S "$session_path"/"$SESSION_NAME"
         fi
         break;;
       "Attach To Session From CWD")
         cd -
         ls -1
         read -p "Enter session name: " SESSION_NAME
-        if (($(stat -c "%a" ${PWD}/$SESSION_NAME) < 666)); then
-          sudo chmod 666 ${PWD}/$SESSION_NAME
+        if (($(stat -c "%a" "${PWD}"/"$SESSION_NAME") < 666)); then
+          sudo chmod 666 "${PWD}"/"$SESSION_NAME"
         fi
-        tmux -S ${PWD}/$SESSION_NAME attach
+        tmux -S "${PWD}"/"$SESSION_NAME" attach
         break;;
       "Remove Session")
         ls -1 $session_path
         read -p "Session to Delete: " SESSION_NAME
-        rm -rf $session_path/$SESSION_NAME
+        rm -rf "${session_path:?}"/"$SESSION_NAME"
         break;;
       *)
         break;;
@@ -263,7 +265,9 @@ vimfind () {
 
   # if argument is not empty open it in vim
   if [ -n "$argument" ]; then
-    vim $(findcwd $argument)
+    # Shellcheck ignore this as I may want word splitting
+    # shellcheck disable=SC2046
+    vim $(findcwd "$argument")
   else
     echo "no argument specified."
   fi
@@ -355,7 +359,12 @@ sha512dir () {
 }
 
 uninstall () {
-  sudo apt purge $@ && sudo apt autoremove
+  sudo apt purge "$@" && sudo apt autoremove
+}
+
+install-thefuck () {
+  wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | \
+    sh - && $0
 }
 
 #}}}
@@ -411,7 +420,7 @@ __prompt_command() {
   if [[ $OS != "Windows" ]]; then
     # Don't get the date if we are running windows. The date function does not
     # seem to work
-    export PS1="$PS1 ${red}[\$(date +"%r")]"
+    export PS1="$PS1 ${red}[\$(date +%r)]"
   fi
   PS1+=" ${blue}RET=${exit}${end_colour}"
 
@@ -457,6 +466,8 @@ __prompt_command() {
 # helps me with typos in terminal:
 # update with alias: update-thefuck
 # install with alias: install-thefuck
+  # Shellcheck ignore this as I need word splitting for this
+  # shellcheck disable=SC2046
 eval $(thefuck --alias)
 
 ## Some Defaults
