@@ -1,3 +1,5 @@
+set encoding=utf-8
+scriptencoding utf-8
 " =============================================================================
 " This Source Code Form is subject to the terms of the Mozilla Public
 " License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -6,6 +8,12 @@
 " Copyright (c) 2018, MPL Steven Hall Hallzy.18@gmail.com
 "
 " =============================================================================
+
+" IMPORTANT NOTE: Do NOT set "gdefault" or "nogdefault". This vimrc file takes
+" advantage of substitute commands. Therefore, setting one of these settings
+" could mess up what was meant to happen in those substitute commands. If you
+" are going to set one of these settings, make sure you change the substitute
+" commands as necessary
 
 " keys that I don't use so are free for mappings"{{{
 
@@ -21,7 +29,7 @@
 
 " vim-plug Settings"{{{
 
-if has("gui_running")
+if has('gui_running')
   " Use the specified location, and suppress the git error.
   silent call plug#begin('~/vim/vimfiles/plugged')
 else
@@ -113,7 +121,6 @@ call plug#end()
 " Settings"{{{
 
 filetype plugin indent on
-set nocompatible  " Use Vim settings, rather then Vi settings
 
 set shell=/bin/bash
 set title titlestring=
@@ -202,8 +209,6 @@ set t_Co=256
 " string is case sensitive
 set smartcase
 set ignorecase
-
-set encoding=utf-8
 
 " With both of these set, I get relative numbers, but the current line gets the
 " line number - Hybrid Numbering
@@ -720,7 +725,7 @@ endif
 " Quick Scope"{{{
 
 " Colours for quick-scope
-if has("gui_running")
+if has('gui_running')
   " gui vim
   let g:qs_first_occurrence_highlight_color = '#75fff3'
   let g:qs_second_occurrence_highlight_color = '#6b98fb'
@@ -847,13 +852,13 @@ nnoremap <leader>sr :RestartVim<cr>
 
 
 " Sessions will be saved here
-let g:session_directory = "~/.my-vim-sessions"
+let g:session_directory = '~/.my-vim-sessions'
 
 " if the default session exists, do not prompt me on opening vim to open the default
-let g:session_autoload = "no"
+let g:session_autoload = 'no'
 
 " On exiting vim, do not prompt me to save the session
-let g:session_autosave = "no"
+let g:session_autosave = 'no'
 
 " Make messages less verbose
 let g:session_verbose_messages = 0
@@ -867,8 +872,8 @@ let g:lightline = {
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
-      \ 'colinfo': "COL %-2v",
-      \ 'charvaluehex' : "char: 0x%B",
+      \ 'colinfo': 'COL %-2v',
+      \ 'charvaluehex' : 'char: 0x%B',
   \ },
   \ 'component_visible_condition': {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
@@ -979,13 +984,13 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " Vissort"{{{
 
 " Make vissort case insensitive
-let g:vissort_option= "i"
+let g:vissort_option= 'i'
 
 "}}}
 " Vim table mode"{{{
 
 " Make the tables markdown compatible
-let g:table_mode_corner="|"
+let g:table_mode_corner='|'
 
 "}}}
 " vim-surround"{{{
@@ -1027,7 +1032,10 @@ let g:detectindent_preferred_indent = 2
 
 
 " Automatically run detectIndent
-autocmd BufReadPost * :DetectIndent
+augroup detectIndentGroup
+  autocmd!
+  autocmd BufReadPost * :DetectIndent
+augroup END
 
 function! CheckExpandTab()
   " If expandtab is off, then set the tabs to be 2 columns long
@@ -1036,7 +1044,10 @@ function! CheckExpandTab()
   endif
 endfunction
 
-autocmd BufReadPost * :call CheckExpandTab()
+augroup checkExpandTabGroup
+  autocmd!
+  autocmd BufReadPost * :call CheckExpandTab()
+augroup END
 
 "}}}
 " Indentline"{{{
@@ -1071,7 +1082,7 @@ let g:TagHighlightSettings['TagFileName'] = '.tags'
 "   \"Steven Hall <Hallzy.18@gmail.com>",
 "   \"Someone Else <other@person.com>"
 "   \]
-if filereadable($dotfiles . "/gpg_recipients.vim")
+if filereadable($dotfiles . '/gpg_recipients.vim')
   source $dotfiles/gpg_recipients.vim
 endif
 
@@ -1102,7 +1113,7 @@ let g:ackhighlight = 1
 " jedi-vim"{{{
 
 " Disable this
-let g:jedi#documentation_command = ""
+let g:jedi#documentation_command = ''
 
 "}}}
 " youcompleteme"{{{
@@ -1137,21 +1148,21 @@ let g:diminactive_enable_focus = 1
 
 " Blink the next selection of a search
 function! HLNext (blinktime)
-  let target_pat = '\c\%#\%('.@/.'\)'
+  let l:target_pat = '\c\%#\%('.@/.'\)'
 
-  let ring = matchadd('WhiteOnRed', target_pat, 101)
+  let l:ring = matchadd('WhiteOnRed', l:target_pat, 101)
   redraw
   exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
 
-  call matchdelete(ring)
+  call matchdelete(l:ring)
   redraw
   exec 'sleep ' . float2nr(a:blinktime * 250) . 'm'
 
-  let ring = matchadd('WhiteOnRed', target_pat, 101)
+  let l:ring = matchadd('WhiteOnRed', l:target_pat, 101)
   redraw
   exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
 
-  call matchdelete(ring)
+  call matchdelete(l:ring)
   redraw
 
 endfunction
@@ -1163,8 +1174,8 @@ endfunction
 set wildmode=list:longest,list:full
 set complete=.,w,t
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
+    let l:col = col('.') - 1
+    if !l:col || getline('.')[l:col - 1] !~# '\k'
         return "\<tab>"
     else
         return "\<c-p>"
@@ -1224,9 +1235,9 @@ endfun
 " Remove trailing whitespace on save for all filetypes.
 function! MyFormattingSubs()
   "Save last search and cursor position
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
+  let l:_s=@/
+  let l:l = line('.')
+  let l:c = col('.')
 
   " Note: Filetypes listed are excluded.
   " Note: Java is excluded because For CPEN 422 at UBC we are given a Java
@@ -1234,9 +1245,9 @@ function! MyFormattingSubs()
           " be a bit of a waste
 
   "Replace a tab with 2 spaces, except for the filetypes specified
-  if (&filetype !~ 'make' &&
-     \&filetype !~ 'xml' &&
-     \&filetype != 'java')
+  if (&filetype !~? 'make' &&
+     \&filetype !~? 'xml' &&
+     \&filetype !=? 'java')
 
     " Don't do this now. DetectIndent will make it so that I may have tabs. Just
     " leaving this here in case I decide to get rid of detectIndent
@@ -1255,26 +1266,26 @@ function! MyFormattingSubs()
   " Note: I need to exclude vim files from this otherwise vim will mess up the
   " BracketSpacing() function - There are spacings that would change in the
   " function implementation
-  if &filetype !~ 'vim'
+  if &filetype !~? 'vim'
     call BracketSpacing()
   endif
 
-  let @/=_s
-  call cursor(l,c)
-  call histdel("search", -1)
+  let @/=l:_s
+  call cursor(l:l,l:c)
+  call histdel('search', -1)
 endfunction
 "}}}
 " Remove trailing whitespace"{{{
 
 function! RemoveTrailingWhitespace()
-  let l = line(".")
-  let c = col(".")
+  let l:l = line('.')
+  let l:c = col('.')
 
   "  if (&filetype != 'java')
     %s/\s\+$//ge
   "  endif
 
-  call cursor(l,c)
+  call cursor(l:l,l:c)
 endfunction
 
 " }}}
@@ -1282,7 +1293,7 @@ endfunction
 
 " This is used for the next function
 function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
+    exe 'menu Foo.Bar :' . a:str
     emenu Foo.Bar
     unmenu Foo
 endfunction
@@ -1292,25 +1303,25 @@ function! VisualSelection(direction) range
   " Temporarily store your last yank as a temp variable
   let l:saved_reg = @"
   " Selects and yanks the highlighted text
-  execute "normal! vgvy"
+  execute 'normal! vgvy'
 
   " if the highlighted text has any of these special characters, then escape
   " them with a \
   let l:pattern = escape(@", '\\/.*$^~[]')
   " Get rid of next line characters in the highlighted text
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = substitute(l:pattern, "\n$", '', '')
 
   let @/ = l:pattern
 
   " Search for highlighted text
-  if a:direction == 'b'
-      execute "normal ?\<C-R>/\<cr>"
+  if a:direction ==? 'b'
+      execute "normal! ?\<C-R>/\<cr>"
   " substitute highlighted text
-  elseif a:direction == 'replace'
-      call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction ==? 'replace'
+      call CmdLine('%s' . '/'. l:pattern . '/')
   " Search for highlighted text
-  elseif a:direction == 'f'
-      execute "normal /\<C-R>/\<cr>"
+  elseif a:direction ==? 'f'
+      execute "normal! /\<C-R>/\<cr>"
   endif
 
   "Restore your last yank bank into the " register
@@ -1322,25 +1333,25 @@ endfunction
 
 " Underline the current line with a -
 function! UnderlineCurrentLineWithDash()
-  exe "normal! $"
-  let c = col(".")
-  exe "normal! o"
+  exe 'normal! $'
+  let l:c = col('.')
+  exe 'normal! o'
 
-  while c > 0
-    exe "normal! i-\<esc>"
-    let c -= 1
+  while l:c > 0
+    exe 'normal! i-'
+    let l:c -= 1
   endwhile
 endfunc
 
 "Underline the current line with =
 function! UnderlineCurrentLineWithEquals()
-  exe "normal! $"
-  let c = col(".")
-  exe "normal! o"
+  exe 'normal! $'
+  let l:c = col('.')
+  exe 'normal! o'
 
-  while c > 0
-    exe "normal! i=\<esc>"
-    let c -= 1
+  while l:c > 0
+    exe 'normal! i='
+    let l:c -= 1
   endwhile
 endfunc
 "}}}
@@ -1348,9 +1359,9 @@ endfunc
 
 function! OpenMultipleFilesVSplit()
   call inputsave()
-  let option = input("Enter a file name or regex expression: ")
+  let l:option = input('Enter a file name or regex expression: ')
   call inputrestore()
-  execute ":args " . option . " | vertical all"
+  execute ':args ' . l:option . ' | vertical all'
 endfun
 "}}}
 " SaveVimSession"{{{
@@ -1383,7 +1394,7 @@ endfun
 " This will make ! toggle whether or not ctrl+a and ctrl+x can work on alpha
 " characters or not. By default it is off.
 function! Togglenrformats()
-  if &nrformats == "octal,hex"
+  if &nrformats ==? 'octal,hex'
     set nrformats=octal,hex,alpha
   else
     set nrformats=octal,hex
@@ -1399,18 +1410,18 @@ endfun
 "Move Line Up"{{{
 
 function! MoveLineUp()
-  let currentLine = line(".")
-  let lastLine = line("$")
+  let l:currentLine = line('.')
+  let l:lastLine = line('$')
 
-  if currentLine == lastLine
+  if l:currentLine == l:lastLine
     " Do this on the bottom of the file otherwise the line will go up 2 lines
     " instead of one
-    exec "normal! ddP=="
-  elseif currentLine == 1
+    exec 'normal! ddP=='
+  elseif l:currentLine == 1
     " Don't go off the top of the page
   else
     " For anywhere else in the file, do this
-    exec "normal! ddkP=="
+    exec 'normal! ddkP=='
   endif
 endfun
 
@@ -1420,22 +1431,22 @@ endfun
 function! MoveSelectionUp()
   " Selects the top part of the visual selection and Save that line number
   exec "normal! '<"
-  let currentLineTop = line(".")
+  let l:currentLineTop = line('.')
 
   " Selects the block, with the cursor on the bottom of the block and Save that
   " line number
   exec "normal! V'>"
-  let currentLineBottom = line(".")
+  let l:currentLineBottom = line('.')
 
-  let lastLine = line("$")
+  let l:lastLine = line('$')
 
-  if currentLineBottom == lastLine
+  if l:currentLineBottom == l:lastLine
     " Do this on the bottom of the file otherwise the line will go up 2 lines
-    exec "normal! gvdP`[V`]=gv"
-  elseif currentLineTop == 1
+    exec 'normal! gvdP`[V`]=gv'
+  elseif l:currentLineTop == 1
     " Don't go off the top of the page
   else
-    exec "normal! gvdkP`[V`]=gv"
+    exec 'normal! gvdkP`[V`]=gv'
   endif
 
 endfun
@@ -1463,7 +1474,7 @@ endfun
 function! RemoveTrailingWhitespaceFromCurrentLine()
   if &modifiable == 1
     s/\s\+$//e
-    call histdel("search", -1)
+    call histdel('search', -1)
   endif
 endfun
 
@@ -1474,27 +1485,27 @@ endfun
 " first column. Otherwise take me to the first non whitespace character of the
 " line.
 function! HMapping()
-  let c = col(".")
+  let l:c = col('.')
   " g is so it treats a word wrap as a newline
-  exec "normal! g^"
+  exec 'normal! g^'
 
-  if c <= col(".")
+  if l:c <= col('.')
     " g is so it treats a word wrap as a newline
-    exec "normal! g0"
+    exec 'normal! g0'
   endif
 endfun
 
 function! HMappingVisual()
-  let startc = col(".")
+  let l:startc = col('.')
   " second g is so it treats a word wrap as a newline
   exec "normal! gvg^\<esc>"
-  let endc = col(".")
+  let l:endc = col('.')
 
-  if startc <= endc
+  if l:startc <= l:endc
     " second g is so it treats a word wrap as a newline
-    exec "normal! gvg0"
+    exec 'normal! gvg0'
   else
-    exec "normal! gv"
+    exec 'normal! gv'
   endif
 endfun
 
@@ -1504,39 +1515,39 @@ endfun
 " If I am to the left of the 80th column and press L, take me to the last space
 " character before the 80th column. Otherwise take me to the end of the line.
 function! LMapping()
-  let c = col(".")
-  exec "normal! g$"
-  if col(".") <= 80
+  let l:c = col('.')
+  exec 'normal! g$'
+  if col('.') <= 80
     " If my current position after moving to the end of the line is at 80 or
     " less, then just move to the end of the line and leave it, because you have
     " reached the end of the line.
     return
   endif
 
-  exec "normal! 80|F "
+  exec 'normal! 80|F '
 
   " If my cursor position is further right than the last space until the 80th
   " column, then go to the end of the line
-  if c >= col(".")
+  if l:c >= col('.')
     " the g makes it so that it won't go to the end of a wrapped line
-    exec "normal! g$"
+    exec 'normal! g$'
 
     " If I am not more to the right than the 80th column, then move to the first
     " space character before the 80th column.
   else
     " c is now the 80th column
-    exec "normal! 80|"
-    let c = col(".")
+    exec 'normal! 80|'
+    let l:c = col('.')
     " move to the next space character
-    exec "normal! f "
+    exec 'normal! f '
     " of the 81st column is not a space, then go to the previous space
-    if c+1 != col(".")
-      exec "normal! F "
-      if col(".") <= 60
+    if l:c+1 != col('.')
+      exec 'normal! F '
+      if col('.') <= 60
         " If after that last move to the previous space, we are further to the
         " left than the 60th column, just go to the 80th column because now we
         " are just too far.
-        exec "normal! 80|"
+        exec 'normal! 80|'
       endif
     endif
     " Otherwise, just stay on the 81st column
@@ -1544,15 +1555,15 @@ function! LMapping()
 endfun
 
 function! LMappingVisual()
-  let startc = col(".")
+  let l:startc = col('.')
   exec "normal! gv80|\<esc>"
-  let endc = col(".")
+  let l:endc = col('.')
 
-  if startc >= endc
+  if l:startc >= l:endc
     " the second g makes it so that it won't go to the end of a wrapped line
-    exec "normal! gvg$"
+    exec 'normal! gvg$'
   else
-    exec "normal! gv"
+    exec 'normal! gv'
   endif
 endfun
 
@@ -1567,24 +1578,24 @@ function! SortPlugins()
   if exists(':Tabularize') && exists(':Vissort')
     "Save current cursor position. We will go back here once the function is
     " done Also save the search history
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
+    let l:_s=@/
+    let l:l = line('.')
+    let l:c = col('.')
 
     " Take me to the first line of the Plug list. This will be called top
-    exec "normal! gg/Plug\<cr>"
-    let top = line(".")
+    exec 'normal! gg/Plug\<cr>'
+    let l:top = line('.')
 
     " Open the fold and go to the last line of the Plug list. Set this line
     " number to bottom
-    exec "normal! zo}k"
-    let bottom = line(".")
+    exec 'normal! zo}k'
+    let l:bottom = line('.')
 
     " Call tabularize to align all / slash characters in the plug block
     :Tabularize /\/
     " Move to the / character, and go ahead one word. This is the column I want
     " to sort.
-    exec "normal! f/w"
+    exec 'normal! f/w'
 
     " Enter block visual mode, and move the cursor to the top of the block in
     " the Last column (I gave 200 because it is easier, and no line should be
@@ -1592,7 +1603,7 @@ function! SortPlugins()
     " the 200th column). Escape out of visual mode. This will save the bounds of
     " the visual selection in '< and '>
     exec "normal! \<c-v>"
-    call cursor(top, 200)
+    call cursor(l:top, 200)
     exec "normal! \<esc>"
 
     " Call Vissort on that column to sort it.
@@ -1600,61 +1611,27 @@ function! SortPlugins()
 
     " we are now on the bottom of the list. Loop this in order to get rid of the
     " alignment of the / character
-    let currentLine = line(".")
+    let l:currentLine = line('.')
     " Repeat this until I reach the top of the Plug list.
-    while currentLine != top - 1
-      exec "normal! f\/gEldwldwk0"
-      let currentLine = line(".")
+    while l:currentLine != l:top - 1
+      exec 'normal! f\/gEldwldwk0'
+      let l:currentLine = line('.')
     endwhile
     " Close the fold
-    exec "normal! zc"
+    exec 'normal! zc'
 
     " Go back to where I was and restore the search history
-    let @/=_s
-    call cursor(l,c)
-    call histdel("search", -1)
+    let @/=l:_s
+    call cursor(l:l,l:c)
+    call histdel('search', -1)
 
-    echo "Plugins are Sorted..."
+    echo 'Plugins are Sorted...'
 
   else
     " Tabular or Vissort do not exist
-    echoe "Tabular, or Vissort Not installed. Plugins are not Sorted!"
+    echoe 'Tabular, or Vissort Not installed. Plugins are not Sorted!'
   endif
 endfun
-
-"}}}
-"Add Commas to Numbers"{{{
-
-function! AddCommas()
-  exec "normal! 0f."
-  let c = col(".")
-
-  if c <= 1
-    " No decimal point
-    exec "normal! $"
-    let numbers = col(".")
-  else
-    exec "normal! h"
-    let numbers = col(".")
-  endif
-
-  " Only add commas for numbers >= 10,000
-  if numbers >= 5
-    exec "normal! hhi,"
-    exec "normal! h"
-    let numbers = col(".")
-
-    " After the initial comma, add commas every 3 numbers afterwards.
-    while numbers > 3
-      exec "normal! hhi,"
-      exec "normal! h"
-      let numbers = col(".")
-    endwhile
-endif
-
-  exec "normal! 0"
-
-endfunction
 
 "}}}
 " Colourscheme Related"{{{
@@ -1666,16 +1643,16 @@ endfunction
 " -1 = set background=light
 " The 3rd field denotes whether or not to use their airline theme
 let g:my_colours = [
-                  \ ["badwolf", 0, 1],
-                  \ ["gruvbox", 1, 1],
-                  \ ["iceberg", 0, 1],
-                  \ ["onedark", 0, 1],
+                  \ ['badwolf', 0, 1],
+                  \ ['gruvbox', 1, 1],
+                  \ ['iceberg', 0, 1],
+                  \ ['onedark', 0, 1],
                   \]
 
 " Make a list of just the colour names
 let g:colour_names = []
-for colour in g:my_colours
-  call add(colour_names, colour[0])
+for g:colour in g:my_colours
+  call add(g:colour_names, g:colour[0])
 endfor
 
 " ToggleColourScheme"{{{
@@ -1686,9 +1663,9 @@ endfor
 " direction = init --> This is the second execution, and assigns the
 "                      colourscheme that we will actually be using.
 function! ToggleColourScheme(direction)
-  if (a:direction == "next")
+  if (a:direction ==? 'next')
     let g:index = g:index + 1
-  elseif (a:direction == "prev")
+  elseif (a:direction ==? 'prev')
     let g:index = g:index - 1
   endif
 
@@ -1702,7 +1679,7 @@ function! ToggleColourScheme(direction)
   if (g:my_colours[g:index][2] == 1)
     let g:lightline.colorscheme=g:my_colours[g:index][0]
   else
-    let g:lightline.colorscheme="powerline"
+    let g:lightline.colorscheme='powerline'
   endif
 
   " Set the colorscheme
@@ -1716,13 +1693,13 @@ function! ToggleColourScheme(direction)
   endif
 
   " If this is not the first execution, then run these
-  if (a:direction != "setup")
+  if (a:direction !=? 'setup')
     call lightline#init()
     call lightline#colorscheme()
     call lightline#update()
   endif
 
-  if (a:direction != "setup")
+  if (a:direction !=? 'setup')
     redraw
     echo g:my_colours[g:index][0]
   endif
@@ -1734,13 +1711,15 @@ endfun
 " This function finds the default colourscheme to use based on filetype
 function! GetDefaultColour()
   " Setting up the default colourscheme
-  if (&ft=='lua')
+  if (&filetype ==? 'text')
+    let g:index = index(g:colour_names, 'onedark')
+  elseif (&filetype ==? 'lua')
     " Default for lua
     " Badwolf has the best support for lua so we will use that as a default
-    let g:index = index(g:colour_names, "badwolf")
+    let g:index = index(g:colour_names, 'badwolf')
   else
     " default for anything else
-    let g:index = index(g:colour_names, "gruvbox")
+    let g:index = index(g:colour_names, 'gruvbox')
   endif
 endfunction
 
@@ -1760,52 +1739,56 @@ endfunction
 " and @d for inputs and uses those as defaults, so you can copy a value into
 " those registers directly from vim. They just can't have a newline on them.
 function! Units()
-  let source = input('Enter Starting Units: ')
-  let dest = input('Enter the Units that you Want: ')
+  let l:source = input('Enter Starting Units: ')
+  let l:dest = input('Enter the Units that you Want: ')
 
   " If the above variables are empty because the user did not enter anything,
   " assume we are using the @s and @d registers.
-  if source == ''
-    let source = @s
+  if l:source ==? ''
+    let l:source = @s
   endif
 
-  if dest == ''
-    let dest = @d
+  if l:dest ==? ''
+    let l:dest = @d
   endif
 
 
-  let mycommand = ":read !units \'" . source . "\' \'" . dest . "\' \| grep -oP \'\\* \\K.*\' \|\| echo \'AnErrorOcurred\'"
+  let l:mycommand = ':read !units "' . l:source . '" "' . l:dest .
+        \ '" | grep -oP "\* \K.*" || echo ''AnErrorOcurred'''
 
-  exec mycommand
+  exec l:mycommand
   " Append the units to the end of the answer
-  exec "normal! A " . dest
+  exec 'normal! A ' . l:dest
   " Save the answer in register 'a'
-  exec "normal! ^vg_\"adddk"
+  exec 'normal! ^vg_"adddk'
 
-  if @a =~ "AnErrorOcurred"
-    echoe "An Error Occurred during Conversion. Double check that the units you are using are recognized by \"units\". Check the config file specified with the command: \"units -U\""
+  if @a =~# 'AnErrorOcurred'
+    echoe 'An Error Occurred during Conversion. Double check that the units you
+          \ are using are recognized by "units". Check the config file
+          \ specified with the command: "units -U"'
+
   else
-    let @s = source
-    let @d = dest
+    let @s = l:source
+    let @d = l:dest
     " Report the answer and save everything into a register
-    let s:REPORT_GAP = 5  "spaces between components
-    let gap = repeat(" ", s:REPORT_GAP)
+    let l:REPORT_GAP = 5  "spaces between components
+    let l:gap = repeat(' ', l:REPORT_GAP)
     highlight NormalUnderlined term=underline cterm=underline gui=underline
 
     echohl NormalUnderlined
     echon 'a'
     echohl NONE
-    echon  'nswer: ' . @a . gap
+    echon  'nswer: ' . @a . l:gap
 
     echohl NormalUnderlined
     echo  's'
     echohl NONE
-    echon  'rc: ' . @s . gap
+    echon  'rc: ' . @s . l:gap
 
     echohl NormalUnderlined
     echon 'd'
     echohl NONE
-    echon  'est: ' . @d . gap
+    echon  'est: ' . @d . l:gap
   endif
 
 endfunction
@@ -1815,39 +1798,39 @@ endfunction
 
 function! DashToDots()
   exec "normal! '<"
-  let l = line(".")
-  let c = col(".")
+  let l:l = line('.')
+  let l:c = col('.')
   '<,'>:Tabularize /-
-  let endline=line("'>")
+  let l:endline=line('''>')
   " Go to the top of the visual selection and the beginning of the line
   exec "normal! '<0"
 
   set visualbell
   set t_vb=
 
-  let currentLine = line(".")
-  while currentLine != endline + 1
-    exec "normal! f-vgEllr."
-    exec "normal! j0"
-    let currentLine = line(".")
+  let l:currentLine = line('.')
+  while l:currentLine != l:endline + 1
+    exec 'normal! f-vgEllr.'
+    exec 'normal! j0'
+    let l:currentLine = line('.')
   endwhile
 
   set novisualbell
 endfunction
 
 function! DotsToDash()
-  let endline=line("'>")
+  let l:endline=line('''>')
   " Go to the top of the visual selection and the beginning of the line
   exec "normal! '<0"
 
   set visualbell
   set t_vb=
 
-  let currentLine = line(".")
-  while currentLine != endline + 1
-    exec "normal! f.hvec -"
-    exec "normal! j0"
-    let currentLine = line(".")
+  let l:currentLine = line('.')
+  while l:currentLine != l:endline + 1
+    exec 'normal! f.hvec -'
+    exec 'normal! j0'
+    let l:currentLine = line('.')
   endwhile
 
   set novisualbell
@@ -1860,16 +1843,16 @@ endfunction
 
 function! TableOfContentsFormat()
   " Go to end of line and get column number
-  exec "normal! $"
-  let number_of_chars = col(".")
-  let number_of_chars_to_add = 79-number_of_chars
+  exec 'normal! $'
+  let l:number_of_chars = col('.')
+  let l:number_of_chars_to_add = 79-l:number_of_chars
 
   " Go to the first occurrence of two dashes (signalling the point to split)
   exec "normal! 0/--\<cr>r.lr."
 
   " append a dot from where we are
-  let my_command = "normal! a.\<esc>" . number_of_chars_to_add . "."
-  exec my_command
+  let l:my_command = "normal! a.\<esc>" . l:number_of_chars_to_add . '.'
+  exec l:my_command
 endfunction
 
 "}}}
@@ -1902,20 +1885,20 @@ nnoremap <silent><expr> Y  Incremental_Y()
 
 function! Incremental_Y ()
   " After the Y operator, read in the associated motion
-  let motion = nr2char(getchar())
+  let l:motion = nr2char(getchar())
 
   " If it's a (slowly typed) YY, do the optimized version instead (see below)
-  if motion == 'Y'
+  if l:motion ==# 'Y'
     call Incremental_YY()
     return
 
   " If it's a text object, read in the associated motion
-  elseif motion =~ '[ia]'
-    let motion .= nr2char(getchar())
+  elseif l:motion =~? '[ia]'
+    let l:motion .= nr2char(getchar())
 
   " If it's a search, read in the associated pattern
-  elseif motion =~ '[/?]'
-    let motion .= input(motion) . "\<CR>"
+  elseif l:motion =~? '[/?]'
+    let l:motion .= input(l:motion) . "\<CR>"
   endif
 
   " Copy the current contents of the default register into the 'y register
@@ -1923,7 +1906,7 @@ function! Incremental_Y ()
 
   " Return a command sequence that yanks into the 'Y register,
   " then assigns that cumulative yank back to the default register
-  return '"Yy' . motion . ':let @+ = @y' . "\<CR>"
+  return '"Yy' . l:motion . ':let @+ = @y' . "\<CR>"
 endfunction
 
 
@@ -1958,7 +1941,7 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>N
-vnoremap <silent> # :call VisualSelection('b')<CR>N
+vnoremap <silent> # :call VisualSelection('b')<CR>n
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
@@ -2128,17 +2111,17 @@ highlight colorcolumn ctermbg=red guibg=red
 
 
 " Set the gitgutter sign column to be bg0 - same as the background
-let g:gruvbox_sign_column="bg0"
+let g:gruvbox_sign_column='bg0'
 
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
 call GetDefaultColour()
-call ToggleColourScheme("setup")
+call ToggleColourScheme('setup')
 
 au BufRead,BufNewFile,BufEnter * call DoColour()
 function! DoColour()
   call GetDefaultColour()
-  call ToggleColourScheme("init")
+  call ToggleColourScheme('init')
 endfunction
 
 
@@ -2215,10 +2198,10 @@ if has('conceal')
   au bufenter * hi! link Conceal Greek
 "}}}
 
-  au bufenter * set conceallevel=2
+  autocmd bufenter * set conceallevel=2
 
   " Only conceal on the current line when it is a command line.
-  au bufenter * set concealcursor=c
+  autocmd bufenter * set concealcursor=c
 
 endif
 
