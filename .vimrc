@@ -30,6 +30,7 @@ endif
 
 Plug 'vim-scripts/a.vim'
 Plug 'mileszs/ack.vim'
+Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
 Plug 'vim-scripts/Conque-GDB'
@@ -54,7 +55,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'msanders/snipmate.vim'
-Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'abudden/taghighlight-automirror'
 Plug 'wellle/targets.vim'
@@ -919,23 +919,10 @@ let g:multi_cursor_exit_from_insert_mode=0
 noremap <leader>m :MultipleCursorsFind<space>
 
 "}}}
-" Syntastic"{{{
+" ALE"{{{
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": [] }
-
-" Use :SyntasticCheck to run syntastic
-
-
-"Ignore unused argument, and missing scriptencoding
-let g:syntastic_vim_vimlint_quiet_messages = { 'regex': '\v\[EVL%(103|205)\]'  }
+nnoremap <silent> ]e :ALENextWrap<cr>
+nnoremap <silent> [e :ALEPreviousWrap<cr>
 
 "}}}
 " Unite.vim"{{{
