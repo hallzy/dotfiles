@@ -112,6 +112,7 @@ Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
 Plug 'gavinbeatty/vmath.vim'
 Plug 'mattn/webapi-vim'
+Plug 'hallzy/yankmatches'
 " Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
@@ -1138,6 +1139,43 @@ let g:janitor_auto_clean_up_on_write = 1
 
 " Dim inactive splits
 let g:diminactive_enable_focus = 1
+
+"}}}
+" yankmatches"{{{
+
+" YankMatches is used to yank complete lines that have a search term on them
+" into one register for easy pasting.
+
+" Delete all lines that match the search
+" Saves the deleted lines in a register
+nnoremap <silent> dm  :     call ForAllMatches('delete', {})<CR>
+" Delete all lines that DON'T match the search
+" Saves the deleted lines in a register
+nnoremap <silent> dM  :     call ForAllMatches('delete', {'inverse':1})<CR>
+" Copies all lines that match the search
+" Saves those copied lines into a register
+nnoremap <silent> ym  :     call ForAllMatches('yank',   {})<CR>
+" Copies all lines that DON'T match the search
+" Saves those copied lines into a register
+nnoremap <silent> yM  :     call ForAllMatches('yank',   {'inverse':1})<CR>
+" Deletes all lines that match the search that are inside your visual selection
+" Saves those deleted lines into a register
+vnoremap <silent> Dm  :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
+" Deletes all lines that DON'T match the search that are inside your visual
+" selection
+" Saves those deleted lines into a register
+vnoremap <silent> DM  :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
+" Copies all lines that match the search that are inside your visual selection
+" Saves those copied lines into a register
+vnoremap <silent> Ym  :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
+" Copies all lines that DON'T match the search that are inside your visual
+" selection
+" Saves those copied lines into a register
+vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+
+" Specify that this plugin should save the copies and deletions into register
+" "+"
+let g:YankMatches#ClipboardRegister='+'
 
 "}}}
 
