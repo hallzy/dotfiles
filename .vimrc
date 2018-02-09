@@ -60,7 +60,7 @@ Plug 'vim-scripts/mru.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'myusuf3/numbers.vim'
 Plug 'joshdick/onedark.vim'
-Plug 'unblevable/quick-scope'
+Plug 'bradford-smith94/quick-scope'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'msanders/snipmate.vim'
 Plug 'godlygeek/tabular'
@@ -725,23 +725,15 @@ endif
 "}}}
 " Quick Scope"{{{
 
-" Colours for quick-scope
-if has('gui_running')
-  " gui vim
-  let g:qs_first_occurrence_highlight_color = '#75fff3'
-  let g:qs_second_occurrence_highlight_color = '#6b98fb'
-else
-  " terminal vim - cyan :
-  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-  let g:qs_first_occurrence_highlight_color = 51
-  " terminal vim - blue :
-  " http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-  let g:qs_second_occurrence_highlight_color = 33
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#75fff3'
+        \ gui=underline ctermfg=51 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#6b98fb'
+        \ gui=underline ctermfg=33 cterm=underline
+augroup END
 
-" Can only use these if I don't have fanfingtastic
-  " Only highlight when I press one of the keys below
-  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-endif
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 "}}}
 " NERDTree"{{{
