@@ -1165,10 +1165,6 @@ vnoremap <silent> Ym  :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
 " Saves those copied lines into a register
 vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 
-" Specify that this plugin should save the copies and deletions into register
-" "+"
-let g:YankMatches#ClipboardRegister='+'
-
 "}}}
 
 "}}}
