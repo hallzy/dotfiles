@@ -112,7 +112,7 @@ Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
 Plug 'gavinbeatty/vmath.vim'
 Plug 'mattn/webapi-vim'
-Plug 'hallzy/yankmatches'
+Plug 'hallzy/yankmatches.vim'
 " Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
