@@ -195,6 +195,7 @@ syntax on
 set synmaxcol=81
 
 set textwidth=80
+set colorcolumn=81
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -724,14 +725,6 @@ endif
 
 "}}}
 " Quick Scope"{{{
-
-augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#75fff3'
-        \ gui=underline ctermfg=51 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#6b98fb'
-        \ gui=underline ctermfg=33 cterm=underline
-augroup END
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -1729,6 +1722,8 @@ function! ToggleColourScheme(direction)
     redraw
     echo g:my_colours[g:index][0]
   endif
+
+  call ApplyHighlights()
 endfun
 
 "}}}
@@ -2091,84 +2086,90 @@ augroup formatOptions
   autocmd BufNewFile,BufRead * setlocal formatoptions-=r
 augroup END
 "}}}
-
-"}}}
-" highlighting Before Colorscheme"{{{
-
-" diffs"{{{
-
-" when using vimdiff or diff mode
-highlight diffadd    term=bold         ctermbg=darkgreen ctermfg=white  cterm=bold guibg=darkgreen  guifg=white    gui=bold
-highlight difftext   term=reverse,bold ctermbg=lightblue ctermfg=black  cterm=bold guibg=darkred    guifg=yellow   gui=bold
-highlight diffchange term=bold         ctermbg=black     ctermfg=white  cterm=bold guibg=black      guifg=white    gui=bold
-highlight diffdelete term=none         ctermbg=darkred   ctermfg=white  cterm=none guibg=darkblue   guifg=darkblue gui=none
-
-" when viewing a diff or patch file
-highlight diffremoved term=bold ctermbg=black   ctermfg=red    cterm=bold guibg=darkred     guifg=white gui=none
-highlight diffadded   term=bold ctermbg=black   ctermfg=green  cterm=bold guibg=darkgreen   guifg=white gui=none
-highlight diffchanged term=bold ctermbg=black   ctermfg=yellow cterm=bold guibg=darkyellow  guifg=white gui=none
-highlight diffline    term=bold ctermbg=magenta ctermfg=white  cterm=bold guibg=darkmagenta guifg=white gui=none
-highlight difffile    term=bold ctermbg=yellow  ctermfg=black  cterm=none guibg=darkyellow  guifg=white gui=none
-"}}}
 " trailing white space"{{{
 
-highlight highlighttrailingwhitespace ctermbg=white guibg=white
+" This is a dummy highlight. The real one is done later in the ApplyHighlights()
+" function. This is just here in order to suppress an error that would otherwise
+" have been thrown.
+highlight extraWhitespace ctermbg=darkblue
 
 augroup trailingwhitespacegroup
   autocmd!
-  autocmd bufwinenter * match highlighttrailingwhitespace /\s\+$/
-  autocmd insertleave * match highlighttrailingwhitespace /\s\+$/
-  autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
+  autocmd bufwinenter * match extraWhitespace /\s\+$/
+  autocmd insertleave * match extraWhitespace /\s\+$/
+  autocmd insertenter * match extraWhitespace /\s\+\%#\@<!$/
 augroup end
 
 "}}}
-" highlightpast80"{{{
+" colorcolumn for gitcommit "{{{
 
 augroup vimrcex
   autocmd!
-  autocmd filetype gitcommit let &colorcolumn="51"
+  autocmd filetype gitcommit setlocal colorcolumn=51,73
 augroup end
 
-highlight colorcolumn ctermbg=red guibg=red
-
 "}}}
 
 "}}}
-
 
 " Set the gitgutter sign column to be bg0 - same as the background
 let g:gruvbox_sign_column='bg0'
 
 " This sets my default colorscheme. I am putting this at the end of the file so
 " that my other highlightings get influenced by the scheme
-call GetDefaultColour()
-call ToggleColourScheme('setup')
+augroup colorschemeGroup
+  autocmd!
+  autocmd BufRead,BufNewFile,BufEnter * call DoColour()
+augroup END
 
-au BufRead,BufNewFile,BufEnter * call DoColour()
 function! DoColour()
   call GetDefaultColour()
   call ToggleColourScheme('init')
 endfunction
 
 
-" highlightings After Colorscheme"{{{
+" highlightings "{{{
 
-" trailing whitespace"{{{
+" Highlights that will take precedence of colourscheme. This function will be
+" executed every time the colorscheme is changed with my functions.
+function! ApplyHighlights()
+  " gitcommits should have 2 colorcolumns, as the first line should never exceed
+  " 50 columns, while the rest shouldn't exceed 72 columns
+  if (&filetype ==? 'gitcommit')
+    highlight colorcolumn ctermbg=red guibg=red ctermfg=black guifg=black
+  endif
 
-highlight highlighttrailingwhitespace ctermbg=white guibg=white ctermfg=white guifg=white
+  " Trailing Whitespace
+  highlight ExtraWhitespace ctermbg=white ctermfg=white
 
-augroup trailingwhitespacegroup
-  autocmd!
-  autocmd bufwinenter * match highlighttrailingwhitespace /\s\+$/
-  autocmd insertleave * match highlighttrailingwhitespace /\s\+$/
-  autocmd insertenter * match highlighttrailingwhitespace /\s\+\%#\@<!$/
-augroup end
+  " Quickscope highlights
+  highlight QuickScopePrimary guifg='#75fff3' gui=underline ctermfg=51
+      \ cterm=underline
+  highlight QuickScopeSecondary guifg='#6b98fb' gui=underline ctermfg=33
+      \ cterm=underline
+
+  " Diffs
+  highlight diffadd  term=bold ctermbg=darkgreen ctermfg=white cterm=bold
+                   \ guibg=darkgreen guifg=white gui=bold
+  highlight difftext  term=reverse,bold ctermbg=lightblue ctermfg=black
+                    \ cterm=bold guibg=darkred guifg=yellow gui=bold
+  highlight diffchange term=bold ctermbg=black ctermfg=white cterm=bold
+                     \ guibg=black guifg=white gui=bold
+  highlight diffdelete term=none ctermbg=darkred ctermfg=white cterm=none
+                     \ guibg=darkblue guifg=darkblue gui=none
+  highlight diffremoved term=bold ctermbg=black ctermfg=red cterm=bold
+                      \ guibg=darkred guifg=white gui=none
+  highlight diffadded term=bold ctermbg=black ctermfg=green cterm=bold
+                    \ guibg=darkgreen guifg=white gui=none
+  highlight diffchanged term=bold ctermbg=black ctermfg=yellow cterm=bold
+                      \ guibg=darkyellow guifg=white gui=none
+  highlight diffline term=bold ctermbg=magenta ctermfg=white cterm=bold
+                   \ guibg=darkmagenta guifg=white gui=none
+  highlight difffile term=bold ctermbg=yellow ctermfg=black cterm=none
+                   \ guibg=darkyellow guifg=white gui=none
+endfunction
 
 "}}}
-
-" These conceals are basically only useful for programming, since they keep
-" ASCII characters as the actual source.
-
 " Global Conceals"{{{
 if has('conceal')
   " Greek Alphabet {{{
@@ -2232,9 +2233,6 @@ if has('conceal')
 endif
 
 "}}}
-
-"}}}
-
 
 " This is only for CPEN 331 for using gdb with os161. I will remove this
 " following the conclusion of this class.
