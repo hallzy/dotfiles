@@ -48,6 +48,7 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'hallzy/gravity.vim'
 Plug 'morhetz/gruvbox'
+Plug 'sjl/gundo.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim'
@@ -1157,6 +1158,11 @@ vnoremap <silent> Ym  :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
 " selection
 " Saves those copied lines into a register
 vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+
+"}}}
+" Gundo"{{{
+
+nnoremap gu :GundoToggle<CR>
 
 "}}}
 
