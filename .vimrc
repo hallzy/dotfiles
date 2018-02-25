@@ -1602,7 +1602,7 @@ function! SortPlugins()
     let l:c = col('.')
 
     " Take me to the first line of the Plug list. This will be called top
-    exec 'normal! gg/Plug\<cr>'
+    exec "normal! gg/Plug\<cr>"
     let l:top = line('.')
 
     " Open the fold and go to the last line of the Plug list. Set this line
@@ -1633,7 +1633,7 @@ function! SortPlugins()
     let l:currentLine = line('.')
     " Repeat this until I reach the top of the Plug list.
     while l:currentLine != l:top - 1
-      exec 'normal! f\/gEldwldwk0'
+      exec 'normal! f/gEldwldwk0'
       let l:currentLine = line('.')
     endwhile
     " Close the fold
