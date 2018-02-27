@@ -1749,10 +1749,12 @@ endfun
 " Get DefaultColour"{{{
 " This function finds the default colourscheme to use based on filetype
 function! GetDefaultColour()
-  " Setting up the default colourscheme
-  if (&filetype ==? 'text' || &filetype ==? '')
+  let l:onedark_filetypes = ['text', '', 'noft']
+  let l:badwolf_filetypes = ['lua', 'gitcommit']
+
+  if (index(l:onedark_filetypes, &filetype) >= 0)
     let g:index = index(g:colour_names, 'onedark')
-  elseif (&filetype ==? 'lua' || &filetype ==? 'gitcommit')
+  elseif (index(l:badwolf_filetypes, &filetype) >= 0)
     " Default for lua
     " Badwolf has the best support for lua so we will use that as a default
     let g:index = index(g:colour_names, 'badwolf')
