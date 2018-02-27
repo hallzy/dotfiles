@@ -1173,7 +1173,7 @@ let g:bullets_enabled_file_types = [
       \ 'text'     ,
       \ 'gitcommit',
       \ 'noft'     ,
-      \ 'conf'
+      \ 'cfg'
       \ ]
 
 "}}}
@@ -1749,7 +1749,7 @@ endfun
 " Get DefaultColour"{{{
 " This function finds the default colourscheme to use based on filetype
 function! GetDefaultColour()
-  let l:onedark_filetypes = ['text', '', 'noft']
+  let l:onedark_filetypes = ['text', '', 'noft', 'cfg']
   let l:badwolf_filetypes = ['lua', 'gitcommit']
 
   if (index(l:onedark_filetypes, &filetype) >= 0)
