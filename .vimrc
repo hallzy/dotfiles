@@ -41,6 +41,7 @@ Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/badwolf'
+Plug 'dkarter/bullets.vim'
 Plug 'vim-scripts/Conque-GDB'
 Plug 'brookhong/cscope.vim'
 Plug 'ciaranm/detectindent'
@@ -1165,6 +1166,17 @@ vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':
 nnoremap gu :GundoToggle<CR>
 
 "}}}
+" bullets"{{{
+
+let g:bullets_enabled_file_types = [
+      \ 'markdown' ,
+      \ 'text'     ,
+      \ 'gitcommit',
+      \ 'noft'     ,
+      \ 'conf'
+      \ ]
+
+"}}}
 
 "}}}
 " Functions"{{{
@@ -2040,6 +2052,14 @@ augroup markdownGroup
   autocmd!
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup END
+
+"}}}
+" set the filetype of a file with no filetype"{{{
+
+augroup noft
+  autocmd!
+  autocmd BufNewFile,BufRead * if empty(&filetype) | :set filetype=noft | endif
 augroup END
 
 "}}}
