@@ -147,6 +147,7 @@ let $PATH='/usr/local/bin:' . $PATH
 " Reduce timeout after <ESC> is received. This is only a good idea on fast links
 set ttimeout
 set ttimeoutlen=3
+set timeoutlen=3
 set notimeout
 
 " Turn off column and cursor highlight when leaving a vim window, and turn them
