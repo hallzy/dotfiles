@@ -89,6 +89,7 @@ Plug 'andymass/vim-matchup'
 Plug 'xolox/vim-misc'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'xolox/vim-notes'
+Plug 'junegunn/vim-peekaboo'
 Plug 'christoomey/vim-quicklink'
 Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-repeat'
@@ -1179,6 +1180,12 @@ let g:bullets_enabled_file_types = [
       \ 'noft'     ,
       \ 'cfg'
       \ ]
+
+"}}}
+" Peekaboo"{{{
+
+" Put the split window to the left and make it 81 columns wide
+let g:peekaboo_window='vertical topleft 81new'
 
 "}}}
 
