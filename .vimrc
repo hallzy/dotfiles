@@ -729,7 +729,10 @@ endif
 "}}}
 " Quick Scope"{{{
 
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" Uncomment the below line so that quick-scope only activates when one of the
+" specified keys are pressed in normal mode. Otherwise, quick-scope is always
+" active in normal mode
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 "}}}
 " NERDTree"{{{
