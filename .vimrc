@@ -1180,6 +1180,20 @@ let g:bullets_enabled_file_types = [
 let g:peekaboo_window='vertical topleft 81new'
 
 "}}}
+" vim-wordmotion"{{{
+
+" Set this to the characters you want to treat the same as a space. This means
+" that the w, e, b, and ge movements won't stop on these characters.
+
+" The default is set to '_'.
+
+" Example of multiple characters is '_.-'
+
+" I am setting it to nothing so that i can use them as stopping points for a
+" motion
+let g:wordmotion_spaces = ''
+
+"}}}
 
 "}}}
 " Functions"{{{
