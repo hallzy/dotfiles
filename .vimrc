@@ -110,6 +110,7 @@ Plug 'christoomey/vim-titlecase'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'iago-lito/vim-visualMarks'
+Plug 'chaoren/vim-wordmotion'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/vimshell.vim'
 Plug 'yaroot/vissort'
@@ -447,15 +448,6 @@ nnoremap Q J
 vnoremap Q J
 
 "}}}
-" Remap w W e and E"{{{
-
-" Don't often use W or E so I will make them the backwards equivalent of their
-" lowercase counterparts
-noremap W b
-
-noremap E ge
-
-"}}}
 " Extra mappings for saving and closing vim"{{{
 
 nnoremap ZX :qa!<cr>
@@ -678,10 +670,10 @@ inoremap degrees'' °
 map <leader>b <Plug>(easymotion-prefix)
 
 " Single Character search
-map b <Plug>(easymotion-s)
+map <leader>z <Plug>(easymotion-s)
 
 " two character searches
-nmap B <Plug>(easymotion-s2)
+nmap <leader>Z <Plug>(easymotion-s2)
 
 " Easy motion search
 map <leader>/ <Plug>(easymotion-sn)
