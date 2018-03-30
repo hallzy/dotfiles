@@ -2047,6 +2047,67 @@ nmap <leader>toc <Plug>TableOfContentsPlug
 noremap <leader>leet :call Leet()<cr>
 
 "}}}
+" TruncateSurroundingWhitespaceofVisualSelection"{{{
+
+" Given a visual selection, reselect that exact visual selection but eliminate
+" any spaces at the beginning or end of the visual selection. For instance, if
+" you visually select '   testing this text      ' then the visual selection
+" becomes 'testing this text'. The spaces on the outside are still there, but
+" they won't be selected visually.
+
+function! TruncateSurroundingWhitespaceofVisualSelection()
+  " Find out what character is at each end of the visual selection
+
+  " We will use the y and z registers to save those, so backup the current
+  " contents of those registers first
+  let l:y = @y
+  let @y  = ''
+  let l:z = @z
+  let @z  = ''
+
+  " now get the beginning and end character
+  " I am also saving the beginning and ending of the visual selections in
+  " separate marks. This is because if you do a visual selection backwards the <
+  " and > marks get all messed up.
+  exec 'normal! `<"yylmy'
+  exec 'normal! `>"zylmz'
+  let l:begin = @y
+  let l:end = @z
+
+  " Reset the registers
+  let @y  = l:y
+  let @z  = l:z
+
+  " Go to the beginning of the selection
+  exec 'normal! `y'
+  " If the beginning character happens to be a space then move forward a word
+  if l:begin ==# ' '
+    exec 'normal! w'
+  endif
+  " save the current location in the visual mark
+  exec 'normal! m<'
+
+  " Go to the ending of the selection
+  exec 'normal! `z'
+  if l:end ==# ' '
+    " If the ending character happens to be a space then move back to the end of
+    " the previous word
+    exec 'normal! ge'
+  endif
+  " save the current location in the visual mark
+  exec 'normal! m>'
+
+  " Don't need the marks anymore
+  delmarks y
+  delmarks z
+
+  " Restore the visual selection
+  exec 'normal! gv'
+endfunction
+
+vnoremap <leader>v :call TruncateSurroundingWhitespaceofVisualSelection()<cr>
+
+"}}}
 
 "}}}
 " Autogroups/ Autocommands"{{{
