@@ -1160,7 +1160,7 @@ vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':
 "}}}
 " Gundo"{{{
 
-nnoremap gu :GundoToggle<CR>
+nnoremap <c-u> :GundoToggle<CR>
 
 "}}}
 " bullets"{{{
