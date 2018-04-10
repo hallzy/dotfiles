@@ -1194,6 +1194,20 @@ let g:peekaboo_window='vertical topleft 81new'
 let g:wordmotion_spaces = ''
 
 "}}}
+" vim-commentary"{{{
+
+
+" Custom vim-commentary filetype specific comments
+augroup vimCommentary
+  autocmd!
+  " VBScript uses a single quote to denote comments
+  autocmd FileType vb setlocal commentstring='\ %s
+
+  " Batch scripts use "::" denote comments
+  autocmd FileType dosbatch setlocal commentstring=::\ %s
+augroup END
+
+"}}}
 
 "}}}
 " Functions"{{{
