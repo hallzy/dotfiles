@@ -71,6 +71,7 @@ Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-abolish'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'gioele/vim-autoswap'
+Plug 'tpope/vim-commentary'
 Plug 'blueyed/vim-diminactive'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
@@ -78,7 +79,6 @@ Plug 'tpope/vim-endwise'
 Plug 'chip/vim-fat-finger'
 Plug 'dag/vim-fish'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'tikhomirov/vim-glsl'
 Plug 'jamessan/vim-gnupg'
 Plug 'suan/vim-instant-markdown'
@@ -122,7 +122,7 @@ Plug 'hallzy/yankmatches.vim'
 
 " This is separated from the rest of the list because it has to be after
 " vim-textobj-comment, otherwise the comment text-object doesn't take effect.
-Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
