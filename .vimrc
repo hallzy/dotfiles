@@ -36,93 +36,248 @@ else
   call plug#begin()
 endif
 
-Plug 'vim-scripts/a.vim'
+" switch from source & headers
+Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
+
+" Easy grep like searching from inside vim
 Plug 'mileszs/ack.vim'
+
+" Linting Engine
 Plug 'w0rp/ale'
+
+" Automatically print out paired characters like []
 Plug 'jiangmiao/auto-pairs'
+
+" Colourschemes
 Plug 'sjl/badwolf'
-Plug 'dkarter/bullets.vim'
-Plug 'vim-scripts/Conque-GDB'
-Plug 'brookhong/cscope.vim'
-Plug 'ciaranm/detectindent'
-Plug 'mattn/emmet-vim'
-Plug 'vim-scripts/git-time-lapse'
-Plug 'hallzy/gravity.vim', {'for' : 'gravity'}
 Plug 'morhetz/gruvbox'
-Plug 'sjl/gundo.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'joshdick/onedark.vim'
+
+" Auto bullet on a newline
+Plug 'dkarter/bullets.vim'
+
+" GDB in vim
+Plug 'vim-scripts/Conque-GDB', {'for' : ['c', 'cpp', 'asm']}
+
+" CScope in vim
+Plug 'brookhong/cscope.vim', {'for' : ['c', 'cpp']}
+
+" Tries to detect indent settings of a file
+Plug 'ciaranm/detectindent'
+
+" Easy HTML/XML editing
+Plug 'mattn/emmet-vim', {'for' : ['html', 'xml', 'php']}
+
+" See how each commit changed your current file (press <F7>)
+Plug 'vim-scripts/git-time-lapse'
+
+" Gravity syntax highlighting
+Plug 'hallzy/gravity.vim', {'for' : 'gravity'}
+
+" Complex undo that tracks different undo branches in vim
+Plug 'sjl/gundo.vim'
+
+" Shows vertical lines to show the indentation level
 Plug 'Yggdroot/indentLine'
+
+" Python autocompletion
 Plug 'davidhalter/jedi-vim', {'for' : 'python'}
+
+" Lightline Related
 Plug '844196/lightline-badwolf.vim'
 Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
 Plug 'itchyny/lightline.vim'
+
+" Shows my most recently used files for easy opening
 Plug 'vim-scripts/mru.vim'
+
+" File tree for vim
 Plug 'scrooloose/nerdtree'
+
+" Automatically alternates from relative to absolute line numbers depending on
+" the editing mode I am in
 Plug 'myusuf3/numbers.vim'
-Plug 'joshdick/onedark.vim'
+
+" Highlights characters on the current line for easy navigation using f, F, t,
+" and T
 Plug 'bradford-smith94/quick-scope'
-Plug 'vim-scripts/ReplaceWithRegister'
+
+" Provides snippets for things like for loops, if statements etc after issuing
+" the tab character
 Plug 'msanders/snipmate.vim'
+
+" Align text from different lines (I have this mapped to <leader>tz)
 Plug 'godlygeek/tabular'
-Plug 'abudden/taghighlight-automirror'
-Plug 'wellle/targets.vim'
-Plug 'Shougo/unite.vim'
-Plug 'tpope/vim-abolish'
-Plug 'PeterRincker/vim-argumentative'
-Plug 'gioele/vim-autoswap'
-Plug 'tpope/vim-commentary'
-Plug 'blueyed/vim-diminactive'
-Plug 'easymotion/vim-easymotion'
+" Similar but offers a vim-like motion which is better in some cases, but it
+" doesn't support as many delimiters as tabular
 Plug 'junegunn/vim-easy-align'
+
+" Supposed to highlight variable, class etc names. Doesn't actually seem to do
+" much for me however.
+" NOTE: If I don't miss this, it can be removed
+" Plug 'abudden/taghighlight-automirror'
+
+" Adds a bunch of text objects including pairs of brackets or tags which also
+" work over multiple lines, separators like commas, function arguments etc.
+Plug 'wellle/targets.vim'
+
+" Searching for files, searching for content, and buffer switching
+" NOTE: Check denite.vim in the future. It is the new and improved version of
+" unite.vim
+Plug 'Shougo/unite.vim'
+
+" Makes abbreviations easier by allowing multiple versions of a word and also
+" matching cases. It also has a substitution command, and a search command.
+" Instead of the normal substitution command, use ':Subvert' or ':S'. If subvert
+" only has 1 argument it does a search.
+" Also coercion to change text between snake_case, camelCase, MixedCase etc
+Plug 'tpope/vim-abolish'
+
+" Easily move function arguments, or move between function arguments (<, or >,
+" and [, and ],)
+Plug 'PeterRincker/vim-argumentative'
+
+" If a file is already open in another terminal window, don't open it again,
+" just focus that window for me.
+Plug 'gioele/vim-autoswap'
+
+" Toggle comments
+Plug 'tpope/vim-commentary'
+
+" Dims inactive splits
+Plug 'blueyed/vim-diminactive'
+
+" Easy-motion to easily move to different parts of a file
+Plug 'easymotion/vim-easymotion'
+
+" Ends certain structures automatically, such as bash if statements, or vim
+" functions etc.
 Plug 'tpope/vim-endwise'
+
+" A large list of common misspellings that will automatically be fixed.
 Plug 'chip/vim-fat-finger'
-Plug 'dag/vim-fish'
+
+" A git wrapper for vim, for example Gblame, Gstatus
 Plug 'tpope/vim-fugitive'
-Plug 'tikhomirov/vim-glsl'
+
+" Support for encrypted files. If I try opening an encrypted file in vim it
+" automatically runs GPG and prompts me to decrypt it for me.
 Plug 'jamessan/vim-gnupg'
+
+" Open up markdown files in a browser to view the marked up version
 Plug 'suan/vim-instant-markdown'
+
+" Cleans up trailing whitespace.
+" NOTE: This doesn't seem to be working anymore for some reason
 Plug 'KuoE0/vim-janitor'
+
+" Highlights the long part of a line that exceeds textwidth
 Plug 'whatyouhide/vim-lengthmatters'
+
+" Extends the % operation significantly
 Plug 'andymass/vim-matchup'
+
+" Contains code that other plugins depend on.
+" NOTE: If I get rid of the rest of xolox's plugins I can probably get rid of
+" this too
 Plug 'xolox/vim-misc'
+
+" Sublime style multiple cursors
 Plug 'terryma/vim-multiple-cursors'
+
+" A notetaking plugin
+" NOTE: Now that I am done school, maybe I don't really need this anymore
 Plug 'xolox/vim-notes'
+
+" Extends the @ and " Commands so that when it is issued a split window opens to
+" show me what is in all the current registers.
 Plug 'junegunn/vim-peekaboo'
-Plug 'christoomey/vim-quicklink'
+
+" Easily use URLs
+" <c-k> makes it easy to add markdown links, gx opens the link under the cursor,
+" and gl goes to the link definition
+" webapi-vim is a dependency of this.
+Plug 'christoomey/vim-quicklink', {'for' : 'markdown'}
+Plug 'mattn/webapi-vim', {'for' : 'markdown'}
+
+" Rename multiple files/folders using the power of vim
 Plug 'qpkorr/vim-renamer'
+
+" Used by many plugins to support being repeated with the '.' command
 Plug 'tpope/vim-repeat'
+
+
+" Gives me Gbrowse with the help of fugitive to open the current file on Github
 Plug 'tpope/vim-rhubarb'
-Plug 'zirrostig/vim-schlepp' "Better dragvisuals
+
+" A better version of Damian Conway's DragVisuals
+Plug 'zirrostig/vim-schlepp'
+
+" Save and restore vim sessions
+" NOTE: I don't think I have ever used this so I may be able to get rid of it
 Plug 'xolox/vim-session'
+
+" Displays marks in the gutter of vim
 Plug 'kshenoy/vim-signature'
+
+" Custom Motions
 Plug 'christoomey/vim-sort-motion'
+Plug 'chaoren/vim-wordmotion'
+" Similar to the coercion of abolish, except that coercion isn't a motion and
+" therefore can't operate on text objects.
+Plug 'christoomey/vim-titlecase'
+
+" Landing page for vim when I don't open a specific file
 Plug 'mhinz/vim-startify'
+
+" Add, modify, or remove surround characters like quotes.
 Plug 'tpope/vim-surround'
-Plug 'kurkale6ka/vim-swap'
+
+" Easy creation and modification of tables. Toggle with <leader>tm
 Plug 'dhruvasagar/vim-table-mode'
+
+"Custom text objects
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'kentaro/vim-textobj-function-php', {'for' : 'php'}
-Plug 'christoomey/vim-titlecase'
+
+" vim linter
 Plug 'syngan/vim-vimlint', {'for' : 'vim'}
-Plug 'ynkdir/vim-vimlparser', {'for' : 'vim'}
+Plug 'vim-jp/vim-vimlparser', {'for' : 'vim'}
+
+" Support for marks defined by a visual selection
 Plug 'iago-lito/vim-visualMarks'
-Plug 'chaoren/vim-wordmotion'
+
+" This is a dependency of some plugins like vimshell, and is just a library
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Use a shell inside of vim
+" NOTE: I never use this anymore. Maybe remove
 Plug 'Shougo/vimshell.vim'
+
+" Block sorting. Differs from the sort motion in that I can select a visual
+" block to sort by even if it isn't the first character of the line
 Plug 'yaroot/vissort'
+
+" Use ++ to calculate a block of numbers using sums, averages etc
 Plug 'gavinbeatty/vmath.vim'
-Plug 'mattn/webapi-vim'
+
+" Damian Conway's yankmatches. It yanks or cuts all lines that contain a match
+" for your search
 Plug 'hallzy/yankmatches.vim'
-" Plug 'Valloric/YouCompleteMe'
 
 " This is separated from the rest of the list because it has to be after
 " vim-textobj-comment, otherwise the comment text-object doesn't take effect.
 Plug 'airblade/vim-gitgutter'
+
+" Autocompletion
+" NOTE: Don't use this, can probably remove
+" Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
