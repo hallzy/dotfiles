@@ -47,12 +47,12 @@ Plug 'brookhong/cscope.vim'
 Plug 'ciaranm/detectindent'
 Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/git-time-lapse'
-Plug 'hallzy/gravity.vim'
+Plug 'hallzy/gravity.vim', {'for' : 'gravity'}
 Plug 'morhetz/gruvbox'
 Plug 'sjl/gundo.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for' : 'python'}
 Plug '844196/lightline-badwolf.vim'
 Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
@@ -93,7 +93,7 @@ Plug 'christoomey/vim-quicklink'
 Plug 'qpkorr/vim-renamer'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'zirrostig/vim-schlepp'
+Plug 'zirrostig/vim-schlepp' "Better dragvisuals
 Plug 'xolox/vim-session'
 Plug 'kshenoy/vim-signature'
 Plug 'christoomey/vim-sort-motion'
@@ -108,8 +108,8 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'kentaro/vim-textobj-function-php', {'for' : 'php'}
 Plug 'christoomey/vim-titlecase'
-Plug 'syngan/vim-vimlint'
-Plug 'ynkdir/vim-vimlparser'
+Plug 'syngan/vim-vimlint', {'for' : 'vim'}
+Plug 'ynkdir/vim-vimlparser', {'for' : 'vim'}
 Plug 'iago-lito/vim-visualMarks'
 Plug 'chaoren/vim-wordmotion'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
