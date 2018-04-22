@@ -240,6 +240,7 @@ Plug 'dhruvasagar/vim-table-mode'
 
 "Custom text objects
 Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
