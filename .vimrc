@@ -106,6 +106,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+Plug 'kentaro/vim-textobj-function-php', {'for' : 'php'}
 Plug 'christoomey/vim-titlecase'
 Plug 'syngan/vim-vimlint'
 Plug 'ynkdir/vim-vimlparser'
