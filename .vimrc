@@ -71,7 +71,6 @@ Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-abolish'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'gioele/vim-autoswap'
-Plug 'tpope/vim-commentary'
 Plug 'blueyed/vim-diminactive'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
@@ -102,6 +101,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'kurkale6ka/vim-swap'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
@@ -118,6 +118,10 @@ Plug 'gavinbeatty/vmath.vim'
 Plug 'mattn/webapi-vim'
 Plug 'hallzy/yankmatches.vim'
 " Plug 'Valloric/YouCompleteMe'
+
+" This is separated from the rest of the list because it has to be after
+" vim-textobj-comment, otherwise the comment text-object doesn't take effect.
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
