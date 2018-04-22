@@ -1205,6 +1205,9 @@ augroup vimCommentary
 
   " Batch scripts use "::" denote comments
   autocmd FileType dosbatch setlocal commentstring=::\ %s
+
+  " Override PHP Comments
+  autocmd FileType php setlocal commentstring=//\ %s
 augroup END
 
 "}}}
