@@ -278,6 +278,10 @@ Plug 'hallzy/yankmatches.vim'
 " vim-textobj-comment, otherwise the comment text-object doesn't take effect.
 Plug 'airblade/vim-gitgutter'
 
+" Look up the word under the cursor in a thesaurus with <leader>K, or use
+" command :thesaurus <word> to look up <word>
+Plug 'junegunn/vim-online-thesaurus'
+
 " Autocompletion
 " NOTE: Don't use this, can probably remove
 " Plug 'Valloric/YouCompleteMe'
