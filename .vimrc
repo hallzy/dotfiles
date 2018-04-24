@@ -172,7 +172,6 @@ Plug 'jamessan/vim-gnupg'
 Plug 'suan/vim-instant-markdown'
 
 " Cleans up trailing whitespace.
-" NOTE: This doesn't seem to be working anymore for some reason
 Plug 'KuoE0/vim-janitor'
 
 " Highlights the long part of a line that exceeds textwidth
