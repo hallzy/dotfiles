@@ -112,6 +112,8 @@ Plug 'msanders/snipmate.vim'
 Plug 'godlygeek/tabular'
 " Similar but offers a vim-like motion which is better in some cases, but it
 " doesn't support as many delimiters as tabular
+" NOTE that I found out regex's can be used for vim-easy-align which means it is
+"      probably actually a better option that tabular now.
 Plug 'junegunn/vim-easy-align'
 
 " Supposed to highlight variable, class etc names. Doesn't actually seem to do
