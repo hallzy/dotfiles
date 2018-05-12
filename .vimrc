@@ -740,6 +740,21 @@ vnoremap <c-b> <esc>`>a**<esc>`<i**<esc>
 nnoremap <leader>icd i<C-R>=strftime('%Y/%m/%d')<cr><esc>
 
 "}}}
+" Delete duplicate lines"{{{
+
+" A note about both of these mappings: The duplicated lines are saved in
+" register d, so you can get access to the lines you just deleted with these
+" commands if you need.
+
+" Normal mode version will automatically remove duplicates from the current
+" paragraph
+nnoremap <leader>d :exe 'normal! vip'<cr>:call setreg('d',[])<cr>:'<,'>g/^/kl\|if search('^'.escape(getline('.'),'\.*[]^$/').'$','bW', line("'<"))\|'ld D<CR>:nohl<cr>
+
+" Visual mode version will remove duplicates from the current visually selected
+" lines
+vnoremap <leader>d :call setreg('d',[])<cr>:'<,'>g/^/kl\|if search('^'.escape(getline('.'),'\.*[]^$/').'$','bW', line("'<"))\|'ld D<CR>:nohl<cr>
+
+"}}}
 
 "}}}
 " abbrevs"{{{
