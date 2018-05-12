@@ -2067,8 +2067,12 @@ endfunction
 " NOTE: that I am using '@+' because I use the unnamedplus register for my
 " clipboard. This will not work if you use a different register
 
+" The delete commands are my own modifications
+
+" Y Commands"{{{
+
 " Make v<motions>Y act like an incremental v<motion>y
-vnoremap <silent> Y  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
+vnoremap <silent> YY  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
 
 " Make Y<motion> act like an incremental y<motion>
 nnoremap <silent><expr> Y  Incremental_Y()
@@ -2107,6 +2111,52 @@ function! Incremental_YY () range
   " Grab all specified lines and append them to the default register
   let @+ .= join(getline(a:firstline, a:lastline), "\n") . "\n"
 endfunction
+
+"}}}
+" D Commands"{{{
+
+" Make v<motions>Y act like an incremental v<motion>y
+vnoremap <silent> DD  <ESC>:silent let @y = @+<CR>gv"Yd:silent let @+ = @y<CR>
+
+" Make Y<motion> act like an incremental y<motion>
+nnoremap <silent><expr> D  Incremental_D()
+
+function! Incremental_D ()
+  " After the D operator, read in the associated motion
+  let l:motion = nr2char(getchar())
+
+  " If it's a (slowly typed) DD, do the optimized version instead (see below)
+  if l:motion ==# 'D'
+    call Incremental_DD()
+    return
+
+  " If it's a text object, read in the associated motion
+  elseif l:motion =~? '[ia]'
+    let l:motion .= nr2char(getchar())
+
+  " If it's a search, read in the associated pattern
+  elseif l:motion =~? '[/?]'
+    let l:motion .= input(l:motion) . "\<CR>"
+  endif
+
+  " Copy the current contents of the default register into the 'y register
+  let @y = @+
+
+  " Return a command sequence that deletes into the 'Y register,
+  " then assigns that cumulative delete back to the default register
+  return '"Yd' . l:motion . ':let @+ = @y' . "\<CR>"
+endfunction
+
+" Make DD act like an incremental dd
+nnoremap <silent>  DD  :call Incremental_DD()<CR>
+
+function! Incremental_DD () range
+  " Grab all specified lines and append them to the default register
+  let @+ .= join(getline(a:firstline, a:lastline), "\n") . "\n"
+  :d _
+endfunction
+
+"}}}
 
 "}}}
 
