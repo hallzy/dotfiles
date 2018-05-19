@@ -273,6 +273,9 @@ Plug 'gavinbeatty/vmath.vim'
 " for your search
 Plug 'hallzy/yankmatches.vim'
 
+" Delete duplicated lines without sorting
+Plug 'hallzy/delete-duplicate-lines.vim'
+
 " This is separated from the rest of the list because it has to be after
 " vim-textobj-comment, otherwise the comment text-object doesn't take effect.
 Plug 'airblade/vim-gitgutter'
@@ -738,21 +741,6 @@ vnoremap <c-b> <esc>`>a**<esc>`<i**<esc>
 " Insert the current date"{{{
 
 nnoremap <leader>icd i<C-R>=strftime('%Y/%m/%d')<cr><esc>
-
-"}}}
-" Delete duplicate lines"{{{
-
-" A note about both of these mappings: The duplicated lines are saved in
-" register d, so you can get access to the lines you just deleted with these
-" commands if you need.
-
-" Normal mode version will automatically remove duplicates from the current
-" paragraph
-nnoremap <leader>d :exe 'normal! vip'<cr>:call setreg('d',[])<cr>:'<,'>g/^/kl\|if search('^'.escape(getline('.'),'\.*[]^$/').'$','bW', line("'<"))\|'ld D<CR>:nohl<cr>
-
-" Visual mode version will remove duplicates from the current visually selected
-" lines
-vnoremap <leader>d :call setreg('d',[])<cr>:'<,'>g/^/kl\|if search('^'.escape(getline('.'),'\.*[]^$/').'$','bW', line("'<"))\|'ld D<CR>:nohl<cr>
 
 "}}}
 
@@ -1390,6 +1378,21 @@ augroup vimCommentary
   " Override PHP Comments
   autocmd FileType php setlocal commentstring=//\ %s
 augroup END
+
+"}}}
+" Delete Duplicate lines"{{{
+
+" A note about both of these mappings: The duplicated lines are saved in
+" register d, so you can get access to the lines you just deleted with these
+" commands if you need.
+
+" Normal mode version will automatically remove duplicates from the current
+" paragraph
+nmap <leader>d <Plug>DeleteDuplicateLines<cr>
+
+" Visual mode version will remove duplicates from the current visually selected
+" lines
+vmap <leader>d <Plug>DeleteDuplicateLinesVisual<cr>
 
 "}}}
 
