@@ -1564,7 +1564,7 @@ function! VisualSelection(direction) range
   " them with a \
   let l:pattern = escape(@", '\\/.*$^~[]')
   " Get rid of next line characters in the highlighted text
-  let l:pattern = substitute(l:pattern, "\n$", '', '')
+  let l:pattern = join(split(l:pattern, "\n"), '\n')
 
   let @/ = l:pattern
 
