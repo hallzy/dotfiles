@@ -2162,6 +2162,81 @@ endfunction
 "}}}
 
 "}}}
+" Writable Search Register"{{{
+
+function! ReadInputUntilNotNumber()
+  let l:done = 0
+  let l:input = ''
+  while !l:done
+    let l:input .= nr2char(getchar())
+    " Check if input is a number
+    let l:done = l:input !~# '^\d\+$'
+  endwhile
+  return l:input
+endfunction
+
+function! WritableSearchRegister(mode)
+  " String list of commands that put me into insert mode
+  let l:ops_to_insert_mode = 'cCsS'
+
+  let l:no_motion_ops = 'YDCSs'
+
+  " Take first argument which should be an operation like yank or delete
+  " It could also be a number though, which is why I am calling this custom
+  " function
+    let l:op = ReadInputUntilNotNumber()
+
+  " If the operator is one that puts me into insert mode, then let me know!
+  let l:insert_mode = 'false'
+  if l:ops_to_insert_mode =~# l:op
+    let l:insert_mode = 'true'
+  endif
+
+  " If the operator doesn't use a motion, then we will skip getting the motion
+  " Also, the mode has to be normal, as a visual selection doesn't need a motion
+  if l:no_motion_ops !~# l:op && a:mode ==# 'normal'
+    " Now take the second which should be a motion of some sort
+    let l:motion = ReadInputUntilNotNumber()
+
+    " If it's a text object, read in the associated motion
+    if l:motion =~? '[ia]'
+      let l:motion .= ReadInputUntilNotNumber()
+
+      " If it's a search, read in the associated pattern
+    elseif l:motion =~? '[/?]'
+      let l:motion .= input(l:motion) . "\<CR>"
+    endif
+  else
+    let l:motion = ''
+  endif
+
+  " Save the current contents of register z into a variable
+  let g:reg_z = @z
+
+  if l:insert_mode ==# 'true'
+    let g:suffix = 'a'
+  else
+    let g:suffix = ''
+  endif
+
+
+  " Perform the operation with the motion, saving the data into register z
+  let l:cmd = '"z' . l:op . l:motion
+  " Make sure we are in normal mode
+  let l:cmd .= "\<esc>"
+  "Replace newline characters with a literal '\n'
+  let l:cmd .= ":let @z = join(split(@z, \"\\n\"), '\\n')\<cr>"
+  " Save the content of register z into the search register
+  let l:cmd .= ":let @/ = @z\<cr>"
+  " Restore the contents of register z
+  let l:cmd .= ":let @z = g:reg_z\<cr>"
+  " If our operation is supposed to put us into insert mode, do it
+  let l:cmd .= g:suffix
+  echom l:cmd
+  return l:cmd
+endfunction
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -2291,6 +2366,18 @@ function! TruncateSurroundingWhitespaceofVisualSelection()
 endfunction
 
 vnoremap <leader>v :call TruncateSurroundingWhitespaceofVisualSelection()<cr>
+
+"}}}
+" Writable Search Register"{{{
+
+" use nmap instead of nnoremap so that custom objects like lines work
+nmap <silent><expr> g/ WritableSearchRegister('normal')
+
+" This mapping is more useless since the '*' does almost the same thing. The
+" biggest difference is that '*' searches for strings literally, while mine
+" allows you to copy a line that could be a regex, and use the regex for a
+" search
+vmap <silent><expr> g/ WritableSearchRegister('visual')
 
 "}}}
 
