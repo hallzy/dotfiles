@@ -2237,6 +2237,20 @@ function! WritableSearchRegister(mode)
 endfunction
 
 "}}}
+" Toggle Dvorak Layout for Insert Mode"{{{
+
+function! ToggleDvorak()
+  if &keymap ==# 'dvorak'
+    set keymap=
+    echom 'Dvorak Off'
+  else
+    set keymap=dvorak
+    echom 'Dvorak On'
+  endif
+endfunction
+nnoremap <c-d> :call ToggleDvorak()<cr>
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
