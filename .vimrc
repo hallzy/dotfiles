@@ -572,14 +572,39 @@ nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 "}}}
 "Evaluate a mathematical expression"{{{
 
+" I used to do this with Octave. However, that was significantly slower, and
+" requires an extra dependency. This new solution just uses the built in
+" expression register.
+
 " Calculate Math
-function! OctaveMathVisual()
-  exec "normal! `<v`>yo\<esc>p`>mzj"
-  exec "normal! v:!octave --silent \| cut -d' ' -f3-\<cr>kJxD`za = \<esc>pjdd`zee"
+function! VisualMath()
+  " Save contents of register z
+  let l:reg_z = @z
+
+  " re-select the visual selection, and copy it into register z
+  exec 'normal! gv"zy'
+
+  " Assign the content of register z to the expression register (I couldn't seem
+  " to copy the visual selection directly into the expression register, so this
+  " was the next best way)
+  let @= = @z
+
+  " Restore the content of register z
+  let @z = l:reg_z
+
+  " Go to the end of the visual selection, add an equals sign, and paste the
+  " evaluated expression from the expression register
+  exec "normal! `>a=\<c-r>=\<cr>"
 endfunction
 
-xnoremap <silent> <space>c <esc>:call OctaveMathVisual()<cr>:delmarks z<cr>
-nnoremap <silent> <space>c yypv:!octave --silent \| cut -d' ' -f3-<cr>kJi =<esc>jddk$
+xnoremap <silent> <leader>c <esc>:call VisualMath()<cr>
+nnoremap <silent> <leader>c :let @= = getline('.')<cr>A=<c-r>=<cr><esc>
+
+" Same as other visual mapping, but this one deletes the expression and leaves
+" only the answer
+xnoremap <silent> <c-c> <esc>:call VisualMath()<cr>gvdx
+nnoremap <silent> <c-c> :let @= = getline('.')<cr>A=<c-r>=<cr><esc>0df=
+
 
 "}}}
 " For merge conflicts easily choose what version to use"{{{
