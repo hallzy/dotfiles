@@ -602,8 +602,32 @@ nnoremap <silent> <leader>c :let @= = getline('.')<cr>A=<c-r>=<cr><esc>
 
 " Same as other visual mapping, but this one deletes the expression and leaves
 " only the answer
-xnoremap <silent> <c-c> <esc>:call VisualMath()<cr>gvdx
-nnoremap <silent> <c-c> :let @= = getline('.')<cr>A=<c-r>=<cr><esc>0df=
+xnoremap <silent> <leader>C <esc>:call VisualMath()<cr>gvdx
+nnoremap <silent> <leader>C :let @= = getline('.')<cr>A=<c-r>=<cr><esc>0df=
+
+" While I am here, may as well add some math variables and functions that I can
+"use
+let g:pi = 3.14159265359
+let g:e  = 2.71828182846
+
+" Convert Radians to degrees
+function! Deg(rad)
+  return a:rad * 180 / g:pi
+endfunction
+
+" Convert degrees to radians
+function! Rad(deg)
+  return a:deg * g:pi / 180
+endfunction
+
+" Convert degrees to radians
+function! Area_circle(radius)
+  return a:radius * a:radius * g:pi
+endfunction
+" Convert degrees to radians
+function! Perim_circle(radius)
+  return 2 * a:radius * g:pi
+endfunction
 
 
 "}}}
