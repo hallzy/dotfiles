@@ -288,6 +288,8 @@ Plug 'junegunn/vim-online-thesaurus'
 " NOTE: Don't use this, can probably remove
 " Plug 'Valloric/YouCompleteMe'
 
+Plug 'hallzy/expression-evaluator.vim'
+
 call plug#end()
 
 "}}}
@@ -568,67 +570,6 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 
 "esc now removes white space from the line that you are escaping from
 nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
-
-"}}}
-"Evaluate a mathematical expression"{{{
-
-" I used to do this with Octave. However, that was significantly slower, and
-" requires an extra dependency. This new solution just uses the built in
-" expression register.
-
-" Calculate Math
-function! VisualMath()
-  " Save contents of register z
-  let l:reg_z = @z
-
-  " re-select the visual selection, and copy it into register z
-  exec 'normal! gv"zy'
-
-  " Assign the content of register z to the expression register (I couldn't seem
-  " to copy the visual selection directly into the expression register, so this
-  " was the next best way)
-  let @= = @z
-
-  " Restore the content of register z
-  let @z = l:reg_z
-
-  " Go to the end of the visual selection, add an equals sign, and paste the
-  " evaluated expression from the expression register
-  exec "normal! `>a=\<c-r>=\<cr>"
-endfunction
-
-xnoremap <silent> <leader>c <esc>:call VisualMath()<cr>
-nnoremap <silent> <leader>c :let @= = getline('.')<cr>A=<c-r>=<cr><esc>
-
-" Same as other visual mapping, but this one deletes the expression and leaves
-" only the answer
-xnoremap <silent> <leader>C <esc>:call VisualMath()<cr>gvdx
-nnoremap <silent> <leader>C :let @= = getline('.')<cr>A=<c-r>=<cr><esc>0df=
-
-" While I am here, may as well add some math variables and functions that I can
-"use
-let g:pi = 3.14159265359
-let g:e  = 2.71828182846
-
-" Convert Radians to degrees
-function! Deg(rad)
-  return a:rad * 180 / g:pi
-endfunction
-
-" Convert degrees to radians
-function! Rad(deg)
-  return a:deg * g:pi / 180
-endfunction
-
-" Convert degrees to radians
-function! Area_circle(radius)
-  return a:radius * a:radius * g:pi
-endfunction
-" Convert degrees to radians
-function! Perim_circle(radius)
-  return 2 * a:radius * g:pi
-endfunction
-
 
 "}}}
 " For merge conflicts easily choose what version to use"{{{
@@ -1437,11 +1378,23 @@ augroup END
 
 " Normal mode version will automatically remove duplicates from the current
 " paragraph
-nmap <leader>d <Plug>DeleteDuplicateLines<cr>
+nmap <leader>d <Plug>DeleteDuplicateLines
 
 " Visual mode version will remove duplicates from the current visually selected
 " lines
-vmap <leader>d <Plug>DeleteDuplicateLinesVisual<cr>
+vmap <leader>d <Plug>DeleteDuplicateLinesVisual
+
+"}}}
+" Expression Evaluator"{{{
+
+" I used to do this with Octave. However, that was significantly slower, and
+" requires an extra dependency. This new solution just uses the built in
+" expression register.
+nmap <leader>c <Plug>ExpressionEvaluatorNormal
+xmap <leader>c <Plug>ExpressionEvaluatorVisual
+
+nmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyNormal
+xmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyVisual
 
 "}}}
 
