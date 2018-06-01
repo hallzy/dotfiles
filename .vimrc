@@ -1771,21 +1771,40 @@ endfun
 
 " If I am to the left of the 80th column and press L, take me to the last space
 " character before the 80th column. Otherwise take me to the end of the line.
+
+" Get the column number as seen on screen (ex, a line that is wrapped to another
+" line will have its column count reset because as it is seen, its column
+" restarts)
+function! GetLineWrappedColumn()
+  " +2 For gitgutter adding 2 extra columns to the gutter
+  let l:numberwidth = &numberwidth + 2
+  " windwidth(0) is the column width of the current buffer
+  " &numberwidth is the wdith of the gutter
+  let l:number_of_wraps = (col('.')-1) / (winwidth(0) - l:numberwidth)
+  if l:number_of_wraps > 0
+    return col('.') - l:number_of_wraps*(winwidth(0) - l:numberwidth)
+  else
+    return col('.')
+  endif
+endfunction
+
 function! LMapping()
-  let l:c = col('.')
+  let l:c = GetLineWrappedColumn()
   exec 'normal! g$'
-  if col('.') <= 80
+  if GetLineWrappedColumn() <= 80
     " If my current position after moving to the end of the line is at 80 or
     " less, then just move to the end of the line and leave it, because you have
     " reached the end of the line.
     return
   endif
 
-  exec 'normal! 80|F '
+  " g0 to go to the beginning of the line wrapped line
+  " 79l to move 79 columns right
+  exec 'normal! g079lF '
 
   " If my cursor position is further right than the last space until the 80th
   " column, then go to the end of the line
-  if l:c >= col('.')
+  if l:c >= GetLineWrappedColumn()
     " the g makes it so that it won't go to the end of a wrapped line
     exec 'normal! g$'
 
@@ -1793,18 +1812,18 @@ function! LMapping()
     " space character before the 80th column.
   else
     " c is now the 80th column
-    exec 'normal! 80|'
-    let l:c = col('.')
+    exec 'normal! g079l'
+    let l:c = GetLineWrappedColumn()
     " move to the next space character
     exec 'normal! f '
     " of the 81st column is not a space, then go to the previous space
-    if l:c+1 != col('.')
+    if l:c+1 != GetLineWrappedColumn()
       exec 'normal! F '
-      if col('.') <= 60
+      if GetLineWrappedColumn() <= 60
         " If after that last move to the previous space, we are further to the
         " left than the 60th column, just go to the 80th column because now we
         " are just too far.
-        exec 'normal! 80|'
+        exec 'normal! g079l'
       endif
     endif
     " Otherwise, just stay on the 81st column
@@ -1812,9 +1831,9 @@ function! LMapping()
 endfun
 
 function! LMappingVisual()
-  let l:startc = col('.')
-  exec "normal! gv80|\<esc>"
-  let l:endc = col('.')
+  let l:startc = GetLineWrappedColumn()
+  exec "normal! gvg079l\<esc>"
+  let l:endc = GetLineWrappedColumn()
 
   if l:startc >= l:endc
     " the second g makes it so that it won't go to the end of a wrapped line
