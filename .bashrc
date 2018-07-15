@@ -396,12 +396,30 @@ export PATH=$PATH:$dotfiles/.bin
 # This bin folder is for go scripts I have downloaded/installed
 export PATH=$PATH:$HOME/go/bin
 
-PROMPT_COMMAND=__prompt_command
+function timer_start {
+  timer=${timer:-$SECONDS}
+}
+
+function timer_stop {
+  timer_show=$(($SECONDS - $timer))
+  if [ "$timer_show" -lt "60" ]; then
+    timer_show="${timer_show}s"
+  else
+    seconds=$((timer_show%60))
+    minutes=$((timer_show/60))
+    timer_show="${minutes}m${seconds}s"
+  fi
+  unset timer
+}
+
+PROMPT_COMMAND="__prompt_command;"
+trap 'timer_start' DEBUG
 
 __prompt_command() {
   ## Get the exit code of the last command that was run
   exit="$?"
   PS1=""
+  timer_stop
 
   # All Colours I used are from the gruvbox pallet -- .vim/plugged/gruvbox/colors/
   # find colour codes here: # http://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -422,7 +440,9 @@ __prompt_command() {
     # seem to work
     export PS1="$PS1 ${red}[\$(date +%r)]"
   fi
-  PS1+=" ${blue}RET=${exit}${end_colour}"
+
+  PS1+=" ${blue}[${timer_show}] "
+  PS1+="RET=${exit}${end_colour}"
 
   # Bash Prompt Settings for SSH Sessions
   # Both SSH_CLIENT and SSH_TTY should contain something if we are in an active
