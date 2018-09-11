@@ -1390,6 +1390,8 @@ nmap <leader>d <Plug>DeleteDuplicateLines
 " Visual mode version will remove duplicates from the current visually selected
 " lines
 vmap <leader>d <Plug>DeleteDuplicateLinesVisual
+" TODO: make a normal mode mapping like this
+vnoremap <leader>D :!uniq -u<cr>
 
 "}}}
 " Expression Evaluator"{{{
