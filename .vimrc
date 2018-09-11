@@ -147,6 +147,7 @@ Plug 'gioele/vim-autoswap'
 
 " Toggle comments
 Plug 'tpope/vim-commentary'
+Plug 'hallzy/vim-context-commentstring'
 
 " Dims inactive splits
 Plug 'blueyed/vim-diminactive'
@@ -1365,8 +1366,10 @@ augroup vimCommentary
   " Batch scripts use "::" denote comments
   autocmd FileType dosbatch setlocal commentstring=::\ %s
 
-  " Override PHP Comments
-  autocmd FileType php setlocal commentstring=//\ %s
+  " Override PHP Comments. I am making it the HTML comment string, since
+  " everything in a PHP file is HTML unless stated otherwise. The Plugin
+  " 'vim-context-commentstring' will take care of the context for me.
+  autocmd FileType php setlocal commentstring=<!--\ %s\ -->
 augroup END
 
 "}}}
