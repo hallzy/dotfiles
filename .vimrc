@@ -291,6 +291,8 @@ Plug 'junegunn/vim-online-thesaurus'
 
 Plug 'hallzy/expression-evaluator.vim'
 
+Plug 'tyru/current-func-info.vim'
+
 call plug#end()
 
 "}}}
@@ -1018,10 +1020,12 @@ let g:lightline = {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
       \ 'colinfo': 'COL %-2v',
+      \ 'functionname': '%{cfi#format("%s", "")}()',
       \ 'charvaluehex' : 'char: 0x%B',
   \ },
   \ 'component_visible_condition': {
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
+      \   'functionname': '(exists("*cfi#format") && ""!=cfi#format("%s", ""))',
   \ },
 \ }
 
@@ -1040,7 +1044,7 @@ let g:lightline = {
 " Format | Encoding | Filetype || Percent || line info | column ||
 let g:lightline.active = {
     \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ],
+    \           [ 'fugitive', 'functionname', 'readonly', 'relativepath', 'modified' ]],
     \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
     \            [ 'percent' ],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
