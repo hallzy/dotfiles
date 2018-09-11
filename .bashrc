@@ -428,10 +428,10 @@ __prompt_command() {
   #       the text colour of the terminal is #AAAAAA (not part of gruvbox)
   #       the font of the terminal is "DejaVu Sans Mono"
   #       the font size of the terminal is 9
-  red="\e[38;5;167m"    # Hex = d75f5f
-  blue="\e[38;5;109m"   # Hex = 87afaf
-  yellow="\e[38;5;142m" # Hex = afaf00
-  end_colour="\e[m"
+  red="\[\e[38;5;167m\]"    # Hex = d75f5f
+  blue="\[\e[38;5;109m\]"   # Hex = 87afaf
+  yellow="\[\e[38;5;142m\]" # Hex = afaf00
+  end_colour="\[\e[m\]"
 
   PS1="${red}${debian_chroot:+($debian_chroot)}\u@\h"
   # Add Time stamp to bash prompt
