@@ -1406,6 +1406,11 @@ nmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyNormal
 xmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyVisual
 
 "}}}
+" vim_sort_motion"{{{
+
+let g:sort_motion_visual_block_command = 'Vissort'
+
+"}}}
 
 "}}}
 " Functions"{{{
