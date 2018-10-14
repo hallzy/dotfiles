@@ -1370,6 +1370,9 @@ augroup vimCommentary
   " Batch scripts use "::" denote comments
   autocmd FileType dosbatch setlocal commentstring=::\ %s
 
+  " Awk scripts use "#" denote comments
+  autocmd FileType awk setlocal commentstring=#\ %s
+
   " Override PHP Comments. I am making it the HTML comment string, since
   " everything in a PHP file is HTML unless stated otherwise. The Plugin
   " 'vim-context-commentstring' will take care of the context for me.
