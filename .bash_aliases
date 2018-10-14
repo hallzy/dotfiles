@@ -79,6 +79,26 @@ alias diskspace='df -kh .'
 # Get disk usage for the current Directory and sub folders
 alias diskusage="du -sh ./"
 
+memory_usage() {
+  system_mem=$(grep "^MemTotal" /proc/meminfo | awk '{print $2/1024}')
+  ps axv | awk -v input="${*}" -v mem="$system_mem" '
+    BEGIN {
+      split(input, inputs, " ")
+    }
+    {
+      for (i in inputs) {
+        if ( $0 !~ inputs[i] ) {
+          next
+        }
+      }
+      s += $9;
+    }
+    END {
+      print "Memory Usage: "s*0.01*mem" MB ("s"%) (Total: "mem")";
+    }
+  '
+}
+
 alias localserver="python -m SimpleHTTPServer"
 
 alias restart-wifi="sudo service network-manager restart"
