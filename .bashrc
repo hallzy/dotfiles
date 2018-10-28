@@ -513,3 +513,56 @@ LS_COLORS=$LS_COLORS:'fi=38;5;229:'
 export LS_COLORS
 
 export GOPATH="$HOME/go"
+
+kill_process_match() {
+  pid=$(ps aux | awk -v input="${*}" '
+    BEGIN {
+      # The number of times that we get a matching line
+      count = 0;
+      # The PID that we care about
+      pid = "tmp"
+      # Split up all the function args
+      split(input, inputs, " ");
+    }
+    $0 !~ /awk/ {
+      for (i in inputs) {
+        if ($0 !~ inputs[i]) {
+          next;
+        }
+      }
+      # If we have multiple PIDs that match, then we need to quit
+      if (count > 0) {
+        exited=1;
+        exit 1;
+      };
+      # Assign the current PID to our PID variable
+      pid=$2;
+      ## Increment the counter. We should never execute this again.
+      count++;
+    }
+    END {
+      # if our we exited before, then print an error message and quit
+      if (exited) {
+        print "More than one process matches.";
+        exit 1;
+      }
+      if (count <= 0) {
+        print "No matches found.";
+        exit 1;
+      }
+      # If no problems, print the PID
+      print pid;
+    }
+  ')
+  if [[ $pid =~ ^[0-9]+$ ]]; then
+    kill -9 ${pid}
+    if [ $? -ne 0 ]; then
+      echo "Failed to kill process."
+    else
+      echo "Process ${pid} killed."
+    fi
+  else
+    echo "Error ${pid}"
+  fi
+
+}
