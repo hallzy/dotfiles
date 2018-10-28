@@ -2291,6 +2291,44 @@ endfunction
 nnoremap <c-d> :call ToggleDvorak()<cr>
 
 "}}}
+" MapKey"{{{
+
+" Description: Get LHS of a mapping. Inverse of maparg().
+" Note that hasmapto() returns a binary result while MapKey() returns the value
+" of the LHS.
+" Pass in a key sequence and the first letter of a vim mode.
+" Returns key mapping mapped to it in that mode, else '' if none.
+" Eg:
+"   :nnoremap <Tab> :bn<CR>
+"   :call Mapkey(':bn<CR>', 'n')
+" returns <Tab>
+function! MapKey( rhs, mode )
+  execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
+
+  " Convert all text between angle-brackets to lowercase
+  " Required to recognize all case-variants of <c-A> and <C-a> as the same thing
+  " Note that Alt mappings are case-sensitive. However, this is not an issue as
+  " <A-x> is " replaced with its appropriate keycode for eg. <A-a> becomes á
+  let l:rhs = substitute(a:rhs, '<[^>]\+>', "\\L\\0", 'g')
+
+  for l:map in split(l:mappings, '\n')
+    " Get rhs for each mapping
+    let l:lhs = split(l:map, '\s\+')[1]
+    let l:lhs_map = maparg(l:lhs, a:mode)
+
+    if substitute(l:lhs_map, '<[^>]\+>', "\\L\\0", 'g') ==# l:rhs
+      return l:lhs
+    endif
+  endfor
+  return ''
+endfunction
+
+function! MyFunc(arg)
+  let l:lhs = MapKey(':call MyFunc('. a:arg . ')<cr>', 'n')
+  echo 'start func ' . a:arg ': ' . l:lhs
+endfunction
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
