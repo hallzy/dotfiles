@@ -1882,6 +1882,8 @@ for g:colour in g:my_colours
   call add(g:colour_names, g:colour[0])
 endfor
 
+let g:gruvbox_contrast_dark='hard'
+
 " ToggleColourScheme"{{{
 " direction = next --> Go to the next colorscheme in the list
 " direction = prev --> Go to the prev colorscheme in the list
