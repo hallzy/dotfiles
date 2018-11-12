@@ -126,3 +126,7 @@ alias trim='sudo fstrim -v --all'
 
 # Shows the DNS Servers this computer uses
 alias dns_servers='nmcli device show wlp2s0 | grep IP4.DNS | grep_ip -o'
+
+largest() {
+  find . -type f -exec du -sh "{}" \; | sort -hr | head -"${1:-1}"
+}
