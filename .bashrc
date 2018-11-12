@@ -566,3 +566,8 @@ kill_process_match() {
   fi
 
 }
+
+
+# From a directory, get a random file within that directory and subdirectories.
+# Usually used to find a random episode of a show for example
+randomTVShowEpisode() { randomTVShowEpisode.php "${@}"; }
