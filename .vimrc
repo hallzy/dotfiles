@@ -1273,7 +1273,7 @@ let g:ycm_global_ycm_extra_conf =
 "}}}
 " Renamer"{{{
 
-nnoremap <leader>rr :Renamer<space>
+nmap <leader>rr <Plug>RenamerStart
 nnoremap <leader>rs :Ren<cr>
 
 "}}}
