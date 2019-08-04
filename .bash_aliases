@@ -99,6 +99,30 @@ memory_usage() {
   '
 }
 
+cpu_usage() {
+  ps aux | awk -v input="${*}" '
+    BEGIN {
+      split(input, inputs, " ")
+    }
+    {
+      for (i in inputs) {
+        if ( $0 !~ inputs[i] ) {
+          next
+        }
+      }
+      s += $3;
+    }
+    END {
+      print "CPU Usage: "s"%";
+    }
+  '
+}
+
+usage() {
+  memory_usage ${*}
+  cpu_usage ${*}
+}
+
 alias localserver="python -m SimpleHTTPServer"
 
 alias restart-wifi="sudo service network-manager restart"

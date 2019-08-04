@@ -104,10 +104,6 @@ Plug 'myusuf3/numbers.vim'
 " and T
 Plug 'bradford-smith94/quick-scope'
 
-" Provides snippets for things like for loops, if statements etc after issuing
-" the tab character
-Plug 'msanders/snipmate.vim'
-
 " Align text from different lines (I have this mapped to <leader>tz)
 Plug 'godlygeek/tabular'
 " Similar but offers a vim-like motion which is better in some cases, but it
@@ -192,10 +188,6 @@ Plug 'terryma/vim-multiple-cursors'
 " A notetaking plugin
 " NOTE: Now that I am done school, maybe I don't really need this anymore
 Plug 'xolox/vim-notes'
-
-" Extends the @ and " Commands so that when it is issued a split window opens to
-" show me what is in all the current registers.
-Plug 'junegunn/vim-peekaboo'
 
 " Easily use URLs
 " <c-k> makes it easy to add markdown links, gx opens the link under the cursor,
@@ -291,7 +283,15 @@ Plug 'junegunn/vim-online-thesaurus'
 
 Plug 'hallzy/expression-evaluator.vim'
 
-Plug 'tyru/current-func-info.vim'
+Plug 'StanAngelOff/php.vim'
+
+Plug 'SirVer/ultisnips'
+
+Plug 'honza/vim-snippets'
+
+Plug 'hallzy/vim-php-manual'
+
+Plug 'fcpg/vim-osc52'
 
 call plug#end()
 
@@ -804,6 +804,7 @@ inoremap thereexists''     ∃
 inoremap therefore''       ∴
 inoremap because''         ∵
 inoremap in''              ∈
+inoremap notin''           ∉
 inoremap intersect''       ∩
 inoremap union''           ∪
 inoremap subset''          ⊂
@@ -811,9 +812,12 @@ inoremap subset_eq''       ⊆
 inoremap integral''        ∫
 inoremap double_integral'' ∬
 inoremap natural''         ℕ
+inoremap integer''         ℤ
 inoremap rational''        ℚ
 inoremap real''            ℝ
-inoremap integer''         ℤ
+inoremap complex''         ℂ
+inoremap prime''           ℙ
+
 inoremap join''            ⋈
 
 "}}}
@@ -1019,13 +1023,11 @@ let g:lightline = {
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
-      \ 'colinfo': 'COL %-2v',
-      \ 'functionname': '%{cfi#format("%s", "")}()',
+     \ 'colinfo': 'COL %-2v',
       \ 'charvaluehex' : 'char: 0x%B',
   \ },
   \ 'component_visible_condition': {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
-      \   'functionname': '(exists("*cfi#format") && ""!=cfi#format("%s", ""))',
   \ },
 \ }
 
@@ -1044,7 +1046,7 @@ let g:lightline = {
 " Format | Encoding | Filetype || Percent || line info | column ||
 let g:lightline.active = {
     \ 'left': [ [ 'mode', 'paste' ],
-    \           [ 'fugitive', 'functionname', 'readonly', 'relativepath', 'modified' ]],
+    \           [ 'fugitive', 'readonly', 'relativepath', 'modified' ]],
     \ 'right': [ [ 'lineinfo', 'colinfo', 'charvaluehex' ],
     \            [ 'percent' ],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
@@ -1389,12 +1391,12 @@ augroup END
 " Normal mode version will automatically remove duplicates from the current
 " paragraph
 nmap <leader>d <Plug>DeleteDuplicateLines
+nmap <leader>D <Plug>DeleteAllButUnique
 
 " Visual mode version will remove duplicates from the current visually selected
 " lines
 vmap <leader>d <Plug>DeleteDuplicateLinesVisual
-" TODO: make a normal mode mapping like this
-vnoremap <leader>D :!uniq -u<cr>
+vmap <leader>D <Plug>DeleteAllButUniqueVisual
 
 "}}}
 " Expression Evaluator"{{{
@@ -1414,7 +1416,6 @@ xmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyVisual
 let g:sort_motion_visual_block_command = 'Vissort'
 
 "}}}
-
 "}}}
 " Functions"{{{
 
@@ -2709,3 +2710,18 @@ endif
 cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
 cs add $REPOS/cpen331/src/cscope.out
 
+function! ChangeFileTypeFunc()
+  if &filetype ==? 'html'
+    set filetype=php
+  elseif &filetype ==? 'php'
+    set filetype=html
+  endif
+endfunction
+
+nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
+
+let g:php_manual_online_search_shortcut = ''
+let g:php_manual_online_get_url = '-'
+
+
+xmap <f10> y:call SendViaOSC52(getreg('0'))<cr>

@@ -505,11 +505,26 @@ export NVM_DIR="/home/steven/.nvm"
 
 
 # Setup the ls colours
-LS_COLORS=$LS_COLORS:'di=38;5;142:'
-LS_COLORS=$LS_COLORS:'ln=38;5;109:'
-LS_COLORS=$LS_COLORS:'or=38;5;208:'
-LS_COLORS=$LS_COLORS:'ex=38;5;167:'
-LS_COLORS=$LS_COLORS:'fi=38;5;229:'
+# format is 38;5;<foreground colour>;48;5;<background color>
+# the 38;5 and 48;5 signify 256 bit colours
+# Use this to find colour numbers: https://jonasjacek.github.io/colors/
+LS_COLORS=$LS_COLORS:'di=38;5;142:' # Directory
+LS_COLORS=$LS_COLORS:'ow=38;5;142:' # Other-Writable dir
+LS_COLORS=$LS_COLORS:'ln=38;5;109:' # Symlinks
+LS_COLORS=$LS_COLORS:'or=38;5;208:' # Orphan (symlink to nowhere)
+LS_COLORS=$LS_COLORS:'ex=38;5;167:' # Executable
+LS_COLORS=$LS_COLORS:'fi=38;5;229:' # File
+# no  -> Anything not covered by something else (default)
+# pi  -> Named Pipe
+# do  -> Door
+# bd  -> Block device
+# cd  -> Character device
+# so  -> Socket
+# su  -> File that is setuid (u+s)
+# sg  -> File that is setgid (g+s)
+# tw  -> Directory that is sticky and other-writable (+t,o+w)
+# st  -> Directory with the sticky bit set (+t) and not other-writable
+# *.extension  -> Every file using this extension e.g. *.jpg
 export LS_COLORS
 
 export GOPATH="$HOME/go"
