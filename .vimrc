@@ -291,8 +291,6 @@ Plug 'honza/vim-snippets'
 
 Plug 'hallzy/vim-php-manual'
 
-Plug 'fcpg/vim-osc52'
-
 call plug#end()
 
 "}}}
@@ -2676,6 +2674,3 @@ nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
 
 let g:php_manual_online_search_shortcut = ''
 let g:php_manual_online_get_url = '-'
-
-
-xmap <f10> y:call SendViaOSC52(getreg('0'))<cr>
