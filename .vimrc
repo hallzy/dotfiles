@@ -1023,7 +1023,7 @@ let g:lightline = {
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
-     \ 'colinfo': 'COL %-2v',
+      \ 'colinfo': 'COL %-2v',
       \ 'charvaluehex' : 'char: 0x%B',
   \ },
   \ 'component_visible_condition': {
@@ -2660,6 +2660,9 @@ endif
 " following the conclusion of this class.
 cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
 cs add $REPOS/cpen331/src/cscope.out
+
+" Run the current file
+nnoremap <leader>ru :exec '!php '. expand('%:p')<cr>
 
 function! ChangeFileTypeFunc()
   if &filetype ==? 'html'
