@@ -39,9 +39,6 @@ endif
 " switch from source & headers
 Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
 
-" Easy grep like searching from inside vim
-Plug 'mileszs/ack.vim'
-
 " Linting Engine
 Plug 'w0rp/ale'
 
@@ -81,17 +78,11 @@ Plug 'sjl/gundo.vim'
 " Shows vertical lines to show the indentation level
 Plug 'Yggdroot/indentLine'
 
-" Python autocompletion
-Plug 'davidhalter/jedi-vim', {'for' : 'python'}
-
 " Lightline Related
 Plug '844196/lightline-badwolf.vim'
 Plug 'hallzy/lightline-iceberg'
 Plug 'hallzy/lightline-onedark'
 Plug 'itchyny/lightline.vim'
-
-" Shows my most recently used files for easy opening
-Plug 'vim-scripts/mru.vim'
 
 " File tree for vim
 Plug 'scrooloose/nerdtree'
@@ -112,11 +103,6 @@ Plug 'godlygeek/tabular'
 "      probably actually a better option that tabular now.
 Plug 'junegunn/vim-easy-align'
 
-" Supposed to highlight variable, class etc names. Doesn't actually seem to do
-" much for me however.
-" NOTE: If I don't miss this, it can be removed
-" Plug 'abudden/taghighlight-automirror'
-
 " Adds a bunch of text objects including pairs of brackets or tags which also
 " work over multiple lines, separators like commas, function arguments etc.
 Plug 'wellle/targets.vim'
@@ -132,10 +118,6 @@ Plug 'Shougo/unite.vim'
 " only has 1 argument it does a search.
 " Also coercion to change text between snake_case, camelCase, MixedCase etc
 Plug 'tpope/vim-abolish'
-
-" Easily move function arguments, or move between function arguments (<, or >,
-" and [, and ],)
-Plug 'PeterRincker/vim-argumentative'
 
 " If a file is already open in another terminal window, don't open it again,
 " just focus that window for me.
@@ -168,26 +150,11 @@ Plug 'jamessan/vim-gnupg'
 " Open up markdown files in a browser to view the marked up version
 Plug 'suan/vim-instant-markdown'
 
-" Cleans up trailing whitespace.
-Plug 'KuoE0/vim-janitor'
-
 " Highlights the long part of a line that exceeds textwidth
 Plug 'whatyouhide/vim-lengthmatters'
 
-" Extends the % operation significantly
-Plug 'andymass/vim-matchup'
-
-" Contains code that other plugins depend on.
-" NOTE: If I get rid of the rest of xolox's plugins I can probably get rid of
-" this too
-Plug 'xolox/vim-misc'
-
 " Sublime style multiple cursors
 Plug 'terryma/vim-multiple-cursors'
-
-" A notetaking plugin
-" NOTE: Now that I am done school, maybe I don't really need this anymore
-Plug 'xolox/vim-notes'
 
 " Easily use URLs
 " <c-k> makes it easy to add markdown links, gx opens the link under the cursor,
@@ -202,16 +169,11 @@ Plug 'qpkorr/vim-renamer'
 " Used by many plugins to support being repeated with the '.' command
 Plug 'tpope/vim-repeat'
 
-
 " Gives me Gbrowse with the help of fugitive to open the current file on Github
 Plug 'tpope/vim-rhubarb'
 
 " A better version of Damian Conway's DragVisuals
 Plug 'zirrostig/vim-schlepp'
-
-" Save and restore vim sessions
-" NOTE: I don't think I have ever used this so I may be able to get rid of it
-Plug 'xolox/vim-session'
 
 " Displays marks in the gutter of vim
 Plug 'kshenoy/vim-signature'
@@ -219,12 +181,6 @@ Plug 'kshenoy/vim-signature'
 " Custom Motions
 Plug 'christoomey/vim-sort-motion'
 Plug 'chaoren/vim-wordmotion'
-" Similar to the coercion of abolish, except that coercion isn't a motion and
-" therefore can't operate on text objects.
-Plug 'christoomey/vim-titlecase'
-
-" Landing page for vim when I don't open a specific file
-Plug 'mhinz/vim-startify'
 
 " Add, modify, or remove surround characters like quotes.
 Plug 'tpope/vim-surround'
@@ -245,16 +201,6 @@ Plug 'kentaro/vim-textobj-function-php', {'for' : 'php'}
 Plug 'syngan/vim-vimlint', {'for' : 'vim'}
 Plug 'vim-jp/vim-vimlparser', {'for' : 'vim'}
 
-" Support for marks defined by a visual selection
-Plug 'iago-lito/vim-visualMarks'
-
-" This is a dependency of some plugins like vimshell, and is just a library
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-" Use a shell inside of vim
-" NOTE: I never use this anymore. Maybe remove
-Plug 'Shougo/vimshell.vim'
-
 " Block sorting. Differs from the sort motion in that I can select a visual
 " block to sort by even if it isn't the first character of the line
 Plug 'yaroot/vissort'
@@ -273,21 +219,9 @@ Plug 'hallzy/delete-duplicate-lines.vim'
 " vim-textobj-comment, otherwise the comment text-object doesn't take effect.
 Plug 'airblade/vim-gitgutter'
 
-" Look up the word under the cursor in a thesaurus with <leader>K, or use
-" command :thesaurus <word> to look up <word>
-Plug 'junegunn/vim-online-thesaurus'
-
-" Autocompletion
-" NOTE: Don't use this, can probably remove
-" Plug 'Valloric/YouCompleteMe'
-
 Plug 'hallzy/expression-evaluator.vim'
 
 Plug 'StanAngelOff/php.vim'
-
-Plug 'SirVer/ultisnips'
-
-Plug 'honza/vim-snippets'
 
 Plug 'hallzy/vim-php-manual'
 
@@ -573,12 +507,6 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 "}}}
-" For merge conflicts easily choose what version to use"{{{
-
-" For use in git mergetool using vimdiff
-nnoremap $ :diffget<space>
-
-"}}}
 " > and <"{{{
 
 " Now when I try to move several lines at once sideways, the visual selection
@@ -627,11 +555,6 @@ nnoremap <expr> _ OpenHelp()
 vnoremap <expr> _ OpenHelp()
 
 "}}}
-" Replace local variable with something else"{{{
-
-nnoremap gr gd<c-o>[{V%::s/<c-r>///gc<left><left><left>
-
-"}}}
 " Use apostrophe instead of a back tick for going to marks"{{{
 
 nnoremap ' `
@@ -640,11 +563,11 @@ nnoremap ' `
 " ctrl+m, ctrl+h, ctrl+l"{{{
 
 " ctrl+m moves cursor to the middle of the screen
-noremap <leader>M M
+noremap <c-m> M
 " ctrl+h moves cursor to the top of the screen
-noremap <leader>H H
+noremap <c-h> H
 " ctrl+l moves cursor to the bottom of the screen
-noremap <leader>L L
+noremap <c-l> L
 
 " zh moves the current line to the top of the screen
 noremap zh zt
@@ -866,24 +789,6 @@ let g:EasyMotion_skipfoldedline = 0
 " Open folds that were previously opened, and close those that were closed.
 
 "}}}
-" Fanfingtastic"{{{
-
-"let g:fanfingtastic_ignorecase = 1
-
-" Only do this, if they exist (It should only not exist if I have disabled
-" fanfingtastic
-if exists(':call FanfingTasticDisable()')
-  " Disable when using multi cursors. Lots of problems occur if I leave it.
-  function Multiple_cursors_before()
-    call FanfingTasticDisable()
-  endfun
-
-  function Multiple_cursors_after()
-    call FanfingTasticEnable()
-  endfun
-endif
-
-"}}}
 " Quick Scope"{{{
 
 " Uncomment the below line so that quick-scope only activates when one of the
@@ -894,12 +799,15 @@ endif
 "}}}
 " NERDTree"{{{
 
-" function! OpenNerdTreeStartup()
-"   NERDTree
-"   exec "normal! \<c-w>l"
-" endfun
+function! OpenNerdTreeStartup()
+  NERDTree
+  exec "normal! \<c-w>l"
+endfun
 " Start nerdtree automatically if I give vim a file name
-" autocmd VimEnter * call OpenNerdTreeStartup()
+augroup NerdTreeStartup
+  autocmd!
+  autocmd VimEnter * call OpenNerdTreeStartup()
+augroup END
 
 
 " Toggle nerdtree
@@ -938,26 +846,10 @@ let g:Schlepp#allowSquishingBlocks = 1
 let g:Schlepp#dupTrimWS = 1
 
 "}}}
-" Visual Marks"{{{
-
-" Visual marks are the same as normal, except done in visual mode
-vmap m <Plug>VisualMarksVisualMark
-nmap M <Plug>VisualMarksGetVisualMark
-
-"}}}
 " Git Time Lapse"{{{
 
 " Maps the <F7> key to use git-time-lapse
 map <F7> :call TimeLapse()<cr>
-
-"}}}
-" MRU"{{{
-
-" excludes any file in /tmp file, and commit messages in my results.
-let g:MRU_Exclude_Files = '^/tmp/.*\|.*/COMMIT_EDITMSG$'
-
-" Only show most recent 20 files
-let g:MRU_Max_Entries = 20
 
 "}}}
 " vim-gitgutter"{{{
@@ -979,38 +871,6 @@ set signcolumn=yes
 "The mark is displayed over the gitgutter sign, but inherits the same colour so
 "you can tell what was there
 let g:SignatureMarkTextHLDynamic = 1
-
-"}}}
-"vim-session"{{{
-
-" Manipulates global vim sessions
-nnoremap <leader>so :OpenSession<cr>
-nnoremap <leader>sv :ViewSession<cr>
-nnoremap <leader>ss :SaveSession<cr>
-nnoremap <leader>sd :DeleteSession<cr>
-nnoremap <leader>sc :CloseSession<cr>
-
-" Manipulates tab vim sessions
-nnoremap <leader>sto :OpenTabSession<cr>
-nnoremap <leader>stno :AppendTabSession<cr>
-nnoremap <leader>sts :SaveTabSession<cr>
-nnoremap <leader>stc :CloseTabSession<cr>
-
-" Restarts vim and opens the sessions that were open - only for gvim
-nnoremap <leader>sr :RestartVim<cr>
-
-
-" Sessions will be saved here
-let g:session_directory = '~/.my-vim-sessions'
-
-" if the default session exists, do not prompt me on opening vim to open the default
-let g:session_autoload = 'no'
-
-" On exiting vim, do not prompt me to save the session
-let g:session_autosave = 'no'
-
-" Make messages less verbose
-let g:session_verbose_messages = 0
 
 "}}}
 " Lightline - Status Bar"{{{
@@ -1091,21 +951,6 @@ nnoremap <leader>1 :UniteWithInputDirectory grep<cr>
 nnoremap <leader>2 :Unite -quick-match buffer<cr>
 
 "}}}
-" vim-swap"{{{
-
-" For swapping position of text
-vmap <leader>x         <plug>SwapSwapOperands
-vmap <leader><leader>x <plug>SwapSwapPivotOperands
-nmap <leader>x         <plug>SwapSwapWithR_WORD
-nmap <leader>X         <plug>SwapSwapWithL_WORD
-
-"}}}
-" VimShell"{{{
-
-" Opens a shell inside of vim
-nnoremap <leader>vs :VimShell<cr>
-
-"}}}
 " Cscope"{{{
 
 set cscopetag
@@ -1145,27 +990,6 @@ let g:table_mode_corner='|'
 " vim-surround"{{{
 
 let b:surround_indent = 1
-
-"}}}
-" vim-startify"{{{
-
-" Order of headings, and the heading text
-let g:startify_list_order = [
-      \ ['   Bookmarks'],      'bookmarks',
-      \ ['   MRU'],            'files',
-      \ ['   MRU '. getcwd()], 'dir',
-      \ ['   Sessions'],       'sessions',
-      \ ]
-
-" My Bookmarks
-let g:startify_bookmarks = [
-      \  '~/.vimrc',
-      \  '/var/spool/mail/steven',
-      \ ]
-
-" When opening a version controlled file using startify, change the cwd of vim
-" to the root of that repository
-let g:startify_change_to_vcs_root = 1
 
 "}}}
 " DetectIndent"{{{
@@ -1210,18 +1034,6 @@ let g:indentLine_color_term = 245
 let g:indentLine_color_gui = '#928374'
 
 "}}}
-" TagHighlight"{{{
-
-" Make the files hidden files
-if ! exists('g:TagHighlightSettings')
-  let g:TagHighlightSettings = {}
-endif
-
-" Make the tag files be hidden files. I don't want to see them.
-let g:TagHighlightSettings['TypesFilePrefix'] = '.types'
-let g:TagHighlightSettings['TagFileName'] = '.tags'
-
-"}}}
 " vim-gnupg"{{{
 
 " Source an external file that contains recipients. I keep it external so I don't
@@ -1236,51 +1048,10 @@ if filereadable($dotfiles . '/gpg_recipients.vim')
 endif
 
 "}}}
-" vim-notes"{{{
-
-let g:notes_directories = [
-      \ '~/Documents/notes',
-      \ ]
-
-"}}}
-" ack.vim"{{{
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-nnoremap <leader>a :Ack!<space>
-
-"Search for the word under my cursor, or being highlighted
-nnoremap <leader>A :Ack! <c-r><c-w><cr>
-vnoremap <leader>A y:Ack! "<c-r>""<cr>
-
-" Highlight the results
-let g:ackhighlight = 1
-
-"}}}
-" jedi-vim"{{{
-
-" Disable this
-let g:jedi#documentation_command = ''
-
-"}}}
-" youcompleteme"{{{
-
-let g:ycm_global_ycm_extra_conf =
-\ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-"}}}
 " Renamer"{{{
 
 nmap <leader>rr <Plug>RenamerStart
 nnoremap <leader>rs :Ren<cr>
-
-"}}}
-" vim-janitor"{{{
-
-let g:janitor_auto_clean_up_trailing_ws_only_added = 1
-let g:janitor_auto_clean_up_on_write = 1
 
 "}}}
 " vim-diminactive"{{{
@@ -1336,12 +1107,6 @@ let g:bullets_enabled_file_types = [
       \ 'noft'     ,
       \ 'cfg'
       \ ]
-
-"}}}
-" Peekaboo"{{{
-
-" Put the split window to the left and make it 81 columns wide
-let g:peekaboo_window='vertical topleft 81new'
 
 "}}}
 " vim-wordmotion"{{{
@@ -1462,57 +1227,6 @@ function! AddCurlyBraces()
 endfun
 
 "}}}
-" MyFormattingSubs"{{{
-
-" Remove trailing whitespace on save for all filetypes.
-function! MyFormattingSubs()
-  "Save last search and cursor position
-  let l:_s=@/
-  let l:l = line('.')
-  let l:c = col('.')
-
-  " Note: Filetypes listed are excluded.
-  " Note: Java is excluded because For CPEN 422 at UBC we are given a Java
-          " project that would make lots of changes to many files which would
-          " be a bit of a waste
-
-  "Replace a tab with 2 spaces, except for the filetypes specified
-  if (&filetype !~? 'make' &&
-     \&filetype !~? 'xml' &&
-     \&filetype !=? 'java')
-
-    " Don't do this now. DetectIndent will make it so that I may have tabs. Just
-    " leaving this here in case I decide to get rid of detectIndent
-    " %s/\t/  /ge
-  endif
-
-  " Remove trailing white space except for the filetypes specified
-  " Commented because I should still remove trailing whitespace from java files.
-  " Just leaving this here as an example of how to change it if I decide I need
-  " exclusions
-  " if (&filetype != 'java')
-    " %s/\s\+$//ge
-  " endif
-
-  let @/=l:_s
-  call cursor(l:l,l:c)
-  call histdel('search', -1)
-endfunction
-"}}}
-" Remove trailing whitespace"{{{
-
-function! RemoveTrailingWhitespace()
-  let l:l = line('.')
-  let l:c = col('.')
-
-  "  if (&filetype != 'java')
-    %s/\s\+$//ge
-  "  endif
-
-  call cursor(l:l,l:c)
-endfunction
-
-" }}}
 " VisualSelection - perform search and replacements for visual text"{{{
 
 " This is used for the next function
@@ -1578,15 +1292,6 @@ function! UnderlineCurrentLineWithEquals()
     let l:c -= 1
   endwhile
 endfunc
-"}}}
-" OpenMultipleFilesVSplit"{{{
-
-function! OpenMultipleFilesVSplit()
-  call inputsave()
-  let l:option = input('Enter a file name or regex expression: ')
-  call inputrestore()
-  execute ':args ' . l:option . ' | vertical all'
-endfun
 "}}}
 " SaveVimSession"{{{
 
@@ -1977,83 +1682,6 @@ function! Units()
 endfunction
 
 "}}}
-" Dash to Dots and Dots to Dash"{{{
-
-function! DashToDots()
-  exec "normal! '<"
-  let l:l = line('.')
-  let l:c = col('.')
-  '<,'>:Tabularize /-
-  let l:endline=line('''>')
-  " Go to the top of the visual selection and the beginning of the line
-  exec "normal! '<0"
-
-  set visualbell
-  set t_vb=
-
-  let l:currentLine = line('.')
-  while l:currentLine != l:endline + 1
-    exec 'normal! f-vgEllr.'
-    exec 'normal! j0'
-    let l:currentLine = line('.')
-  endwhile
-
-  set novisualbell
-endfunction
-
-function! DotsToDash()
-  let l:endline=line('''>')
-  " Go to the top of the visual selection and the beginning of the line
-  exec "normal! '<0"
-
-  set visualbell
-  set t_vb=
-
-  let l:currentLine = line('.')
-  while l:currentLine != l:endline + 1
-    exec 'normal! f.hvec -'
-    exec 'normal! j0'
-    let l:currentLine = line('.')
-  endwhile
-
-  set novisualbell
-endfunction
-
-"}}}
-" Setup a line in a table of contents format"{{{
-
-" it is delimited by a --
-
-function! TableOfContentsFormat()
-  " Go to end of line and get column number
-  exec 'normal! $'
-  let l:number_of_chars = col('.')
-  let l:number_of_chars_to_add = 79-l:number_of_chars
-
-  " Go to the first occurrence of two dashes (signalling the point to split)
-  exec "normal! 0/--\<cr>r.lr."
-
-  " append a dot from where we are
-  let l:my_command = "normal! a.\<esc>" . l:number_of_chars_to_add . '.'
-  exec l:my_command
-endfunction
-
-"}}}
-" Leet Function"{{{
-
-function! Leet()
-  :s/a/4/gie
-  :s/b/8/gie
-  :s/c/</gie
-  :s/e/3/gie
-  :s/g/6/gie
-  :s/i/1/gie
-  :s/o/0/gie
-  :s/s/5/gie
-  :s/z/2/gie
-endfunction
-
-"}}}
 " Append to copy"{{{
 
 " This is From Damian Conway
@@ -2227,58 +1855,6 @@ function! WritableSearchRegister(mode)
 endfunction
 
 "}}}
-" Toggle Dvorak Layout for Insert Mode"{{{
-
-function! ToggleDvorak()
-  if &keymap ==# 'dvorak'
-    set keymap=
-    echom 'Dvorak Off'
-  else
-    set keymap=dvorak
-    echom 'Dvorak On'
-  endif
-endfunction
-nnoremap <c-d> :call ToggleDvorak()<cr>
-
-"}}}
-" MapKey"{{{
-
-" Description: Get LHS of a mapping. Inverse of maparg().
-" Note that hasmapto() returns a binary result while MapKey() returns the value
-" of the LHS.
-" Pass in a key sequence and the first letter of a vim mode.
-" Returns key mapping mapped to it in that mode, else '' if none.
-" Eg:
-"   :nnoremap <Tab> :bn<CR>
-"   :call Mapkey(':bn<CR>', 'n')
-" returns <Tab>
-function! MapKey( rhs, mode )
-  execute 'redir => l:mappings | silent! ' . a:mode . 'map | redir END'
-
-  " Convert all text between angle-brackets to lowercase
-  " Required to recognize all case-variants of <c-A> and <C-a> as the same thing
-  " Note that Alt mappings are case-sensitive. However, this is not an issue as
-  " <A-x> is " replaced with its appropriate keycode for eg. <A-a> becomes á
-  let l:rhs = substitute(a:rhs, '<[^>]\+>', "\\L\\0", 'g')
-
-  for l:map in split(l:mappings, '\n')
-    " Get rhs for each mapping
-    let l:lhs = split(l:map, '\s\+')[1]
-    let l:lhs_map = maparg(l:lhs, a:mode)
-
-    if substitute(l:lhs_map, '<[^>]\+>', "\\L\\0", 'g') ==# l:rhs
-      return l:lhs
-    endif
-  endfor
-  return ''
-endfunction
-
-function! MyFunc(arg)
-  let l:lhs = MapKey(':call MyFunc('. a:arg . ')<cr>', 'n')
-  echo 'start func ' . a:arg ': ' . l:lhs
-endfunction
-
-"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -2312,42 +1888,9 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 nnoremap <leader>= :call UnderlineCurrentLineWithEquals()<cr>
 nnoremap <leader>- :call UnderlineCurrentLineWithDash()<cr>
 "}}}
-" OpenMultipleFilesVSplit"{{{
-
-nnoremap <f3> :call OpenMultipleFilesVSplit()<cr>
-"}}}
-"SaveVimSession"{{{
-
-" nnoremap <f2> :call SaveVimSession()<cr>
-
-"}}}
-"RestoreVimSession"{{{
-
-" nnoremap <f3> :call RestoreVimSession()<cr>
-
-"}}}
 " Togglenrformats - toggles functionality of ctrl+a and ctrl+x"{{{
 
 nnoremap ! :call Togglenrformats()<cr>
-"}}}
-" Dash to dots and dots to dash"{{{
-
-vnoremap z-. :call DashToDots()<cr>
-vnoremap z.- :call DotsToDash()<cr>
-
-"}}}
-" Table of contents format"{{{
-
-"Complicated, so that I can continue repeating the command with the . command
-nnoremap <silent> <Plug>TableOfContentsPlug :call TableOfContentsFormat()<cr>
-                          \:call repeat#set("\<Plug>TableOfContentsPlug")<cr>
-nmap <leader>toc <Plug>TableOfContentsPlug
-
-"}}}
-" Leet Function Mapping"{{{
-
-noremap <leader>leet :call Leet()<cr>
-
 "}}}
 " TruncateSurroundingWhitespaceofVisualSelection"{{{
 
@@ -2465,26 +2008,6 @@ augroup googleScriptGroup
   " Google Script is basically JavaScript, so I will just pretend it is a
   " JavaScript file for syntax highlighting
   autocmd BufRead,BufNewFile *.gs set filetype=javascript
-augroup END
-
-"}}}
-" spellCheck"{{{
-
-" augroup spellCheck
-"   autocmd!
-"   " Enable spellchecking for Markdown and gitcommit messages
-"   autocmd FileType markdown setlocal spell
-"   autocmd FileType gitcommit setlocal spell
-"   autocmd FileType notes setlocal spell
-"   autocmd FileType text setlocal spell
-" augroup END
-
-"}}}
-" MyFormattingSubs"{{{
-
-augroup FormattingSubGroup
-  autocmd!
-  autocmd BufWritePre * :call MyFormattingSubs()
 augroup END
 
 "}}}
