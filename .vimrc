@@ -1849,6 +1849,72 @@ function! WritableSearchRegister(mode)
 endfunction
 
 "}}}
+" Edit Vim Registers"{{{
+
+function! EditRegister()
+  " Ask user what register to edit
+  echom 'What register to edit? '
+
+  " Get that register, convert the input to a character and lowercase it
+  let l:register = tolower(nr2char(getchar()))
+
+  " If the register provided is not alphanumeric, or it is not * + - or " then
+  " fail
+  if l:register !~# '^[a-z0-9\*\+\-"]$'
+    echo 'Invalid register [' . l:register . ']'
+    echo 'Valid registers are alphanumerics or * + - "'
+    return
+  endif
+
+  " The buffer name we assign needs to be escaped for registers * and "
+  if l:register =~# '^[\*"]$'
+    let l:registerFileName = '\' . l:register
+  else
+    let l:registerFileName = l:register
+  endif
+
+  " Create a new horizontal split that is 5 rows tall
+  new
+  resize 5
+
+  " Paste whatever is in the provided register into this new split window
+  exec 'normal! "' . l:register . 'p'
+
+  " Change the buffer name to be the register that was provided
+  silent exec 'file ' . l:registerFileName
+
+  " Set the file as not modified
+  set nomodified
+
+  " Save the register in a variable for this buffer only
+  let b:register = l:register
+
+  " Add a new mapping to this new buffer to save the register
+  nnoremap <buffer> <leader>sr :call SaveRegister()<cr>
+endfunction
+
+" Why does new lines and <cr> always use the ^M thing?
+function! SaveRegister()
+  " Copy the text from the 'register buffer' to the register
+  exec 'normal! gg0vG$h"' . b:register . 'y'
+
+  " The above is not good enough. If we saved the register and it has control
+  " characters or escapes, they won't be converted properly. Do the below as
+  " well. This will allow the use of control characters
+
+  " Set the register variable to the contents of the register
+  exec ':let @' . b:register . ' = "' . getreg(b:register) . '"'
+
+  " Close the register buffer
+  q!
+endfunction
+
+" Edit Specified Register
+nnoremap <leader>er :call EditRegister()<cr>
+" Set a dummy mapping by default
+nnoremap <leader>sr :echoe 'Select a register first'<cr>
+
+"}}}
 
 "}}}
 " Function Mappings/ Settings"{{{
@@ -2199,67 +2265,3 @@ nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
 
 let g:php_manual_online_search_shortcut = ''
 let g:php_manual_online_get_url = '-'
-
-
-function! EditRegister()
-  " Ask user what register to edit
-  echom 'What register to edit? '
-
-  " Get that register, convert the input to a character and lowercase it
-  let l:register = tolower(nr2char(getchar()))
-
-  " If the register provided is not alphanumeric, or it is not * + - or " then
-  " fail
-  if l:register !~# '^[a-z0-9\*\+\-"]$'
-    echo 'Invalid register [' . l:register . ']'
-    echo 'Valid registers are alphanumerics or * + - "'
-    return
-  endif
-
-  " The buffer name we assign needs to be escaped for registers * and "
-  if l:register =~# '^[\*"]$'
-    let l:registerFileName = '\' . l:register
-  else
-    let l:registerFileName = l:register
-  endif
-
-  " Create a new horizontal split that is 5 rows tall
-  new
-  resize 5
-
-  " Paste whatever is in the provided register into this new split window
-  exec 'normal! "' . l:register . 'p'
-
-  " Change the buffer name to be the register that was provided
-  silent exec 'file ' . l:registerFileName
-
-  " Set the file as not modified
-  set nomodified
-
-  " Save the register in a variable for this buffer only
-  let b:register = l:register
-
-  " Add a new mapping to this new buffer to save the register
-  nnoremap <buffer> <leader>sr :call SaveRegister()<cr>
-endfunction
-
-" Why does new lines and <cr> always use the ^M thing?
-function! SaveRegister()
-  " Copy the text from the 'register buffer' to the register
-  exec 'normal! gg0vG$h"' . b:register . 'y'
-
-  " The above is not good enough. If we saved the register and it has control
-  " characters or escapes, they won't be converted properly. Do the below as
-  " well. This will allow the use of control characters
-
-  " Set the register variable to the contents of the register
-  exec ':let @' . b:register . ' = "' . getreg(b:register) . '"'
-
-  " Close the register buffer
-  q!
-endfunction
-
-" Edit Specified Register
-nnoremap <leader>er :call EditRegister()<cr>
-" Set a dummy mapping by default
-nnoremap <leader>sr :echoe 'Select a register first'<cr>
