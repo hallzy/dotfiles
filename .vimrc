@@ -47,15 +47,11 @@ Plug 'jiangmiao/auto-pairs'
 
 " Colourschemes
 Plug 'sjl/badwolf'
-Plug 'morhetz/gruvbox'
+Plug 'dkasak/gruvbox'
 Plug 'cocopon/iceberg.vim'
 Plug 'joshdick/onedark.vim'
 
-" Auto bullet on a newline
-Plug 'dkarter/bullets.vim'
-
-" GDB in vim
-Plug 'vim-scripts/Conque-GDB', {'for' : ['c', 'cpp', 'asm']}
+Plug 'neovimhaskell/haskell-vim'
 
 " CScope in vim
 Plug 'brookhong/cscope.vim', {'for' : ['c', 'cpp']}
@@ -308,9 +304,9 @@ set synmaxcol=81
 set textwidth=80
 set colorcolumn=81
 
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+" Softtabs, 4 spaces
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 " Display extra white space
@@ -505,6 +501,8 @@ nnoremap cct F<yf>f>pF<a/<esc>hi
 
 "esc now removes white space from the line that you are escaping from
 nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
+
+nnoremap <leader>tws :%s/\s\+$//g<cr>
 
 "}}}
 " > and <"{{{
@@ -1000,8 +998,8 @@ let b:surround_indent = 1
 " expandtab is set, meaning that pressing tab gives x number of spaces
 let g:detectindent_preferred_expandtab = 1
 
-" When indent size cannot be determined use 2
-let g:detectindent_preferred_indent = 2
+" When indent size cannot be determined use 4
+let g:detectindent_preferred_indent = 4
 
 
 " Automatically run detectIndent
@@ -1011,9 +1009,9 @@ augroup detectIndentGroup
 augroup END
 
 function! CheckExpandTab()
-  " If expandtab is off, then set the tabs to be 2 columns long
+  " If expandtab is off, then set the tabs to be 4 columns long
   if (&expandtab == 0)
-    set tabstop=2
+    set tabstop=4
   endif
 endfunction
 
@@ -1052,6 +1050,7 @@ endif
 
 nmap <leader>rr <Plug>RenamerStart
 nnoremap <leader>rs :Ren<cr>
+nnoremap <leader>rd :call renamer#DeleteEntry()<CR>
 
 "}}}
 " vim-diminactive"{{{
@@ -1096,17 +1095,6 @@ vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':
 " Gundo"{{{
 
 nnoremap <c-u> :GundoToggle<CR>
-
-"}}}
-" bullets"{{{
-
-let g:bullets_enabled_file_types = [
-      \ 'markdown' ,
-      \ 'text'     ,
-      \ 'gitcommit',
-      \ 'noft'     ,
-      \ 'cfg'
-      \ ]
 
 "}}}
 " vim-wordmotion"{{{
@@ -1323,10 +1311,16 @@ endfunc
 " This will make ! toggle whether or not ctrl+a and ctrl+x can work on alpha
 " characters or not. By default it is off.
 function! Togglenrformats()
-  if &nrformats ==? 'octal,hex'
+  if &nrformats ==? ''
     set nrformats=octal,hex,alpha
-  else
+  elseif &nrformats ==? 'octal,hex,alpha'
     set nrformats=octal,hex
+  elseif &nrformats ==? 'octal,hex'
+    set nrformats=hex
+  elseif &nrformats ==? 'hex'
+    set nrformats=''
+  else
+    set nrformats=octal,hex,alpha
   endif
   echo &nrformats
 endfun
@@ -2052,6 +2046,14 @@ augroup vimrcex
 augroup end
 
 "}}}
+" No spell check for haskell, as it is very annoying"{{{
+
+augroup NoSpellCheckHaskell
+  autocmd!
+  autocmd FileType haskell setlocal nospell
+augroup END
+
+"}}}
 
 "}}}
 
@@ -2197,3 +2199,67 @@ nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
 
 let g:php_manual_online_search_shortcut = ''
 let g:php_manual_online_get_url = '-'
+
+
+function! EditRegister()
+  " Ask user what register to edit
+  echom 'What register to edit? '
+
+  " Get that register, convert the input to a character and lowercase it
+  let l:register = tolower(nr2char(getchar()))
+
+  " If the register provided is not alphanumeric, or it is not * + - or " then
+  " fail
+  if l:register !~# '^[a-z0-9\*\+\-"]$'
+    echo 'Invalid register [' . l:register . ']'
+    echo 'Valid registers are alphanumerics or * + - "'
+    return
+  endif
+
+  " The buffer name we assign needs to be escaped for registers * and "
+  if l:register =~# '^[\*"]$'
+    let l:registerFileName = '\' . l:register
+  else
+    let l:registerFileName = l:register
+  endif
+
+  " Create a new horizontal split that is 5 rows tall
+  new
+  resize 5
+
+  " Paste whatever is in the provided register into this new split window
+  exec 'normal! "' . l:register . 'p'
+
+  " Change the buffer name to be the register that was provided
+  silent exec 'file ' . l:registerFileName
+
+  " Set the file as not modified
+  set nomodified
+
+  " Save the register in a variable for this buffer only
+  let b:register = l:register
+
+  " Add a new mapping to this new buffer to save the register
+  nnoremap <buffer> <leader>sr :call SaveRegister()<cr>
+endfunction
+
+" Why does new lines and <cr> always use the ^M thing?
+function! SaveRegister()
+  " Copy the text from the 'register buffer' to the register
+  exec 'normal! gg0vG$h"' . b:register . 'y'
+
+  " The above is not good enough. If we saved the register and it has control
+  " characters or escapes, they won't be converted properly. Do the below as
+  " well. This will allow the use of control characters
+
+  " Set the register variable to the contents of the register
+  exec ':let @' . b:register . ' = "' . getreg(b:register) . '"'
+
+  " Close the register buffer
+  q!
+endfunction
+
+" Edit Specified Register
+nnoremap <leader>er :call EditRegister()<cr>
+" Set a dummy mapping by default
+nnoremap <leader>sr :echoe 'Select a register first'<cr>

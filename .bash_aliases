@@ -35,7 +35,7 @@ alias tlf='tail -f'
 
 
 if which gcp > /dev/null 2>&1; then
-  alias cp='dbus-launch gcp'
+    alias cp='dbus-launch gcp'
 fi
 
 alias grep_mac='grep "[[:xdigit:]]\{2\}\(:[[:xdigit:]]\{2\}\)\{5\}"'
@@ -67,6 +67,52 @@ alias untar='tar xvf'
 
 alias tarcompress='tar cvzf'
 
+c() {
+    local dest="$1"
+    shift 1
+    local src=$@
+
+    # Not all of these use destination names. However, we still require it so
+    # that we know what program to use
+
+    case $dest in
+        *.tar.bz2)   tar cvpjf  $dest $src ;;
+        *.tbz2)      tar cvpjf  $dest $src ;;
+        *.tar.gz)    tar cvpzf  $dest $src ;;
+        *.tgz)       tar cvpzf  $dest $src ;;
+        *.tar.xz)    tar cvpf   $dest $src ;;
+        *.tar)       tar cvpf   $dest $src ;;
+        *.bz2)       bzip2 -zkv $src       ;;
+        *.rar)       rar a      $dest $src ;;
+        *.gz)        gzip -kv   $src       ;;
+        *.zip)       zip        $dest $src ;;
+        *.7z)        7z a       $dest $src ;;
+        *)           echo "Unable to create archive '$dest'" ;;
+    esac
+}
+
+x(){
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1    ;;
+            *.tar.gz)    tar xvzf $1    ;;
+            *.tar.xz)    tar xvf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar x $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xvf $1     ;;
+            *.tbz2)      tar xvjf $1    ;;
+            *.tgz)       tar xvzf $1    ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)           echo "Unable to extract '$1'" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
 # source bashrc and bash_alias
 alias sbr='source ~/.bashrc'
 alias sba='source ~/.bash_aliases'
@@ -80,47 +126,47 @@ alias diskspace='df -kh .'
 alias diskusage="du -sh ./"
 
 memory_usage() {
-  system_mem=$(grep "^MemTotal" /proc/meminfo | awk '{print $2/1024}')
-  ps axv | awk -v input="${*}" -v mem="$system_mem" '
-    BEGIN {
-      split(input, inputs, " ")
-    }
-    {
-      for (i in inputs) {
-        if ( $0 !~ inputs[i] ) {
-          next
+    system_mem=$(grep "^MemTotal" /proc/meminfo | awk '{print $2/1024}')
+    ps axv | awk -v input="${*}" -v mem="$system_mem" '
+        BEGIN {
+            split(input, inputs, " ")
         }
-      }
-      s += $9;
-    }
-    END {
-      print "Memory Usage: "s*0.01*mem" MB ("s"%) (Total: "mem")";
-    }
-  '
+        {
+            for (i in inputs) {
+                if ( $0 !~ inputs[i] ) {
+                    next
+                }
+            }
+            s += $9;
+        }
+        END {
+            print "Memory Usage: "s*0.01*mem" MB ("s"%) (Total: "mem")";
+        }
+    '
 }
 
 cpu_usage() {
-  ps aux | awk -v input="${*}" '
-    BEGIN {
-      split(input, inputs, " ")
-    }
-    {
-      for (i in inputs) {
-        if ( $0 !~ inputs[i] ) {
-          next
+    ps aux | awk -v input="${*}" '
+        BEGIN {
+            split(input, inputs, " ")
         }
-      }
-      s += $3;
-    }
-    END {
-      print "CPU Usage: "s"%";
-    }
-  '
+        {
+            for (i in inputs) {
+                if ( $0 !~ inputs[i] ) {
+                    next
+                }
+            }
+            s += $3;
+        }
+        END {
+            print "CPU Usage: "s"%";
+        }
+    '
 }
 
 usage() {
-  memory_usage ${*}
-  cpu_usage ${*}
+    memory_usage ${*}
+    cpu_usage ${*}
 }
 
 alias localserver="python -m SimpleHTTPServer"
@@ -152,5 +198,11 @@ alias trim='sudo fstrim -v --all'
 alias dns_servers='nmcli device show wlp2s0 | grep IP4.DNS | grep_ip -o'
 
 largest() {
-  find . -type f -exec du -sh "{}" \; | sort -hr | head -"${1:-1}"
+    find . -type f -exec du -sh "{}" \; | sort -hr | head -"${1:-1}"
+}
+
+alias random_dir='\ls -1 | head -$((($RANDOM % $(\ls -1 | wc -l)) + 1)) | tail -1'
+
+duration() {
+    ffmpeg -i "$1" 2>&1 | grep Duration | awk -F'[ ,:.]+' '{ HR = $3; MIN = $4; SEC=$5; print 60*HR+MIN ":" SEC}';
 }
