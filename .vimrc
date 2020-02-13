@@ -2071,6 +2071,17 @@ augroup googleScriptGroup
 augroup END
 
 "}}}
+" Visual Bash Mode "{{{
+
+augroup visualBash
+  autocmd!
+  " Set syntax highlighting for specific file types
+  " Google Script is basically JavaScript, so I will just pretend it is a
+  " JavaScript file for syntax highlighting
+  autocmd BufRead,BufNewFile /tmp/bash-fc-* set filetype=sh
+augroup END
+
+"}}}
 " Format Options"{{{
 
 augroup formatOptions
