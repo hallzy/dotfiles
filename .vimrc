@@ -856,8 +856,8 @@ map <F7> :call TimeLapse()<cr>
 " value is measured in ms.
 set updatetime=1000
 
-nmap ]h <plug>GitGutterNextHunk
-nmap [h <plug>GitGutterPrevHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " Now the sign column will always be open
 set signcolumn=yes
