@@ -206,3 +206,11 @@ alias random_dir='\ls -1 | head -$((($RANDOM % $(\ls -1 | wc -l)) + 1)) | tail -
 duration() {
     ffmpeg -i "$1" 2>&1 | grep Duration | awk -F'[ ,:.]+' '{ HR = $3; MIN = $4; SEC=$5; print 60*HR+MIN ":" SEC}';
 }
+
+weather() {
+    curl "http://wttr.in/${1}"
+}
+
+dict() {
+    curl "dict://dict.org/d:${1}" 2> /dev/null | \grep -v "^[0-9]"
+}
