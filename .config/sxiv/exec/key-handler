@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Delete the currently set file
+d_cmd() {
+    res="$(printf "No\nYes" | dmenu -i -p "Really Delete $fullpath?")"
+    if [ "$res" != "Yes" ]; then
+        return
+    fi
+
+    rm "$fullpath"
+}
+
+# Loop through the selected files.
+# If in thumbnail mode, this will loop through each marked image, otherwise it
+# will just be the current image
+while read file; do
+    fullpath="$(pwd)/$file"
+
+    case "$1" in
+        "d")  d_cmd
+    esac
+done

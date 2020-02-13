@@ -48,6 +48,7 @@ alias ev='vim $dotfiles/.vimrc'
 alias egc='vim $dotfiles/.gitconfig'
 alias eba='vim $dotfiles/.bash_aliases'
 alias ebr='vim $dotfiles/.bashrc'
+alias esxiv='vim $dotfiles/.config/sxiv/exec/key-handler'
 alias vim-update-help-tags='vim --cmd "helptags ~/.vim/doc/" --cmd "q!"'
 alias update-thefuck='sudo -H pip install thefuck --upgrade'
 
