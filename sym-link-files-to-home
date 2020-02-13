@@ -1,56 +1,50 @@
 #!/bin/bash
 
-if [ -e $dotfiles ]; then
-  DOTFILE_PATH=$(pwd)
-else
-  DOTFILE_PATH=$dotfiles
-fi
-
-LN_CMD="ln -fs"
-
-CMD="$LN_CMD $DOTFILE_PATH"
+DOTFILE_PATH="/home/steven/Documents/git-repos/remote-github/dotfiles"
 
 cd ~/
 
-$CMD/.auto-clone/
-$CMD/.vim
-$CMD/.vimrc
-$CMD/.bash_aliases
-$CMD/.bash_profile
-$CMD/.bashrc
-$CMD/.auto-install-programs/
-$CMD/.detoxrc
-$CMD/.fonts/
-$CMD/.gitconfig
-$CMD/.gnome2/
-$CMD/.gvimrc
-$CMD/.inputrc
-$CMD/.my-scripts/
-$CMD/update-all-repos
-$CMD/custom-fortunes
-$CMD/.gitradarrc
-$CMD/.fetchmailrc
-$CMD/.msmtprc
-$CMD/.muttrc
-$CMD/.procmailrc
-$CMD/.tmux.conf
-$CMD/.tmux_theme.sh
+ln -fs "$DOTFILE_PATH/.auto-clone/"
+ln -fs "$DOTFILE_PATH/.vim"
+ln -fs "$DOTFILE_PATH/.vimrc"
+ln -fs "$DOTFILE_PATH/.bash_aliases"
+ln -fs "$DOTFILE_PATH/.bash_profile"
+ln -fs "$DOTFILE_PATH/.bashrc"
+ln -fs "$DOTFILE_PATH/.auto-install-programs/"
+ln -fs "$DOTFILE_PATH/.detoxrc"
+ln -fs "$DOTFILE_PATH/.fonts/"
+ln -fs "$DOTFILE_PATH/.gitconfig"
+ln -fs "$DOTFILE_PATH/.gnome2/"
+ln -fs "$DOTFILE_PATH/.gvimrc"
+ln -fs "$DOTFILE_PATH/.inputrc"
+ln -fs "$DOTFILE_PATH/.my-scripts/"
+ln -fs "$DOTFILE_PATH/update-all-repos"
+ln -fs "$DOTFILE_PATH/custom-fortunes"
+ln -fs "$DOTFILE_PATH/.gitradarrc"
+ln -fs "$DOTFILE_PATH/.fetchmailrc"
+ln -fs "$DOTFILE_PATH/.msmtprc"
+ln -fs "$DOTFILE_PATH/.muttrc"
+ln -fs "$DOTFILE_PATH/.procmailrc"
+ln -fs "$DOTFILE_PATH/.tmux.conf"
+ln -fs "$DOTFILE_PATH/.tmux_theme.sh"
 
 ## .config
 
 cd ~/.config/
-$CMD/.config/fish/
+ln -sf "$DOTFILE_PATH/.config/fish/"
+ln -sf "$DOTFILE_PATH/.config/sxiv"
+
 cd ~/.config/caja
-$CMD/.config/caja/scripts
+ln -fs "$DOTFILE_PATH/.config/caja/scripts"
 
 # moc
 mkdir -p ~/.moc
 cd ~/.moc
-ln -sf $dotfiles/.moc/config
-ln -sf $dotfiles/.moc/themes
+ln -sf "$DOTFILE_PATH/.moc/config"
+ln -sf "$DOTFILE_PATH/.moc/themes"
 
 
 mkdir -p ~/.config/ranger
 cd ~/.config/ranger
-ln -sf $dotfiles/.config/ranger/rc.conf
-ln -sf $dotfiles/.config/ranger/scope.sh
+ln -sf $DOTFILE_PATH/.config/ranger/rc.conf
+ln -sf $DOTFILE_PATH/.config/ranger/scope.sh
