@@ -1,22 +1,85 @@
 #!/bin/bash
 
-# Delete the currently set file
+## Helpers
+
+getContentType() {
+    file -b --mime-type "$1"
+}
+
+
+
+
+## Command Functions
+
+# Delete the current image, or 1 selected image at a time
 d_cmd() {
-    res="$(printf "No\nYes" | dmenu -i -p "Really Delete $fullpath?")"
+    while read file; do
+        res="$(printf "No\nYes" | dmenu -i -p "Really Delete $file?")"
+        if [ "$res" != "Yes" ]; then
+            return
+        fi
+
+        rm -v "$file"
+        if [ $? -eq 0 ]; then
+            notify-send -u low "SXIV - File Deleted" "$file"
+        else
+            notify-send -u critical "SXIV - Delete Failed" "$file"
+        fi
+    done
+}
+
+# Delete the current image, or all selected images at once
+D_cmd() {
+    res="$(printf "No\nYes" | dmenu -i -p "Delete all selected?")"
     if [ "$res" != "Yes" ]; then
         return
     fi
+    local success=""
+    local failed=""
+    while read file; do
+        rm -v "$file"
+        if [ $? -eq 0 ]; then
+            success="${success}\n - ${file}"
+        else
+            failed="${failed}\n - ${file}"
+        fi
+    done
 
-    rm "$fullpath"
+    if [ -n "$failed" ]; then
+        notify-send -u critical "SXIV - Delete Failed" "$failed"
+    fi
+    if [ -n "$success" ]; then
+        notify-send -u low      "SXIV - File Deleted" "$success"
+    fi
 }
 
-# Loop through the selected files.
-# If in thumbnail mode, this will loop through each marked image, otherwise it
-# will just be the current image
-while read file; do
-    fullpath="$(pwd)/$file"
+# Open images in shotwell
+s_cmd() {
+    while read file; do
+        shotwell "$file"
+    done
+}
 
-    case "$1" in
-        "d")  d_cmd
-    esac
-done
+# Copy file to clipboard
+c_cmd() {
+    local type
+    while read file; do
+        type="$(getContentType "$file")"
+        xclip -selection clipboard -t "$type" -i "$file"
+        notify-send -u low "SXIV - File Copied" "$file"
+        break
+    done
+}
+
+case "$1" in
+    "c")  c_cmd
+    ;;
+    "d")  d_cmd
+    ;;
+    "D")  D_cmd
+    ;;
+    "s")  s_cmd
+    ;;
+    *)    notify-send -u critical "SXIV - Invalid Key" "'$1' is not set."
+    ;;
+esac
