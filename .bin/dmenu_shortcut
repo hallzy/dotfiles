@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Path is not set when using keyboard shortcuts, so set them here
+PATH="$PATH:/home/steven/.my-scripts"
+PATH="$PATH:/home/steven/Documents/git-repos/remote-github/dotfiles/.bin"
+PATH="$PATH:/home/steven/go/bin";
+
+dmenu_run -c -l 20

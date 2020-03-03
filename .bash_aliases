@@ -205,7 +205,14 @@ largest() {
 alias random_dir='\ls -1 | head -$((($RANDOM % $(\ls -1 | wc -l)) + 1)) | tail -1'
 
 duration() {
-    ffmpeg -i "$1" 2>&1 | grep Duration | awk -F'[ ,:.]+' '{ HR = $3; MIN = $4; SEC=$5; print 60*HR+MIN ":" SEC}';
+    ffmpeg -i "$1" 2>&1 | awk -F'[ ,:.]+' '
+        $2 == "Duration" {
+            HR = $3;
+            MIN = $4;
+            SEC=$5;
+            print 60*HR+MIN ":" SEC
+        }
+    ';
 }
 
 weather() {

@@ -62,11 +62,17 @@ s_cmd() {
 
 # Copy file to clipboard
 c_cmd() {
-    local type
+    # local type
     while read file; do
-        type="$(getContentType "$file")"
-        xclip -selection clipboard -t "$type" -i "$file"
-        notify-send -u low "SXIV - File Copied" "$file"
+        # Apparently xclip can only copy png images for some reason... So,
+        # convert them to png and pipe to xclip
+        convert "$file" png:- | xclip -selection clipboard -target image/png
+
+        if [ $? -eq 0 ]; then
+            notify-send -u low "SXIV - File Copied" "$file"
+        else
+            notify-send -u critical "SXIV - File Copy FAILED" "$file"
+        fi
         break
     done
 }

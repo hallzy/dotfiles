@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+answer=''
+while true; do
+    # Get answer from bc
+    answer=$(echo "$answer" | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+
+    # Provide menu to the user to enter another calculation
+    action=$(echo -e "Clear" | dmenu -c -i -b -p "= $answer")
+
+    # what was the action given from the user?
+    case $action in
+        # Clear the calculator value
+        "Clear")
+            answer=''
+            ;;
+        # Nothing given. Print out answer and exit calculator
+        "")
+            echo $answer
+            exit 0
+            ;;
+        # Action given. Hopefully something that can be calculated
+        *)
+            # If placeholder exists, replace placeholder with previous answer
+            echo "$action" | grep -q '{}'
+            if [ $? -eq 0 ]; then
+                action="$(echo "$action" | sed "s/{}/$answer/g")"
+            fi
+
+            # Does action begin with an operator?
+            echo "$action" | grep -q "^\s*[\+\-\*/]"
+            if [ $? -eq 0 ]; then
+                # If has an operator, then use the previous answer as a prefix
+                # to the current operation
+                answer="$answer $action"
+            else
+                # If not, treat action as a brand new operation
+                answer="$action"
+            fi
+            ;;
+    esac
+done
