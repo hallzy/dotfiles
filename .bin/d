@@ -1,0 +1,54 @@
+#!/bin/bash
+
+notify() {
+    notify-send "$titleStr Downloader" "$1"
+}
+
+url="$(xclip -o)"
+
+choice=$(printf "No\nYes" | dmenu -i -c -p "Download $url ?")
+if [ "$choice" != "Yes" ]; then
+    notify "Aborted..."
+    exit 0
+fi
+
+choice=$(printf "Video\nAudio Only" | dmenu -i -c -p "What Type?")
+if [ "$choice" = "Video" ]; then
+    DOWNLOAD_LOC="/home/steven/Download/videos"
+    str="video"
+    titleStr="Video"
+elif [ "$choice" = "Audio Only" ]; then
+    DOWNLOAD_LOC="/home/steven/Download/audio"
+    str="audio"
+    titleStr="Audio"
+else
+    notify "No choice [$choice], Aborted..."
+    exit 0
+fi
+
+mkdir -p "$DOWNLOAD_LOC"
+LOGFILE="$DOWNLOAD_LOC/log.log"
+OUTPUT="$DOWNLOAD_LOC/%(uploader)s --- %(title)s.%(ext)s"
+> "$LOGFILE"
+
+notify "Updating youtube-dl, Please wait..."
+youtube-dl -U > "$LOGFILE" 2>&1
+if [ $? -gt 0 ]; then
+    notify "Failed to update youtube-dl... aborting"
+    exit 1
+fi
+
+
+notify "Downloading $str [$url], please wait..."
+if [ "$str" = "video" ]; then
+    youtube-dl -o "$OUTPUT" "$url" >> "$LOGFILE" 2>&1
+else
+    youtube-dl -o "$OUTPUT" --extract-audio --audio-format mp3 "$url" >> $LOGFILE 2>&1
+fi
+
+if [ $? -gt 0 ]; then
+    notify "Download Failed"
+    exit 1
+fi
+
+notify "Download Success!"

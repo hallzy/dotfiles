@@ -71,23 +71,23 @@ alias tarcompress='tar cvzf'
 c() {
     local dest="$1"
     shift 1
-    local src=$@
+    local src="$*"
 
     # Not all of these use destination names. However, we still require it so
     # that we know what program to use
 
     case $dest in
-        *.tar.bz2)   tar cvpjf  $dest $src ;;
-        *.tbz2)      tar cvpjf  $dest $src ;;
-        *.tar.gz)    tar cvpzf  $dest $src ;;
-        *.tgz)       tar cvpzf  $dest $src ;;
-        *.tar.xz)    tar cvpf   $dest $src ;;
-        *.tar)       tar cvpf   $dest $src ;;
-        *.bz2)       bzip2 -zkv $src       ;;
-        *.rar)       rar a      $dest $src ;;
+        *.tar.bz2)   tar cvpjf  $dest "$src" ;;
+        *.tbz2)      tar cvpjf  $dest "$src" ;;
+        *.tar.gz)    tar cvpzf  $dest "$src" ;;
+        *.tgz)       tar cvpzf  $dest "$src" ;;
+        *.tar.xz)    tar cvpf   $dest "$src" ;;
+        *.tar)       tar cvpf   $dest "$src" ;;
+        *.bz2)       bzip2 -zkv "$src"       ;;
+        *.rar)       rar a      $dest "$src" ;;
         *.gz)        gzip -kv   $src       ;;
-        *.zip)       zip        $dest $src ;;
-        *.7z)        7z a       $dest $src ;;
+        *.zip)       zip        $dest "$src" ;;
+        *.7z)        7z a       $dest "$src" ;;
         *)           echo "Unable to create archive '$dest'" ;;
     esac
 }
@@ -205,7 +205,7 @@ largest() {
 alias random_dir='\ls -1 | head -$((($RANDOM % $(\ls -1 | wc -l)) + 1)) | tail -1'
 
 duration() {
-    ffmpeg -i "$1" 2>&1 | awk -F'[ ,:.]+' '
+    ffmpeg -i "$1" 2>&1 | awk -F'[ ,:]+' '
         $2 == "Duration" {
             HR = $3;
             MIN = $4;

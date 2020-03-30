@@ -53,12 +53,22 @@ D_cmd() {
     fi
 }
 
-# Open images in shotwell
+# Open images in shotwell for editing
 s_cmd() {
     while read file; do
         shotwell "$file"
     done
 }
+
+# Open marked images in a separate slideshow (favourites)
+f_cmd() {
+    local files=''
+    while read file; do
+        files="$files $file"
+    done
+    sxiv -bf -S 5 -s f $files
+}
+
 
 # Copy file to clipboard
 c_cmd() {
@@ -85,6 +95,8 @@ case "$1" in
     "D")  D_cmd
     ;;
     "s")  s_cmd
+    ;;
+    "f")  f_cmd
     ;;
     *)    notify-send -u critical "SXIV - Invalid Key" "'$1' is not set."
     ;;

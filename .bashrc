@@ -130,13 +130,13 @@ screencast () { mplayer -tv driver=v4l2:width=320:height=240: -vo xv tv:// -geom
 sendtext () { curl http://textbelt.com/text -d number="$1" -d "message=$2";echo message sent; }
 
 downloadMusic () {
-  sudo youtube-dl -U
-  youtube-dl -o "${1}.%(ext)s" --extract-audio --audio-format mp3 "$2"
+  youtube-dl -U
+  youtube-dl -o "%(uploader)s --- %(title)s.%(ext)s" --extract-audio --audio-format mp3 "$1"
 }
 
 downloadVideo () {
-  sudo youtube-dl -U
-  youtube-dl -o "${1}.%(ext)s" "$2"
+  youtube-dl -U
+  youtube-dl -o "%(uploader)s --- %(title)s.%(ext)s" "$1"
 }
 
 trimVideo () {
