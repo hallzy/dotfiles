@@ -1,7 +1,25 @@
 #!/bin/bash
 
+getLogName() {
+    local name
+
+    name=1
+
+    while [ -f "$DOWNLOAD_LOC/${name}.log" ]; do
+        name=$((name+1))
+    done
+    LOGFILE="$DOWNLOAD_LOC/${name}.log"
+}
+
 notify() {
     notify-send "$titleStr Downloader" "$1"
+}
+
+giveDownloadUpdates() {
+    while true; do
+        notify "$(tail -1 <(sed 's/\r/\n/g' "$LOGFILE"))";
+        sleep 7;
+    done
 }
 
 url="$(xclip -o)"
@@ -14,11 +32,11 @@ fi
 
 choice=$(printf "Video\nAudio Only" | dmenu -i -c -p "What Type?")
 if [ "$choice" = "Video" ]; then
-    DOWNLOAD_LOC="/home/steven/Download/videos"
+    DOWNLOAD_LOC="/home/steven/Downloads/videos"
     str="video"
     titleStr="Video"
 elif [ "$choice" = "Audio Only" ]; then
-    DOWNLOAD_LOC="/home/steven/Download/audio"
+    DOWNLOAD_LOC="/home/steven/Downloads/audio"
     str="audio"
     titleStr="Audio"
 else
@@ -27,7 +45,7 @@ else
 fi
 
 mkdir -p "$DOWNLOAD_LOC"
-LOGFILE="$DOWNLOAD_LOC/log.log"
+getLogName
 OUTPUT="$DOWNLOAD_LOC/%(uploader)s --- %(title)s.%(ext)s"
 > "$LOGFILE"
 
@@ -40,11 +58,15 @@ fi
 
 
 notify "Downloading $str [$url], please wait..."
+giveDownloadUpdates &
+updatesNotifyPID=$!
 if [ "$str" = "video" ]; then
     youtube-dl -o "$OUTPUT" "$url" >> "$LOGFILE" 2>&1
 else
-    youtube-dl -o "$OUTPUT" --extract-audio --audio-format mp3 "$url" >> $LOGFILE 2>&1
+    youtube-dl -o "$OUTPUT" --extract-audio --audio-format mp3 "$url" >> "$LOGFILE" 2>&1
 fi
+
+kill $updatesNotifyPID
 
 if [ $? -gt 0 ]; then
     notify "Download Failed"
