@@ -22,12 +22,29 @@ giveDownloadUpdates() {
     done
 }
 
+# Select and copy the URL of the current window
+xdotool key "ctrl+l"
+xdotool key "ctrl+c"
 url="$(xclip -o)"
 
-choice=$(printf "No\nYes" | dmenu -i -c -p "Download $url ?")
-if [ "$choice" != "Yes" ]; then
+options="No\nYes"
+
+# If the URL looks like it is a playlist, then ask if we want the playlist or
+# not
+echo "$url" | fgrep -q '&list='
+if [ $? -eq 0 ]; then
+    options="$options\nWithout Playlist"
+fi
+
+choice=$(printf "$options" | dmenu -i -c -p "Download $url ?")
+if [ "$choice" = "No" -o -z "$choice" ]; then
     notify "Aborted..."
     exit 0
+elif [ "$choice" = 'Without Playlist' ]; then
+    # If choose without a playlist then remove all playlist information from the
+    # link (This assumes a youtube style link where the &list= is the first
+    # parameter after the video key)
+    url="$(python -c "print '$url'.split('&list=')[0]")"
 fi
 
 choice=$(printf "Video\nAudio Only" | dmenu -i -c -p "What Type?")
