@@ -560,8 +560,6 @@ nnoremap ' `
 "}}}
 " ctrl+m, ctrl+h, ctrl+l"{{{
 
-" ctrl+m moves cursor to the middle of the screen
-noremap <c-m> M
 " ctrl+h moves cursor to the top of the screen
 noremap <c-h> H
 " ctrl+l moves cursor to the bottom of the screen
@@ -2276,3 +2274,6 @@ nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
 
 let g:php_manual_online_search_shortcut = ''
 let g:php_manual_online_get_url = '-'
+
+
+nnoremap <leader>a 0yt.j0vt.p<c-a>0
