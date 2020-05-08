@@ -1,0 +1,83 @@
+#!/bin/bash
+
+IFS=$'\n'
+
+notice() {
+    notify-send "WiFi Connect" "$1"
+}
+
+
+# Get the list of WiFi connections in the area. Retrieve the SSID, security, and
+# signal strength
+notice 'Retrieving WiFi List'
+nmcli device wifi rescan
+CONNS="$(nmcli -t -f ssid,security,bars,signal device wifi list)"
+
+# Format each WiFi connection to have either a locked or unlocked padlock, the
+# strength bars, and the connection SSID, and give that to dmenu
+SELECTED="$(echo "$CONNS"  | awk -F':' '
+    $1 == "--" {
+        next
+    }
+
+    $2 == "--" {
+        SEC = "🔓"
+    }
+
+    $2 != "--" {
+        SEC = "🔒"
+    }
+
+    {
+        print SEC "    " $3 "    " $1
+    }
+' | dmenu -i -c -l 20 -p 'Select a Network')"
+
+# If a network wasn't selected then abort
+if [ -z "$SELECTED" ]; then
+    notice 'Aborted...'
+    exit 1
+fi
+
+# Get the SSID from the selected row
+SSID="$(echo "$SELECTED" | awk -F'    ' '{ print $3 }')"
+if [ -z "$SSID" ]; then
+    notice 'Failed to find the SSID of the selected network'
+    exit 1
+fi
+
+# Ask the user for the password
+PASS="$(echo "" | dmenu -P -p "Enter the WiFi Password for '$SSID'")"
+notice "Attempting to connect to '$SSID'"
+
+if [ -z "$PASS" ]; then
+    # Assume that there is no password for this connection
+    nmcli device wifi connect "$SSID"
+else
+    nmcli device wifi connect "$SSID" password "$PASS"
+fi
+RET="$?"
+
+if [ "$RET" -eq 0 ]; then
+    notice "Successfully connected to '$SSID'"
+elif [ $RET -eq 1 ]; then
+    notice "Unknown or unspecified error occurred."
+elif [ $RET -eq 2 ]; then
+    notice "Invalid user input, wrong nmcli invocation."
+elif [ $RET -eq 3 ]; then
+    notice "Timeout"
+elif [ $RET -eq 4 ]; then
+    notice "Connection activation failed"
+elif [ $RET -eq 5 ]; then
+    notice "Connection deactivation failed"
+elif [ $RET -eq 6 ]; then
+    notice "Disconnecting device failed"
+elif [ $RET -eq 7 ]; then
+    notice "Connection deletion failed"
+elif [ $RET -eq 8 ]; then
+    notice "NetworkManager is not running."
+elif [ $RET -eq 10 ]; then
+    notice "Connection, device, or acccess point does not exist."
+else
+    notice "Unknown error code: $RET"
+fi
