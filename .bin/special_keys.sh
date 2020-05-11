@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTFILES="/home/steven/Documents/git-repos/remote-github/dotfiles"
+
 debug() {
     notify-send "Special Keys Debug" "$1"
 }
@@ -30,7 +32,7 @@ changeBrightness() {
     brightness="$(cat /sys/class/backlight/intel_backlight/brightness)"
     max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
 
-    new=$(python -c "print $brightness $sign 50")
+    new=$(python -c "print $brightness $sign 75")
 
     # Convert to int
     if [ "$new" -lt 0 ]; then
@@ -39,7 +41,7 @@ changeBrightness() {
         new="$max"
     fi
 
-    echo "$new" | tee /sys/class/backlight/intel_backlight/brightness
+    "$DOTFILES/backlight-wrapper/backlight-wrapper" "$new"
 }
 
 brightup() {

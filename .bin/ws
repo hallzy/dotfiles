@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Display a notice for 20 seconds
+notice() {
+    notify-send -t 20000 "Windscribe Manager" "$1"
+}
+
+# Show Initial menu
+showDmenu() {
+    local options
+    options="Status\nConnect\nDisconnect"
+    echo -e "$options" | dmenu -i -c -l 20
+}
+
+# Show the location list
+showLocations() {
+    # Get the windscribe location list (the first row is the headings explaining
+    # what each column is, so the tail gets rid of that) and sort them
+    local locations="$(windscribe locations | tail -n +2 | sort)"
+
+    # If you don't provide a location to windscribe it auto detects
+    locations="Auto Detect\n$locations"
+
+    # Show menu
+    echo -e "$locations" | dmenu -i -c -l 20
+}
+
+# Get the user's initial menu choice
+choice="$(showDmenu)"
+
+# If they want the status, then show that
+if [ "$choice" = "Status" ]; then
+    notice "Working..."
+    notice "$(windscribe status)"
+# If they want to connect...
+elif [ "$choice" = "Connect" ]; then
+    # Get the locations
+    notice "Retrieving locations..."
+    location="$(showLocations)"
+    if [ "$location" = '' ]; then
+        notice "Aborted"
+        exit 0
+    fi
+
+    # If selected location is auto, then location is empty
+    if [ "$location" = 'Auto Detect' ]; then
+        location=''
+    else
+        # If we got an actual location, then get the unqiue codename on the end
+        # of the line
+        location2="$(echo "$location" | awk -F'  +' '{print $4}')"
+        if [ -n "$location2" ]; then
+            location="$location2"
+        fi
+    fi
+
+    notice "Connecting..."
+
+    # Saving to a variable doesn't seem to work, so save in a temp files instead
+    # Connect to location
+    windscribe connect "$location" > /tmp/ws.tmp
+    notice "$(sed 's@[-/|\\\x8]@@g' /tmp/ws.tmp)"
+# Disconnect from windscribe
+elif [ "$choice" = "Disconnect" ]; then
+    notice "Working..."
+    windscribe disconnect > /tmp/ws.tmp
+    notice "$(sed 's@[-/|\\\x8]@@g' /tmp/ws.tmp)"
+# Entered nothing or escaped, so it was aborted
+elif [ "$choice" = "" ]; then
+    notice "Aborted"
+# Not a valid choice
+else
+    notice "Error: Unknown options '$choice'"
+fi
