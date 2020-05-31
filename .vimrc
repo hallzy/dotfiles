@@ -39,6 +39,8 @@ endif
 " switch from source & headers
 Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
 
+Plug 'leafgarland/typescript-vim', {'for' : [ 'typescript' ]}
+
 " Linting Engine
 Plug 'w0rp/ale'
 
@@ -46,12 +48,9 @@ Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 
 " Colourschemes
-Plug 'sjl/badwolf'
 Plug 'dkasak/gruvbox'
-Plug 'cocopon/iceberg.vim'
-Plug 'joshdick/onedark.vim'
 
-Plug 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim', {'for' : 'haskell' }
 
 " CScope in vim
 Plug 'brookhong/cscope.vim', {'for' : ['c', 'cpp']}
@@ -59,25 +58,13 @@ Plug 'brookhong/cscope.vim', {'for' : ['c', 'cpp']}
 " Tries to detect indent settings of a file
 Plug 'ciaranm/detectindent'
 
-" Easy HTML/XML editing
-Plug 'mattn/emmet-vim', {'for' : ['html', 'xml', 'php']}
-
-" See how each commit changed your current file (press <F7>)
-Plug 'vim-scripts/git-time-lapse'
-
 " Gravity syntax highlighting
 Plug 'hallzy/gravity.vim', {'for' : 'gravity'}
-
-" Complex undo that tracks different undo branches in vim
-Plug 'sjl/gundo.vim'
 
 " Shows vertical lines to show the indentation level
 Plug 'Yggdroot/indentLine'
 
 " Lightline Related
-Plug '844196/lightline-badwolf.vim'
-Plug 'hallzy/lightline-iceberg'
-Plug 'hallzy/lightline-onedark'
 Plug 'itchyny/lightline.vim'
 
 " File tree for vim
@@ -86,10 +73,6 @@ Plug 'scrooloose/nerdtree'
 " Automatically alternates from relative to absolute line numbers depending on
 " the editing mode I am in
 Plug 'myusuf3/numbers.vim'
-
-" Highlights characters on the current line for easy navigation using f, F, t,
-" and T
-Plug 'bradford-smith94/quick-scope'
 
 " Align text from different lines (I have this mapped to <leader>tz)
 Plug 'godlygeek/tabular'
@@ -102,11 +85,6 @@ Plug 'junegunn/vim-easy-align'
 " Adds a bunch of text objects including pairs of brackets or tags which also
 " work over multiple lines, separators like commas, function arguments etc.
 Plug 'wellle/targets.vim'
-
-" Searching for files, searching for content, and buffer switching
-" NOTE: Check denite.vim in the future. It is the new and improved version of
-" unite.vim
-Plug 'Shougo/unite.vim'
 
 " Makes abbreviations easier by allowing multiple versions of a word and also
 " matching cases. It also has a substitution command, and a search command.
@@ -126,9 +104,6 @@ Plug 'hallzy/vim-context-commentstring'
 " Dims inactive splits
 Plug 'blueyed/vim-diminactive'
 
-" Easy-motion to easily move to different parts of a file
-Plug 'easymotion/vim-easymotion'
-
 " Ends certain structures automatically, such as bash if statements, or vim
 " functions etc.
 Plug 'tpope/vim-endwise'
@@ -143,21 +118,8 @@ Plug 'tpope/vim-fugitive'
 " automatically runs GPG and prompts me to decrypt it for me.
 Plug 'jamessan/vim-gnupg'
 
-" Open up markdown files in a browser to view the marked up version
-Plug 'suan/vim-instant-markdown'
-
-" Highlights the long part of a line that exceeds textwidth
-Plug 'whatyouhide/vim-lengthmatters'
-
 " Sublime style multiple cursors
 Plug 'terryma/vim-multiple-cursors'
-
-" Easily use URLs
-" <c-k> makes it easy to add markdown links, gx opens the link under the cursor,
-" and gl goes to the link definition
-" webapi-vim is a dependency of this.
-Plug 'christoomey/vim-quicklink', {'for' : 'markdown'}
-Plug 'mattn/webapi-vim', {'for' : 'markdown'}
 
 " Rename multiple files/folders using the power of vim
 Plug 'qpkorr/vim-renamer'
@@ -165,14 +127,8 @@ Plug 'qpkorr/vim-renamer'
 " Used by many plugins to support being repeated with the '.' command
 Plug 'tpope/vim-repeat'
 
-" Gives me Gbrowse with the help of fugitive to open the current file on Github
-Plug 'tpope/vim-rhubarb'
-
 " A better version of Damian Conway's DragVisuals
 Plug 'zirrostig/vim-schlepp'
-
-" Displays marks in the gutter of vim
-Plug 'kshenoy/vim-signature'
 
 " Custom Motions
 Plug 'christoomey/vim-sort-motion'
@@ -217,9 +173,9 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'hallzy/expression-evaluator.vim'
 
-Plug 'StanAngelOff/php.vim'
+Plug 'StanAngelOff/php.vim', {'for' : 'php'}
 
-Plug 'hallzy/vim-php-manual'
+Plug 'hallzy/vim-php-manual', {'for' : 'php'}
 
 call plug#end()
 
@@ -291,6 +247,7 @@ set pastetoggle=<f2>  " The toggle for paste mode is F2
 set spelllang=en_ca
 set spell
 set nostartofline     " when using gg or G, stay in the same column
+set virtualedit=block " Allow block selections to go past the last characters
 
 syntax on
 
@@ -299,7 +256,7 @@ syntax on
 " Normally vim would slow to a crawl, but this prevents that. Given that columns
 " past 80 don't highlight for me anyways, this makes no visual difference for me
 " anyways.
-set synmaxcol=81
+" set synmaxcol=81
 
 set textwidth=80
 set colorcolumn=81
@@ -491,16 +448,7 @@ vnoremap <silent> L <esc>:call LMappingVisual()<cr>
 
 
 "}}}
-"Create Closing Tag for HTML Tags"{{{
-
-" Creates a corresponding closing tag for a given open tag.
-nnoremap cct F<yf>f>pF<a/<esc>hi
-
-"}}}
 " Escape removes trailing white space from eol"{{{
-
-"esc now removes white space from the line that you are escaping from
-nnoremap <silent> dtw <esc>:call RemoveTrailingWhitespaceFromCurrentLine()<cr>
 
 nnoremap <leader>tws :%s/\s\+$//g<cr>
 
@@ -589,12 +537,6 @@ noremap <c-k> zb
 noremap <c-j> zt
 
 "}}}
-" ToggleColourScheme"{{{
-
-nnoremap <leader>tc :call ToggleColourScheme("next")<cr>
-nnoremap <leader>TC :call ToggleColourScheme("prev")<cr>
-
-"}}}
 " Fix previous and next spelling mistakes"{{{
 
 nnoremap <silent> <leader>sp :normal! mzw[s1z=`z<cr>:delmarks z<cr>
@@ -609,6 +551,9 @@ nnoremap <silent> <leader>sn :normal! mz]s1z=`z<cr>:delmarks z<cr>
 nnoremap / q/i
 vnoremap / q/i
 
+nnoremap ? q?i
+vnoremap ? q?i
+
 nnoremap : q:i
 vnoremap : q:i
 
@@ -620,9 +565,11 @@ vnoremap : q:i
 " macro. So doing either of those in a macro stops the macro and I need these 4
 " following mappings to get around that.
 
-" I never ever use the "?" key, so just make it the regular search.
-nnoremap ? /
-vnoremap ? /
+nnoremap <leader>/ /
+vnoremap <leader>/ /
+
+nnoremap <leader>? ?
+vnoremap <leader>? ?
 
 nnoremap <leader>: :
 vnoremap <leader>: :
@@ -747,52 +694,6 @@ inoremap degrees'' °
 "}}}
 " Plugins"{{{
 
-" Easy Motion"{{{
-
-" Easy motion leader is <leader>b
-map <leader>b <Plug>(easymotion-prefix)
-
-" Single Character search
-map <leader>z <Plug>(easymotion-s)
-
-" two character searches
-nmap <leader>Z <Plug>(easymotion-s2)
-
-" Easy motion search
-map <leader>/ <Plug>(easymotion-sn)
-omap <leader>/ <Plug>(easymotion-tn)
-
-" Easy Vertical Motion
-map <Leader>j <Plug>(easymotion-sol-j)
-map <Leader>k <Plug>(easymotion-sol-k)
-map <Leader>L <Plug>(easymotion-lineforward)
-map <Leader>H <Plug>(easymotion-linebackward)
-
-map <leader>; <plug>(easymotion-repeat)
-let g:EasyMotion_startofline = 1
-
-"use easy motion with no case sensitivity
-let g:EasyMotion_smartcase = 1
-
-" let's me navigate to folded lines with easymotion.
-let g:EasyMotion_skipfoldedline = 0
-
-" It is worth noting that when using the easymotion search (<leader>/ with this
-" config) you can hit ctrl+z and it will open all of the folds in the file so
-" that you can search and find text with the EasyMotion search function. Vim by
-" default lets me use zM to close all folds in a file after that
-" TODO: Find a way to map a key to restore the previous state of my folds. Ie.
-" Open folds that were previously opened, and close those that were closed.
-
-"}}}
-" Quick Scope"{{{
-
-" Uncomment the below line so that quick-scope only activates when one of the
-" specified keys are pressed in normal mode. Otherwise, quick-scope is always
-" active in normal mode
-" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-"}}}
 " NERDTree"{{{
 
 function! OpenNerdTreeStartup()
@@ -842,12 +743,6 @@ let g:Schlepp#allowSquishingBlocks = 1
 let g:Schlepp#dupTrimWS = 1
 
 "}}}
-" Git Time Lapse"{{{
-
-" Maps the <F7> key to use git-time-lapse
-map <F7> :call TimeLapse()<cr>
-
-"}}}
 " vim-gitgutter"{{{
 
 " This makes the diff updates happen more frequently. The default is 4000. This
@@ -861,19 +756,11 @@ nmap [h <Plug>(GitGutterPrevHunk)
 set signcolumn=yes
 
 "}}}
-" vim-signature"{{{
-
-"Support for gitgutter. When this =1 :
-"The mark is displayed over the gitgutter sign, but inherits the same colour so
-"you can tell what was there
-let g:SignatureMarkTextHLDynamic = 1
-
-"}}}
 " Lightline - Status Bar"{{{
 
 " Use the powerline theme
 let g:lightline = {
-  \ 'colorscheme': 'powerline',
+  \ 'colorscheme': 'gruvbox',
   \ 'component': {
       \ 'fugitive': '%{exists("*fugitive#head")?"BR: " . fugitive#head():""}',
       \ 'lineinfo': "LN %l/%{line('$')}",
@@ -935,28 +822,11 @@ nnoremap <silent> ]e :ALENextWrap<cr>
 nnoremap <silent> [e :ALEPreviousWrap<cr>
 
 "}}}
-" Unite.vim"{{{
-
-" File Searching like ctrlp
-nnoremap <C-p> :UniteWithInputDirectory file_rec/async<cr>
-
-" Content searching like ack.vim
-nnoremap <leader>1 :UniteWithInputDirectory grep<cr>
-
-" Buffer switching like lustyJuggler
-nnoremap <leader>2 :Unite -quick-match buffer<cr>
-
-"}}}
 " Cscope"{{{
 
 set cscopetag
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>ll :call ToggleLocationList()<CR>
-
-"}}}
-" Conque GDB"{{{
-
-cnoremap gdb :ConqueGdb
 
 "}}}
 " Tabularize Mapping"{{{
@@ -1090,11 +960,6 @@ vnoremap <silent> Ym  :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
 vnoremap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 
 "}}}
-" Gundo"{{{
-
-nnoremap <c-u> :GundoToggle<CR>
-
-"}}}
 " vim-wordmotion"{{{
 
 " Set this to the characters you want to treat the same as a space. This means
@@ -1171,20 +1036,20 @@ let g:sort_motion_visual_block_command = 'Vissort'
 " HLNext"{{{
 
 " Blink the next selection of a search
-function! HLNext (blinktime)
+function! HLNext ()
   let l:target_pat = '\c\%#\%('.@/.'\)'
 
   let l:ring = matchadd('WhiteOnRed', l:target_pat, 101)
   redraw
-  exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+  sleep 20m
 
   call matchdelete(l:ring)
   redraw
-  exec 'sleep ' . float2nr(a:blinktime * 250) . 'm'
+  sleep 20m
 
   let l:ring = matchadd('WhiteOnRed', l:target_pat, 101)
   redraw
-  exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+  sleep 20m
 
   call matchdelete(l:ring)
   redraw
@@ -1388,18 +1253,6 @@ function! OpenHelp()
 endfun
 
 "}}}
-" RemoveTrailingWhitespaceFromCurrentLine()"{{{
-
-" Used by <esc> key to remove trailing whitespace off of the current line, and
-" also deletes that replace entry from the history
-function! RemoveTrailingWhitespaceFromCurrentLine()
-  if &modifiable == 1
-    s/\s\+$//e
-    call histdel('search', -1)
-  endif
-endfun
-
-"}}}
 "HMapping()"{{{
 
 " If I am on the first character of a line, and press H, take me to the
@@ -1510,98 +1363,13 @@ endfun
 "}}}
 " Colourscheme Related"{{{
 
-" The colour in the list denoted by the index is the default)
-" The second field denotes whether to set the background
-" 1 = set background=dark
-" 0 = Do not set
-" -1 = set background=light
-" The 3rd field denotes whether or not to use their airline theme
-let g:my_colours = [
-                  \ ['badwolf', 0, 1],
-                  \ ['gruvbox', 1, 1],
-                  \ ['iceberg', 0, 1],
-                  \ ['onedark', 0, 1],
-                  \]
-
-" Make a list of just the colour names
-let g:colour_names = []
-for g:colour in g:my_colours
-  call add(g:colour_names, g:colour[0])
-endfor
-
 let g:gruvbox_contrast_dark='hard'
 
-" ToggleColourScheme"{{{
-" direction = next --> Go to the next colorscheme in the list
-" direction = prev --> Go to the prev colorscheme in the list
-" direction = setup --> This is the first execution, used as an initial
-"                       colourscheme to use.
-" direction = init --> This is the second execution, and assigns the
-"                      colourscheme that we will actually be using.
-function! ToggleColourScheme(direction)
-  if (a:direction ==? 'next')
-    let g:index = g:index + 1
-  elseif (a:direction ==? 'prev')
-    let g:index = g:index - 1
-  endif
+" Set the gitgutter sign column to be bg0 - same as the background
+let g:gruvbox_sign_column='bg0'
 
-  if (g:index >= len(g:my_colours))
-    let g:index = 0
-  elseif (g:index < 0)
-    let g:index = len(g:my_colours) - 1
-  endif
-
-  " Set the appropriate lightline theme
-  if (g:my_colours[g:index][2] == 1)
-    let g:lightline.colorscheme=g:my_colours[g:index][0]
-  else
-    let g:lightline.colorscheme='powerline'
-  endif
-
-  " Set the colorscheme
-  exec 'colorscheme ' . g:my_colours[g:index][0]
-
-  " Set the appropriate background level
-  if (g:my_colours[g:index][1] == 1)
-    set background=dark
-  elseif (g:my_colours[g:index][1] == -1)
-    set background=light
-  endif
-
-  " If this is not the first execution, then run these
-  if (a:direction !=? 'setup')
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-  endif
-
-  if (a:direction !=? 'setup')
-    redraw
-    echo g:my_colours[g:index][0]
-  endif
-
-  call ApplyHighlights()
-endfun
-
-"}}}
-
-" Get DefaultColour"{{{
-" This function finds the default colourscheme to use based on filetype
-function! GetDefaultColour()
-  let l:onedark_filetypes = ['text', '', 'noft', 'cfg']
-  let l:badwolf_filetypes = ['lua', 'gitcommit']
-
-  if (index(l:onedark_filetypes, &filetype) >= 0)
-    let g:index = index(g:colour_names, 'onedark')
-  elseif (index(l:badwolf_filetypes, &filetype) >= 0)
-    " Default for lua
-    " Badwolf has the best support for lua so we will use that as a default
-    let g:index = index(g:colour_names, 'badwolf')
-  else
-    " default for anything else
-    let g:index = index(g:colour_names, 'gruvbox')
-  endif
-endfunction
+set background=dark
+colorscheme gruvbox
 
 "}}}
 
@@ -1914,15 +1682,14 @@ nnoremap <leader>sr :echoe 'Select a register first'<cr>
 
 "}}}
 
-"}}}
 " Function Mappings/ Settings"{{{
 
 " HLNext"{{{
 
 " Highlight matches when jumping to next
 " This rewires n and N to do the highlighting...
-nnoremap <silent> n   n:call HLNext(0.4)<cr>
-nnoremap <silent> N   N:call HLNext(0.4)<cr>
+nnoremap <silent> n   n:call HLNext()<cr>
+nnoremap <silent> N   N:call HLNext()<cr>
 
 highlight WhiteOnRed ctermbg=red ctermfg=white guibg=red guifg=white
 "}}}
@@ -2132,64 +1899,6 @@ augroup END
 
 "}}}
 
-" Set the gitgutter sign column to be bg0 - same as the background
-let g:gruvbox_sign_column='bg0'
-
-" This sets my default colorscheme. I am putting this at the end of the file so
-" that my other highlightings get influenced by the scheme
-augroup colorschemeGroup
-  autocmd!
-  autocmd BufRead,BufNewFile,BufEnter * call DoColour()
-augroup END
-
-function! DoColour()
-  call GetDefaultColour()
-  call ToggleColourScheme('init')
-endfunction
-
-
-" highlightings "{{{
-
-" Highlights that will take precedence of colourscheme. This function will be
-" executed every time the colorscheme is changed with my functions.
-function! ApplyHighlights()
-  " gitcommits should have 2 colorcolumns, as the first line should never exceed
-  " 50 columns, while the rest shouldn't exceed 72 columns
-  if (&filetype ==? 'gitcommit')
-    highlight colorcolumn ctermbg=red guibg=red ctermfg=black guifg=black
-  endif
-
-  " Trailing Whitespace
-  highlight ExtraWhitespace ctermbg=white ctermfg=white
-
-  " Quickscope highlights
-  highlight QuickScopePrimary guifg='#75fff3' gui=underline ctermfg=51
-      \ cterm=underline
-  highlight QuickScopeSecondary guifg='#6b98fb' gui=underline ctermfg=33
-      \ cterm=underline
-
-  " Diffs
-  highlight diffadd  term=bold ctermbg=darkgreen ctermfg=white cterm=bold
-                   \ guibg=darkgreen guifg=white gui=bold
-  highlight difftext  term=reverse,bold ctermbg=lightblue ctermfg=black
-                    \ cterm=bold guibg=darkred guifg=yellow gui=bold
-  highlight diffchange term=bold ctermbg=black ctermfg=white cterm=bold
-                     \ guibg=black guifg=white gui=bold
-  highlight diffdelete term=none ctermbg=darkred ctermfg=white cterm=none
-                     \ guibg=darkblue guifg=darkblue gui=none
-  highlight diffremoved term=bold ctermbg=black ctermfg=red cterm=bold
-                      \ guibg=darkred guifg=white gui=none
-  highlight diffadded term=bold ctermbg=black ctermfg=green cterm=bold
-                    \ guibg=darkgreen guifg=white gui=none
-  highlight diffchanged term=bold ctermbg=black ctermfg=yellow cterm=bold
-                      \ guibg=darkyellow guifg=white gui=none
-  highlight diffline term=bold ctermbg=magenta ctermfg=white cterm=bold
-                   \ guibg=darkmagenta guifg=white gui=none
-  highlight difffile term=bold ctermbg=yellow ctermfg=black cterm=none
-                   \ guibg=darkyellow guifg=white gui=none
-endfunction
-
-"}}}
 " Global Conceals"{{{
 if has('conceal')
   " Greek Alphabet {{{
@@ -2253,24 +1962,6 @@ if has('conceal')
 endif
 
 "}}}
-
-" This is only for CPEN 331 for using gdb with os161. I will remove this
-" following the conclusion of this class.
-cnoremap os161-gdb :ConqueGdbExe os161-gdb<cr>:ConqueGdb<cr>
-cs add $REPOS/cpen331/src/cscope.out
-
-" Run the current file
-nnoremap <leader>ru :exec '!php '. expand('%:p')<cr>
-
-function! ChangeFileTypeFunc()
-  if &filetype ==? 'html'
-    set filetype=php
-  elseif &filetype ==? 'php'
-    set filetype=html
-  endif
-endfunction
-
-nnoremap <leader>ft :call ChangeFileTypeFunc()<cr>
 
 let g:php_manual_online_search_shortcut = ''
 let g:php_manual_online_get_url = '-'
