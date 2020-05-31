@@ -471,15 +471,26 @@ __prompt_command() {
   is_root=$?
   ## If we are root or we have sudo privileges then let us know
   if [[ $USER == "root" ]]; then
-    echo -ne "\033]0;ROOT SHELL\007"
+    SHELL_TITLE="ROOT SHELL"
+    if [ -n "${CUSTOM_TITLE}" ]; then
+      SHELL_TITLE="$SHELL_TITLE - $CUSTOM_TITLE"
+    fi
     export PS1+="${red}ROOT SHELL${end_colour} $ "
   elif [[ $is_root == 0 ]]; then
-    echo -ne "\033]0;ELEVATED PRIVILEGES\007"
+    SHELL_TITLE="ELEVATED PRIVILEGES"
+    if [ -n "${CUSTOM_TITLE}" ]; then
+      SHELL_TITLE="$SHELL_TITLE - $CUSTOM_TITLE"
+    fi
     export PS1+="${red}ELEVATED PRIVILEGES${end_colour} $ "
   else
-    echo -ne "\033]0;Terminal\007"
+    SHELL_TITLE="Terminal"
+    if [ -n "${CUSTOM_TITLE}" ]; then
+      SHELL_TITLE="$CUSTOM_TITLE"
+    fi
     export PS1+="$ "
   fi
+
+  echo -ne "\033]0;${SHELL_TITLE}\007"
 }
 
 
