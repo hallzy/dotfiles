@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ARTIST="$1"
+ALBUM="$2"
+# FILENAME="$3"
+TITLE="$4"
+# TRACK="$5"
+# DURATION="$6"
+# DURATION_SEC="$7"
+
+notify-send "$TITLE" "$ARTIST\n$ALBUM"

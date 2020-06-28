@@ -603,7 +603,8 @@ CanStartInPlaylist	= yes
 # Example:
 #
 #OnSongChange = "/home/jack/.moc/myscript %a %r"
-OnSongChange = "/usr/lib/lastfmsubmitd/lastfmsubmit --artist %a --title %t --length %d --album %b"
+OnSongChange = "/home/steven/Documents/git-repos/remote-github/dotfiles/.moc/onsongchange  %a %r %f %t %n %d %D"
+# OnSongChange = "/usr/lib/lastfmsubmitd/lastfmsubmit --artist %a --title %t --length %d --album %b"
 
 # RepeatSongChange.
 # If 'yes' then MOC will execute the 'OnSongChange' command every time a
