@@ -42,6 +42,7 @@ mkdir -p ~/.moc
 cd ~/.moc
 ln -sf "$DOTFILE_PATH/.moc/config"
 ln -sf "$DOTFILE_PATH/.moc/themes"
+ln -sf "$DOTFILE_PATH/.moc/onsongchange"
 
 
 mkdir -p ~/.config/ranger
