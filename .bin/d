@@ -36,7 +36,7 @@ if [ $? -eq 0 ]; then
     options="$options\nWithout Playlist"
 fi
 
-choice=$(printf "$options" | dmenu -i -c -p "Download $url ?")
+choice=$(printf "$options" | dmenu -l 3 -i -c -p "Download $url ?")
 if [ "$choice" = "No" -o -z "$choice" ]; then
     notify "Aborted..."
     exit 0
