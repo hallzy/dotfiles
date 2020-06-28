@@ -389,10 +389,10 @@ fi
 
 export OS
 
+# This bin folder will be for scripts that are not mine... Such as git-radar
+export PATH=$dotfiles/.bin:$PATH
 # Add my scripts to the path
 export PATH=$PATH:$HOME/.my-scripts
-# This bin folder will be for scripts that are not mine... Such as git-radar
-export PATH=$PATH:$dotfiles/.bin
 # This bin folder is for go scripts I have downloaded/installed
 export PATH=$PATH:$HOME/go/bin
 

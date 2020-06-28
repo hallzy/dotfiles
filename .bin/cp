@@ -1,0 +1,13 @@
+#!/bin/bash
+
+START="$(date +%s)"
+
+/bin/cp "$@"
+
+END="$(date +%s)"
+
+DURATION=$((END-START))
+
+if [ "$DURATION" -gt 1 ]; then
+    notify-send "cp Complete" "cp $*"
+fi
