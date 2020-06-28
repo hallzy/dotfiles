@@ -33,11 +33,6 @@ alias mkdir='mkdir -p'
 #tlf is tail that auto updates
 alias tlf='tail -f'
 
-
-if which gcp > /dev/null 2>&1; then
-    alias cp='dbus-launch gcp'
-fi
-
 alias grep_mac='grep "[[:xdigit:]]\{2\}\(:[[:xdigit:]]\{2\}\)\{5\}"'
 alias grep_ip='grep "[[:digit:]]\{1,3\}\(\.[[:digit:]]\{1,3\}\)\{3\}"'
 
