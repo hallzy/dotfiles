@@ -73,15 +73,4 @@ else
     notice "Error: Unknown options '$choice'"
 fi
 
-
-curl ipinfo.io 2> /dev/null | jq -r '.city, .country' | awk '
-    NR == 1 {
-        CITY = $0
-    }
-    NR == 2 {
-        COUNTRY = $0
-    }
-    END {
-        print CITY ", " COUNTRY
-    }
-' > /mnt/2AD8624BD86214FB/Users/Steven/ip_location
+get_ip_location.sh  > /mnt/2AD8624BD86214FB/Users/Steven/ip_location
