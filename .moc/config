@@ -270,7 +270,7 @@ Fastdir5 = /home/steven/Pictures
 #Fastdir10 =
 
 # How fast to seek? Number of seconds per key stroke.
-#SeekTime		= 1
+SeekTime		= 5
 
 # How fast to seek (when using silent seeking)? Number of seconds per key
 # stroke.
