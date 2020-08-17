@@ -1,13 +1,18 @@
 #!/bin/bash
 
 curl ipinfo.io 2> /dev/null | jq -r '.city, .country' | awk '
+    BEGIN {
+        RET = "Unknown Location"
+    }
+
     NR == 1 {
-        CITY = $0
+        RET = $0
     }
     NR == 2 {
-        COUNTRY = $0
+        RET = RET ", " $0
     }
+
     END {
-        print CITY ", " COUNTRY
+        print RET
     }
 '

@@ -9,6 +9,13 @@ CONTENTS="$(cat "$FILE")"
 
 NEW_LOC="$($BIN/get_ip_location.sh)"
 
-if [ "$CONTENTS" != "$NEW_LOC" ]; then
-    echo "$NEW_LOC" > "$FILE"
+if [ "$CONTENTS" = "$NEW_LOC" ]; then
+    exit 0;
 fi
+
+
+if [ -z "$NEW_LOC" ]; then
+    exit 0;
+fi
+
+echo "$NEW_LOC" > "$FILE"
