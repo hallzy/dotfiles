@@ -1,0 +1,197 @@
+#!/bin/bash
+
+# An alarm to trigger a notification (and sound?) at a specific time
+
+FILE='/tmp/alarm_pids'
+
+usage() {
+    echo "$0: Invalid usage. See usage below"
+    echo ""
+    echo "     $0 <string to describe time>"
+    echo ""
+    echo "The string to describe a time is any string that is valid as an"
+    echo "argument to the --date option of the date command"
+}
+
+notify() {
+    notify-send "ALARM" "$1"
+}
+
+# Sound the alarm
+alarm() {
+    notify-send -t 10000 "ALARM" "$1"
+    paplay /usr/share/sounds/ubuntu/notifications/Mallet.ogg
+}
+
+# Convert unix timestamp to readable string
+stamp2Str() {
+    date --date="@${1}" '+%B %-e, %Y %-l:%M:%S %p'
+}
+
+# Take a unix timestamp and find out how long from now that is
+stamps2Duration() {
+    local stamp
+    local now
+    local str
+
+    stamp="$1"
+    now="$2"
+
+    # Find how many seconds to the alarm
+    diff="$((stamp-now))"
+
+    if [ "$diff" -le 0 ]; then
+        echo "Past Event"
+        return
+    fi
+
+    seconds="$((diff%60))"
+    minutes="$(((diff%3600)/60))"
+    hours="$((diff/3600))"
+
+    if [ "$hours" -gt 0 ]; then
+        hours="$hours hr "
+    else
+        hours=''
+    fi
+
+    if [ "$minutes" -gt 0 ]; then
+        minutes="$minutes min "
+    else
+        minutes=''
+    fi
+
+    if [ "$seconds" -gt 0 ]; then
+        seconds="$seconds sec"
+    else
+        seconds=''
+    fi
+
+    str="${hours}${minutes}${seconds}"
+
+    # Trim String
+    str="${str##*( )}"
+    str="${str%%*( )}"
+
+    echo "$str"
+}
+
+# Create a new alarm
+newAlarm() {
+    # Ask when the new alarm should be
+    date="$(printf '' | dmenu -c -p 'When should the alarm be set to?')"
+
+    # get unix timestamp of time right now
+    NOW="$(date +%s)"
+
+    # Get unix timestamp of time user provided
+    STAMP="$(date --date="$date" +%s)"
+    if [ "$?" -ne 0 ]; then
+        notify "ERROR: '$date' is not valid"
+        return
+    fi
+
+    # How long till the alarm?
+    diff=$((STAMP-NOW));
+    if [ "$diff" -le 0 ]; then
+        notify "Your time '$date' is already in the past."
+        return
+    fi
+
+    # Provide a message for the alarm
+    msg="$(printf '' | dmenu -c -p 'Message for this alarm')"
+
+    # Write the timestamp, this script execution pid, and the message to a file
+    echo "$STAMP,$$,$msg" >> "${FILE}"
+
+    # Get the human readable version of the user provided time
+    formatted="$(stamp2Str "${STAMP}")"
+
+    # Sort the file that contains our alarms
+    sort "$FILE" > "$FILE.tmp"
+    mv "$FILE.tmp" "$FILE"
+
+    # Notify user that alarm was created
+    notify "Alarm Set to $formatted"
+
+    # Sleep until alarm is finished
+    sleep "$diff"
+
+    # Sound the alarm
+    alarm "$msg"
+
+    # Remove alarm from file
+    sed -i "/^[0-9]\+,$$,/d" "${FILE}"
+}
+
+# Function to delete alarm
+deleteAlarm() {
+    str=''
+    badPIDS=()
+
+    now="$(date +%s)"
+
+    # Loop through the alarm file
+    while read LINE; do
+        # For each line, retrieve each piece of info
+        STAMP="$(echo "$LINE" | cut -d',' -f1)"
+        PID="$(echo "$LINE" | cut -d',' -f2)"
+        MSG="$(echo "$LINE" | cut -d',' -f3-)"
+
+        # Determine of the alarm is still running. If not, then add it to our
+        # list of bad pids
+        ps -q "$PID" > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            badPIDS+="$PID"
+            continue;
+        fi
+
+        # Get human readable time of the alarm
+        DATE="$(stamp2Str "$STAMP")"
+
+        # Find out how long until that alarm
+        durationStr="$(stamps2Duration "${STAMP}" "$now")"
+
+        # Add this alarm to a string we will show in dmenu
+        str="${str}($PID) $durationStr (${DATE}) -- $MSG\n"
+    done < "$FILE"
+
+    # Remove PIDs from file that don't exist
+    for PID in "${badPIDS[@]}"; do
+        sed -i "/^[0-9]\+,$PID,/d" "$FILE"
+    done
+
+    if [ -z "$str" ]; then
+        notify "There are no alarms"
+        return
+    fi
+
+    # List active alarms to the user, and ask which to delete
+    selected="$(printf "$str" | dmenu -c -l 30 -p "ESC to cancel")"
+
+    # Find the PID of the selected alarm
+    PID="$(echo "$selected" | awk -F'[()]' '{ print $2 }')"
+
+    # If no PID found, then assume user escaped and didn't want to delete
+    # something
+    if [ -z "$PID" ]; then
+        return
+    fi
+
+    # Kill the alarm
+    kill "$PID"
+
+    # Notify that alarm was stopped
+    notify "Alarm Stopped"
+}
+
+# Ask user if they want a new alarm, or to delete or view an alarm
+choice="$(printf "New Alarm\nDelete/List Alarms" | dmenu -c -l 3 -i)"
+
+if [ "$choice" = 'New Alarm' ]; then
+    newAlarm
+elif [ "$choice" = 'Delete/List Alarms' ]; then
+    deleteAlarm
+else
+    notify "Invalid option selected"
+fi
