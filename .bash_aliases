@@ -66,47 +66,49 @@ alias tarcompress='tar cvzf'
 c() {
     local dest="$1"
     shift 1
-    local src="$*"
 
     # Not all of these use destination names. However, we still require it so
     # that we know what program to use
 
-    case $dest in
-        *.tar.bz2)   tar cvpjf  $dest "$src" ;;
-        *.tbz2)      tar cvpjf  $dest "$src" ;;
-        *.tar.gz)    tar cvpzf  $dest "$src" ;;
-        *.tgz)       tar cvpzf  $dest "$src" ;;
-        *.tar.xz)    tar cvpf   $dest "$src" ;;
-        *.tar)       tar cvpf   $dest "$src" ;;
-        *.bz2)       bzip2 -zkv "$src"       ;;
-        *.rar)       rar a      $dest "$src" ;;
-        *.gz)        gzip -kv   $src       ;;
-        *.zip)       zip        $dest "$src" ;;
-        *.7z)        7z a       $dest "$src" ;;
+    case "$dest" in
+        *.tar.bz2)   tar cvpjf  "$dest" "$@" ;;
+        *.tbz2)      tar cvpjf  "$dest" "$@" ;;
+        *.tar.gz)    tar cvpzf  "$dest" "$@" ;;
+        *.tgz)       tar cvpzf  "$dest" "$@" ;;
+        *.tar.xz)    tar cvpf   "$dest" "$@" ;;
+        *.tar)       tar cvpf   "$dest" "$@" ;;
+        *.bz2)       bzip2 -zkv "$@"         ;;
+        *.rar)       rar a      "$dest" "$@" ;;
+        *.gz)        gzip -kv   "$@"         ;;
+        *.zip)       zip        "$dest" "$@" ;;
+        *.7z)        7z a       "$dest" "$@" ;;
         *)           echo "Unable to create archive '$dest'" ;;
     esac
 }
 
 x(){
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xvjf $1    ;;
-            *.tar.gz)    tar xvzf $1    ;;
-            *.tar.xz)    tar xvf $1     ;;
-            *.bz2)       bunzip2 $1     ;;
-            *.rar)       unrar x $1     ;;
-            *.gz)        gunzip $1      ;;
-            *.tar)       tar xvf $1     ;;
-            *.tbz2)      tar xvjf $1    ;;
-            *.tgz)       tar xvzf $1    ;;
-            *.zip)       unzip $1       ;;
-            *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1        ;;
-            *)           echo "Unable to extract '$1'" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
+    while [ -n "$1" ]; do
+        if [ -f "$1" ] ; then
+            case "$1" in
+                *.tar.bz2)   tar xvjf "$1"    ;;
+                *.tar.gz)    tar xvzf "$1"    ;;
+                *.tar.xz)    tar xvf "$1"     ;;
+                *.bz2)       bunzip2 "$1"     ;;
+                *.rar)       unrar x "$1"     ;;
+                *.gz)        gunzip "$1"      ;;
+                *.tar)       tar xvf "$1"     ;;
+                *.tbz2)      tar xvjf "$1"    ;;
+                *.tgz)       tar xvzf "$1"    ;;
+                *.zip)       unzip "$1"       ;;
+                *.Z)         uncompress "$1"  ;;
+                *.7z)        7z x "$1"        ;;
+                *)           echo "Unable to extract '$1'" ;;
+            esac
+        else
+            echo "'$1' is not a valid file"
+        fi
+        shift
+    done
 }
 
 # source bashrc and bash_alias
@@ -161,8 +163,8 @@ cpu_usage() {
 }
 
 usage() {
-    memory_usage ${*}
-    cpu_usage ${*}
+    memory_usage "$@"
+    cpu_usage "$@"
 }
 
 alias localserver="python -m SimpleHTTPServer"
@@ -197,7 +199,7 @@ largest() {
     find . -type f -exec du -sh "{}" \; | sort -hr | head -"${1:-1}"
 }
 
-alias random_dir='\ls -1 | head -$((($RANDOM % $(\ls -1 | wc -l)) + 1)) | tail -1'
+alias random_dir='/bin/ls -1 | head -$((($RANDOM % $(/bin/ls -1 | wc -l)) + 1)) | tail -1'
 
 duration() {
     ffmpeg -i "$1" 2>&1 | awk -F'[ ,:]+' '
@@ -215,5 +217,33 @@ weather() {
 }
 
 dict() {
-    curl "dict://dict.org/d:${1}" 2> /dev/null | \grep -v "^[0-9]"
+    curl "dict://dict.org/d:${1}" 2> /dev/null | /bin/grep -v "^[0-9]"
+}
+
+
+video_to_images() {
+    local vid;
+    local vidpath;
+    local vidname;
+    local imageCount;
+
+    if [[ ! -f "$1" || ! "$2" =~ ^[0-9]*$ ]]; then
+        echo "Expected a filename. Images per second defaults to 1 image per frame if not included.";
+        echo "Usage: $0 <video file path> <images per second>"
+        return 1
+    fi
+
+    vid="$1"
+    imageCount="$2"
+
+    vidpath="$(dirname "$vid")"
+
+    vidname=$(basename -- "$vid")
+    vidname="${vidname%.*}"
+
+    if [ -z "$imageCount" ]; then
+        imageCount="$(exiftool "$vid" | awk -F' +: +' '$0 ~ "^Video Frame Rate" { printf("%.0f\n", $2); }')"
+    fi
+
+    ffmpeg -i "$vid" -vf fps=$imageCount "${vidpath}/${vidname}%04d.png"
 }
