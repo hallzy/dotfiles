@@ -53,6 +53,26 @@ D_cmd() {
     fi
 }
 
+# Rename image
+r_cmd() {
+    while read file; do
+        res="$(printf "" | dmenu -i -p "Rename '$file' (enter nothing to cancel)")"
+        if [ "$res" = "" ]; then
+            continue;
+        fi
+
+        dirname="$(dirname "$file")"
+        filepath="${dirname}/${res}"
+
+        mv -inv "$file" "$filepath"
+        if [ $? -eq 0 ]; then
+            notify-send -u low "SXIV - File Moved" "$file --> $filepath"
+        else
+            notify-send -u critical "SXIV - File Move Failed" "$file --> $filepath"
+        fi
+    done
+}
+
 # Open images in shotwell for editing
 s_cmd() {
     while read file; do
@@ -87,6 +107,14 @@ c_cmd() {
     done
 }
 
+# Print the selected filenames to terminal
+P_cmd() {
+    while read file; do
+        echo "$file"
+    done
+    notify-send -u low "SXIV - Files Printed"
+}
+
 case "$1" in
     "c")  c_cmd
     ;;
@@ -94,9 +122,13 @@ case "$1" in
     ;;
     "D")  D_cmd
     ;;
+    "r")  r_cmd
+    ;;
     "s")  s_cmd
     ;;
     "f")  f_cmd
+    ;;
+    "P")  P_cmd
     ;;
     *)    notify-send -u critical "SXIV - Invalid Key" "'$1' is not set."
     ;;
