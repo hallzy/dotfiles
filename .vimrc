@@ -36,6 +36,10 @@ else
   call plug#begin()
 endif
 
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'mattn/emmet-vim', {'for' : ['html', 'php']}
+
 " switch from source & headers
 Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
 
