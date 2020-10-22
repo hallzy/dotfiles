@@ -325,10 +325,6 @@ uninstall () {
     sudo apt purge "$@" && sudo apt autoremove
 }
 
-install-thefuck () {
-    wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0
-}
-
 #}}}
 
 
@@ -456,14 +452,6 @@ __prompt_command() {
 
     echo -ne "\033]0;${SHELL_TITLE}\007"
 }
-
-
-# helps me with typos in terminal:
-# update with alias: update-thefuck
-# install with alias: install-thefuck
-# Shellcheck ignore this as I need word splitting for this
-# shellcheck disable=SC2046
-eval $(thefuck --alias)
 
 ## Some Defaults
 export EDITOR="/usr/bin/vim"
