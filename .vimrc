@@ -123,7 +123,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'jamessan/vim-gnupg'
 
 " Sublime style multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 " Rename multiple files/folders using the power of vim
 Plug 'qpkorr/vim-renamer'
@@ -811,15 +811,6 @@ let g:lightline.tabline = {
     \ 'left': [ [ 'tabs' ] ] }
 
 "}}}
-" vim-multiple-cursor"{{{
-
-" With vim-multiple-cursors, let me exit insert and visual mode with esc and
-" still keep the multiple cursors active.
-let g:multi_cursor_exit_from_visual_mode=0
-let g:multi_cursor_exit_from_insert_mode=0
-noremap <leader>n :MultipleCursorsFind<space>
-
-"}}}
 " ALE"{{{
 
 nnoremap <silent> ]e :ALENextWrap<cr>
@@ -1032,6 +1023,16 @@ xmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyVisual
 " vim_sort_motion"{{{
 
 let g:sort_motion_visual_block_command = 'Vissort'
+
+"}}}
+" vim-visual-multi"{{{
+
+" For some reason the code for ctrl+arrow in st terminal don't work in vim, so I
+" am explicitly mapping what the ctrl+arrow keys do in st inside vim
+nmap <esc>[1;5A <c-up>
+nmap <esc>[1;5B <c-down>
+nmap <esc>[1;5C <c-right>
+nmap <esc>[1;5D <c-left>
 
 "}}}
 "}}}
