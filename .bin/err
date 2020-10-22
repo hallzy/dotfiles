@@ -1,0 +1,78 @@
+#!/bin/bash
+
+ERR() {
+    # synopsis
+    # --------
+
+    # ERR -e MSG...
+    # create a error message, red highlight, and
+    # exit current script with exit code 1
+    # notify-send will get executed with urgency-level
+    # critical.
+
+    # ERR -w MSG...
+    # create a warning message, yellow highlight
+
+    # ERR -s MSG...
+    # create a success message, green highlight, and
+    # notify-send will get executed with urgency-level
+    # low.
+
+    # ERR -m MSG...
+    # ERR MSG...
+    # just print MSG to stderr or notify-send, without
+    # any special formatting or options.
+
+
+    local RED GREEN YELLOW NORMAL
+
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    YELLOW=$(tput setaf 3)
+    NORMAL=$(tput sgr0)
+
+    case "$1" in
+    -w )
+        shift
+        if [ -t 2 ]; then
+            (>&2 echo "[${YELLOW}WARNING${NORMAL}]" "$*")
+        fi
+        notify-send "[WARNING] $*"
+    ;;
+
+    -s )
+        shift
+        if [ -t 2 ]; then
+            (>&2 echo "[${GREEN}SUCCESS${NORMAL}]" "$*")
+        fi
+        notify-send -u low "[SUCCESS] $*"
+    ;;
+
+    -e )
+        shift
+        if [ -t 2 ]; then
+            (>&2 echo "[${RED}ERROR${NORMAL}]" "$*")
+        fi
+        notify-send -u critical "[ERROR] $*"
+
+        exit 1
+    ;;
+
+    -m )
+        shift
+        if [ -t 2 ]; then
+            (>&2 echo "$*")
+        fi
+        notify-send "$*"
+    ;;
+
+    *  )
+        if [ -t 2 ]; then
+            (>&2 echo "$*")
+        fi
+        notify-send "$*"
+    ;;
+    esac
+}
+
+ERR "$@"
