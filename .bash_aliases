@@ -207,7 +207,11 @@ duration() {
             HR = $3;
             MIN = $4;
             SEC=$5;
-            print 60*HR+MIN ":" SEC
+
+            HR = (HR == 0) ? "" : (HR+0 "h ")
+            MIN = (HR == "" && MIN == 0) ? "" : (MIN+0 "m ")
+
+            print HR MIN SEC+0 "s"
         }
     ';
 }
