@@ -36,4 +36,12 @@ fi
 setxkbmap -option "caps:swapescape"
 
 # With DWM horizontal two finger scroll doesn't work. Enable it with this
-synclient HorizTwoFingerScroll=1
+if which synclient > /dev/null 2>&1; then
+    synclient HorizTwoFingerScroll=1
+fi
+
+# If I am on my work computer and I have 3 monitors connected, setup multiple
+# monitors automatically on login
+if [ "$(hostname)" = 'stn-dell-xps' -a "$(xrandr | grep " connected" -c)" -eq 3 ]; then
+    xrandr --output eDP-1-1 --auto --output DP-1-3 --primary --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
+fi
