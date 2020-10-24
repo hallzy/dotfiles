@@ -1,3 +1,6 @@
+alias cp='cpmv cp'
+alias mv='cpmv mv'
+
 # some more ls aliases
 alias ls='ls -Fh --color'
 alias lal='ls -hAlF'

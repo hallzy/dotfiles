@@ -1,0 +1,30 @@
+#!/bin/bash
+
+run() {
+    local cmd
+    local start
+    local end
+    local duration
+
+    cmd="$1"
+    shift
+
+    start="$(date +%s)"
+
+    # Don't overwrite files with the same name, and show what is being done
+    "/bin/$cmd" -iv "$@"
+
+    end="$(date +%s)"
+
+    duration=$((end-start))
+
+    if [ "$duration" -gt 1 ]; then
+        notify-send "$cmd Complete" "$cmd $*"
+    fi
+}
+
+if [ "$1" != 'cp' -a "$1" != 'mv' ]; then
+    "cpmv error. Must specify cp or mv as first arg"
+    exit 1;
+fi
+run "$@"
