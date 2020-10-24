@@ -1,6 +1,9 @@
 #!/bin/bash
 
-curl ipinfo.io 2> /dev/null | jq -r '.city, .country' | awk '
+# echo "ipinfo.io down"
+# exit 0
+
+curl ipinfo.io 2> /dev/null | jq -r '.city, .country' 2> /dev/null | awk '
     BEGIN {
         RET = "Unknown Location"
     }
