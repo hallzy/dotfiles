@@ -2,7 +2,25 @@
 
 DOTFILES="/home/steven/Documents/git-repos/remote-github/dotfiles"
 
-SINK='alsa_output.pci-0000_00_1b.0.analog-stereo'
+# SINK='alsa_output.pci-0000_00_1b.0.analog-stereo'
+# SINK='alsa_output.pci-0000_00_1f.3.analog-stereo'
+
+SINK="$(pacmd list-cards | awk '
+    BEGIN {
+        FOUND_SINK = 0;
+    }
+
+    $1 == "sinks:" {
+        FOUND_SINK = 1;
+        next;
+    }
+
+    FOUND_SINK == 1 {
+        gsub(/\/.*$/, "", $1);
+        print $1;
+        exit;
+    }
+')"
 
 error() {
     notify-send "Special Keys Error" "$1"
@@ -31,7 +49,7 @@ changeBrightness() {
     brightness="$(cat /sys/class/backlight/intel_backlight/brightness)"
     max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
 
-    new=$(python -c "print $brightness $sign 75")
+    new=$(echo "$brightness $sign 75" | bc)
 
     # Convert to int
     if [ "$new" -lt 0 ]; then

@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
 
     input = atoi(argv[1]);
 
-    if (input <= 0 || input > 2000) {
+    if (input <= 0) {
         printf("Input is out of bounds [%d]\n", input);
         return 1;
     }
