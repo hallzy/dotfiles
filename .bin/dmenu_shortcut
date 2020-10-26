@@ -5,4 +5,5 @@ PATH="$PATH:/home/steven/.my-scripts"
 PATH="$PATH:/home/steven/Documents/git-repos/remote-github/dotfiles/.bin"
 PATH="$PATH:/home/steven/go/bin";
 
-dmenu_run -m 0
+# Allow to pass arguments to dmenu_run
+dmenu_run "$@"
