@@ -43,5 +43,5 @@ fi
 # If I am on my work computer and I have 3 monitors connected, setup multiple
 # monitors automatically on login
 if [ "$(hostname)" = 'stn-dell-xps' -a "$(xrandr | grep " connected" -c)" -eq 3 ]; then
-    xrandr --output eDP-1-1 --auto --output DP-1-3 --primary --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
+    xrandr --output eDP-1-1 --auto --output DP-1-3 --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
 fi
