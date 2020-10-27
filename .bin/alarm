@@ -185,13 +185,54 @@ deleteAlarm() {
     notify "Alarm Stopped"
 }
 
+eyeBreak() {
+    BREAK=1200
+
+    # Provide a message for the alarm
+    msg="Give your eyes a break"
+
+    while true; do
+        # get unix timestamp of time right now
+        NOW="$(date +%s)"
+
+        # 20 minutes from now
+        STAMP=$((NOW+BREAK))
+
+        # Write the timestamp, this script execution pid, and the message to a file
+        echo "$STAMP,$$,$msg" >> "${FILE}"
+
+        # Get the human readable version of the user provided time
+        formatted="$(stamp2Str "${STAMP}")"
+
+        # Sort the file that contains our alarms
+        sort "$FILE" > "$FILE.tmp"
+        mv "$FILE.tmp" "$FILE"
+
+        # Notify user that alarm was created
+        notify "Alarm Set to $formatted"
+
+        # Sleep until alarm is finished
+        sleep "$BREAK"
+
+        # Sound the alarm
+        alarm "Give your eyes a break. Look at something 20 feet away for 20 seconds..."
+        sleep 25
+        alarm "20 seconds are up, you can get back to work now."
+
+        # Remove alarm from file
+        sed -i "/^[0-9]\+,$$,/d" "${FILE}"
+    done
+}
+
 # Ask user if they want a new alarm, or to delete or view an alarm
-choice="$(printf "New Alarm\nDelete/List Alarms" | dmenu -c -l 3 -i)"
+choice="$(printf "New Alarm\nTake an Eye Break\nDelete/List Alarms" | dmenu -c -l 3 -i)"
 
 if [ "$choice" = 'New Alarm' ]; then
     newAlarm
 elif [ "$choice" = 'Delete/List Alarms' ]; then
     deleteAlarm
+elif [ "$choice" = 'Take an Eye Break' ]; then
+    eyeBreak
 else
     notify "Invalid option selected"
 fi
