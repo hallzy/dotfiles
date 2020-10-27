@@ -12,6 +12,10 @@ HISTCONTROL=ignoredups:ignorespace
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Expand directories when tab is pressed. This helps with variables that I use
+# for folders
+shopt -s direxpand
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=2000
 HISTFILESIZE=2000
