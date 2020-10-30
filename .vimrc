@@ -38,7 +38,9 @@ endif
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'mattn/emmet-vim', {'for' : ['html', 'php']}
+Plug 'jwalton512/vim-blade', {'for' : ['blade']}
+
+Plug 'mattn/emmet-vim', {'for' : ['html', 'php', 'blade']}
 
 " switch from source & headers
 Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
@@ -151,7 +153,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
-Plug 'kentaro/vim-textobj-function-php', {'for' : 'php'}
+Plug 'kentaro/vim-textobj-function-php', {'for' : ['php', 'blade']}
 
 " vim linter
 Plug 'syngan/vim-vimlint', {'for' : 'vim'}
@@ -177,9 +179,11 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'hallzy/expression-evaluator.vim'
 
-Plug 'StanAngelOff/php.vim', {'for' : 'php'}
+Plug 'StanAngelOff/php.vim', {'for' : ['php', 'blade']}
 
-Plug 'hallzy/vim-php-manual', {'for' : 'php'}
+Plug 'hallzy/vim-php-manual', {'for' : ['php', 'blade']}
+
+Plug 'linuxmagic/vdebug', {'for' : ['php', 'blade']}
 
 call plug#end()
 
@@ -1973,3 +1977,25 @@ let g:php_manual_online_get_url = '-'
 
 
 nnoremap <leader>a 0yt.j0vt.p<c-a>0
+
+
+if !exists('g:vdebug_options')
+  let g:vdebug_options = {}
+endif
+let g:vdebug_options.break_on_open = 1
+let g:vdebug_options.ide_key = 'VIM'
+let g:vdebug_options.port = 9000
+
+let g:vdebug_keymap = {
+  \    "run":            "<F5>",
+  \    "run_to_cursor":  "<Down>",
+  \    "step_over":      "<Up>",
+  \    "step_into":      "<Right>",
+  \    "step_out":       "<Left>",
+  \    "close":          ",q",
+  \    "detach":         "<F9>",
+  \    "set_breakpoint": "<F2>",
+  \ }
+
+nnoremap <F3> :VdebugEval<space>
+vnoremap <F3> y:VdebugEval <C-R>"<cr>
