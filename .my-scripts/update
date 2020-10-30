@@ -106,6 +106,13 @@ else
   exit 1
 fi
 
+if which snap > /dev/null 2>&1; then
+  echo "Updating Snap Packages"
+  echo "======================"
+  snap refresh
+fi
+
+
 echo " "
 echo "Update Complete!"
 echo "==========================================="
