@@ -26,6 +26,18 @@
 [alias]
   b = branch
   co = checkout
+  # Checkout new branch and setup git-radar to compare the new branch with the
+  # previous branch's upstream
+  cob = "!f() { \
+      currentTracking=\"$(git for-each-ref --format='%(upstream:short)' \"$(git symbolic-ref -q HEAD)\")\"; \
+      if [ -z \"$currentTracking\" ]; then \
+        echo \"Could not determine tracking info for current branch.\"; \
+        return; \
+      fi; \
+      git checkout -b \"$1\"; \
+      git config --local branch.\"$(git rev-parse --abbrev-ref HEAD)\".git-radar-tracked-remote \"$currentTracking\"; \
+    }; \
+    f"
   ssh = "!git_to_ssh.sh"
   open = "!git_open.sh"
   p = stash pop
