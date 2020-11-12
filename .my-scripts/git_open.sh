@@ -39,8 +39,24 @@ if [ -z "$BRANCH" ]; then
   fi
 fi
 
-REPO_URL=$(echo $REPO_URL | sed 's/^git@/https:\/\//g' | \
-           sed 's/github.com:/github.com\//g' | sed "s/.git$/\/tree\/${BRANCH}/g")
+REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" '
+  {
+    domain = $2;
+    $1 = $2 = "";
+
+    gsub("^ *", "");
+    gsub(" *$", "");
+    gsub("\.git$", "");
+
+    if (domain == "bitbucket.org") {
+      suffix = "branch"
+    } else if (domain == "github.com") {
+      suffix = "tree"
+    }
+
+    print "https://" domain "/" $0 "/" suffix "/" BRANCH
+  }
+')"
 
 echo "Opening \"$REPO_URL\"..."
 
