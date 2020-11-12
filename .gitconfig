@@ -149,3 +149,5 @@
                 git difftool $rev~1 $rev; \
               }; \
               showci"
+[submodule]
+	recurse = true
