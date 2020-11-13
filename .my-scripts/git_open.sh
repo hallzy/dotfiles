@@ -39,7 +39,13 @@ if [ -z "$BRANCH" ]; then
   fi
 fi
 
-REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" '
+destination="$(git config --get "branch.${BRANCH}.git-radar-tracked-remote" | cut -d'/' -f2-)"
+
+if  [ -n "$destination" ]; then
+  destination="?dest=${destination}"
+fi
+
+REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" -v DESTINATION="$destination" '
   {
     domain = $2;
     $1 = $2 = "";
@@ -50,11 +56,13 @@ REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" '
 
     if (domain == "bitbucket.org") {
       suffix = "branch"
+      dest = DESTINATION
     } else if (domain == "github.com") {
       suffix = "tree"
+      dest = ""
     }
 
-    print "https://" domain "/" $0 "/" suffix "/" BRANCH
+    print "https://" domain "/" $0 "/" suffix "/" BRANCH dest
   }
 ')"
 
