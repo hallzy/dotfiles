@@ -360,6 +360,8 @@ export PATH=$PATH:$HOME/go/bin
 # Snaps
 export PATH=$PATH:/snap/bin
 
+export PATH=$PATH:$HOME/.config/composer/vendor/bin
+
 function timer_start {
     timer=${timer:-$SECONDS}
 }

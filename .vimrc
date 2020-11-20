@@ -299,6 +299,7 @@ set splitright
 
 " Use markers for folds
 set foldmethod=marker
+set foldmarker=<editor-fold\ desc=,</editor-fold>
 
 " Keep the cursor within 10 lines of the bottom and top
 set scrolloff=10
@@ -331,10 +332,10 @@ nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
 " Resize Split Windows"{{{
 
 "Arrow keys expand and shrink vim split
-nnoremap <Left>   <C-w><
-nnoremap <Right>  <C-w>>
-nnoremap <Up>     <C-w>+
-nnoremap <Down>   <C-w>-
+nnoremap <c-Left>   <C-w><
+nnoremap <c-Right>  <C-w>>
+nnoremap <c-Up>     <C-w>+
+nnoremap <c-Down>   <C-w>-
 
 "}}}
 " Better Split Window Movement"{{{
@@ -1999,3 +2000,94 @@ let g:vdebug_keymap = {
 
 nnoremap <F3> :VdebugEval<space>
 vnoremap <F3> y:VdebugEval <C-R>"<cr>
+
+" Set the dir to the folder of the current file
+" autocmd BufEnter * silent! lcd %:p:h
+set autochdir
+
+augroup AUTO_BUILD_JS_AND_SCSS
+  autocmd!
+  autocmd BufWritePost *.js   :silent !bash /home/steven/auto-build.sh > /dev/null 2>&1 &
+  autocmd BufWritePost *.scss :silent !bash /home/steven/auto-build.sh > /dev/null 2>&1 &
+augroup END
+
+set guicursor=
+
+
+function InsertDocBlock()
+  " copy whole line
+  exec 'normal! ^v$h"zy'
+
+  let l:line = @z
+
+  " Line is a function definition
+  if l:line =~ 'function\s\+\S\+\s*(' || l:line =~ 'function\s*('
+    " Is there a return type?
+    if l:line =~ ')\s*:\s*\S\+$'
+      exec 'normal! $F:l"zy$'
+      let l:retType = trim(@z)
+    else
+      let l:retType = '<return type>'
+    endif
+
+    exec 'normal! 0f("zyi('
+
+    " Break the args by the comma
+    let l:args = map(split(@z, ','), {idx, val -> trim(val)})
+
+
+    let l:comment  = "/**\<cr>"
+    let l:comment .= " * <Description of Function>\<cr>"
+    let l:comment .= " *\<cr>"
+    let l:lineCount = 3
+
+    for val in l:args
+      let l:comment .= " * @param ". val ." <description>\<cr>"
+      let l:lineCount += 1
+    endfor
+
+    if l:lineCount > 3
+      let l:comment .= " *\<cr>"
+      let l:lineCount += 1
+    endif
+
+    let l:comment .= " * @return ".l:retType." <description>\<cr>"
+    let l:comment .= " */"
+    let l:lineCount += 2
+
+    " This is very finicky in JS which is why I have to go back and fix some
+    " stuff after doing formatting with the =
+    exec 'normal! O' . l:comment . "\<esc>V" . (l:lineCount - 1) . "k="
+    exec 'normal! ' . (l:lineCount - 2) . "j0wji \<esc>dw"
+    exec 'normal! ' . (l:lineCount - 2) . 'k0ww'
+
+  " Line is a class definition
+  elseif l:line =~ '^class\s\+\w'
+    exec 'normal! 0w"zy$'
+    let l:className = split(@z)[0]
+
+    let l:comment  = "/*\<cr>"
+    let l:comment .= "|--------------------------------------------------------------------------\<cr>"
+    let l:comment .= "| " . l:className . "\<cr>""
+    let l:comment .= "|--------------------------------------------------------------------------\<cr>"
+    let l:comment .= "|\<cr>""
+    let l:comment .= "| <Class Description>\<cr>""
+    let l:comment .= "|\<cr>""
+    let l:comment .= "*/\<cr>""
+
+    exec 'normal! jo' . l:comment
+    exec 'normal! kkVkkkkk<jjj0www'
+
+  else
+    let l:comment  = "/**\<cr>"
+    let l:comment .= " * @var <var type>  <description>\<cr>"
+    let l:comment .= " */"
+
+    exec 'normal! O' . l:comment
+    exec 'normal! Vkk='
+  endif
+
+endfunction
+
+
+nnoremap <c-h> :call InsertDocBlock()<cr>
