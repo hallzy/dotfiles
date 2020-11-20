@@ -426,7 +426,8 @@ __prompt_command() {
 
     history -a;
 
-    export PS1+="\$(git-radar --bash --fetch) "
+    export PS1+="\$(go-git-radar fetch)"
+    # export PS1+="\$(git-radar --bash --fetch)"
     ## Add this line to easily switch to my local fork for checking changes
     # export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) "
 
