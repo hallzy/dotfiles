@@ -360,6 +360,9 @@ export PATH=$PATH:$HOME/go/bin
 # Snaps
 export PATH=$PATH:/snap/bin
 
+export DENO_INSTALL="/home/steven/.deno"
+export PATH="$PATH:$DENO_INSTALL/bin"
+
 function timer_start {
     timer=${timer:-$SECONDS}
 }
