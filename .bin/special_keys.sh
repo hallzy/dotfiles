@@ -2,7 +2,7 @@
 
 DOTFILES="/home/steven/Documents/git-repos/remote-github/dotfiles"
 
-MOUSE_MOVE_SPEED=5
+MOUSE_MOVE_SPEED=40
 
 # SINK='alsa_output.pci-0000_00_1b.0.analog-stereo'
 # SINK='alsa_output.pci-0000_00_1f.3.analog-stereo'
