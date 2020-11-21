@@ -362,6 +362,9 @@ export PATH=$PATH:/snap/bin
 
 export PATH=$PATH:$HOME/.config/composer/vendor/bin
 
+export DENO_INSTALL="/home/steven/.deno"
+export PATH="$PATH:$DENO_INSTALL/bin"
+
 function timer_start {
     timer=${timer:-$SECONDS}
 }

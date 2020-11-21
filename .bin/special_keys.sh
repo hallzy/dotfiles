@@ -2,6 +2,8 @@
 
 DOTFILES="/home/steven/Documents/git-repos/remote-github/dotfiles"
 
+MOUSE_MOVE_SPEED=5
+
 # SINK='alsa_output.pci-0000_00_1b.0.analog-stereo'
 # SINK='alsa_output.pci-0000_00_1f.3.analog-stereo'
 
@@ -67,6 +69,22 @@ brightup() {
 
 brightdown() {
     changeBrightness '-'
+}
+
+mouseleft() {
+    xdotool mousemove_relative -- "-${MOUSE_MOVE_SPEED}" 0
+}
+
+mouseright() {
+    xdotool mousemove_relative -- "${MOUSE_MOVE_SPEED}" 0
+}
+
+mouseup() {
+    xdotool mousemove_relative -- 0 "-${MOUSE_MOVE_SPEED}"
+}
+
+mousedown() {
+    xdotool mousemove_relative -- 0 "${MOUSE_MOVE_SPEED}"
 }
 
 
