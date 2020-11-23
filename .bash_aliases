@@ -1,5 +1,6 @@
 alias cp='cpmv cp'
 alias mv='cpmv mv'
+alias vm='cpmv mv'
 
 # some more ls aliases
 alias ls='ls -Fh --color'
@@ -13,6 +14,7 @@ alias ll.='ls -ld .*'
 alias sl='ls'
 
 alias gti='git'
+alias got='git'
 alias gitst='git st'
 
 # Alias definitions.
