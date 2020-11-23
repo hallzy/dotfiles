@@ -257,6 +257,8 @@ set spell
 set nostartofline     " when using gg or G, stay in the same column
 set virtualedit=block " Allow block selections to go past the last characters
 
+set nrformats=hex,bin
+
 syntax on
 
 " Only do syntax highlighting for the first 81 columns. This improves
@@ -1185,15 +1187,17 @@ endfunc
 " characters or not. By default it is off.
 function! Togglenrformats()
   if &nrformats ==? ''
-    set nrformats=octal,hex,alpha
-  elseif &nrformats ==? 'octal,hex,alpha'
-    set nrformats=octal,hex
-  elseif &nrformats ==? 'octal,hex'
+    set nrformats=hex,bin,octal,alpha
+  elseif &nrformats ==? 'hex,bin,octal,alpha'
+    set nrformats=hex,bin,octal
+  elseif &nrformats ==? 'hex,bin,octal'
+    set nrformats=hex,bin
+  elseif &nrformats ==? 'hex,bin'
     set nrformats=hex
   elseif &nrformats ==? 'hex'
-    set nrformats=''
+    set nrformats=
   else
-    set nrformats=octal,hex,alpha
+    set nrformats=hex,bin,octal,alpha
   endif
   echo &nrformats
 endfun
