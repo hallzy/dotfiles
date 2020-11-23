@@ -359,6 +359,8 @@ export PATH=$PATH:$HOME/.my-scripts
 export PATH=$PATH:$HOME/go/bin
 # Snaps
 export PATH=$PATH:/snap/bin
+# App Images
+export PATH=$PATH:$HOME/appimages/bin
 
 export PATH=$PATH:$HOME/.config/composer/vendor/bin
 
