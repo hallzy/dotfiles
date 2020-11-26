@@ -301,7 +301,6 @@ set splitright
 
 " Use markers for folds
 set foldmethod=marker
-set foldmarker=<editor-fold\ desc=,</editor-fold>
 
 " Keep the cursor within 10 lines of the bottom and top
 set scrolloff=10
@@ -334,10 +333,10 @@ nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
 " Resize Split Windows"{{{
 
 "Arrow keys expand and shrink vim split
-nnoremap <c-Left>   <C-w><
-nnoremap <c-Right>  <C-w>>
-nnoremap <c-Up>     <C-w>+
-nnoremap <c-Down>   <C-w>-
+nnoremap Left   <C-w><
+nnoremap Right  <C-w>>
+nnoremap Up     <C-w>+
+nnoremap Down   <C-w>-
 
 "}}}
 " Better Split Window Movement"{{{
@@ -1984,26 +1983,46 @@ let g:php_manual_online_get_url = '-'
 nnoremap <leader>a 0yt.j0vt.p<c-a>0
 
 
-if !exists('g:vdebug_options')
-  let g:vdebug_options = {}
-endif
-let g:vdebug_options.break_on_open = 1
-let g:vdebug_options.ide_key = 'VIM'
-let g:vdebug_options.port = 9000
+let g:vdebug_options = {
+  \ 'port':                9876,
+  \ 'timeout':             10,
+  \ 'server':              '',
+  \ 'on_close':            'stop',
+  \ 'break_on_open':       1,
+  \ 'ide_key':             '',
+  \ 'debug_window_level':  0,
+  \ 'debug_file_level':    0,
+  \ 'debug_file':          '',
+  \ 'path_maps':           {},
+  \ 'watch_window_style':  'expanded',
+  \ 'marker_default':      '⬦',
+  \ 'marker_closed_tree':  '▸',
+  \ 'marker_open_tree':    '▾',
+  \ 'sign_breakpoint':     '▷',
+  \ 'sign_current':        '▶',
+  \ 'sign_disabled':       '▌▌',
+  \ 'continuous_mode':     0,
+  \ 'background_listener': 1,
+  \ 'auto_start':          1,
+  \ 'simplified_status':   1,
+  \ 'layout':              'vertical',
+  \}
 
 let g:vdebug_keymap = {
-  \    "run":            "<F5>",
-  \    "run_to_cursor":  "<Down>",
-  \    "step_over":      "<Up>",
-  \    "step_into":      "<Right>",
-  \    "step_out":       "<Left>",
-  \    "close":          ",q",
-  \    "detach":         "<F9>",
-  \    "set_breakpoint": "<F2>",
-  \ }
+  \ 'set_breakpoint':    '<F2>',
+  \ 'detach':            '<F3>',
+  \ 'run':               '<F5>',
+  \ 'step_into':         '<F6>',
+  \ 'step_over':         '<F7>',
+  \ 'step_out':          '<F8>',
+  \ 'run_to_cursor':     '<F9>',
+  \ 'get_context':       '<F11>',
+  \ 'eval_under_cursor': '<F12>',
+  \ 'close':             ',q',
+  \}
 
-nnoremap <F3> :VdebugEval<space>
-vnoremap <F3> y:VdebugEval <C-R>"<cr>
+nnoremap ,e :VdebugEval<space>
+vnoremap ,e y:VdebugEval <C-R>"<cr>
 
 " Set the dir to the folder of the current file
 " autocmd BufEnter * silent! lcd %:p:h

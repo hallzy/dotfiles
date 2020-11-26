@@ -87,7 +87,6 @@ mousedown() {
     xdotool mousemove_relative -- 0 "${MOUSE_MOVE_SPEED}"
 }
 
-
 ## Argument to script call is one of the above functions
 errmsg="$($1 2>&1)"
 
