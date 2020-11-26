@@ -1,26 +1,5 @@
 #!/bin/bash
 
-function enable_antivirus {
-  if [[ $is_checking_for_antivirus -eq 1 ]]; then
-    echo " " ;
-    echo "==========================================="
-    echo "Enabling Antivirus"
-    ${command_to_enable_antivirus}
-    sleep 5
-    echo "Checking if antivirus is enabled..."
-    ${command_to_check_if_antivirus_is_active}
-    if [[ $? -eq $status_is_active ]]; then
-      echo "Antivirus is Successfully Enabled"
-    else
-      echo "FAILED to enable antivirus"
-      echo "********** MANUALLY REENABLE YOUR ANTIVIRUS! **********"
-      echo "Enable your AV  : \"${command_to_enable_antivirus}\""
-      echo "Check AV status : \"${command_to_check_if_antivirus_is_active}\""
-      exit 3
-    fi
-  fi
-}
-
 # Before we do anything, make sure the script has been executed by the root
 # user. This way, the commands in this script don't need to be individually run
 # as root. This means that the script will run to finish without needing a
@@ -29,29 +8,6 @@ if [ "$EUID" -ne 0  ]; then
   echo "ERROR: Not root"
   echo "This script MUST be excuted as root, or with sudo"
   exit 1
-fi
-
-is_checking_for_antivirus=1
-command_to_disable_antivirus="/opt/sophos-av/bin/savdctl disable"
-command_to_enable_antivirus="/opt/sophos-av/bin/savdctl enable"
-command_to_check_if_antivirus_is_active="/opt/sophos-av/bin/savdstatus"
-status_is_inactive=4
-status_is_active=0
-
-if [[ $is_checking_for_antivirus -eq 1 ]]; then
-  echo " " ;
-  echo "==========================================="
-  echo "Temporarily Disabling Antivirus"
-  ${command_to_disable_antivirus}
-  sleep 5
-  echo "Checking if antivirus is disabled..."
-  ${command_to_check_if_antivirus_is_active}
-  if [[ $? -eq $status_is_inactive ]]; then
-    echo "Antivirus is Successfully Disabled, continuing with update."
-  else
-    echo "FAILED to disable antivirus, exiting without updating"
-    exit 2
-  fi
 fi
 
 echo " " ;
@@ -102,7 +58,6 @@ elif [[ $OS  == "Manjaro" ||
   pacman -Rns --noconfirm $(pacman -Qqtd)
 else
   echo "Could not determine what package manager to use."
-  enable_antivirus
   exit 1
 fi
 
@@ -116,5 +71,4 @@ fi
 echo " "
 echo "Update Complete!"
 echo "==========================================="
-enable_antivirus
 exit 0
