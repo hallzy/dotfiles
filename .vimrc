@@ -333,10 +333,10 @@ nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
 " Resize Split Windows"{{{
 
 "Arrow keys expand and shrink vim split
-nnoremap Left   <C-w><
-nnoremap Right  <C-w>>
-nnoremap Up     <C-w>+
-nnoremap Down   <C-w>-
+nnoremap <Left>   <C-w><
+nnoremap <Right>  <C-w>>
+nnoremap <Up>     <C-w>+
+nnoremap <Down>   <C-w>-
 
 "}}}
 " Better Split Window Movement"{{{
