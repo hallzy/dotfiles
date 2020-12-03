@@ -1,0 +1,60 @@
+#!/bin/bash
+
+fetchSucceeded() {
+    end="$(date +%s)"
+    start="$(cat /tmp/git-radar-pre-fetch)"
+
+    diff=$((end-start));
+
+    echo "$end" >> /tmp/git-radar-pre-fetch
+    echo "$diff" >> /tmp/git-radar-pre-fetch
+
+    if [ "$diff" -le 5 ]; then
+        return 0
+    fi
+
+    err -s "Git Fetch has Finished!"
+}
+
+fetchFailed() {
+    err -e "Git Fetch Failed!"
+}
+
+preFetch() {
+    # Set the current time in a tmp file. That way later on I can tell how long
+    # the fetch took and report when the fetch finished if it takes a while
+    date +%s > /tmp/git-radar-pre-fetch
+}
+
+preFetchFailed() {
+    err -e "Pre Fetch Command Failed"
+}
+
+main() {
+    local opt="$1"
+
+    if [ "$opt" = "fetch_succeeded" ]; then
+        # The fetch command ran and succeeded
+        fetchSucceeded
+        return $?
+    elif [ "$opt" = "fetch_failed" ]; then
+        # The fetch command ran but it failed
+        fetchFailed
+        return $?
+    elif [ "$opt" = "pre_fetch" ]; then
+        # We want to do a fetch. This is to setup the fetch and do any
+        # preprocessing
+        preFetch
+        return $?
+    elif [ "$opt" = "pre_fetch_failed" ]; then
+        # The pre fetch ran but failed
+        preFetchFailed
+        return $?
+    else
+        err -e "No such option '$opt'"
+        return 1
+    fi
+}
+
+main "$@"
+exit $?
