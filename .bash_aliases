@@ -206,21 +206,6 @@ largest() {
 
 alias random_dir='/bin/ls -1 | head -$((($RANDOM % $(/bin/ls -1 | wc -l)) + 1)) | tail -1'
 
-duration() {
-    ffmpeg -i "$1" 2>&1 | awk -F'[ ,:]+' '
-        $2 == "Duration" {
-            HR = $3;
-            MIN = $4;
-            SEC=$5;
-
-            HR = (HR == 0) ? "" : (HR+0 "h ")
-            MIN = (HR == "" && MIN == 0) ? "" : (MIN+0 "m ")
-
-            print HR MIN SEC+0 "s"
-        }
-    ';
-}
-
 weather() {
     curl "http://wttr.in/${1}"
 }
