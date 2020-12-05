@@ -4,4 +4,4 @@
 systemctl suspend
 
 # Lock Screen
-slock -m "Screen Locked on $(date +"%a %-e %h, %-l:%M:%S %p")"
+slock
