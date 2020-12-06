@@ -6,9 +6,6 @@ fetchSucceeded() {
 
     diff=$((end-start));
 
-    echo "$end" >> /tmp/git-radar-pre-fetch
-    echo "$diff" >> /tmp/git-radar-pre-fetch
-
     if [ "$diff" -le 5 ]; then
         return 0
     fi
