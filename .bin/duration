@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ -n "$1" ] && ( [ "$1" = "--seconds" ] || [ "$1" = "-s" ] ); then
+    code='
+        print (HR * 3600) + (MIN * 60) + SEC
+    ';
+else
+    code='
+        HR  = (HR == 0)              ? "" : (HR+0 "h ")
+        MIN = (HR == "" && MIN == 0) ? "" : (MIN+0 "m ")
+
+        print HR MIN SEC+0 "s"
+    ';
+fi
+
+ffmpeg -i "$1" 2>&1 | awk -F'[ ,:]+' "
+    \$2 == \"Duration\" {
+        HR  = \$3;
+        MIN = \$4;
+        SEC = \$5;
+
+        $code
+    }
+";
