@@ -36,6 +36,9 @@ else
   call plug#begin()
 endif
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'jwalton512/vim-blade', {'for' : ['blade']}
@@ -1039,6 +1042,15 @@ nmap <esc>[1;5A <c-up>
 nmap <esc>[1;5B <c-down>
 nmap <esc>[1;5C <c-right>
 nmap <esc>[1;5D <c-left>
+
+"}}}
+" FZF{{{
+
+" Custom command to use grep to search lines of files in a git repository
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 "}}}
 "}}}
