@@ -86,6 +86,7 @@ c() {
         *.rar)       rar a      "$dest" "$@" ;;
         *.gz)        gzip -kv   "$@"         ;;
         *.zip)       zip        "$dest" "$@" ;;
+        *.crx)       zip        "$dest" "$@" ;;
         *.7z)        7z a       "$dest" "$@" ;;
         *)           echo "Unable to create archive '$dest'" ;;
     esac
@@ -105,6 +106,7 @@ x(){
                 *.tbz2)      tar xvjf "$1"    ;;
                 *.tgz)       tar xvzf "$1"    ;;
                 *.zip)       unzip "$1"       ;;
+                *.crx)       unzip "$1"       ;;
                 *.Z)         uncompress "$1"  ;;
                 *.7z)        7z x "$1"        ;;
                 *)           echo "Unable to extract '$1'" ;;
