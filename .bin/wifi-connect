@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Check Connections:
+#  $ nmcli d
+
+# Disconnect a connection listed in 'nmcli d'
+#  $ sudo nmcli con down yorkshire
+
+# Turn off wifi altogether
+#  $ nmcli radio wifi off
+
 IFS=$'\n'
 
 notice() {
