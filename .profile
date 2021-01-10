@@ -33,7 +33,8 @@ if [ -x '/usr/local/bin/slstatus' ]; then
 fi
 
 # Swap the escape and caps-lock key
-setxkbmap -option "caps:swapescape"
+# setxkbmap -option "caps:swapescape"
+setxkbmap -option "caps:escape"
 
 # With DWM horizontal two finger scroll doesn't work. Enable it with this
 if which synclient > /dev/null 2>&1; then
@@ -42,6 +43,11 @@ fi
 
 # If I am on my work computer and I have 3 monitors connected, setup multiple
 # monitors automatically on login
-if [ "$(hostname)" = 'stn-dell-xps' -a "$(xrandr | grep " connected" -c)" -eq 3 ]; then
-    xrandr --output eDP-1-1 --auto --output DP-1-3 --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
+if [ "$(hostname)" = 'stn-dell-xps' ]; then
+	if [ "$(xrandr | grep " connected" -c)" -eq 3 ]; then
+		xrandr --output eDP-1-1 --auto --output DP-1-3 --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
+	fi
+
+	# Without this, things like android studio and php storm do not work
+	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
