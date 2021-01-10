@@ -439,7 +439,7 @@ __prompt_command() {
     # export PS1="$PS1\$(/home/steven/Documents/git-repos/repos-i-contribute-to/git-radar/git-radar --bash --fetch) "
 
     # This is a command to check if we have sudo privileges currently
-    sudo -n true 2> /dev/null
+    sudo -n true > /dev/null 2>&1
     is_root=$?
     ## If we are root or we have sudo privileges then let us know
     if [[ $USER == "root" ]]; then
