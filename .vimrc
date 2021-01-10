@@ -713,10 +713,14 @@ function! OpenNerdTreeStartup()
   NERDTree
   exec "normal! \<c-w>l"
 endfun
-" Start nerdtree automatically if I give vim a file name
+
 augroup NerdTreeStartup
   autocmd!
+  " Start nerdtree automatically if I give vim a file name
   autocmd VimEnter * call OpenNerdTreeStartup()
+
+  " New tabs, open nerdtree too
+  autocmd BufWinEnter * silent! NERDTreeMirror
 augroup END
 
 
@@ -1032,16 +1036,6 @@ xmap <leader>C <Plug>ExpressionEvaluatorAnswerOnlyVisual
 " vim_sort_motion"{{{
 
 let g:sort_motion_visual_block_command = 'Vissort'
-
-"}}}
-" vim-visual-multi"{{{
-
-" For some reason the code for ctrl+arrow in st terminal don't work in vim, so I
-" am explicitly mapping what the ctrl+arrow keys do in st inside vim
-nmap <esc>[1;5A <c-up>
-nmap <esc>[1;5B <c-down>
-nmap <esc>[1;5C <c-right>
-nmap <esc>[1;5D <c-left>
 
 "}}}
 " FZF{{{
