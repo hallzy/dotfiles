@@ -1,0 +1,22 @@
+#!/bin/bash
+
+CWD="$(pwd)"
+
+find . -type d | while read -r dir; do
+    if [ "$dir" = '.' ]; then
+        continue
+    fi
+
+    if ! cd "$dir"; then
+        echo "dir '$dir' doesn't exist"
+        exit 1
+    fi
+
+    count="$(find . -type f | wc -l)"
+    echo "$count $dir"
+
+    if ! cd "$CWD"; then
+        echo "cwd '$CWD' doesn't exist."
+        exit 1
+    fi
+done | sort -nr | head -"${1:-1}"
