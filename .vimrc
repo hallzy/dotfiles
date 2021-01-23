@@ -39,6 +39,8 @@ endif
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'pangloss/vim-javascript', {'for': [ 'javascript' ]}
+
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'jwalton512/vim-blade', {'for' : ['blade']}
@@ -2120,3 +2122,42 @@ endfunction
 
 
 nnoremap <c-h> :call InsertDocBlock()<cr>
+
+
+function InsertConsoleLog()
+  let l:msg = input('Message: ')
+
+  " Save the current textwidth
+  let l:tw = &textwidth
+
+  " Disable textwidth so that nothing is wrapped
+  setlocal textwidth=0
+
+  let l:css = 'background-color: tomato; padding: 5px; color: white; font-weight: bold; border: solid red;'
+  exec 'normal! Oconsole.log("%c STEVEN LOG %c", "' . l:css . '", "", ' . l:msg . ');'
+
+  " Restore the user's textwidth
+  exec 'setlocal textwidth=' . l:tw
+endfunction
+
+nnoremap <leader>1 :call InsertConsoleLog()<cr>
+
+
+
+
+
+" Rewrote the defaults for these commands so that they would ignore the library
+" folder which is stuff that we don't write, and is all minified which makes it
+" impossible to do anything with them
+
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#gitfiles(
+    \ <q-args> . ' | grep -v "^public_html/library/"',
+    \ <bang>0
+  \ )
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \     'git grep --line-number -- '.shellescape(<q-args>) . ' | grep -v "^public_html/library/"',
+  \     0,
+  \     fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
