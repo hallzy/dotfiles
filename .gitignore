@@ -10,3 +10,4 @@ cscope.out
 gpg_recipients.vim
 .gnome2/Vim
 .uuid
+*.swp
