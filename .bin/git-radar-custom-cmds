@@ -1,15 +1,6 @@
 #!/bin/bash
 
 fetchSucceeded() {
-    end="$(date +%s)"
-    start="$(cat /tmp/git-radar-pre-fetch)"
-
-    diff=$((end-start));
-
-    if [ "$diff" -le 5 ]; then
-        return 0
-    fi
-
     err -s "Git Fetch has Finished!"
 }
 
@@ -18,9 +9,7 @@ fetchFailed() {
 }
 
 preFetch() {
-    # Set the current time in a tmp file. That way later on I can tell how long
-    # the fetch took and report when the fetch finished if it takes a while
-    date +%s > /tmp/git-radar-pre-fetch
+    err -s "Fetching from Git"
 }
 
 preFetchFailed() {
