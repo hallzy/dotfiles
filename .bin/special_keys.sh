@@ -1,11 +1,21 @@
 #!/bin/bash
 
+DEBUG=0
+
 DOTFILES="/home/steven/Documents/git-repos/remote-github/dotfiles"
 
 MOUSE_MOVE_SPEED=40
 
 # SINK='alsa_output.pci-0000_00_1b.0.analog-stereo'
 # SINK='alsa_output.pci-0000_00_1f.3.analog-stereo'
+
+log() {
+    if [ "$DEBUG" -eq 0 ]; then
+        return;
+    fi
+
+    notify-send "Special Keys DEBUG" "$1"
+}
 
 SINK="$(pacmd list-cards | awk '
     BEGIN {
@@ -14,6 +24,12 @@ SINK="$(pacmd list-cards | awk '
 
     $1 == "sinks:" {
         FOUND_SINK = 1;
+        next;
+    }
+
+    # Skip the DisplayLink device
+    FOUND_SINK == 1 && /DisplayLink/ {
+        FOUND_SINK = 0
         next;
     }
 
@@ -86,6 +102,8 @@ mouseup() {
 mousedown() {
     xdotool mousemove_relative -- 0 "${MOUSE_MOVE_SPEED}"
 }
+
+log "Sink: $SINK"
 
 ## Argument to script call is one of the above functions
 errmsg="$($1 2>&1)"
