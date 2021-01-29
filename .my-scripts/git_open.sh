@@ -28,23 +28,24 @@ fi
 ## If branch is empty then fill it with the current branch as default
 if [ -z "$BRANCH" ]; then
   BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-  ## If the branch has returned head then we are detached. Instead use the
-  ## commit hash for the branch
-  if [ "$BRANCH" == "HEAD" ]; then
-    BRANCH=$(git rev-parse HEAD)
-  fi
+
   ## If that last command failed revert to use the master branch
   if [ "$?" -ne 0 ]; then
     BRANCH="master"
+  ## If the branch has returned head then we are detached. Instead use the
+  ## commit hash for the branch
+  elif [ "$BRANCH" == "HEAD" ]; then
+    BRANCH=$(git rev-parse HEAD)
   fi
 fi
 
 destination="$(git config --get "branch.${BRANCH}.git-radar-tracked-remote" | cut -d'/' -f2-)"
 
-if  [ -n "$destination" ]; then
-  destination="?dest=${destination}"
+if  [ -z "$destination" ]; then
+  destination="master"
 fi
 
+# TODO: Pretty sure this matching will only work with SSH remotes
 REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" -v DESTINATION="$destination" '
   {
     domain = $2;
@@ -55,14 +56,13 @@ REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" -v DESTINATION="
     gsub("\.git$", "");
 
     if (domain == "bitbucket.org") {
-      suffix = "branch"
-      dest = DESTINATION
+      print "https://bitbucket.org/" $0 "/branch/" BRANCH "?dest=" DESTINATION
     } else if (domain == "github.com") {
-      suffix = "tree"
-      dest = ""
+      print "https://github.com/" $0 "/compare/" DESTINATION "..." BRANCH
+    } else
+      print "Unknown domain: " DOMAIN
+      print "git open will need to be modified to work with this domain"
     }
-
-    print "https://" domain "/" $0 "/" suffix "/" BRANCH dest
   }
 ')"
 
