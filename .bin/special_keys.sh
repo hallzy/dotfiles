@@ -17,23 +17,13 @@ log() {
     notify-send "Special Keys DEBUG" "$1"
 }
 
-SINK="$(pacmd list-cards | awk '
-    BEGIN {
-        FOUND_SINK = 0;
-    }
-
-    $1 == "sinks:" {
-        FOUND_SINK = 1;
-        next;
-    }
-
+SINK="$(pactl list short sinks | awk '
     # Skip the DisplayLink device
-    FOUND_SINK == 1 && /DisplayLink/ {
-        FOUND_SINK = 0
+    /DisplayLink/ {
         next;
     }
 
-    FOUND_SINK == 1 {
+    {
         gsub(/\/.*$/, "", $1);
         print $1;
         exit;
