@@ -2,6 +2,9 @@ alias cp='cpmv cp'
 alias mv='cpmv mv'
 alias vm='cpmv mv'
 
+alias vim='nvim'
+alias vi='nvim'
+
 # some more ls aliases
 alias ls='ls -Fh --color'
 alias lal='ls -hAlF'
