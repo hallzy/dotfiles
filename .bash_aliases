@@ -68,6 +68,9 @@ alias untar='tar xvf'
 
 alias tarcompress='tar cvzf'
 
+# Run mpv with hardware acceleration
+alias mpvgpu='mpv --hwdec=auto'
+
 c() {
     local dest="$1"
     shift 1
@@ -242,4 +245,33 @@ video_to_images() {
     fi
 
     ffmpeg -i "$vid" -vf fps=$imageCount "${vidpath}/${vidname}%04d.png"
+}
+
+# Sometimes images come as small sections of a bigger image. This will take them
+# in alpha order and combine them into 1 large image given the number of rows
+# that this image is
+buildImageMontage() {
+    # I expect first argument to be the number of rows the image is, and the
+    # rest are the images to be used. Since this command is used to combine
+    # images, I would expect no less than 2 images. So a minimum of 3 arguments
+    # is required.
+    if [ $# -lt 4 ]; then
+        echo "Usage:"
+        echo "  buildImageMontage number-of-rows output-file file1 file2 [...fileN]"
+        return 1
+    fi
+
+    if ! [[ "$1" =~ ^[0-9]+$ ]] || [ $1 -le 0 ]; then
+        echo "Usage:"
+        echo "  buildImageMontage number-of-rows file1 file2 [...fileN]"
+        echo ""
+        echo "  number-of-rows must be an integer greater than 0."
+        return 1
+    fi
+
+    local numberOfRows=$1
+    local out="$2"
+    shift 2
+
+    montage "$@" -tile "$numberOfRows" -geometry +0+0 "$out"
 }
