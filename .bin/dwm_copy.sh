@@ -38,31 +38,13 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# copyOptions=$(cat <<EOF
-# URL
-# EOF
-# )
-
-# openOptions=$(cat <<EOF
-# URL
-# EOF
-# )
-
 if [ "$1" = "copy" ]; then
     copyURL
     exit 0
-    # func="copy$(echo "$copyOptions" | dmenu -i -l 10 -p "What to Copy?")"
 elif [ "$1" = "open" ]; then
     openURL
     exit 0
-    # func="open$(echo "$openOptions" | dmenu -i -l 10 -p "What to Open?")"
 else
     err -e "'$1' is not valid. Must be 'copy' or 'open'"
     exit 1
 fi
-
-# if [ "$func" = "copy" ] || [ "$func" = "open" ]; then
-#     exit 1
-# fi
-
-# $func
