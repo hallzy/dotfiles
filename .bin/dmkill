@@ -1,0 +1,51 @@
+#!/bin/bash
+
+processCmd() {
+    ps --user "$(id -u)" -o "%p %C %a" --sort=-pcpu,comm,pid
+}
+
+killType="$(printf "Kill Group\nKill Single" | dmenu -l 2 -i)"
+
+if [ "$killType" = "Kill Group" ]; then
+    searchStr="$(processCmd | dmenu -i -t -l 20 -p "Search for process to kill:")"
+elif [ "$killType" = "Kill Single" ]; then
+    searchStr="$(processCmd | dmenu -i -l 20 -p "Search for process to kill:")"
+fi
+
+if [ -z "$searchStr" ]; then
+    err "Nothing selected";
+    exit 0;
+fi
+
+echo "$searchStr"
+
+if [ "$killType" = "Kill Group" ]; then
+    pids="$(processCmd |
+        awk -v searchStr="$searchStr" -v subshellPID="$BASHPID" '
+            $1 != subshellPID && $0 ~ searchStr {
+                RESULT = RESULT $1 " ";
+            }
+
+            END {
+                print RESULT
+            }
+        '
+    )"
+elif [ "$killType" = "Kill Single" ]; then
+    pids="$(echo "$searchStr" | cut -d' ' -f1)"
+fi
+
+if [ -z "$pids" ]; then
+    err -w "No processes selected";
+    exit 0
+fi
+
+answer="$(printf "No\nYes" | dmenu -i -p "Kill PIDS: $pids?")"
+
+if [ "$answer" != "Yes" ]; then
+    err "Program terminated."
+    exit 0
+fi
+
+kill -9 $pids
+err "Process $pids has been killed."

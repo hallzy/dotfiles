@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# TODO: Detect resolution and detect monitors
+
+SHOT_DIR="$HOME/Pictures/Screenshots"
+
+mkdir -p "$SHOT_DIR"
+
+declare -a options=(
+    "Fullscreen"
+    "Active window"
+    "Selected region"
+    "Fullscreen (copy only)"
+    "Active window (copy only)"
+    "Selected region (copy only)"
+    "Fullscreen (screenshot plus copy)"
+    "Active window (screenshot plus copy)"
+    "Selected region (screenshot plus copy)"
+    "Monitor 1"
+    "Monitor 2"
+    "Monitor 3"
+    "Monitor 1 (copy only)"
+    "Monitor 2 (copy only)"
+    "Monitor 3 (copy only)"
+    "Monitor 1 (screenshot plus copy)"
+    "Monitor 2 (screenshot plus copy)"
+    "Monitor 3 (screenshot plus copy)"
+    "Quit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p 'Take screenshot of:')
+
+case "$choice" in
+    'Fullscreen')
+        maim "$SHOT_DIR"/full-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Active window')
+        maim -i "$(xdotool getactivewindow)" "$SHOT_DIR"/window-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Selected region')
+        maim -s "$SHOT_DIR"/region-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Fullscreen (copy only)')
+        maim | xclip -selection clipboard -t image/png
+    ;;
+    'Active window (copy only)')
+        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+    ;;
+    'Selected region (copy only)')
+        maim -s | xclip -selection clipboard -t image/png
+    ;;
+    'Fullscreen (screenshot plus copy)')
+        maim | \
+        tee "$SHOT_DIR"/full-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    'Active window (screenshot plus copy)')
+        maim -i "$(xdotool getactivewindow)" | \
+        tee "$SHOT_DIR"/window-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    'Selected region (screenshot plus copy)')
+        maim -s | \
+        tee "$SHOT_DIR"/region-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 1')
+        maim -g 1920x1080+0+0  "$SHOT_DIR"/mon1-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Monitor 2')
+        maim -g 1920x1080+1920+0  "$SHOT_DIR"/mon2-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Monitor 3')
+        maim -g 1920x1080+3840+0  "$SHOT_DIR"/mon3-"$(date '+%Y%m%d-%H%M%S')".png
+    ;;
+    'Monitor 1 (copy only)')
+        maim -g 1920x1080+0+0  | xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 2 (copy only)')
+    maim -g 1920x1080+1920+0 | xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 3 (copy only)')
+    maim -g 1920x1080+3840+0 | xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 1 (screenshot plus copy)')
+        maim -g 1920x1080+0+0  | \
+        tee "$SHOT_DIR"/mon1-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 2 (screenshot plus copy)')
+        maim -g 1920x1080+1920+0 | \
+        tee "$SHOT_DIR"/mon2-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    'Monitor 3 (screenshot plus copy)')
+        maim -g 1920x1080+3840+0 | \
+        tee "$SHOT_DIR"/mon3-"$(date '+%Y%m%d-%H%M%S')".png | \
+        xclip -selection clipboard -t image/png
+    ;;
+    *)
+        exit 1
+    ;;
+esac
