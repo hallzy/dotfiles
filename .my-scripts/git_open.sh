@@ -53,15 +53,15 @@ REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" -v DESTINATION="
 
     gsub("^ *", "");
     gsub(" *$", "");
-    gsub("\.git$", "");
+    gsub(".git$", "");
 
     if (domain == "bitbucket.org") {
-      print "https://bitbucket.org/" $0 "/branch/" BRANCH "?dest=" DESTINATION
+      print "https://bitbucket.org/" $0 "/branch/" BRANCH "?dest=" DESTINATION;
     } else if (domain == "github.com") {
-      print "https://github.com/" $0 "/compare/" DESTINATION "..." BRANCH
-    } else
-      print "Unknown domain: " DOMAIN
-      print "git open will need to be modified to work with this domain"
+      print "https://github.com/" $0 "/compare/" DESTINATION "..." BRANCH;
+    } else {
+      print "Unknown domain: " DOMAIN;
+      print "git open will need to be modified to work with this domain";
     }
   }
 ')"
