@@ -1,3 +1,0 @@
-[submodule ".submodules/git-radar"]
-	path = .submodules/git-radar
-	url = https://github.com/michaeldfallen/git-radar.git
