@@ -1,44 +1,126 @@
 #!/bin/bash
 
-# TODO: Detect resolution and detect monitors
+getDate() {
+    date '+%Y%m%d-%H%M%S'
+}
+
+getMonitorsList() {
+    local monitorDimensions="$(xrandr | awk '$2 == "connected" { print $3 }')"
+
+    # Separate into fields so I can easily sort.
+    # We sort on column 4 first which is the y offset, and then 3 which is the x
+    # offset. This results in an ordering of monitors that goes from left to right,
+    # and then to the next row
+    local monitors="$(echo "$monitorDimensions" | awk -F"[x+]" '{ print $1 " " $2 " " $3 " " $4 }' | sort -n -k4,4 -k3,3)"
+
+    # Convert to array, splitting on newline
+    SAVEIFS=$IFS
+    IFS=$'\n'
+    MONITORS=($monitors)
+    IFS=$SAVEIFS
+
+    NUMBER_OF_MONITORS="${#MONITORS[@]}"
+
+    ## MONITORS is now a global list of your monitors formatted like this:
+    ## {pixel width} {pixel height} {xOffset} {yOffset}
+}
+
+# Handler for all the monitor choices that a user could choose
+handleMonitor() {
+    local choice="$1"
+
+    # Get the monitor number from choice
+    local monNumber="$(echo "$choice" | grep -o "[1-9][0-9]*")"
+
+    # Validate the monitor number
+    if [ -z "$monNumber" ] || [ "$monNumber" -lt 1 ] || [ "$monNumber" -gt "$NUMBER_OF_MONITORS" ]; then
+        err -e "Invalid monitor number '$monNumber'"
+        exit 1
+    fi
+
+    local monIdx=$((monNumber-1))
+
+    local monitor="${MONITORS[$monIdx]}"
+
+    local width="$(echo "$monitor" | awk '{ print $1 }')"
+    local height="$(echo "$monitor" | awk '{ print $2 }')"
+    local xOffset="$(echo "$monitor" | awk '{ print $3 }')"
+    local yOffset="$(echo "$monitor" | awk '{ print $4 }')"
+
+    local geometry="${width}x${height}+${xOffset}+${yOffset}"
+
+    local date="$(getDate)"
+
+    if [ "$choice" = "Monitor ${monNumber}" ]; then
+        maim -g "$geometry" "$SHOT_DIR/mon${monNumber}-$date.png"
+    elif [ "$choice" = "Monitor ${monNumber} (copy only)" ]; then
+        maim -g "$geometry" | xclip -selection clipboard -t image/png
+    elif [ "$choice" = "Monitor ${monNumber} (screenshot plus copy)" ]; then
+        maim -g "$geometry" | \
+        tee "$SHOT_DIR/mon${monNumber}-${date}.png" | \
+        xclip -selection clipboard -t image/png
+    else
+        err -e "Invalid Monitor Option '$choice'"
+        exit 1
+    fi
+}
+
+createOptionsArr() {
+    options=(
+        "Fullscreen"
+        "Active window"
+        "Selected region"
+        "Fullscreen (copy only)"
+        "Active window (copy only)"
+        "Selected region (copy only)"
+        "Fullscreen (screenshot plus copy)"
+        "Active window (screenshot plus copy)"
+        "Selected region (screenshot plus copy)"
+    )
+
+    # Create Monitor Options
+    local num=0
+    for monitor in "${MONITORS[@]}"; do
+        ((num++))
+
+        # Create each of these 3 monitor options for each attached monitor
+        options+=("Monitor $num")
+        options+=("Monitor $num (copy only)")
+        options+=("Monitor $num (screenshot plus copy)")
+    done
+
+    # Finish the options list with the 'Quit' option
+    options+=("Quit")
+}
 
 SHOT_DIR="$HOME/Pictures/Screenshots"
+NUMBER_OF_MONITORS=0
+MONITORS=()
 
-mkdir -p "$SHOT_DIR"
+if ! mkdir -p "$SHOT_DIR"; then
+    err -e "Error creating screenshot dir '$SHOT_DIR'"
+    exit 1
+fi
 
-declare -a options=(
-    "Fullscreen"
-    "Active window"
-    "Selected region"
-    "Fullscreen (copy only)"
-    "Active window (copy only)"
-    "Selected region (copy only)"
-    "Fullscreen (screenshot plus copy)"
-    "Active window (screenshot plus copy)"
-    "Selected region (screenshot plus copy)"
-    "Monitor 1"
-    "Monitor 2"
-    "Monitor 3"
-    "Monitor 1 (copy only)"
-    "Monitor 2 (copy only)"
-    "Monitor 3 (copy only)"
-    "Monitor 1 (screenshot plus copy)"
-    "Monitor 2 (screenshot plus copy)"
-    "Monitor 3 (screenshot plus copy)"
-    "Quit"
-)
+getMonitorsList
+if [ "$NUMBER_OF_MONITORS" -le 0 ]; then
+    err -e "You have no monitors?"
+    exit 1
+fi
+
+createOptionsArr
 
 choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p 'Take screenshot of:')
 
 case "$choice" in
     'Fullscreen')
-        maim "$SHOT_DIR"/full-"$(date '+%Y%m%d-%H%M%S')".png
+        maim "$SHOT_DIR/full-$(getDate).png"
     ;;
     'Active window')
-        maim -i "$(xdotool getactivewindow)" "$SHOT_DIR"/window-"$(date '+%Y%m%d-%H%M%S')".png
+        maim -i "$(xdotool getactivewindow)" "$SHOT_DIR/window-$(getDate).png"
     ;;
     'Selected region')
-        maim -s "$SHOT_DIR"/region-"$(date '+%Y%m%d-%H%M%S')".png
+        maim -s "$SHOT_DIR/region-$(getDate).png"
     ;;
     'Fullscreen (copy only)')
         maim | xclip -selection clipboard -t image/png
@@ -51,53 +133,27 @@ case "$choice" in
     ;;
     'Fullscreen (screenshot plus copy)')
         maim | \
-        tee "$SHOT_DIR"/full-"$(date '+%Y%m%d-%H%M%S')".png | \
+        tee "$SHOT_DIR/full-$(getDate).png" | \
         xclip -selection clipboard -t image/png
     ;;
     'Active window (screenshot plus copy)')
         maim -i "$(xdotool getactivewindow)" | \
-        tee "$SHOT_DIR"/window-"$(date '+%Y%m%d-%H%M%S')".png | \
+        tee "$SHOT_DIR/window-$(getDate).png" | \
         xclip -selection clipboard -t image/png
     ;;
     'Selected region (screenshot plus copy)')
         maim -s | \
-        tee "$SHOT_DIR"/region-"$(date '+%Y%m%d-%H%M%S')".png | \
+        tee "$SHOT_DIR/region-$(getDate).png" | \
         xclip -selection clipboard -t image/png
     ;;
-    'Monitor 1')
-        maim -g 1920x1080+0+0  "$SHOT_DIR"/mon1-"$(date '+%Y%m%d-%H%M%S')".png
+    Monitor*)
+        handleMonitor "$choice"
     ;;
-    'Monitor 2')
-        maim -g 1920x1080+1920+0  "$SHOT_DIR"/mon2-"$(date '+%Y%m%d-%H%M%S')".png
-    ;;
-    'Monitor 3')
-        maim -g 1920x1080+3840+0  "$SHOT_DIR"/mon3-"$(date '+%Y%m%d-%H%M%S')".png
-    ;;
-    'Monitor 1 (copy only)')
-        maim -g 1920x1080+0+0  | xclip -selection clipboard -t image/png
-    ;;
-    'Monitor 2 (copy only)')
-    maim -g 1920x1080+1920+0 | xclip -selection clipboard -t image/png
-    ;;
-    'Monitor 3 (copy only)')
-    maim -g 1920x1080+3840+0 | xclip -selection clipboard -t image/png
-    ;;
-    'Monitor 1 (screenshot plus copy)')
-        maim -g 1920x1080+0+0  | \
-        tee "$SHOT_DIR"/mon1-"$(date '+%Y%m%d-%H%M%S')".png | \
-        xclip -selection clipboard -t image/png
-    ;;
-    'Monitor 2 (screenshot plus copy)')
-        maim -g 1920x1080+1920+0 | \
-        tee "$SHOT_DIR"/mon2-"$(date '+%Y%m%d-%H%M%S')".png | \
-        xclip -selection clipboard -t image/png
-    ;;
-    'Monitor 3 (screenshot plus copy)')
-        maim -g 1920x1080+3840+0 | \
-        tee "$SHOT_DIR"/mon3-"$(date '+%Y%m%d-%H%M%S')".png | \
-        xclip -selection clipboard -t image/png
+    'Quit')
+        exit 0
     ;;
     *)
+        err -e "Invalid choice '$choice'"
         exit 1
     ;;
 esac
