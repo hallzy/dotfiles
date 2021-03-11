@@ -2,14 +2,26 @@
 
 # This script is to be used in conjunction with the external pipe feature of st
 
+err() {
+    /home/steven/Documents/git-repos/remote-github/dotfiles/.bin/err "$@"
+}
+
 urlCommon() {
-    sed 's/.*│//g' /dev/stdin | \
+    local terminalOutput;
+
+    terminalOutput="$(sed 's/.*│//g' /dev/stdin | \
         tr -d '\n' | \
         grep -aEo '(((http|https)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./&%?$#=_-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)' | \
         uniq | \
         tac | \
-        sed 's/^www./http:\/\/www\./g' | \
-        dmenu -i -l 10 -p "$1"
+        sed 's/^www./http:\/\/www\./g'
+    )"
+
+    if [ -z "$terminalOutput" ]; then
+        err -w "No URLs in current terminal";
+        exit 0;
+    fi
+    echo "$terminalOutput" | dmenu -i -l 10 -p "$1"
 }
 
 copyURL() {
