@@ -2160,4 +2160,4 @@ command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \     'git grep --line-number -- '.shellescape(<q-args>) . ' | grep -v "^public_html/library/"',
   \     0,
-  \     fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+  \     fzf#vim#with_preview({'options': '--delimiter : --nth 3..', 'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
