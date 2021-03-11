@@ -1,2 +1,14 @@
 #!/bin/bash
-tabbed -r 2 -c st -w ''
+
+DEBUG=0
+
+tabbedFunc() {
+    tabbed -r 2 -c st -w ''
+}
+
+if [ "$DEBUG" -gt 0 ]; then
+    notify-send "Debug logging for terminal is in /tmp/st.log"
+    tabbedFunc > /tmp/st.log 2>&1
+else
+    tabbedFunc
+fi
