@@ -116,7 +116,10 @@ source /etc/environment
 export REPOS=/home/steven/Documents/git-repos
 export dotfiles=/home/steven/Documents/git-repos/remote-github/dotfiles
 
-/usr/games/fortune quotes | /usr/games/cowsay -f tux
+# /usr/games/fortune quotes | /usr/games/cowsay -f tux
+
+# https://patorjk.com/software/taag/#p=display&h=2&v=1&f=RubiFont&t=BitKernel
+cat "$dotfiles/bitkernel.txt"
 
 
 # Sets the Mail Environment Variable

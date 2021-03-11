@@ -1,6 +1,6 @@
 [user]
   name = "Steven Hall"
-  email = Hallzy.18@gmail.com
+  email = steven.hall@gooseott.com
 [core]
   editor = nvim
   # Whitespace is used with "diff --check"
@@ -76,12 +76,12 @@
 
   su = "!f() { \
     daysBack=1; \
-    output=\"$(git standup -d ${daysBack} -D human)\"; \
+    output=\"$(git standup -R -d ${daysBack} -D human)\"; \
     while [ -z \"$output\" ] || [ \"$output\" = 'Seems like Steven Hall did nothing!' ]; do \
       daysBack=$((daysBack+1)); \
-      output=\"$(git standup -d ${daysBack} -D human)\"; \
+      output=\"$(git standup -R -d ${daysBack} -D human)\"; \
     done; \
-    git standup -d ${daysBack} -D human; \
+    git standup -R -d ${daysBack} -D human; \
   }; \
   f"
 
