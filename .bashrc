@@ -572,3 +572,10 @@ randomTVShowEpisode() { randomTVShowEpisode.php "${@}"; }
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# At present, batcat doesn't have the gruvbox theme in the version that is in
+# the ubuntu repos. It is however on their github page
+# v0.18.0 uses gruvbox-dark
+# v0.16.0 uses gruvbox
+# Currently I have v0.12.1
+export BAT_THEME=gruvbox-dark

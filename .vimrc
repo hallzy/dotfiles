@@ -36,6 +36,7 @@ else
   call plug#begin()
 endif
 
+" For fzf to have syntax highlighting in the preview window, install batcat
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
