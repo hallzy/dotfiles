@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -174,15 +176,19 @@ joinVideo () {
 # up () - moves up x number of directories. eg. up 4#{{{
 up () {
     local d=""
-    limit=$1
-    for ((i=1;i<=limit;i++)); do
-        d=$d/..
-    done
-    d=$(echo $d | sed 's/^\///')
-    if [ -z "$d" ]; then
-        d=..
+    local limit="$1"
+
+    if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
+        limit=1
     fi
-    cd $d
+
+    for ((i=1;i<=limit;i++)); do
+        d="../$d"
+    done
+
+    if ! cd "$d"; then
+        echo "Couldn't go up $limit dirs."
+    fi
 }
 #}}}
 
