@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ "$1" = "chrome" ]; then
+  BROWSER="/usr/bin/google-chrome"
+  shift 1
+elif [ "$1" = "brave" ]; then
+  BROWSER="/usr/bin/brave-browser"
+  shift 1
+fi
+
 ## Make sure that the browser variable is set.
 if [ -z "$BROWSER" ] && [ -z "$browser" ]; then
   echo "ERROR: \$BROWSER variable was not set"
@@ -59,6 +67,8 @@ REPO_URL="$(echo "$REPO_URL" | awk -F'[@:]' -v BRANCH="$BRANCH" -v DESTINATION="
       print "https://bitbucket.org/" $0 "/branch/" BRANCH "?dest=" DESTINATION;
     } else if (domain == "github.com") {
       print "https://github.com/" $0 "/compare/" DESTINATION "..." BRANCH;
+    } else if (domain == "gttgit.agileforge.tech") {
+        print "https://gttgit.agileforge.tech:9982/" $0 "/-/tree/" BRANCH;
     } else {
       print "Unknown domain: " DOMAIN;
       print "git open will need to be modified to work with this domain";

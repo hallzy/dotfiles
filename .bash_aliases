@@ -304,3 +304,13 @@ reduce_video_size() {
 sshAliases() {
     \grep "^Host " config | cut -d' ' -f2- | sort
 }
+
+player_test_cleanup() {
+    {
+        # Kill all browsermob processes
+        ps aux | awk ' /browsermob/ { print $2 }' | xargs -n1 -I{} kill {}
+
+        # Kill all chromedriver processes
+        ps aux | awk ' /chromedriver/ { print $2 }' | xargs -n1 -I{} kill {}
+    } 2> /dev/null
+}

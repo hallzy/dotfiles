@@ -2171,11 +2171,35 @@ function InsertConsoleLog()
   exec 'setlocal textwidth=' . l:tw
 endfunction
 
+function InsertDebugRequest()
+  " Save the current textwidth
+  let l:tw = &textwidth
+
+  " Disable textwidth so that nothing is wrapped
+  setlocal textwidth=0
+
+  exec 'normal! Onavigator.sendBeacon("https://stevendev.sendtonews.com/debug.php?logName=");'
+
+  " Restore the user's textwidth
+  exec 'setlocal textwidth=' . l:tw
+endfunction
+
+function InsertDebugPixel()
+  " Save the current textwidth
+  let l:tw = &textwidth
+
+  " Disable textwidth so that nothing is wrapped
+  setlocal textwidth=0
+
+  exec 'normal! Onew Image().src = "https://stevendev.sendtonews.com/debug.php?logName=";'
+
+  " Restore the user's textwidth
+  exec 'setlocal textwidth=' . l:tw
+endfunction
+
 nnoremap <leader>1 :call InsertConsoleLog()<cr>
-
-
-
-
+nnoremap <leader>2 :call InsertDebugRequest()<cr>
+nnoremap <leader>3 :call InsertDebugPixel()<cr>
 
 " Rewrote the defaults for these commands so that they would ignore the library
 " folder which is stuff that we don't write, and is all minified which makes it
@@ -2192,3 +2216,20 @@ command! -bang -nargs=* GGrep
   \     'git grep --line-number -- '.shellescape(<q-args>) . ' | grep -v "^public_html/library/" | grep -v "^node_modules/"',
   \     0,
   \     fzf#vim#with_preview({'options': '--delimiter : --nth 3..', 'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+
+function! MobxAction()
+  exec "normal! gv>\<esc>'<Oaction\<cr>(\<esc>'>o)\<esc>kk"
+endfunction
+
+command! -range Action call MobxAction()
+
+function! QuickCommitMsg(type)
+  let l:branch = fugitive#head()
+  let l:text = substitute(l:branch, '/', ' - ', 'g')
+  let l:text = substitute(l:text, '_', ' ', "g")
+  exec "normal! S" . a:type . " " . l:text
+endfunction
+
+command! Resolve call QuickCommitMsg('Resolves')
+command! WIP call QuickCommitMsg('WIP')
