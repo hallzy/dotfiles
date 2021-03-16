@@ -39,6 +39,7 @@
     }; \
     f"
   ssh = "!git_to_ssh.sh"
+  fork = "!git_fork.sh"
   open = "!git_open.sh"
   p = stash pop
   br = branch
