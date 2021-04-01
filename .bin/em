@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Emoji Manager
+
+emojis="$(cat <<EOF
+Canada Flag         - \U0001F1E8\U0001F1E6
+Laugh Cry           - \U0001F602
+Shrug               - ¯\_(ツ)_/¯
+Thumbs Up           - \U0001F44D
+United Kingdom Flag - \U0001F1EC\U0001F1E7
+United States Flag  - \U0001F1FA\U0001F1F8
+EOF
+)"
+
+
+echo -e "$emojis" | dmenu -i -l 10 | awk -F' *- *' '{ print $2 }' | tr -d "\n" | xclip -sel clip
