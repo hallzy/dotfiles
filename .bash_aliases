@@ -251,30 +251,35 @@ video_to_images() {
 }
 
 # Sometimes images come as small sections of a bigger image. This will take them
-# in alpha order and combine them into 1 large image given the number of rows
+# in alpha order and combine them into 1 large image given the number of columns
 # that this image is
 buildImageMontage() {
-    # I expect first argument to be the number of rows the image is, and the
+    # I expect first argument to be the number of columns the image is, and the
     # rest are the images to be used. Since this command is used to combine
     # images, I would expect no less than 2 images. So a minimum of 3 arguments
     # is required.
     if [ $# -lt 4 ]; then
         echo "Usage:"
-        echo "  buildImageMontage number-of-rows output-file file1 file2 [...fileN]"
+        echo "  buildImageMontage number-of-columns output-file file1 file2 [...fileN]"
         return 1
     fi
 
     if ! [[ "$1" =~ ^[0-9]+$ ]] || [ $1 -le 0 ]; then
         echo "Usage:"
-        echo "  buildImageMontage number-of-rows file1 file2 [...fileN]"
+        echo "  buildImageMontage number-of-columns file1 file2 [...fileN]"
         echo ""
-        echo "  number-of-rows must be an integer greater than 0."
+        echo "  number-of-columns must be an integer greater than 0."
         return 1
     fi
 
-    local numberOfRows=$1
+    local numberOfCols=$1
     local out="$2"
     shift 2
 
-    montage "$@" -tile "$numberOfRows" -geometry +0+0 "$out"
+    if [ -f "$out" ]; then
+        echo "Output file '$out' already exists. Aborting.";
+        return 1;
+    fi
+
+    montage "$@" -tile "$numberOfCols" -geometry +0+0 "$out"
 }
