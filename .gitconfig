@@ -97,6 +97,13 @@
     }; \
     f"
 
+  copr  = "!f() { \
+      remote=\"${2:-$(git remote | /bin/grep ^upstream || echo origin)}\"; \
+      git pr $1 $remote; \
+      git config --local branch.pr/$1.git-radar-tracked-remote $remote/master; \
+    }; \
+    f"
+
   # Show log as oneliner
   ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=short
   lsgraphall = !git ls --decorate --graph --all
