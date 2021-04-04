@@ -2,15 +2,110 @@
 
 # Emoji Manager
 
+normalizeString() {
+    echo "$1" | tr 'abcdefghijklmnopqrstuvwxyz' 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+}
+
+char2emoji() {
+    local letter="$1";
+    local offset;
+    local a_ascii=65
+    local idx;
+    local a_emoji=0x1F1E6;
+
+    if [ "$letter" = " " ]; then
+        # Space, so add additional spaces to help separate the emojis
+        echo "   ";
+        return;
+    elif [ "$letter" = "?" ]; then
+        echo "\U00002754";
+        return;
+    elif [ "$letter" = "!" ]; then
+        echo "\U00002755";
+        return;
+    elif ! echo "$letter" | grep -q "^[A-Z]$"; then
+        echo "$letter";
+        return;
+    fi
+
+    offset="$(printf "%d" "'$letter")";
+
+    idx=$((offset-a_ascii))
+
+    printf "\\\U000%x" "$((a_emoji+idx))"
+}
+
+emojify() {
+    local string="$1"
+    local char;
+    local ret="";
+
+    string="$(normalizeString "$string")"
+
+    for (( i=1; i<=${#string}; i++ )); do
+        char="$(printf '%s\n' "$string" | cut -c${i})"
+
+        ret="${ret} $(char2emoji "$char")"
+    done
+
+    echo -e "$ret"
+}
+
 emojis="$(cat <<EOF
-Canada Flag         - \U0001F1E8\U0001F1E6
-Laugh Cry           - \U0001F602
-Shrug               - ¯\_(ツ)_/¯
-Thumbs Up           - \U0001F44D
-United Kingdom Flag - \U0001F1EC\U0001F1E7
-United States Flag  - \U0001F1FA\U0001F1F8
+Emojify String
+Canada Flag                 - \U0001F1E8\U0001F1E6
+Check correct tick          - ✔️
+Confused                    - 「(°ヘ°)
+Confused                    - 😕
+Confused shrug              - ¯\(°_o)/¯
+Cross wrong x               - ❌
+Crying                      - ༼ ༎ຶ ෴ ༎ຶ༽
+Crying                      - 😢
+Degrees                     - °
+Disappointed Sad            - 😞
+Exclamation Mark            - \U00002755
+Facepalm                    - 🤦
+Fingers crossed             - 🤞
+Fist Bump                   - 🤜🤛
+Fist Bump Distance          - 🤜        🤛
+Flipping Table              - (╯°□°）╯︵ ┻━┻
+Happy                       - (✿◠‿◠)
+I see what you did there    - (͡° ͜ʖ ͡°)
+Laugh Cry                   - 😂
+Loudly Crying               - 😭
+Middle Finger               - (凸ಠ益ಠ)凸
+Middle Finger               - 🖕
+OK okay Perfect             - 👌
+Pointing down               - 👇
+Pointing up                 - ☝️
+Poop                        - 💩
+Question Mark               - \U00002754
+Shifty Eyes                 - (¬､¬)
+Shrug                       - ¯\_(ツ)_/¯
+Sleep Zzz boring tired      - 💤
+Surprised                   - (ﾉﾟ0ﾟ)ﾉ
+Thumbs Up                   - 👍
+Thumbs down                 - 👎
+United Kingdom Flag         - \U0001F1EC\U0001F1E7
+United States American Flag - \U0001F1FA\U0001F1F8
+Vulcan salute greetings     - 🖖
 EOF
 )"
 
+choice="$(echo -e "$emojis" | dmenu -i -l 10)";
 
-echo -e "$emojis" | dmenu -i -l 10 | awk -F' *- *' '{ print $2 }' | tr -d "\n" | xclip -sel clip
+if [ "$choice" = "" ]; then
+    exit 0;
+elif [ "$choice" = "Emojify String" ]; then
+    string="$(echo "" | dmenu -i -p "Enter a String: ")";
+
+    if [ "$string" = "" ]; then
+        exit 0;
+    fi
+
+    toCopy="$(emojify "$string")"
+else
+    toCopy="$(echo "$choice" | awk -F' *- *' '{ print $2 }')";
+fi
+
+echo "$toCopy" | tr -d "\n" | xclip -sel clip;
