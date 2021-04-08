@@ -42,6 +42,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'pangloss/vim-javascript', {'for': [ 'javascript' ]}
 
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'jwalton512/vim-blade', {'for' : ['blade']}
@@ -262,6 +264,7 @@ set spelllang=en_ca
 set spell
 set nostartofline     " when using gg or G, stay in the same column
 set virtualedit=block " Allow block selections to go past the last characters
+set termguicolors     " Enables 24-bit RGB colours
 
 set nrformats=hex,bin
 
