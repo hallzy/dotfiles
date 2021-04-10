@@ -53,43 +53,47 @@ emojify() {
 
 emojis="$(cat <<EOF
 Emojify String
-Canada Flag                 - \U0001F1E8\U0001F1E6
-Check correct tick          - ✔️
-Confused                    - 「(°ヘ°)
-Confused                    - 😕
-Confused shrug              - ¯\(°_o)/¯
-Cross wrong x               - ❌
-Crying                      - ༼ ༎ຶ ෴ ༎ຶ༽
-Crying                      - 😢
-Degrees                     - °
-Disappointed Sad            - 😞
-Drooling                    - 🤤
-Exclamation Mark            - \U00002755
-Facepalm                    - 🤦
-Fingers crossed             - 🤞
-Fist Bump                   - 🤜🤛
-Fist Bump Distance          - 🤜        🤛
-Flipping Table              - (╯°□°）╯︵ ┻━┻
-Happy                       - (✿◠‿◠)
-I see what you did there    - (͡° ͜ʖ ͡°)
-Laugh Cry                   - 😂
-Loudly Crying               - 😭
-Middle Finger               - (凸ಠ益ಠ)凸
-Middle Finger               - 🖕
-OK okay Perfect             - 👌
-Pointing down               - 👇
-Pointing up                 - ☝️
-Poop                        - 💩
-Question Mark               - \U00002754
-Shifty Eyes                 - (¬､¬)
-Shrug                       - ¯\_(ツ)_/¯
-Sleep Zzz boring tired      - 💤
-Surprised                   - (ﾉﾟ0ﾟ)ﾉ
-Thumbs Up                   - 👍
-Thumbs down                 - 👎
-United Kingdom Flag         - \U0001F1EC\U0001F1E7
-United States American Flag - \U0001F1FA\U0001F1F8
-Vulcan salute greetings     - 🖖
+
+check correct tick          - ✔
+confused                    - 😕
+cross wrong x               - ❌
+crying                      - 😢
+disappointed sad            - 😞
+drooling                    - 🤤
+exclamation mark            - ❕
+facepalm                    - 🤦
+fingers crossed             - 🤞
+fist bump                   - 🤜🤛
+fist bump distance          - 🤜        🤛
+laugh cry                   - 😂
+loudly crying               - 😭
+middle finger               - 🖕
+ok okay perfect             - 👌
+pointing down               - 👇
+pointing up                 - 👆
+poop                        - 💩
+question mark               - ❔
+sleep zzz boring tired      - 💤
+thumbs up                   - 👍
+thumbs down                 - 👎
+vulcan salute greetings     - 🖖
+
+canada flag                 - 🇨🇦
+united kingdom flag         - 🇬🇧
+united states american flag - 🇺🇸
+
+confused                    - 「(°ヘ°)
+confused shrug              - ¯\(°_o)/¯
+crying                      - ༼ ༎ຶ ෴ ༎ຶ༽
+flipping table              - (╯°□°）╯︵ ┻━┻
+happy                       - (✿◠‿◠)
+i see what you did there    - (͡° ͜ʖ ͡°)
+middle finger               - (凸ಠ益ಠ)凸
+shifty eyes                 - (¬､¬)
+shrug                       - ¯\_(ツ)_/¯
+surprised                   - (ﾉﾟ0ﾟ)ﾉ
+
+degrees                     - °
 EOF
 )"
 
