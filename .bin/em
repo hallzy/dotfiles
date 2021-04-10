@@ -97,12 +97,12 @@ degrees                     - °
 EOF
 )"
 
-choice="$(echo -e "$emojis" | dmenu -i -l 10)";
+choice="$(echo -e "$emojis" | dmenu -i -l 20 -c)";
 
 if [ "$choice" = "" ]; then
     exit 0;
 elif [ "$choice" = "Emojify String" ]; then
-    string="$(echo "" | dmenu -i -p "Enter a String: ")";
+    string="$(echo "" | dmenu -c -i -p "Enter a String: ")";
 
     if [ "$string" = "" ]; then
         exit 0;
