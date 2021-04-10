@@ -472,8 +472,8 @@ __prompt_command() {
 }
 
 ## Some Defaults
-export EDITOR="/usr/bin/vim"
-export editor="/usr/bin/vim"
+export EDITOR="/usr/bin/nvim"
+export editor="/usr/bin/nvim"
 ### As far as I know this isn't used for anything by default, but I will use it
 ### for my own stuff including my "git open" alias. Whenever I used the commands
 ### that are supposed to open my default browser it always opens up chrome
