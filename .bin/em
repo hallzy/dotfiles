@@ -54,6 +54,7 @@ emojify() {
 emojis="$(cat <<EOF
 Emojify String
 
+angry livid mad             - 😠
 check correct tick          - ✔
 confused                    - 😕
 cross wrong x               - ❌
@@ -74,8 +75,8 @@ pointing up                 - 👆
 poop                        - 💩
 question mark               - ❔
 sleep zzz boring tired      - 💤
-thumbs up                   - 👍
 thumbs down                 - 👎
+thumbs up                   - 👍
 vulcan salute greetings     - 🖖
 
 canada flag                 - 🇨🇦
