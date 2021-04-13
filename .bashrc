@@ -1,4 +1,5 @@
 #!/bin/bash
+export HOME=/home/steven
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -112,8 +113,8 @@ fi
 
 source /etc/environment
 
-export REPOS=~/Documents/git-repos
-export dotfiles=~/Documents/git-repos/remote-github/dotfiles
+export REPOS=/home/steven/Documents/git-repos
+export dotfiles=/home/steven/Documents/git-repos/remote-github/dotfiles
 
 /usr/games/fortune quotes | /usr/games/cowsay -f tux
 

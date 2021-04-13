@@ -53,15 +53,19 @@ emojify() {
 
 emojis="$(cat <<EOF
 Emojify String
+Get Current Time
 
+among us                    - 🤫👨‍🚀🔫
 angry livid mad             - 😠
-check correct tick          - ✔
+check correct tick          - ✅
 confused                    - 😕
 cross wrong x               - ❌
 crying                      - 😢
 disappointed sad            - 😞
 drooling                    - 🤤
 exclamation mark            - ❕
+expressionless ughh         - 😑
+eye roll rolling            - 🙄
 facepalm                    - 🤦
 fingers crossed             - 🤞
 fist bump                   - 🤜🤛
@@ -69,32 +73,64 @@ fist bump distance          - 🤜        🤛
 laugh cry                   - 😂
 loudly crying               - 😭
 middle finger               - 🖕
+moo cow                     - 🐄
+neutral face oops           - 😐
 ok okay perfect             - 👌
 pointing down               - 👇
 pointing up                 - 👆
 poop                        - 💩
 question mark               - ❔
+raised eyebrow              - 🤨
+rofl rolling floor laughing - 🤣
 sleep zzz boring tired      - 💤
+snake                       - 🐍
+thinking hmm                - 🤔
 thumbs down                 - 👎
 thumbs up                   - 👍
+trex                        - 🦖
 vulcan salute greetings     - 🖖
+
+12:00 - 🕛
+12:30 - 🕧
+1:00  - 🕐
+1:30  - 🕜
+2:00  - 🕑
+2:30  - 🕝
+3:00  - 🕒
+3:30  - 🕞
+4:00  - 🕓
+4:30  - 🕟
+5:00  - 🕔
+5:30  - 🕠
+6:00  - 🕕
+6:30  - 🕡
+7:00  - 🕖
+7:30  - 🕢
+8:00  - 🕗
+8:30  - 🕣
+9:00  - 🕘
+9:30  - 🕤
+10:00 - 🕙
+10:30 - 🕥
+11:00 - 🕚
+11:30 - 🕦
 
 canada flag                 - 🇨🇦
 united kingdom flag         - 🇬🇧
 united states american flag - 🇺🇸
 
-confused                    - 「(°ヘ°)
-confused shrug              - ¯\(°_o)/¯
-crying                      - ༼ ༎ຶ ෴ ༎ຶ༽
-flipping table              - (╯°□°）╯︵ ┻━┻
-happy                       - (✿◠‿◠)
-i see what you did there    - (͡° ͜ʖ ͡°)
-middle finger               - (凸ಠ益ಠ)凸
-shifty eyes                 - (¬､¬)
-shrug                       - ¯\_(ツ)_/¯
-surprised                   - (ﾉﾟ0ﾟ)ﾉ
+confused                 - 「(°ヘ°)
+confused shrug           - ¯\(°_o)/¯
+crying                   - ༼ ༎ຶ ෴ ༎ຶ༽
+flipping table           - (╯°□°）╯︵ ┻━┻
+happy                    - (✿◠‿◠)
+i see what you did there - (͡° ͜ʖ ͡°)
+middle finger            - (凸ಠ益ಠ)凸
+shifty eyes              - (¬､¬)
+shrug                    - ¯\_(ツ)_/¯
+surprised                - (ﾉﾟ0ﾟ)ﾉ
 
-degrees                     - °
+degrees - °
 EOF
 )"
 
@@ -110,6 +146,28 @@ elif [ "$choice" = "Emojify String" ]; then
     fi
 
     toCopy="$(emojify "$string")"
+elif [ "$choice" = "Get Current Time" ]; then
+    hour="$(date '+%-l')"
+    min="$(date '+%M')"
+
+    if [ "$min" -lt 15 ]; then
+        min="00";
+    elif [ "$min" -lt 45 ]; then
+        min="30";
+    elif [ "$min" -le 59 ]; then
+        min="00";
+        hour=$((hour+1))
+    fi
+
+    if [ "$hour" -gt 12 ]; then
+        hour=1
+    fi
+
+    time="${hour}:${min}";
+
+    choice="$(echo -e "$emojis" | env grep -F "${time}")"
+
+    toCopy="$(echo "$choice" | awk -F' *- *' '{ print $2 }')";
 else
     toCopy="$(echo "$choice" | awk -F' *- *' '{ print $2 }')";
 fi
