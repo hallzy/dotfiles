@@ -55,6 +55,7 @@ emojis="$(cat <<EOF
 Emojify String
 Get Current Time
 
+100 points perfect a+       - 💯
 among us                    - 🤫👨‍🚀🔫
 angry livid mad             - 😠
 car vehicle                 - 🚗
@@ -71,10 +72,12 @@ facepalm                    - 🤦
 fingers crossed             - 🤞
 fist bump                   - 🤜🤛
 fist bump distance          - 🤜        🤛
+grinning open smile         - 😀
 laugh cry                   - 😂
 loudly crying               - 😭
 middle finger               - 🖕
 moo cow                     - 🐄
+nerd face                   - 🤓
 neutral face oops           - 😐
 ok okay perfect             - 👌
 pointing down               - 👇
@@ -83,14 +86,21 @@ poop                        - 💩
 question mark               - ❔
 raised eyebrow              - 🤨
 rofl rolling floor laughing - 🤣
+savoring delicious tasty    - 😋
 sleep zzz boring tired      - 💤
 snake                       - 🐍
+squinting happy tongue      - 😝
+sunglasses cool confident   - 😎
 thinking hmm                - 🤔
 thumbs down                 - 👎
 thumbs up                   - 👍
+tongue out                  - 😛
 trex                        - 🦖
 vulcan salute greetings     - 🖖
+winking                     - 😉
+winking tongue              - 😜
 wrench tool                 - 🔧
+zaney silly tongue          - 🤪
 
 12:00 - 🕛
 12:30 - 🕧
