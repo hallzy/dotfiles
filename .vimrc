@@ -1100,11 +1100,12 @@ endfunction
 set wildmode=list:longest,list:full
 set complete=.,w,t
 function! InsertTabWrapper()
-    let l:col = col('.') - 1
-    if !l:col || getline('.')[l:col - 1] !~# '\k'
+    let l:col = virtcol('.')
+    let l:firstNonWhitespaceCol = indent(line('.')) + 1
+    if l:col <= l:firstNonWhitespaceCol
         return "\<tab>"
     else
-        return "\<c-p>"
+        return repeat(" ", &tabstop)
     endif
 endfunction
 "}}}
