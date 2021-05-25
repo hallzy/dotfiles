@@ -9,7 +9,9 @@
 # to manually overwrite it every once in a while.
 
 MANUALLY_INSTALLED_VERSION="/usr/lib/libXft.so.2"
+
 TARGET_LOCATION="/usr/lib/x86_64-linux-gnu/libXft.so.2"
+TARGET_LOCATION_BAK="/usr/lib/x86_64-linux-gnu/libXft.so.2.3.3"
 
 if [ ! -f "$MANUALLY_INSTALLED_VERSION" ]; then
     echo "Manually installed version file does not exist [${MANUALLY_INSTALLED_VERSION}]"
@@ -17,8 +19,13 @@ if [ ! -f "$MANUALLY_INSTALLED_VERSION" ]; then
 fi
 
 if [ ! -f "$TARGET_LOCATION" ]; then
-    echo "Target file does not exist [${TARGET_LOCATION}]"
-    exit 1
+    echo "Target file does not exist [${TARGET_LOCATION}]. Trying backup..."
+    if [ ! -f "$TARGET_LOCATION_BAK" ]; then
+        echo "Backup Target file also does not exist [${TARGET_LOCATION_BAK}]"
+        exit 1
+    fi
+
+    TARGET_LOCATION="$TARGET_LOCATION_BAK"
 fi
 
 sudo ln -sf "$MANUALLY_INSTALLED_VERSION" "$TARGET_LOCATION"
