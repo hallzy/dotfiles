@@ -4,6 +4,7 @@ if [ -n "$1" ] && ( [ "$1" = "--seconds" ] || [ "$1" = "-s" ] ); then
     code='
         print (HR * 3600) + (MIN * 60) + SEC
     ';
+    shift
 else
     code='
         HR  = (HR == 0)              ? "" : (HR+0 "h ")
