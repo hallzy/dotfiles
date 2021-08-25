@@ -40,6 +40,8 @@ endif
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'airblade/vim-rooter'
+
 Plug 'pangloss/vim-javascript', {'for': [ 'javascript' ]}
 
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -1845,6 +1847,17 @@ augroup vimrcEx
         \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe "normal g`\"" |
         \ endif
+augroup END
+
+"}}}
+" template files "{{{
+
+augroup templateGroup
+  autocmd!
+  autocmd BufRead,BufNewFile *.css.template set filetype=css
+  autocmd BufRead,BufNewFile *.js.template set filetype=javascript
+  autocmd BufRead,BufNewFile *.html.template set filetype=html
+  autocmd BufRead,BufNewFile *.svg.template set filetype=svg
 augroup END
 
 "}}}
