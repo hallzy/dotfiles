@@ -51,3 +51,6 @@ if [ "$(hostname)" = 'stn-dell-xps' ]; then
 	# Without this, things like android studio and php storm do not work
 	export _JAVA_AWT_WM_NONREPARENTING=1
 fi
+
+randomImage="$(find /home/steven/Documents/git-repos/remote-github/random-desktop/desktop_backgrounds -type f | shuf -n 1)"
+feh --bg-max "$randomImage"
