@@ -1067,6 +1067,8 @@ let g:Hexokinase_optInPatterns = [
 \     'colour_names'
 \ ]
 
+let g:Hexokinase_highlighters = ['backgroundfull']
+
 "}}}
 
 "}}}
