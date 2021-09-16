@@ -284,3 +284,20 @@ buildImageMontage() {
 
     montage "$@" -tile "$numberOfCols" -geometry +0+0 "$out"
 }
+
+reduce_video_size() {
+    # Factor of 4 for example reduces video size to 1/4 the size
+    local reduceFactor="$1"
+    local inputFile="$2"
+    local outputFile="$3"
+
+    if ! [[ "$reduceFactor" =~ ^[0-9]+$ ]] || [ $reduceFactor -le 0 ]; then
+        echo "Usage:"
+        echo "  reduce_video_size reduceFactor inputFile outputFile"
+        echo ""
+        echo "  reduceFactor must be an integer greater than 0."
+        return 1
+    fi
+
+    ffmpeg -i "$inputFile" -vf "scale=iw/$reduceFactor:ih/$reduceFactor" "$outputFile"
+}
