@@ -6,6 +6,9 @@ alias vim='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
 
+# Show previous month, current month, and next month by default
+alias cal='cal -3'
+
 # some more ls aliases
 alias ls='ls -Fh --color'
 alias lal='ls -hAlF'
