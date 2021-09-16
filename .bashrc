@@ -490,23 +490,139 @@ export NVM_DIR="/home/steven/.nvm"
 # format is 38;5;<foreground colour>;48;5;<background color>
 # the 38;5 and 48;5 signify 256 bit colours
 # Use this to find colour numbers: https://jonasjacek.github.io/colors/
-LS_COLORS=$LS_COLORS:'di=38;5;142:' # Directory
-LS_COLORS=$LS_COLORS:'ow=38;5;142:' # Other-Writable dir
-LS_COLORS=$LS_COLORS:'ln=38;5;109:' # Symlinks
-LS_COLORS=$LS_COLORS:'or=38;5;208:' # Orphan (symlink to nowhere)
-LS_COLORS=$LS_COLORS:'ex=38;5;167:' # Executable
-LS_COLORS=$LS_COLORS:'fi=38;5;229:' # File
+LS_COLORS="";
+LS_COLORS="${LS_COLORS}rs=0:"
+LS_COLORS="${LS_COLORS}di=38;5;142:"  # Directories
+LS_COLORS="${LS_COLORS}ln=38;5;109:"  # Symlinks
+LS_COLORS="${LS_COLORS}mh=00:"        # Multi-hardlink
+LS_COLORS="${LS_COLORS}pi=40;33:"     # Named Pipe
+LS_COLORS="${LS_COLORS}so=01;35:"     # Socket
+LS_COLORS="${LS_COLORS}do=01;35:"     # Door
+LS_COLORS="${LS_COLORS}bd=40;33;01:"  # Block Device
+LS_COLORS="${LS_COLORS}cd=40;33;01:"  # Character Device
+LS_COLORS="${LS_COLORS}or=38;5;208:"  # Orphan (symlink to nowhere)
+LS_COLORS="${LS_COLORS}mi=00:"        # Missing File
+LS_COLORS="${LS_COLORS}su=37;41:"     # File that is setuid (u+s)
+LS_COLORS="${LS_COLORS}sg=30;43:"     # File that is setgid (g+s)
+LS_COLORS="${LS_COLORS}ca=30;41:"     # File with capability
+LS_COLORS="${LS_COLORS}tw=30;42:"     # Directory that is sticky and other-writable (+t,o+w)
+LS_COLORS="${LS_COLORS}ow=38;5;142:"  # Other-Writiable Dir
+LS_COLORS="${LS_COLORS}st=37;44:"     # Directory with the sticky bit set (+t) and not other-writable
+LS_COLORS="${LS_COLORS}ex=38;5;167:"  # Executable
+LS_COLORS="${LS_COLORS}fi=38;5;229:"  # Regular File
+LS_COLORS="${LS_COLORS}*.tar=01;31:"
+LS_COLORS="${LS_COLORS}*.tgz=01;31:"
+LS_COLORS="${LS_COLORS}*.arc=01;31:"
+LS_COLORS="${LS_COLORS}*.arj=01;31:"
+LS_COLORS="${LS_COLORS}*.taz=01;31:"
+LS_COLORS="${LS_COLORS}*.lha=01;31:"
+LS_COLORS="${LS_COLORS}*.lz4=01;31:"
+LS_COLORS="${LS_COLORS}*.lzh=01;31:"
+LS_COLORS="${LS_COLORS}*.lzma=01;31:"
+LS_COLORS="${LS_COLORS}*.tlz=01;31:"
+LS_COLORS="${LS_COLORS}*.txz=01;31:"
+LS_COLORS="${LS_COLORS}*.tzo=01;31:"
+LS_COLORS="${LS_COLORS}*.t7z=01;31:"
+LS_COLORS="${LS_COLORS}*.zip=01;31:"
+LS_COLORS="${LS_COLORS}*.z=01;31:"
+LS_COLORS="${LS_COLORS}*.dz=01;31:"
+LS_COLORS="${LS_COLORS}*.gz=01;31:"
+LS_COLORS="${LS_COLORS}*.lrz=01;31:"
+LS_COLORS="${LS_COLORS}*.lz=01;31:"
+LS_COLORS="${LS_COLORS}*.lzo=01;31:"
+LS_COLORS="${LS_COLORS}*.xz=01;31:"
+LS_COLORS="${LS_COLORS}*.zst=01;31:"
+LS_COLORS="${LS_COLORS}*.tzst=01;31:"
+LS_COLORS="${LS_COLORS}*.bz2=01;31:"
+LS_COLORS="${LS_COLORS}*.bz=01;31:"
+LS_COLORS="${LS_COLORS}*.tbz=01;31:"
+LS_COLORS="${LS_COLORS}*.tbz2=01;31:"
+LS_COLORS="${LS_COLORS}*.tz=01;31:"
+LS_COLORS="${LS_COLORS}*.deb=01;31:"
+LS_COLORS="${LS_COLORS}*.rpm=01;31:"
+LS_COLORS="${LS_COLORS}*.jar=01;31:"
+LS_COLORS="${LS_COLORS}*.war=01;31:"
+LS_COLORS="${LS_COLORS}*.ear=01;31:"
+LS_COLORS="${LS_COLORS}*.sar=01;31:"
+LS_COLORS="${LS_COLORS}*.rar=01;31:"
+LS_COLORS="${LS_COLORS}*.alz=01;31:"
+LS_COLORS="${LS_COLORS}*.ace=01;31:"
+LS_COLORS="${LS_COLORS}*.zoo=01;31:"
+LS_COLORS="${LS_COLORS}*.cpio=01;31:"
+LS_COLORS="${LS_COLORS}*.7z=01;31:"
+LS_COLORS="${LS_COLORS}*.rz=01;31:"
+LS_COLORS="${LS_COLORS}*.cab=01;31:"
+LS_COLORS="${LS_COLORS}*.wim=01;31:"
+LS_COLORS="${LS_COLORS}*.swm=01;31:"
+LS_COLORS="${LS_COLORS}*.dwm=01;31:"
+LS_COLORS="${LS_COLORS}*.esd=01;31:"
+LS_COLORS="${LS_COLORS}*.jpg=01;35:"
+LS_COLORS="${LS_COLORS}*.webp=01;35:"   # webp files
+LS_COLORS="${LS_COLORS}*.jpeg=01;35:"
+LS_COLORS="${LS_COLORS}*.mjpg=01;35:"
+LS_COLORS="${LS_COLORS}*.mjpeg=01;35:"
+LS_COLORS="${LS_COLORS}*.gif=01;35:"
+LS_COLORS="${LS_COLORS}*.bmp=01;35:"
+LS_COLORS="${LS_COLORS}*.pbm=01;35:"
+LS_COLORS="${LS_COLORS}*.pgm=01;35:"
+LS_COLORS="${LS_COLORS}*.ppm=01;35:"
+LS_COLORS="${LS_COLORS}*.tga=01;35:"
+LS_COLORS="${LS_COLORS}*.xbm=01;35:"
+LS_COLORS="${LS_COLORS}*.xpm=01;35:"
+LS_COLORS="${LS_COLORS}*.tif=01;35:"
+LS_COLORS="${LS_COLORS}*.tiff=01;35:"
+LS_COLORS="${LS_COLORS}*.png=01;35:"
+LS_COLORS="${LS_COLORS}*.svg=01;35:"
+LS_COLORS="${LS_COLORS}*.svgz=01;35:"
+LS_COLORS="${LS_COLORS}*.mng=01;35:"
+LS_COLORS="${LS_COLORS}*.pcx=01;35:"
+LS_COLORS="${LS_COLORS}*.mov=01;38:"
+LS_COLORS="${LS_COLORS}*.mpg=01;38:"
+LS_COLORS="${LS_COLORS}*.mpeg=01;38:"
+LS_COLORS="${LS_COLORS}*.m2v=01;38:"
+LS_COLORS="${LS_COLORS}*.mkv=01;38:"
+LS_COLORS="${LS_COLORS}*.webm=01;38:"
+LS_COLORS="${LS_COLORS}*.ogm=01;35:"
+LS_COLORS="${LS_COLORS}*.mp4=01;38:"
+LS_COLORS="${LS_COLORS}*.m4v=01;38:"
+LS_COLORS="${LS_COLORS}*.mp4v=01;38:"
+LS_COLORS="${LS_COLORS}*.vob=01;38:"
+LS_COLORS="${LS_COLORS}*.qt=01;38:"
+LS_COLORS="${LS_COLORS}*.nuv=01;35:"
+LS_COLORS="${LS_COLORS}*.wmv=01;35:"
+LS_COLORS="${LS_COLORS}*.asf=01;35:"
+LS_COLORS="${LS_COLORS}*.rm=01;35:"
+LS_COLORS="${LS_COLORS}*.rmvb=01;35:"
+LS_COLORS="${LS_COLORS}*.flc=01;35:"
+LS_COLORS="${LS_COLORS}*.avi=01;38:"
+LS_COLORS="${LS_COLORS}*.fli=01;35:"
+LS_COLORS="${LS_COLORS}*.flv=01;38:"
+LS_COLORS="${LS_COLORS}*.gl=01;35:"
+LS_COLORS="${LS_COLORS}*.dl=01;35:"
+LS_COLORS="${LS_COLORS}*.xcf=01;35:"
+LS_COLORS="${LS_COLORS}*.xwd=01;35:"
+LS_COLORS="${LS_COLORS}*.yuv=01;35:"
+LS_COLORS="${LS_COLORS}*.cgm=01;35:"
+LS_COLORS="${LS_COLORS}*.emf=01;35:"
+LS_COLORS="${LS_COLORS}*.ogv=01;38:"
+LS_COLORS="${LS_COLORS}*.ogx=01;35:"
+LS_COLORS="${LS_COLORS}*.aac=00;36:"
+LS_COLORS="${LS_COLORS}*.au=00;36:"
+LS_COLORS="${LS_COLORS}*.flac=00;36:"
+LS_COLORS="${LS_COLORS}*.m4a=00;36:"
+LS_COLORS="${LS_COLORS}*.mid=00;36:"
+LS_COLORS="${LS_COLORS}*.midi=00;36:"
+LS_COLORS="${LS_COLORS}*.mka=00;36:"
+LS_COLORS="${LS_COLORS}*.mp3=00;36:"
+LS_COLORS="${LS_COLORS}*.mpc=00;36:"
+LS_COLORS="${LS_COLORS}*.ogg=00;36:"
+LS_COLORS="${LS_COLORS}*.ra=00;36:"
+LS_COLORS="${LS_COLORS}*.wav=00;36:"
+LS_COLORS="${LS_COLORS}*.oga=00;36:"
+LS_COLORS="${LS_COLORS}*.opus=00;36:"
+LS_COLORS="${LS_COLORS}*.spx=00;36:"
+LS_COLORS="${LS_COLORS}*.xspf=00;36:"
 # no  -> Anything not covered by something else (default)
-# pi  -> Named Pipe
-# do  -> Door
-# bd  -> Block device
-# cd  -> Character device
-# so  -> Socket
-# su  -> File that is setuid (u+s)
-# sg  -> File that is setgid (g+s)
-# tw  -> Directory that is sticky and other-writable (+t,o+w)
-# st  -> Directory with the sticky bit set (+t) and not other-writable
-# *.extension  -> Every file using this extension e.g. *.jpg
 export LS_COLORS
 
 export GOPATH="$HOME/go"
