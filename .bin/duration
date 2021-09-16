@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -n "$1" ] && ( [ "$1" = "--seconds" ] || [ "$1" = "-s" ] ); then
+if [ -n "$1" ] && { [ "$1" = "--seconds" ] || [ "$1" = "-s" ] ; }; then
     code='
         print (HR * 3600) + (MIN * 60) + SEC
     ';
@@ -14,12 +14,16 @@ else
     ';
 fi
 
-ffmpeg -i "$1" 2>&1 | awk -F'[ ,:]+' "
-    \$2 == \"Duration\" {
-        HR  = \$3;
-        MIN = \$4;
-        SEC = \$5;
+for file in "$@"; do
+    echo "$file";
+    ffmpeg -i "$file" 2>&1 | awk -F'[ ,:]+' "
+        \$2 == \"Duration\" {
+            HR  = \$3;
+            MIN = \$4;
+            SEC = \$5;
 
-        $code
-    }
-";
+            $code
+        }
+    ";
+    echo ""
+done
