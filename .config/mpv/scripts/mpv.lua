@@ -10,6 +10,8 @@ timer:kill();
 
 -- When a file is loaded turn looping back on and resume the timer
 mp.register_event("file-loaded", function()
+    filePath = mp.get_property("path");
+    mp.commandv("run", "/bin/sh", "-c", "echo 'FILE PATH: " .. filePath .. "'");
     mp.set_property("loop-file", "yes");
     timer:resume();
 end);
@@ -39,4 +41,13 @@ mp.add_key_binding("ctrl+x", function()
 
     -- Open in SXIV
     mp.commandv("run", "/bin/sh", "-c", "/usr/local/bin/sxiv '" .. filePath .. "'");
+end);
+
+-- Ctrl+d will delete the current file
+mp.add_key_binding("ctrl+d", function()
+    -- Get the path to the file
+    filePath = mp.get_property("path");
+
+    -- Delete file
+    mp.commandv("run", "/bin/sh", "-c", "/bin/rm '" .. filePath .. "'");
 end);
