@@ -45,7 +45,7 @@
   open = "!git_open.sh"
   p = stash pop
   br = branch
-  ci = !git diff --check --cached && git diff --check && stn_format_check.sh && stn_format_check.sh cached && git commit -v
+  ci = !git diff --check --cached && git diff --check && git commit -v
   st = status
   s = status -sb
   d = diff --word-diff
