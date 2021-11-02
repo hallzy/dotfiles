@@ -138,7 +138,7 @@ alias reallykill='kill -9'
 alias diskspace='df -kh .'
 
 # Get disk usage for the current Directory and sub folders
-alias diskusage="du -sh ./"
+alias diskusage="du -sh "
 
 memory_usage() {
     system_mem=$(grep "^MemTotal" /proc/meminfo | awk '{print $2/1024}')
