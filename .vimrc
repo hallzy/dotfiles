@@ -2070,12 +2070,6 @@ vnoremap ,e y:VdebugEval <C-R>"<cr>
 " autocmd BufEnter * silent! lcd %:p:h
 set autochdir
 
-augroup AUTO_BUILD_JS_AND_SCSS
-  autocmd!
-  autocmd BufWritePost *.js   :silent !bash /home/steven/auto-build.sh > /dev/null 2>&1 &
-  autocmd BufWritePost *.scss :silent !bash /home/steven/auto-build.sh > /dev/null 2>&1 &
-augroup END
-
 set guicursor=
 
 
