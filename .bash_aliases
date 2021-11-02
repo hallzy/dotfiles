@@ -294,13 +294,15 @@ reduce_video_size() {
     local inputFile="$2"
     local outputFile="$3"
 
-    if ! [[ "$reduceFactor" =~ ^[0-9]+$ ]] || [ $reduceFactor -le 0 ]; then
-        echo "Usage:"
-        echo "  reduce_video_size reduceFactor inputFile outputFile"
-        echo ""
-        echo "  reduceFactor must be an integer greater than 0."
-        return 1
+    if [ $# -ne 3 ]; then
+        echo "Expected 3 arguments: reduceFactor% inputFile outpputFile";
+        return 1;
     fi
 
-    ffmpeg -i "$inputFile" -vf "scale=iw/$reduceFactor:ih/$reduceFactor" "$outputFile"
+    if [ "$reduceFactor" -ge 100 ] || [ "$reduceFactor" -le 0 ]; then
+        echo "Reduce factor must be an integer percentage"
+        return 2;
+    fi
+
+    ffmpeg -i "$inputFile" -vf "scale=iw*$reduceFactor/100:ih*$reduceFactor/100" "$outputFile"
 }
