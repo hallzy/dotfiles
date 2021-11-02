@@ -2,6 +2,11 @@
 
 CWD="$(pwd)"
 
+recurse=0
+if [ "$1" = "recurse" ]; then
+    recurse=1
+fi
+
 find . -type d | while read -r dir; do
     if [ "$dir" = '.' ]; then
         continue
@@ -12,7 +17,12 @@ find . -type d | while read -r dir; do
         exit 1
     fi
 
-    count="$(find . -type f | wc -l)"
+    if [ "$recurse" -eq 1 ]; then
+        count="$(find . -type f | wc -l)"
+    else
+        count="$(find . -maxdepth 1 -type f | wc -l)"
+    fi
+
     echo "$count $dir"
 
     if ! cd "$CWD"; then
