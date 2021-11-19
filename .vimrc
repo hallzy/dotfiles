@@ -1070,6 +1070,11 @@ let g:Hexokinase_optInPatterns = [
 let g:Hexokinase_highlighters = ['backgroundfull']
 
 "}}}
+" haskell-vim{{{
+
+let g:haskell_indent_disable = 1
+
+"}}}
 
 "}}}
 " Functions"{{{
