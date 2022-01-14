@@ -1,9 +1,9 @@
 loopFile = mp.get_property("loop-file");
 
--- If LoopFile is not on, then loop the file until it exceeds 6 seconds
+-- If LoopFile is not on, then loop the file until it exceeds 12 seconds
 if loopFile == "no" then
     -- Create a timer that will trigger every 6 seconds.
-    timer = mp.add_periodic_timer(6, function()
+    timer = mp.add_periodic_timer(12, function()
         -- The timer will end looping for this file and then stop and reset itself
         mp.set_property("loop-file", "no");
         timer:kill();
