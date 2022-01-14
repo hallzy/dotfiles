@@ -27,10 +27,13 @@ echo "$fileHashes" | awk '
                 continue;
             }
 
+            names = ""
             print ""
             for (idx in filenames) {
                 print filenames[idx];
+                names = names "\"" filenames[idx] "\" "
             }
+            system("mpv " names)
         }
     }
 ';
