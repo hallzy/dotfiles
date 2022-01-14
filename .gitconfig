@@ -70,6 +70,17 @@
   # all good, and no conflict markers are present.
   a = !git diff --check && git add
 
+  su = "!f() { \
+    daysBack=1; \
+    output=\"$(git standup -d ${daysBack} -D human)\"; \
+    while [ -z \"$output\" ] || [ \"$output\" = 'Seems like Steven Hall did nothing!' ]; do \
+      daysBack=$((daysBack+1)); \
+      output=\"$(git standup -d ${daysBack} -D human)\"; \
+    done; \
+    git standup -d ${daysBack} -D human; \
+  }; \
+  f"
+
   update-master-from-upstream = "!f() { \
       git stash -u; \
       default=\"master-upstream\" \
