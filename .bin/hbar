@@ -1,0 +1,27 @@
+#!/bin/bash
+# hbar0.sh - Read in piped data  and plot bars
+#     format: label,value;label2,value2;  and plot bars
+#
+input=$(< /dev/stdin) ; # read piped data
+# remove new lines in files, and check for ";" after data pair
+input="$(echo "$input" | tr -d '\n')"
+IFS=';' read -r -a data <<< "$input"
+printf "\n"
+
+idx=0
+for element in "${data[@]}"
+do
+  # make at array of each data element
+  IFS=',' read -r -a datapt <<< "$element"
+
+  # add a random color
+  tput setaf $((1+ idx % 7))
+  # print the label, bar and value
+  printf " %10s " "${datapt[0]}"
+  bar="printf '█%.0s' {0..${datapt[1]}}"
+  eval "$bar"
+  printf " %s\n\n" "${datapt[1]}"
+  tput rmso ; # exit color mode
+
+  ((idx++))
+done
