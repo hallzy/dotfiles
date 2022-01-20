@@ -370,6 +370,7 @@ export PATH=$PATH:/snap/bin
 export PATH=$PATH:$HOME/appimages/bin
 
 export PATH=$PATH:$HOME/.config/composer/vendor/bin
+export PATH=$PATH:/usr/local/windscribe
 
 export DENO_INSTALL="/home/steven/.deno"
 export PATH="$PATH:$DENO_INSTALL/bin"
