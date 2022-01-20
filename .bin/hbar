@@ -8,6 +8,19 @@ input="$(echo "$input" | tr -d '\n')"
 IFS=';' read -r -a data <<< "$input"
 printf "\n"
 
+longestLabel=0
+for element in "${data[@]}"
+do
+  # make at array of each data element
+  IFS=',' read -r -a datapt <<< "$element"
+
+  length="${#datapt[0]}"
+
+  if [ "$length" -gt "$longestLabel" ]; then
+    longestLabel="$length"
+  fi
+done
+
 idx=0
 for element in "${data[@]}"
 do
@@ -17,7 +30,7 @@ do
   # add a random color
   tput setaf $((1+ idx % 7))
   # print the label, bar and value
-  printf " %10s " "${datapt[0]}"
+  printf " %${longestLabel}s " "${datapt[0]}"
   bar="printf '█%.0s' {0..${datapt[1]}}"
   eval "$bar"
   printf " %s\n\n" "${datapt[1]}"
