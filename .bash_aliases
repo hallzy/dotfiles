@@ -79,6 +79,12 @@ alias tarcompress='tar cvzf'
 alias mpvgpu='mpv --hwdec=auto'
 
 c() {
+    if [ -z "$1" ]; then
+        echo "Expected:";
+        echo "    c <destination> <... files to archive>";
+        return 1;
+    fi
+
     local dest="$1"
     shift 1
 
