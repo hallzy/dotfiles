@@ -2,9 +2,9 @@ alias cp='$(if which cpmv > /dev/null; then echo cpmv cp; else echo cp; fi)'
 alias mv='$(if which cpmv > /dev/null; then echo cpmv mv; else echo mv; fi)'
 alias vm='$(if which cpmv > /dev/null; then echo cpmv mv; else echo mv; fi)'
 
-alias vim='nvim'
-alias vi='nvim'
-alias vimdiff='nvim -d'
+alias vim='$(if which nvim > /dev/null; then echo nvim; else echo \vim; fi)'
+alias vi='$(if which nvim > /dev/null; then echo nvim; else echo \vim; fi)'
+alias vimdiff='$(if which nvim > /dev/null; then echo nvim -d; else echo \vim -d; fi)'
 
 # Show previous month, current month, and next month by default
 alias cal='cal -3'
