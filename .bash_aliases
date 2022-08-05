@@ -1,6 +1,6 @@
-alias cp='cpmv cp'
-alias mv='cpmv mv'
-alias vm='cpmv mv'
+alias cp='$(if which cpmv > /dev/null; then echo cpmv cp; else echo cp; fi)'
+alias mv='$(if which cpmv > /dev/null; then echo cpmv mv; else echo mv; fi)'
+alias vm='$(if which cpmv > /dev/null; then echo cpmv mv; else echo mv; fi)'
 
 alias vim='nvim'
 alias vi='nvim'
