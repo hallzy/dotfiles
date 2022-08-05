@@ -312,3 +312,7 @@ reduce_video_size() {
 
     ffmpeg -i "$inputFile" -vf "scale=iw*$reduceFactor/100:ih*$reduceFactor/100" "$outputFile"
 }
+
+sshAliases() {
+    \grep "^Host " config | cut -d' ' -f2- | sort
+}
