@@ -34,6 +34,7 @@ cd ~/.config/
 ln -sf "$DOTFILE_PATH/.config/fish/"
 ln -sf "$DOTFILE_PATH/.config/sxiv"
 ln -sf "$DOTFILE_PATH/.config/mpv"
+ln -sf "$DOTFILE_PATH/.config/zathura"
 
 cd ~/.config/caja
 ln -fs "$DOTFILE_PATH/.config/caja/scripts"

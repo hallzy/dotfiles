@@ -13,7 +13,9 @@ s=" | " # field separator
 exec 2>/dev/null
 
 filename="$1"
+mtimeEpoch="$(stat -c "%Y" "${filename}")"
 filesize=$(du -Hh -- "$1" | cut -f 1)
 geometry="${2}x${3}"
+mtime="$(date --date="@${mtimeEpoch}")"
 
-echo "${filename}${s}${filesize}${s}${geometry}"
+echo "${filename}${s}${filesize}${s}${geometry}${s}${mtime}"
