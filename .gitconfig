@@ -59,7 +59,7 @@
   discard = checkout --
   amend = commit -v -S --amend
   r = rebase
-  ri = rebase -i
+  ri = rebase -i --rebase-merges
   rix = rebase -ix
   rx = rebase -ix
   better-blame = log -p -M --follow --stat --
