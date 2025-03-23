@@ -54,3 +54,5 @@ fi
 
 randomImage="$(find /home/steven/Documents/git-repos/remote-github/random-desktop/desktop_backgrounds -type f | shuf -n 1)"
 feh --bg-max "$randomImage"
+
+. "$HOME/.cargo/env"
