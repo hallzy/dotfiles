@@ -697,3 +697,5 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # v0.16.0 uses gruvbox
 # Currently I have v0.12.1
 export BAT_THEME=gruvbox-dark
+
+. "$HOME/.cargo/env"
