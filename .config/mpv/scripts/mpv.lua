@@ -55,4 +55,7 @@ mp.add_key_binding("ctrl+d", function()
 
     -- Delete file
     mp.commandv("run", "/bin/sh", "-c", "/bin/rm '" .. filePath .. "'");
+
+    -- Next item
+    mp.command("playlist-next");
 end);
