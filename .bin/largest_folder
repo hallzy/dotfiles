@@ -8,6 +8,11 @@ if [ "$1" = "recurse" ]; then
 fi
 
 find . -type d | while read -r dir; do
+    if ! cd "$CWD"; then
+        echo "cwd '$CWD' doesn't exist."
+        exit 1
+    fi
+
     if [ "$dir" = '.' ]; then
         continue
     fi
@@ -21,12 +26,14 @@ find . -type d | while read -r dir; do
         count="$(find . -type f | wc -l)"
     else
         count="$(find . -maxdepth 1 -type f | wc -l)"
+        countWithFolders="$(find . -maxdepth 1 | wc -l)"
+        ((countWithFolders--))
+
+        # No files, but there are folders... Just ignore it.
+        if [ "$count" -eq 0 ] && [ "$countWithFolders" -gt 0 ]; then
+            continue;
+        fi
     fi
 
     echo "$count $dir"
-
-    if ! cd "$CWD"; then
-        echo "cwd '$CWD' doesn't exist."
-        exit 1
-    fi
 done | sort -nr | head -"${1:-1}"
