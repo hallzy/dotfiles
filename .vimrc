@@ -55,8 +55,6 @@ Plug 'mattn/emmet-vim', {'for' : ['html', 'php', 'blade']}
 " switch from source & headers
 Plug 'vim-scripts/a.vim', {'for' : ['c', 'cpp']}
 
-Plug 'leafgarland/typescript-vim', {'for' : [ 'typescript' ]}
-
 " Linting Engine
 Plug 'w0rp/ale'
 
