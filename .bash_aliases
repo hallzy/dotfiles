@@ -152,48 +152,29 @@ alias diskspace='df -kh .'
 # Get disk usage for the current Directory and sub folders
 alias diskusage="du -sh "
 
-memory_usage() {
-    system_mem=$(grep "^MemTotal" /proc/meminfo | awk '{print $2/1024}')
-    ps axv | awk -v input="${*}" -v mem="$system_mem" '
-        BEGIN {
-            split(input, inputs, " ")
-        }
-        {
-            for (i in inputs) {
-                if ( $0 !~ inputs[i] ) {
-                    next
-                }
-            }
-            s += $9;
-        }
-        END {
-            print "Memory Usage: "s*0.01*mem" MB ("s"%) (Total: "mem")";
-        }
-    '
-}
-
-cpu_usage() {
-    ps aux | awk -v input="${*}" '
-        BEGIN {
-            split(input, inputs, " ")
-        }
-        {
-            for (i in inputs) {
-                if ( $0 !~ inputs[i] ) {
-                    next
-                }
-            }
-            s += $3;
-        }
-        END {
-            print "CPU Usage: "s"%";
-        }
-    '
-}
-
 usage() {
-    memory_usage "$@"
-    cpu_usage "$@"
+    topResults="$(top -bn1)"
+
+    units="$(echo "$topResults" | head -n 4 | tail -n 1 | awk '{ print $1 }')"
+    ramTotal="$(echo "$topResults" | head -n 4 | tail -n 1 | awk '{ print $4 }')"
+    ramUsed="$(echo "$topResults" | head -n 4 | tail -n 1 | awk '{ print $8 }')"
+
+    awk -v used="$ramUsed" -v total="$ramTotal" -v units="$units" '
+        BEGIN {
+            percentage = int((used * 100 / total) + 0.5);
+            used = int(used + 0.5)
+            total = int(total + 0.5)
+            print "Memory Usage: " used " " units " (" percentage "%) (Total: " total " " units ")";
+        }
+    '
+
+    idle="$(echo "$topResults" | head -n 3 | tail -n 1 | awk '{ print $8 }')"
+    awk -v idle="$idle" '
+        BEGIN {
+            usage = 100 - idle;
+            print "CPU Usage: " usage "%";
+        }
+    '
 }
 
 alias localserver="python -m SimpleHTTPServer"
