@@ -9,6 +9,12 @@ alias vimdiff='$(if which nvim > /dev/null; then echo nvim -d; else echo \vim -d
 # Show previous month, current month, and next month by default
 alias cal='cal -3'
 
+# Save directory on each cd
+cd() {
+    builtin cd "$@" && pwd > ~/.last_dir
+}
+alias cdl='cd "$(cat ~/.last_dir)"'
+
 # some more ls aliases
 alias ls='ls -Fh --color'
 alias lal='ls -hAlF'
