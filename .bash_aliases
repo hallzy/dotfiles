@@ -51,8 +51,8 @@ alias mkdir='mkdir -p'
 #tlf is tail that auto updates
 alias tlf='tail -f'
 
-alias grep_mac='grep "[[:xdigit:]]\{2\}\(:[[:xdigit:]]\{2\}\)\{5\}"'
-alias grep_ip='grep "[[:digit:]]\{1,3\}\(\.[[:digit:]]\{1,3\}\)\{3\}"'
+alias grep_mac='\grep "[[:xdigit:]]\{2\}\(:[[:xdigit:]]\{2\}\)\{5\}"'
+alias grep_ip='\grep "[[:digit:]]\{1,3\}\(\.[[:digit:]]\{1,3\}\)\{3\}"'
 
 # Make rm verbose
 alias rm='rm -v'
@@ -222,7 +222,8 @@ alias backup='gksu deja-dup-preferences'
 alias trim='sudo fstrim -v --all'
 
 # Shows the DNS Servers this computer uses
-alias dns_servers='nmcli device show wlp2s0 | grep IP4.DNS | grep_ip -o'
+wifiDevice="$(ifconfig | awk -F'[ :]+' '/^w[a-z0-9]+: / { LAST=$1 } END { print LAST }')";
+alias dns_servers="nmcli device show ${wifiDevice} | \\grep IP4.DNS | grep_ip -o"
 
 largest() {
     find . -type f -exec du -sh "{}" \; | sort -hr | head -"${1:-1}"
