@@ -43,16 +43,16 @@ fi
 
 # If I am on my work computer and I have 3 monitors connected, setup multiple
 # monitors automatically on login
-if [ "$(hostname)" = 'stn-dell-xps' ]; then
-	if [ "$(xrandr | grep " connected" -c)" -eq 3 ]; then
-		xrandr --output eDP-1-1 --auto --output DP-1-3 --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
-	fi
+# if [ "$(hostname)" = 'steven-bk' ]; then
+# 	if [ "$(xrandr | grep " connected" -c)" -eq 3 ]; then
+# 		xrandr --output eDP-1-1 --auto --output DP-1-3 --auto --right-of eDP-1-1 --output DP-1-1  --auto --right-of DP-1-3
+# 	fi
 
-	# Without this, things like android studio and php storm do not work
-	export _JAVA_AWT_WM_NONREPARENTING=1
-fi
+# 	# Without this, things like android studio and php storm do not work
+# 	export _JAVA_AWT_WM_NONREPARENTING=1
+# fi
 
-randomImage="$(find /home/steven/Documents/git-repos/remote-github/random-desktop/desktop_backgrounds -type f | shuf -n 1)"
-feh --bg-max "$randomImage"
+# randomImage="$(find /home/steven/Documents/git-repos/remote-github/random-desktop/desktop_backgrounds -type f | shuf -n 1)"
+# feh --bg-max "$randomImage"
 
 . "$HOME/.cargo/env"
